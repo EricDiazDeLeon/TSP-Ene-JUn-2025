@@ -9,7 +9,7 @@
         android:id="@+id/titleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mi App MVVM"
+        android:text="Mi Ruta Digital"
         android:textSize="24sp"
         android:textStyle="bold"
         android:gravity="center"
