@@ -1,5 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.MiRutaDigital" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Aqui tenemos que crear el tema light -->
+    </style>
 
-    <style name="Theme.MiRutaDigital" parent="android:Theme.Material.Light.NoActionBar" />
+    <style name="Theme.MiRutaDigital" parent="Base.Theme.MiRutaDigital" />
 </resources>
