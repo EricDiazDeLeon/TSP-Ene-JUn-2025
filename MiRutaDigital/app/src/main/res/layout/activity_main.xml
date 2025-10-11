@@ -1,42 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <TextView
-        android:id="@+id/titleText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mi Ruta Digital"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="20dp" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:visibility="gone"
-        android:layout_marginBottom="16dp" />
-
-    <Button
-        android:id="@+id/buttonRefresh"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cargar Datos"
-        android:layout_marginBottom="16dp" />
-
-    <TextView
-        android:id="@+id/textUserList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Presiona el botón para cargar datos..."
-        android:textSize="14sp"
-        android:background="#f0f0f0"
-        android:padding="12dp" />
-
-</LinearLayout>
+    android:layout_height="match_parent" />
