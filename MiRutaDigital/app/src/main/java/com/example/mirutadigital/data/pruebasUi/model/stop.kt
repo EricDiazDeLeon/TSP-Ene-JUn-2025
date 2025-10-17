@@ -1,4 +1,4 @@
-package com.example.mirutadigital.data.testsUi.model
+package com.example.mirutadigital.data.pruebasUi.model
 
 import com.google.android.gms.maps.model.LatLng
 

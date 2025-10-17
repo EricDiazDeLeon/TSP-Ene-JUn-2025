@@ -4,6 +4,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.google.gms.google.services)
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -26,7 +28,11 @@ android {
             localPropertiesFile.inputStream().use { localProperties.load(it) }
         }
         val mapsApiKey = localProperties.getProperty("MAPS_API_KEY")
-
+        buildConfigField(
+            "String",
+            "MAPS_API_KEY",
+            "\"${localProperties.getProperty("MAPS_API_KEY")}\""
+        )
         // para que este la clave disponible como un recurso de compilacion
         resValue("string", "maps_api_key", mapsApiKey)
     }
@@ -49,6 +55,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -66,6 +73,7 @@ dependencies {
     implementation(libs.androidx.compose.foundation)
     implementation(libs.androidx.espresso.core)
     implementation(libs.play.services.maps)
+    implementation(libs.firebase.firestore)
     implementation(libs.play.services.location)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
@@ -74,7 +82,6 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-    implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     // Google Maps Platform
     implementation(libs.maps.compose)
@@ -86,4 +93,27 @@ dependencies {
     implementation(libs.material3)
     // navegacion navhost
     implementation(libs.androidx.navigation.compose)
+
+    // Room Database
+    implementation("androidx.room:room-runtime:2.8.2")
+    implementation("androidx.room:room-ktx:2.8.2")
+    kapt("androidx.room:room-compiler:2.8.2")
+
+    // Gson para conversión de JSON
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.8.1")
+
+    // Hilt (Inyección de Dependencias)
+    //implementation("com.google.dagger:hilt-android:2.51.1")
+    //kapt("com.google.dagger:hilt-compiler:2.51.1")
+
+    implementation("com.google.maps:google-maps-services:2.2.0")
+    implementation("org.slf4j:slf4j-simple:1.7.25")
+
+    implementation("com.google.maps.android:maps-utils-ktx:3.4.0")
 }
+
+// Configuración del plugin de Google Services
+apply(plugin = "com.google.gms.google-services")
+

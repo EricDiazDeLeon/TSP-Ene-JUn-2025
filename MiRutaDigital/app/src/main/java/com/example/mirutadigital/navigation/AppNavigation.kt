@@ -6,58 +6,55 @@ import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.LocationOn
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.mirutadigital.viewModel.LocationViewModel
+import com.example.mirutadigital.data.local.AppDatabase
+import com.example.mirutadigital.data.remote.FirestoreService
+import com.example.mirutadigital.data.repository.AppRepository
 import com.example.mirutadigital.ui.components.NavItem
-import com.example.mirutadigital.ui.screens.home.StopsSheetContent
-import com.example.mirutadigital.ui.screens.routes.ActiveRoutesSheetContent
+import com.example.mirutadigital.ui.screens.home.HomeScreen
+import com.example.mirutadigital.ui.screens.home.HomeScreenViewModel
+import com.example.mirutadigital.ui.screens.home.HomeScreenViewModelFactory
+import com.example.mirutadigital.ui.screens.routes.RoutesScreen
 
 sealed class AppScreens(val route: String) {
     object HomeScreen : AppScreens("home_screen")
-    //object RoutesScreen : AppScreens("routes_screen")
-    object ActiveRoutesScreen : AppScreens("active_routes_screen")
-//    object ShareAction : no deberia ir aqui pues es una accion y no una pantalla
-//        AppScreens("share_action") // no sera una pantalla, solo un ventana emergente
+    object RoutesScreen : AppScreens("routes_screen")
+    object ShareAction : AppScreens("share_action") // no sera una pantalla, solo un ventana emergente
 }
 
 val navigationItems = listOf(
-    NavItem("Inicio", Icons.Default.LocationOn, AppScreens.HomeScreen.route),
-    NavItem(
-        "Ver Rutas",
-        Icons.Default.DirectionsBus,
-        AppScreens.ActiveRoutesScreen.route
-    ), //routes_screen por el momento active...
-    NavItem("Compartir", Icons.Default.Groups, "share_action") // no sera una pantalla solo un ventana emergente
+    NavItem("Inicio", Icons.Default.LocationOn, "home_screen"),
+    NavItem("Ver Rutas", Icons.Default.DirectionsBus, "routes_screen"), //routes_screen
+    NavItem("Compartir", Icons.Default.Groups, "share_action")
 )
 
 @Composable
-fun AppNavigation(
-    navController: NavHostController,
-    locationViewModel: LocationViewModel,
-//    onShareClick: () -> Unit // para manejar el clic de compartir
-) {
-    //val navController = rememberNavController() // crea el controlador de navegacion
+fun AppNavigation() {
+    val navController = rememberNavController()
+
+    // 🔹 Crear las dependencias necesarias del repositorio
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val database = AppDatabase.getDatabase(context)
+    val appDao = database.appDao()
+    val firestoreService = FirestoreService()
+    val repository = AppRepository(appDao, firestoreService)
+
+    // 🔹 Crear el ViewModel con el Factory
+    val homeViewModel: HomeScreenViewModel = viewModel(
+        factory = HomeScreenViewModelFactory(repository)
+    )
 
     NavHost(
         navController = navController,
-        startDestination = AppScreens.HomeScreen.route // la pantalla inicial
+        startDestination = AppScreens.HomeScreen.route
     ) {
-        // la pantalla del inicio
         composable(route = AppScreens.HomeScreen.route) {
-            StopsSheetContent(
-                viewModel = viewModel(),
-                locationViewModel = locationViewModel,
-            ) // Le pasamos el navController y ubicacion
+            HomeScreen(navController = navController, viewModel = homeViewModel)
         }
-
-        // la pantalla de rutas activas
-        composable(route = AppScreens.ActiveRoutesScreen.route) {
-            ActiveRoutesSheetContent(
-                viewModel = viewModel()
-            )
+        composable(route = AppScreens.RoutesScreen.route) {
+            RoutesScreen(navController = navController, repository = repository)
         }
     }
 }

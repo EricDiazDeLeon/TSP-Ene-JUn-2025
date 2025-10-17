@@ -1,6 +1,6 @@
-package com.example.mirutadigital.data.testsUi.model.route
+package com.example.mirutadigital.data.pruebasUi.model.route
 
-import com.example.mirutadigital.data.testsUi.model.Stop
+import com.example.mirutadigital.data.pruebasUi.model.Stop
 
 /**
  * Modelo Trayecto de una ruta: esto por que es el de ida y vuelta, que pasan por diferentes paradas, por que estan al otro lado de la calle,

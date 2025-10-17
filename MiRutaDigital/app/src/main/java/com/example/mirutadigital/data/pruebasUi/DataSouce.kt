@@ -1,8 +1,8 @@
-package com.example.mirutadigital.data.testsUi
+package com.example.mirutadigital.data.pruebasUi
 
-import com.example.mirutadigital.data.testsUi.model.route.Journey
-import com.example.mirutadigital.data.testsUi.model.route.Route
-import com.example.mirutadigital.data.testsUi.model.Stop
+import com.example.mirutadigital.data.pruebasUi.model.route.Journey
+import com.example.mirutadigital.data.pruebasUi.model.route.Route
+import com.example.mirutadigital.data.pruebasUi.model.Stop
 import com.google.android.gms.maps.model.LatLng
 
 // lista de paradas de ejemplo
@@ -75,26 +75,16 @@ val sampleRoutes = listOf(
     )
 )
 
-/** --------------------------------------------------------------------
- * Nota: par estas dos funciones
- * en el backend se deberia hacer una logica similar para mandar la info y
- * que devuelva las rutas y paradas o solo rutas formateadas de esta manera, pueden ser dos archivos uno
- * para la funcion getSampleStopsWithRoutes con sus data class que hice
- * y otro para la funcion getSampleRoutesSchedule con su data class
- * ya quedando esas funciones se cambia los import de los viewModels en
- * donde hay import ...testUi...getSampleStopsWithRoutes
- *
- * las dos listas de arriba las obtendrian estos  archivos de consultas a la base de datos
- **/
 
-// el modelos y logica que necesita la interfaz para mostrar
+// El modelos y logica que necesita la interfaz para mostrar
+
+// modelo especifico que convina datos para tener una parada con todas las rutas que pasan por ella
+// y envie la distancia antes de cargar la pantalla
 data class StopWithRoutes(
     val id: String,
     val name: String,
-    val latitude: Double,
-    val longitude: Double,
-    val routes: List<RouteInfo>,
-    val distance: String = "Calculando..."
+    val distance: String,
+    val routes: List<RouteInfo>
 )
 
 // modelo de resumen de ruta para mostrarlo en la lista
@@ -104,7 +94,7 @@ data class RouteInfo(
 )
 
 /**
- * la funcoin procesa los datos para que lleguen a la vista adaptados,
+] * la funcoin procesa los datos para que lleguen a la vista adaptados,
  * lee los datos de ejemplo (sampleRoutes y sampleStops) y los transforma
  * en una lista de paradas adaptadas para ser mostradas en la interfaz
  */
@@ -112,8 +102,7 @@ fun getSampleStopsWithRoutes(): List<StopWithRoutes> {
     val stopWithRoutesList = mutableListOf<StopWithRoutes>()
 
     // obtiene todas las paradas unicas de todas las rutas
-    val allStops = sampleRoutes.flatMap { it.outboundJourney.stops + it.inboundJourney.stops }
-        .distinctBy { it.id }
+    val allStops = sampleRoutes.flatMap { it.outboundJourney.stops + it.inboundJourney.stops }.distinctBy { it.id }
 
     // itera sobre cada parada para encontrar que rutas pasan por ella
     for ((index, stop) in allStops.withIndex()) {
@@ -137,8 +126,7 @@ fun getSampleStopsWithRoutes(): List<StopWithRoutes> {
             StopWithRoutes(
                 id = stop.id,
                 name = stop.name,
-                latitude = stop.coordinates.latitude,
-                longitude = stop.coordinates.longitude,
+                distance = "Desde tu ubicación a ${50 + index * 35}m", // Distancia de ejemplo. //cambiar
                 routes = routeInfos
             )
         )
@@ -150,8 +138,7 @@ fun getSampleStopsWithRoutes(): List<StopWithRoutes> {
             StopWithRoutes(
                 id = "no_stops",
                 name = "Ya no hay paradas",
-                latitude = 0.0,
-                longitude = 0.0,
+                distance = "lo sentimos",
                 routes = emptyList()
             )
         )
@@ -160,32 +147,3 @@ fun getSampleStopsWithRoutes(): List<StopWithRoutes> {
     return stopWithRoutesList // envia a la vista las paradas adaptadas
 }
 
-// modelo para simplificar lo que se manda a la ui para mostrar el horario de las rutas
-data class RouteInfoSchedulel(
-    val id: String,
-    val name: String,
-    val schedule: String // Un string formateado con los horarios
-)
-
-/**
- * Transforma los datos de las rutas en una lista de modelos de ui
- */
-fun getSampleRoutesSchedule(): List<RouteInfoSchedulel> {
-    return sampleRoutes.map { route ->
-        // trayecto de ida
-        val outboundOriginName = route.outboundJourney.stops.firstOrNull()?.name ?: "N/A"
-        val outboundSchedule =
-            "  $outboundOriginName: ${route.outboundJourney.firstDeparture} - ${route.outboundJourney.lastDeparture}"
-
-        // trayecto de vuelta
-        val inboundOriginName = route.inboundJourney.stops.firstOrNull()?.name ?: "N/A"
-        val inboundSchedule =
-            "  $inboundOriginName: ${route.inboundJourney.firstDeparture} - ${route.inboundJourney.lastDeparture}"
-
-        RouteInfoSchedulel(
-            id = route.id,
-            name = route.name,
-            schedule = "Horario:\n$outboundSchedule\n$inboundSchedule"
-        )
-    }
-}

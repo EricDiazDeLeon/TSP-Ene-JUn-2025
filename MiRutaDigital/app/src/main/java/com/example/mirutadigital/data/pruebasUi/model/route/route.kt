@@ -1,4 +1,4 @@
-package com.example.mirutadigital.data.testsUi.model.route
+package com.example.mirutadigital.data.pruebasUi.model.route
 
 /**
  * Modelo Ruta : toda la info de la ruta

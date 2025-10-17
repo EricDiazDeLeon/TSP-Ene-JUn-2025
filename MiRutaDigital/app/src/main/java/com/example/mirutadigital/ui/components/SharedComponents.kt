@@ -1,48 +1,42 @@
 package com.example.mirutadigital.ui.components
 
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.rememberCameraPositionState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight.Companion.Bold
-import androidx.compose.ui.unit.dp
-import com.google.android.gms.maps.model.CameraPosition
-import com.google.android.gms.maps.model.LatLng
-import com.google.maps.android.compose.GoogleMap
-import com.google.maps.android.compose.rememberCameraPositionState
-
+import com.google.maps.android.compose.Polyline
+import com.example.mirutadigital.data.model.Route
+import com.google.android.gms.maps.CameraUpdateFactory
 
 // se modifica NavItem para usar la ruta de navegación
 data class NavItem(val label: String, val icon: ImageVector, val route: String)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Toolbar(
-    title: String,
-    canNavigateBack: Boolean,
-    onNavigateUp: () -> Unit = {}
-) {
+fun Toolbar() {
     CenterAlignedTopAppBar(
         title = {
             Text(
-                text = title,
+                text = "Mi Ruta Digital",
                 fontWeight = Bold,
                 style = MaterialTheme.typography.headlineSmall
             )
@@ -50,19 +44,7 @@ fun Toolbar(
         colors = TopAppBarDefaults.topAppBarColors(
             containerColor = MaterialTheme.colorScheme.surfaceVariant,
             titleContentColor = MaterialTheme.colorScheme.secondary
-        ),
-        navigationIcon = {
-            if (canNavigateBack) {
-                IconButton(onClick = onNavigateUp) {
-                    Icon(
-                        modifier = Modifier.size(30.dp),
-                        imageVector = Icons.Default.ArrowBackIosNew,
-                        tint = MaterialTheme.colorScheme.secondary,
-                        contentDescription = "Atras"
-                    )
-                }
-            }
-        }
+        )
     )
 }
 
@@ -96,7 +78,7 @@ fun BottomBar(
                         contentDescription = item.label
                     )
                 },
-                alwaysShowLabel = true,
+                alwaysShowLabel = true ,
                 // solo si es el boton compartir se desabilita
                 enabled = !isShareButton
             )
@@ -123,28 +105,32 @@ fun MainContent(
 // composable del mapa
 @Composable
 fun MapContent(
-    padding: PaddingValues
+    padding: PaddingValues,
+    selectedRoute: Route? = null, // <-- AÑADE ESTE PARÁMETRO
+    detailedPolyline: List<LatLng> = emptyList()
 ) {
-    // define la ubicacion y un estado de camara inicial
-    val posCordinates =
-        LatLng(22.762687558171876, -102.58071323639645) // coordenadas de ejemplo zac
+    val pos_coordenadas = LatLng(22.762687558171876, -102.58071323639645)
     val cameraPositionState = rememberCameraPositionState {
-        position = CameraPosition.fromLatLngZoom(posCordinates, 14f)
+        position = CameraPosition.fromLatLngZoom(pos_coordenadas, 14f)
     }
 
-    // composable de GoogleMap
+    // (Opcional) Si se selecciona una ruta, puedes animar la cámara a esa ruta
+    LaunchedEffect(detailedPolyline) {
+        if (detailedPolyline.isNotEmpty()) {
+            cameraPositionState.animate(
+                update = CameraUpdateFactory.newLatLngZoom(detailedPolyline.first(), 14f),
+                durationMs = 1000
+            )
+        }
+    }
+
     GoogleMap(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
         cameraPositionState = cameraPositionState
     ) {
-        // aqui se manejan los markers y polilineas del vm
-//        markers.forEach { marker ->
-//            Marker(
-//                position = marker.position,
-//                title = marker.title,
-//                snippet = marker.snippet
-//            )
-//        }
+        // DIBUJA LA POLILÍNEA SI HAY UNA RUTA SELECCIONADA
+        if (detailedPolyline.isNotEmpty()) {
+            Polyline(points = detailedPolyline)
+        }
     }
 }
