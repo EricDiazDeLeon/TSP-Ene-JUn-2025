@@ -2,8 +2,6 @@ package com.example.mirutadigital.ui.screens.shareLocation
 
 import android.Manifest
 import android.content.pm.PackageManager
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,6 +18,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.LocationOn
@@ -80,29 +79,7 @@ fun ShareLocationScreen(
     val snackbarHostState = remember { SnackbarHostState() }
     var showRouteDialog by remember { mutableStateOf(false) }
 
-    // Launcher para permisos de ubicación
-    val locationPermissionLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestMultiplePermissions()
-    ) { permissions ->
-        val fineLocationGranted = permissions[Manifest.permission.ACCESS_FINE_LOCATION] ?: false
-        val coarseLocationGranted = permissions[Manifest.permission.ACCESS_COARSE_LOCATION] ?: false
-        
-        if (fineLocationGranted || coarseLocationGranted) {
-            viewModel.onLocationPermissionGranted()
-        }
-    }
-
-    // Solicitar permisos si no están concedidos
-    LaunchedEffect(Unit) {
-        if (!uiState.isLocationPermissionGranted) {
-            locationPermissionLauncher.launch(
-                arrayOf(
-                    Manifest.permission.ACCESS_FINE_LOCATION,
-                    Manifest.permission.ACCESS_COARSE_LOCATION
-                )
-            )
-        }
-    }
+    // Permiso ahora se solicita al abrir la app en MainActivity
 
     // Mostrar snackbar para errores
     LaunchedEffect(uiState.errorMessage) {
@@ -117,11 +94,12 @@ fun ShareLocationScreen(
             TopAppBar(
                 title = { Text("Compartir Ubicación del Camión") },
                 navigationIcon = {
-                    Icon(
-                        Icons.Default.LocationOn,
-                        contentDescription = "Ubicación",
-                        tint = MaterialTheme.colorScheme.primary
-                    )
+                    androidx.compose.material3.IconButton(onClick = { navController.navigateUp() }) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Atrás"
+                        )
+                    }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainer
