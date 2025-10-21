@@ -17,17 +17,19 @@ import com.example.mirutadigital.ui.screens.home.HomeScreen
 import com.example.mirutadigital.ui.screens.home.HomeScreenViewModel
 import com.example.mirutadigital.ui.screens.home.HomeScreenViewModelFactory
 import com.example.mirutadigital.ui.screens.routes.RoutesScreen
+import com.example.mirutadigital.ui.screens.shareLocation.ShareLocationScreen
+import com.example.mirutadigital.ui.screens.shareLocation.ShareLocationViewModelFactory
 
 sealed class AppScreens(val route: String) {
     object HomeScreen : AppScreens("home_screen")
     object RoutesScreen : AppScreens("routes_screen")
-    object ShareAction : AppScreens("share_action") // no sera una pantalla, solo un ventana emergente
+    object ShareLocationScreen : AppScreens("share_location_screen")
 }
 
 val navigationItems = listOf(
     NavItem("Inicio", Icons.Default.LocationOn, "home_screen"),
     NavItem("Ver Rutas", Icons.Default.DirectionsBus, "routes_screen"), //routes_screen
-    NavItem("Compartir", Icons.Default.Groups, "share_action")
+    NavItem("Compartir", Icons.Default.Groups, "share_location_screen")
 )
 
 @Composable
@@ -55,6 +57,9 @@ fun AppNavigation() {
         }
         composable(route = AppScreens.RoutesScreen.route) {
             RoutesScreen(navController = navController, repository = repository)
+        }
+        composable(route = AppScreens.ShareLocationScreen.route) {
+            ShareLocationScreen(navController = navController, repository = repository)
         }
     }
 }

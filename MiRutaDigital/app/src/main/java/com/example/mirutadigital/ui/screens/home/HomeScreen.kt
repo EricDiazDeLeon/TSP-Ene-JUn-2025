@@ -133,7 +133,7 @@ fun HomeScreen(navController: NavController, viewModel: HomeScreenViewModel = vi
                     if (selectedItem.route == "routes_screen") {
                         // En lugar de navegar, ahora mostramos el BottomSheet
                         showRoutesSheet = true
-                    } else if (selectedItem.route != "share_action") {
+                    } else {
                         // La navegación a otras pantallas (si las hubiera) sigue igual
                         navController.navigate(selectedItem.route) {
                             popUpTo(navController.graph.startDestinationId) { saveState = true }
