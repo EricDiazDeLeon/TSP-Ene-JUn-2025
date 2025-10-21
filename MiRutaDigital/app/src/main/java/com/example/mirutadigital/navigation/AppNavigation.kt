@@ -19,6 +19,9 @@ import com.example.mirutadigital.ui.screens.home.HomeScreenViewModelFactory
 import com.example.mirutadigital.ui.screens.routes.RoutesScreen
 import com.example.mirutadigital.ui.screens.shareLocation.ShareLocationScreen
 import com.example.mirutadigital.ui.screens.shareLocation.ShareLocationViewModelFactory
+import com.example.mirutadigital.data.service.LocationService
+import com.example.mirutadigital.data.service.NetworkMonitorService
+import com.example.mirutadigital.data.service.SharingStateManager
 
 sealed class AppScreens(val route: String) {
     object HomeScreen : AppScreens("home_screen")
@@ -42,6 +45,15 @@ fun AppNavigation() {
     val appDao = database.appDao()
     val firestoreService = FirestoreService()
     val repository = AppRepository(appDao, firestoreService)
+
+    // 🔹 Inicializar el SharingStateManager para mantener el estado global
+    val locationService = LocationService(context)
+    val networkMonitorService = NetworkMonitorService(context)
+    val sharingStateManager = SharingStateManager.getInstance(
+        context, 
+        locationService, 
+        networkMonitorService
+    )
 
     // 🔹 Crear el ViewModel con el Factory
     val homeViewModel: HomeScreenViewModel = viewModel(

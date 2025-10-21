@@ -78,8 +78,10 @@ fun ShareLocationScreen(
     val context = LocalContext.current
     val snackbarHostState = remember { SnackbarHostState() }
     var showRouteDialog by remember { mutableStateOf(false) }
+    var localSelectedRoute by remember { mutableStateOf<Route?>(null) }
 
-    // Permiso ahora se solicita al abrir la app en MainActivity
+    // Usar la ruta del estado global si está compartiendo, sino usar la local
+    val currentSelectedRoute = if (uiState.isSharing) uiState.selectedRoute else localSelectedRoute
 
     // Mostrar snackbar para errores
     LaunchedEffect(uiState.errorMessage) {
@@ -92,7 +94,11 @@ fun ShareLocationScreen(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Compartir Ubicación del Camión") },
+                title = { 
+                    Text(
+                        if (uiState.isSharing) "Compartiendo Ubicación" else "Compartir Ubicación del Camión"
+                    ) 
+                },
                 navigationIcon = {
                     androidx.compose.material3.IconButton(onClick = { navController.navigateUp() }) {
                         Icon(
@@ -102,7 +108,10 @@ fun ShareLocationScreen(
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceContainer
+                    containerColor = if (uiState.isSharing) 
+                        MaterialTheme.colorScheme.primaryContainer 
+                    else 
+                        MaterialTheme.colorScheme.surfaceContainer
                 )
             )
         },
@@ -128,31 +137,37 @@ fun ShareLocationScreen(
                 lastUpdateTime = uiState.lastUpdateTime
             )
 
-            // Selección de ruta
-            RouteSelectionCard(
-                selectedRoute = uiState.selectedRoute,
-                onRouteSelected = { route ->
-                    viewModel.onRouteSelected(route)
-                    showRouteDialog = false
-                },
-                onShowRouteDialog = { showRouteDialog = true }
-            )
-
-            // Controles de compartir
-            SharingControlsCard(
-                isSharing = uiState.isSharing,
-                isLocationPermissionGranted = uiState.isLocationPermissionGranted,
-                selectedRoute = uiState.selectedRoute,
-                sharingStatus = uiState.sharingStatus,
-                onStartSharing = viewModel::startSharing,
-                onStopSharing = viewModel::stopSharing
-            )
-
-            // Estado de compartir
+            // Si ya está compartiendo, mostrar estado de compartir prominente
             if (uiState.isSharing) {
-                SharingStatusCard(
+                ActiveSharingCard(
+                    selectedRoute = uiState.selectedRoute,
                     sharingStatus = uiState.sharingStatus,
-                    lastUpdateTime = uiState.lastUpdateTime
+                    lastUpdateTime = uiState.lastUpdateTime,
+                    onStopSharing = viewModel::stopSharing
+                )
+            } else {
+                // Selección de ruta solo si no está compartiendo
+                RouteSelectionCard(
+                    selectedRoute = currentSelectedRoute,
+                    onRouteSelected = { route ->
+                        localSelectedRoute = route
+                        showRouteDialog = false
+                    },
+                    onShowRouteDialog = { showRouteDialog = true }
+                )
+
+                // Controles de compartir solo si no está compartiendo
+                SharingControlsCard(
+                    isSharing = uiState.isSharing,
+                    isLocationPermissionGranted = uiState.isLocationPermissionGranted,
+                    selectedRoute = currentSelectedRoute,
+                    sharingStatus = uiState.sharingStatus,
+                    onStartSharing = { 
+                        currentSelectedRoute?.let { route ->
+                            viewModel.startSharing(route)
+                        }
+                    },
+                    onStopSharing = viewModel::stopSharing
                 )
             }
         }
@@ -163,25 +178,173 @@ fun ShareLocationScreen(
         showDialog = showRouteDialog,
         onDismiss = { showRouteDialog = false },
         onRouteSelected = { route ->
-            viewModel.onRouteSelected(route)
+            localSelectedRoute = route
             showRouteDialog = false
         },
-        selectedRoute = uiState.selectedRoute,
+        selectedRoute = currentSelectedRoute,
         repository = repository
     )
 }
 
 @Composable
+fun ActiveSharingCard(
+    selectedRoute: Route?,
+    sharingStatus: com.example.mirutadigital.data.service.SharingStatus,
+    lastUpdateTime: Long,
+    onStopSharing: () -> Unit
+) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer
+        )
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(20.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            // Título prominente
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.CheckCircle,
+                    contentDescription = "Compartiendo",
+                    tint = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.size(28.dp)
+                )
+                Text(
+                    text = "COMPARTIENDO UBICACIÓN",
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.onPrimaryContainer
+                )
+            }
+            
+            // Información de la ruta
+            if (selectedRoute != null) {
+                Card(
+                    colors = CardDefaults.cardColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceContainerHigh
+                    )
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp)
+                    ) {
+                        Text(
+                            text = "Ruta activa:",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                        Text(
+                            text = selectedRoute.name,
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Text(
+                            text = "Horario: ${selectedRoute.operatingHours}",
+                            style = MaterialTheme.typography.bodyMedium,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+            
+            // Estado de compartir
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                when (sharingStatus) {
+                    com.example.mirutadigital.data.service.SharingStatus.STARTING -> {
+                        CircularProgressIndicator(
+                            modifier = Modifier.size(24.dp),
+                            strokeWidth = 2.dp,
+                            color = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    com.example.mirutadigital.data.service.SharingStatus.SHARING -> {
+                        Icon(
+                            Icons.Default.CheckCircle,
+                            contentDescription = "Compartiendo",
+                            tint = MaterialTheme.colorScheme.primary
+                        )
+                    }
+                    com.example.mirutadigital.data.service.SharingStatus.ERROR -> {
+                        Icon(
+                            Icons.Default.Error,
+                            contentDescription = "Error",
+                            tint = MaterialTheme.colorScheme.error
+                        )
+                    }
+                    else -> {
+                        Icon(
+                            Icons.Default.Pause,
+                            contentDescription = "Pausado",
+                            tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+                
+                Column {
+                    Text(
+                        text = when (sharingStatus) {
+                            com.example.mirutadigital.data.service.SharingStatus.STARTING -> "Iniciando compartir..."
+                            com.example.mirutadigital.data.service.SharingStatus.SHARING -> "Compartiendo ubicación en tiempo real"
+                            com.example.mirutadigital.data.service.SharingStatus.ERROR -> "Error al compartir ubicación"
+                            else -> "Estado: $sharingStatus"
+                        },
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.Medium
+                    )
+                    
+                    if (lastUpdateTime > 0) {
+                        val timeAgo = (System.currentTimeMillis() - lastUpdateTime) / 1000
+                        Text(
+                            text = "Última actualización: hace ${timeAgo}s",
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
+                        )
+                    }
+                }
+            }
+            
+            // Botón para detener compartir
+            Button(
+                onClick = onStopSharing,
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = MaterialTheme.colorScheme.error
+                )
+            ) {
+                Icon(
+                    Icons.Default.Stop,
+                    contentDescription = "Detener",
+                    modifier = Modifier.size(18.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text("Detener Compartir")
+            }
+        }
+    }
+}
+
+@Composable
 fun ConnectionStatusCard(
     isNetworkAvailable: Boolean,
-    sharingStatus: SharingStatus
+    sharingStatus: com.example.mirutadigital.data.service.SharingStatus
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = when {
                 !isNetworkAvailable -> MaterialTheme.colorScheme.errorContainer
-                sharingStatus == SharingStatus.ERROR -> MaterialTheme.colorScheme.errorContainer
+                sharingStatus == com.example.mirutadigital.data.service.SharingStatus.ERROR -> MaterialTheme.colorScheme.errorContainer
                 else -> MaterialTheme.colorScheme.surfaceContainer
             }
         )
@@ -196,26 +359,26 @@ fun ConnectionStatusCard(
             Icon(
                 imageVector = when {
                     !isNetworkAvailable -> Icons.Default.Warning
-                    sharingStatus == SharingStatus.ERROR -> Icons.Default.Error
+                    sharingStatus == com.example.mirutadigital.data.service.SharingStatus.ERROR -> Icons.Default.Error
                     else -> Icons.Default.CheckCircle
                 },
                 contentDescription = "Estado de conexión",
                 tint = when {
                     !isNetworkAvailable -> MaterialTheme.colorScheme.error
-                    sharingStatus == SharingStatus.ERROR -> MaterialTheme.colorScheme.error
+                    sharingStatus == com.example.mirutadigital.data.service.SharingStatus.ERROR -> MaterialTheme.colorScheme.error
                     else -> MaterialTheme.colorScheme.primary
                 }
             )
             Text(
                 text = when {
                     !isNetworkAvailable -> "Sin conexión a internet"
-                    sharingStatus == SharingStatus.ERROR -> "Error de conexión"
+                    sharingStatus == com.example.mirutadigital.data.service.SharingStatus.ERROR -> "Error de conexión"
                     else -> "Conectado"
                 },
                 style = MaterialTheme.typography.bodyMedium,
                 color = when {
                     !isNetworkAvailable -> MaterialTheme.colorScheme.onErrorContainer
-                    sharingStatus == SharingStatus.ERROR -> MaterialTheme.colorScheme.onErrorContainer
+                    sharingStatus == com.example.mirutadigital.data.service.SharingStatus.ERROR -> MaterialTheme.colorScheme.onErrorContainer
                     else -> MaterialTheme.colorScheme.onSurface
                 }
             )
@@ -365,7 +528,7 @@ fun SharingControlsCard(
     isSharing: Boolean,
     isLocationPermissionGranted: Boolean,
     selectedRoute: Route?,
-    sharingStatus: SharingStatus,
+    sharingStatus: com.example.mirutadigital.data.service.SharingStatus,
     onStartSharing: () -> Unit,
     onStopSharing: () -> Unit
 ) {
@@ -448,15 +611,15 @@ fun SharingControlsCard(
 
 @Composable
 fun SharingStatusCard(
-    sharingStatus: SharingStatus,
+    sharingStatus: com.example.mirutadigital.data.service.SharingStatus,
     lastUpdateTime: Long
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
             containerColor = when (sharingStatus) {
-                SharingStatus.SHARING -> MaterialTheme.colorScheme.primaryContainer
-                SharingStatus.ERROR -> MaterialTheme.colorScheme.errorContainer
+                com.example.mirutadigital.data.service.SharingStatus.SHARING -> MaterialTheme.colorScheme.primaryContainer
+                com.example.mirutadigital.data.service.SharingStatus.ERROR -> MaterialTheme.colorScheme.errorContainer
                 else -> MaterialTheme.colorScheme.surfaceContainer
             }
         )
@@ -469,20 +632,20 @@ fun SharingStatusCard(
             horizontalArrangement = Arrangement.spacedBy(12.dp)
         ) {
             when (sharingStatus) {
-                SharingStatus.STARTING -> {
+                com.example.mirutadigital.data.service.SharingStatus.STARTING -> {
                     CircularProgressIndicator(
                         modifier = Modifier.size(24.dp),
                         strokeWidth = 2.dp
                     )
                 }
-                SharingStatus.SHARING -> {
+                com.example.mirutadigital.data.service.SharingStatus.SHARING -> {
                     Icon(
                         Icons.Default.CheckCircle,
                         contentDescription = "Compartiendo",
                         tint = MaterialTheme.colorScheme.primary
                     )
                 }
-                SharingStatus.ERROR -> {
+                com.example.mirutadigital.data.service.SharingStatus.ERROR -> {
                     Icon(
                         Icons.Default.Error,
                         contentDescription = "Error",
@@ -501,9 +664,9 @@ fun SharingStatusCard(
             Column {
                 Text(
                     text = when (sharingStatus) {
-                        SharingStatus.STARTING -> "Iniciando compartir..."
-                        SharingStatus.SHARING -> "Compartiendo ubicación en tiempo real"
-                        SharingStatus.ERROR -> "Error al compartir ubicación"
+                        com.example.mirutadigital.data.service.SharingStatus.STARTING -> "Iniciando compartir..."
+                        com.example.mirutadigital.data.service.SharingStatus.SHARING -> "Compartiendo ubicación en tiempo real"
+                        com.example.mirutadigital.data.service.SharingStatus.ERROR -> "Error al compartir ubicación"
                         else -> "Estado: $sharingStatus"
                     },
                     style = MaterialTheme.typography.bodyMedium,

@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -67,6 +68,7 @@ import com.example.mirutadigital.ui.components.BottomBar
 import com.example.mirutadigital.ui.components.MainContent
 import com.example.mirutadigital.ui.components.MapContent
 import com.example.mirutadigital.ui.components.Toolbar
+import com.example.mirutadigital.ui.components.SharingStatusIndicator
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import androidx.compose.material3.rememberModalBottomSheetState
@@ -156,11 +158,20 @@ fun HomeScreen(navController: NavController, viewModel: HomeScreenViewModel = vi
                 },
             content = { innerPaddingSheet ->
                 MainContent(padding = innerPaddingSheet) {
-                    // 3. PASAMOS LA RUTA SELECCIONADA AL MAPA
-                    MapContent(
-                        padding = innerPaddingSheet,
-                        detailedPolyline = uiState.detailedPolyline
-                    )
+                    Column(
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        // Indicador de compartir ubicación
+                        SharingStatusIndicator(
+                            modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+                        )
+                        
+                        // Mapa
+                        MapContent(
+                            padding = innerPaddingSheet,
+                            detailedPolyline = uiState.detailedPolyline
+                        )
+                    }
                 }
             },
             sheetContent = {

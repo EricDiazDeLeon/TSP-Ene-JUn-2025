@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mirutadigital.data.repository.AppRepository
 import com.example.mirutadigital.data.service.LocationService
 import com.example.mirutadigital.data.service.NetworkMonitorService
+import com.example.mirutadigital.data.service.SharingStateManager
 
 class ShareLocationViewModelFactory(
     private val repository: AppRepository,
@@ -17,7 +18,12 @@ class ShareLocationViewModelFactory(
         if (modelClass.isAssignableFrom(ShareLocationViewModel::class.java)) {
             val locationService = LocationService(context)
             val networkMonitorService = NetworkMonitorService(context)
-            return ShareLocationViewModel(repository, locationService, networkMonitorService) as T
+            val sharingStateManager = SharingStateManager.getInstance(
+                context, 
+                locationService, 
+                networkMonitorService
+            )
+            return ShareLocationViewModel(repository, sharingStateManager, locationService) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
