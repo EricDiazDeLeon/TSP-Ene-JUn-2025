@@ -52,8 +52,10 @@ class NetworkMonitorService(private val context: Context) {
             // Enviar el estado inicial
             val currentNetwork = connectivityManager.activeNetwork
             val networkCapabilities = connectivityManager.getNetworkCapabilities(currentNetwork)
-            val isConnected = networkCapabilities?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true &&
-                    networkCapabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+            val isConnected = networkCapabilities?.let { caps ->
+                caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
+                        caps.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+            } ?: false
             
             Log.d(TAG, "Estado inicial de red: $isConnected")
             trySend(isConnected)

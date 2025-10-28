@@ -1,4 +1,4 @@
-package com.example.mirutadigital.data.pruebasUi.model
+package com.example.mirutadigital.data.testsUi.model
 
 import com.google.android.gms.maps.model.LatLng
 
@@ -12,5 +12,5 @@ import com.google.android.gms.maps.model.LatLng
 data class Stop(
     val id: String,
     val name: String,
-    val coordinates: LatLng
+    val coordinates: LatLng // hay una funcion que convierte lo dos double en latLng(1.5,2.3)
 )

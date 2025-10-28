@@ -1,14 +1,75 @@
+gitignore
+# Created by https://www.toptal.com/developers/gitignore/api/android,kotlin,gradle
+# Edit at https://www.toptal.com/developers/gitignore?templates=android,kotlin,gradle
+
+### Android ###
+# Built application files
+*.apk
+*.aab
+*.ap_
+*.a_
+
+# Files for the ART/Dalvik VM
+*.dex
+
+# Dalvik heap dumps
+*.hprof
+
+# Built C/C++ libraries
+/app/build/
+/build/
+/app/src/main/jniLibs/
+
+# Android Studio
+.idea/
+.gradle/
+local.properties
 *.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+captures/
+.externalNativeBuild/
+.cxx/
+
+# Gradle
+gradlew
+gradlew.bat
+gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# Google Services
+/app/google-services.json
+
+# Proguard
+proguard-rules.pro
+proguard.txt
+mapping.txt
+seeds.txt
+usage.txt
+
+# Log files
+*.log
+
+# Keystore files
+*.jks
+*.keystore
+
+### Kotlin ###
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# IDEA project files
+*.iws
+*.ipr
+
+# Kapt/KSP generated files
+/build/generated/source/kapt/
+/build/generated/source/kaptKotlin/
+
+# END

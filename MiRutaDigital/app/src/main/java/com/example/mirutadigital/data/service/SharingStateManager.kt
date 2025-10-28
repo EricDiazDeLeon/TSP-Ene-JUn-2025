@@ -6,6 +6,7 @@ import com.example.mirutadigital.data.model.Route
 import com.example.mirutadigital.data.remote.FirestoreService
 import com.google.android.gms.maps.model.LatLng
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
@@ -132,6 +133,11 @@ class SharingStateManager(
         locationUpdatesJob = coroutineScope.launch {
             locationService.startLocationUpdates()
                 .catch { exception ->
+                    // Ignorar cancelaciones provocadas al detener el compartir
+                    if (exception is CancellationException) {
+                        Log.d(TAG, "Seguimiento de ubicación cancelado")
+                        return@catch
+                    }
                     Log.e(TAG, "Error en seguimiento de ubicación", exception)
                     _sharingState.value = _sharingState.value.copy(
                         sharingStatus = SharingStatus.ERROR,
@@ -177,11 +183,15 @@ class SharingStateManager(
                 delay(SHARING_INTERVAL)
                 
             } catch (exception: Exception) {
+                // Si la cancelación fue intencional (al detener compartir), no lo tratamos como error
+                if (exception is CancellationException) {
+                    Log.d(TAG, "Compartir ubicación cancelado")
+                    return@launch
+                }
                 Log.e(TAG, "Error al compartir ubicación", exception)
                 _sharingState.value = _sharingState.value.copy(
                     sharingStatus = SharingStatus.ERROR,
                     errorMessage = "Error de conexión: ${exception.message}",
-                    isNetworkAvailable = false
                 )
                 
                 // Intentar reconectar después de un delay

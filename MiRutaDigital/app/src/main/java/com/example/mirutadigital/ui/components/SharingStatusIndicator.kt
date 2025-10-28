@@ -1,5 +1,6 @@
 package com.example.mirutadigital.ui.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -35,7 +36,8 @@ import com.example.mirutadigital.data.service.SharingStateManager
 
 @Composable
 fun SharingStatusIndicator(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: (() -> Unit)? = null
 ) {
     val context = LocalContext.current
     val locationService = LocationService(context)
@@ -50,7 +52,11 @@ fun SharingStatusIndicator(
     
     if (sharingState.isSharing) {
         Card(
-            modifier = modifier.fillMaxWidth(),
+            modifier = modifier
+                .fillMaxWidth()
+                .let { base ->
+                    if (onClick != null) base.clickable { onClick() } else base
+                },
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.primaryContainer
             ),

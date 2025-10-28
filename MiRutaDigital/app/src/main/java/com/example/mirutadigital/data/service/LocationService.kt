@@ -46,6 +46,7 @@ class LocationService(private val context: Context) {
     /**
      * Obtiene la ubicación actual una sola vez
      */
+    @android.annotation.SuppressLint("MissingPermission")
     suspend fun getCurrentLocation(): Location? = suspendCancellableCoroutine { continuation ->
         if (!hasLocationPermission()) {
             Log.w(TAG, "Permisos de ubicación no concedidos")
@@ -53,20 +54,25 @@ class LocationService(private val context: Context) {
             return@suspendCancellableCoroutine
         }
 
-        fusedLocationClient.lastLocation
-            .addOnSuccessListener { location ->
-                if (location != null) {
-                    Log.d(TAG, "Ubicación obtenida: ${location.latitude}, ${location.longitude}")
-                    continuation.resume(location)
-                } else {
-                    Log.w(TAG, "No se pudo obtener la ubicación actual")
-                    continuation.resume(null)
+        try {
+            fusedLocationClient.lastLocation
+                .addOnSuccessListener { location ->
+                    if (location != null) {
+                        Log.d(TAG, "Ubicación obtenida: ${location.latitude}, ${location.longitude}")
+                        continuation.resume(location)
+                    } else {
+                        Log.w(TAG, "No se pudo obtener la ubicación actual")
+                        continuation.resume(null)
+                    }
                 }
-            }
-            .addOnFailureListener { exception ->
-                Log.e(TAG, "Error al obtener ubicación", exception)
-                continuation.resumeWithException(exception)
-            }
+                .addOnFailureListener { exception ->
+                    Log.e(TAG, "Error al obtener ubicación", exception)
+                    continuation.resumeWithException(exception)
+                }
+        } catch (e: SecurityException) {
+            Log.e(TAG, "Permiso faltante al obtener ubicación", e)
+            continuation.resume(null)
+        }
     }
 
     /**
