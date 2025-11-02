@@ -16,6 +16,7 @@ data class RoutesInfo(
     val windshieldLabel: String,
     val colors: String,
     val stopsJourney: List<JourneyInfo>,
+    val isFavorite: Boolean = false
 )
 
 /**

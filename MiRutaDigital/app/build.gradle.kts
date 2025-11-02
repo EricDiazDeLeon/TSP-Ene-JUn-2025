@@ -112,3 +112,12 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
+
+tasks.register("testClasses") {
+
+    dependsOn("testDebugUnitTest")
+    val compileKotlinUnitTest = tasks.findByName("compileDebugUnitTestKotlin")
+    if (compileKotlinUnitTest != null) {
+        dependsOn(compileKotlinUnitTest)
+    }
+}

@@ -85,7 +85,7 @@ fun ShareLocationScreen(
     // Usar la ruta del estado global si está compartiendo, sino usar la local
     val currentSelectedRoute = if (uiState.isSharing) uiState.selectedRoute else localSelectedRoute
 
-    // Mostrar snackbar para errores
+    // snackbar para errores
     LaunchedEffect(uiState.errorMessage) {
         uiState.errorMessage?.let { message ->
             snackbarHostState.showSnackbar(message)
@@ -185,7 +185,6 @@ fun ActiveSharingCard(
                 .padding(20.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            // Título prominente
             Row(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(12.dp)

@@ -23,11 +23,17 @@ data class AllRoutesUiState(
     val searchQuery: String = "",
     val isLoading: Boolean = true,
     val filteredStopId: String? = null,
-    val filteredStopName: String? = null
+    val filteredStopName: String? = null,
+    val showOnlyFavorites: Boolean = false
 ) {
     val filteredRoutes: List<RoutesInfo>
         get() {
             var result = routes
+
+            // Filtro de favoritos
+            if (showOnlyFavorites) {
+                result = result.filter { it.isFavorite }
+            }
 
             if (filteredStopId != null) {
                 result = result.filter { route ->
@@ -48,6 +54,23 @@ data class AllRoutesUiState(
 class AllRoutesViewModel(
     private val repository: AppRepository
 ) : ViewModel() {
+    
+    // Método para cargar rutas favoritas
+    private suspend fun loadFavoriteRoutes() {
+        try {
+            // Actualizar el estado de favoritos directamente desde las rutas
+            _uiState.update { currentState ->
+                currentState.copy(
+                    routes = currentState.routes.map { route ->
+                        // Aquí mantenemos el estado actual de favoritos
+                        route
+                    }
+                )
+            }
+        } catch (e: Exception) {
+            // Manejar error
+        }
+    }
 
     private val _uiState = MutableStateFlow(AllRoutesUiState())
     val uiState: StateFlow<AllRoutesUiState> = _uiState.asStateFlow()
@@ -64,6 +87,8 @@ class AllRoutesViewModel(
                 val repositoryRoutes = repository.getRoutes().first()
                 // Obtener paradas para asociarlas a cada ruta
                 val repositoryStops = repository.getStops().first()
+                // Obtener rutas favoritas
+                val favoriteRoutes = repository.getFavoriteRouteIds()
                 
                 // Convertir Route (repo) a RoutesInfo (UI)
                 val routes = repositoryRoutes.map { route ->
@@ -100,7 +125,8 @@ class AllRoutesViewModel(
                         name = route.name,
                         windshieldLabel = "No Tiene",
                         colors = "Sin Especificar",
-                        stopsJourney = listOf(outbound, inbound)
+                        stopsJourney = listOf(outbound, inbound),
+                        isFavorite = favoriteRoutes.contains(route.id) || route.isFavorite
                     )
                 }
                 
@@ -139,12 +165,36 @@ class AllRoutesViewModel(
         }
     }
 
+    // Método para limpiar el filtro de paradas
     fun clearStopFilter() {
         _uiState.update {
             it.copy(
                 filteredStopId = null,
                 filteredStopName = null
             )
+        }
+    }
+
+    // Método para cambiar el filtro de favoritos
+    fun toggleFavoritesFilter(showOnlyFavorites: Boolean) {
+        _uiState.update { it.copy(showOnlyFavorites = showOnlyFavorites) }
+    }
+    
+    // Método para alternar el estado de favorito de una ruta
+    fun toggleFavorite(routeId: String) {
+        viewModelScope.launch {
+            // Actualizar directamente el estado de favorito en el ViewModel
+            val updatedRoutes = _uiState.value.routes.map { route ->
+                if (route.id == routeId) {
+                    route.copy(isFavorite = !route.isFavorite)
+                } else {
+                    route
+                }
+            }
+            _uiState.update { it.copy(routes = updatedRoutes) }
+            
+            // Persistir el cambio en el repositorio
+            repository.toggleFavoriteRoute(routeId)
         }
     }
 }

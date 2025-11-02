@@ -32,6 +32,9 @@ import androidx.compose.material.icons.filled.DirectionsBus
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.StarOutline
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
@@ -106,6 +109,27 @@ fun AllRoutesScreen(
                     onSearchQueryChange = viewModel::onSearchQueryChange
                 )
 
+                // Botón para filtrar rutas favoritas
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    if (uiState.routes.any { it.isFavorite }) {
+                        Text(
+                            text = "Mostrar solo favoritas",
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        val showOnlyFavorites = uiState.showOnlyFavorites
+                        androidx.compose.material3.Switch(
+                            checked = showOnlyFavorites,
+                            onCheckedChange = { viewModel.toggleFavoritesFilter(it) }
+                        )
+                    }
+                }
+
                 AnimatedVisibility(
                     visible = uiState.filteredStopId != null,
                     enter = fadeIn() + slideInVertically(),
@@ -156,8 +180,35 @@ fun AllRoutesScreen(
                         }
                     }
                 },
+                onFavoriteClick = { routeId ->
+                    viewModel.toggleFavorite(routeId)
+                },
+                isFavorite = route.isFavorite
             )
         }
+        
+        item {
+            if (uiState.filteredRoutes.isEmpty() && !uiState.isLoading) {
+                Text(
+                    "No se encontraron rutas...",
+                    modifier = Modifier
+                        .padding(vertical = 4.dp)
+                        .fillMaxWidth(),
+                    textAlign = TextAlign.Center,
+                    color = Color.Gray
+                )
+            } else if (!uiState.isLoading) {
+                Text(
+                    "No hay más rutas...", modifier = Modifier
+                        .padding(vertical = 4.dp)
+                        .fillMaxWidth(),
+                    textAlign = TextAlign.Center,
+                    color = Color.Gray
+                )
+            }
+            Spacer(modifier = Modifier.height(16.dp))
+        }
+        
         item {
             if (uiState.filteredRoutes.isEmpty() && !uiState.isLoading) {
                 Text(
@@ -324,7 +375,9 @@ private data class JourneyPoints(
 fun RouteItem(
     route: RoutesInfo,
     isExpanded: Boolean,
-    onItemClick: () -> Unit
+    onItemClick: () -> Unit,
+    onFavoriteClick: (String) -> Unit = {},
+    isFavorite: Boolean = false
 ) {
     // outboundJourney inicio medio y fin
     val outbound =
@@ -362,11 +415,30 @@ fun RouteItem(
                 ) // icono de la ruta
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = route.name,
-                        fontWeight = FontWeight.ExtraBold,
-                        color = MaterialTheme.colorScheme.onSecondaryFixedVariant
-                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            text = route.name,
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                            modifier = Modifier.weight(1f)
+                        )
+                        
+                        IconButton(
+                            onClick = { onFavoriteClick(route.id) }
+                        ) {
+                            Icon(
+                                imageVector = if (isFavorite) Icons.Default.Star else Icons.Default.StarOutline,
+                                contentDescription = if (isFavorite) "Quitar de favoritos" else "Agregar a favoritos",
+                                tint = if (isFavorite) Color(0xFFFFD700) else Color.Gray
+                            )
+                        }
+                    }
                     if (!isExpanded) {
                         // trayectos
                         Row(

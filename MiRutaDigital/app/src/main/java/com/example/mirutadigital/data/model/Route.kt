@@ -6,5 +6,6 @@ data class Route(
     val id: String,
     val name: String,
     val operatingHours: String,
-    val polylinePoints: List<LatLng>
+    val polylinePoints: List<LatLng>,
+    val isFavorite: Boolean = false
 )

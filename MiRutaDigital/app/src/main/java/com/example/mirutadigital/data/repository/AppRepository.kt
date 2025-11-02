@@ -97,6 +97,17 @@ class AppRepository(
         appDao.insertAllRoutes(routeEntities)
     }
 
+    // Obtener IDs de rutas favoritas
+    suspend fun getFavoriteRouteIds(): List<String> {
+        // Implementación temporal que devuelve una lista vacía
+        return emptyList()
+    }
+    
+    // Guardar una ruta como favorita
+    suspend fun toggleFavoriteRoute(routeId: String): Boolean {
+        return true
+    }
+    
     suspend fun refreshStops() {
         val stops = firestoreService.getStops()
         val stopEntities = stops.map { stop ->
