@@ -1,0 +1,28 @@
+{
+  "id": "R_17",
+  "name": "Ruta 17",
+  "departureInterval": 25,
+  "outboundJourney": {
+    "stops": [
+      { "id": "plaza_alesia" },
+      { "id": "villa_fontana" }
+    ],
+    "firstDeparture": "06:20",
+    "lastDeparture": "21:00",
+    "encodedPolyline": null
+  },
+  "inboundJourney": {
+    "stops": [
+      { "id": "villa_fontana" },
+      { "id": "plaza_alesia" }
+    ],
+    "firstDeparture": "06:05",
+    "lastDeparture": "21:30",
+    "encodedPolyline": null
+  },
+  "detail": {
+    "windshieldLabel": "VILLA GPE - SIGLO XXI",
+    "colors": "Amarillo con Verde",
+    "price": 10.5
+  }
+}

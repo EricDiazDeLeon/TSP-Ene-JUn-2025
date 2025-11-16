@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "743006098477",
-    "project_id": "mirutadigital-a1afa",
-    "storage_bucket": "mirutadigital-a1afa.firebasestorage.app"
+    "project_number": "835551512959",
+    "project_id": "mirutadigital2",
+    "storage_bucket": "mirutadigital2.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:743006098477:android:f918548499b067ccd094a4",
+        "mobilesdk_app_id": "1:835551512959:android:a3fda9b27aed2f6200f24a",
         "android_client_info": {
           "package_name": "com.example.mirutadigital"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDnjalcRHSsqS-u_PRQx0XNUmyhevOoI5I"
+          "current_key": "AIzaSyCqWBASC_BCeJZVu-UhqDBSp2jZJNgjd0A"
         }
       ],
       "services": {

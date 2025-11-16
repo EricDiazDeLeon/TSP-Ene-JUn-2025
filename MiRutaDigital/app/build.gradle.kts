@@ -1,13 +1,13 @@
 import java.util.Properties
 
 
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.ksp)
-    id("org.jetbrains.kotlin.kapt")
-    alias(libs.plugins.google.services)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -18,8 +18,8 @@ android {
         applicationId = "com.example.mirutadigital"
         minSdk = 24
         targetSdk = 36
-        versionCode = 3
-        versionName = "1.1"
+        versionCode = 4
+        versionName = "1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -29,7 +29,7 @@ android {
         if (localPropertiesFile.exists()) {
             localPropertiesFile.inputStream().use { localProperties.load(it) }
         }
-        val mapsApiKey = localProperties.getProperty("MAPS_API_KEY")
+        val mapsApiKey = localProperties.getProperty("MAPS_API_KEY") // se debe llamar igual y sin "" MAPS_API_KEY = 4498...
 
         // para que este la clave disponible como un recurso de compilacion
         resValue("string", "maps_api_key", mapsApiKey)
@@ -66,6 +66,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
     // -- compose --
+    // bom - gestiona las versiones de las librerias de compose
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.compose.ui)
     implementation(libs.androidx.compose.ui.graphics)
@@ -85,21 +86,27 @@ dependencies {
     implementation(libs.play.services.location)
     implementation(libs.maps.utils.ktx)
 
+    // -- Retrofit y Moshi para Networking --
+    implementation(libs.retrofit)
+    implementation(libs.converter.moshi)
+    implementation(libs.squareup.moshi.kotlin)
+    implementation(libs.logging.interceptor)
+
     // -- room - base de datos --
     implementation(libs.androidx.room.runtime)
-    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.room.ktx) // soporte para corrutinas de Kotlin
     implementation(libs.androidx.room.paging)
-    ksp(libs.androidx.room.compiler)
 
-    // -- Firebase --
-    implementation(platform(libs.firebase.bom))
-    implementation(libs.firebase.firestore)
+    ksp(libs.androidx.room.compiler) // para usar ksp con room - procesador de anotaciones
 
-    // -- Gson para conversión JSON --
+    // -- firebase --
+    implementation(platform("com.google.firebase:firebase-bom:34.4.0"))
+    //implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth")
+    implementation("com.google.firebase:firebase-firestore")
+
+    // -- Gson --
     implementation(libs.gson)
-
-    // -- Coroutines Play Services --
-    implementation(libs.kotlinx.coroutines.play.services)
 
     // -- testing --
     testImplementation(libs.junit)
@@ -111,13 +118,4 @@ dependencies {
     // -- debug --
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
-}
-
-tasks.register("testClasses") {
-
-    dependsOn("testDebugUnitTest")
-    val compileKotlinUnitTest = tasks.findByName("compileDebugUnitTestKotlin")
-    if (compileKotlinUnitTest != null) {
-        dependsOn(compileKotlinUnitTest)
-    }
 }

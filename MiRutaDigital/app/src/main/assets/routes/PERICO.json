@@ -1,0 +1,40 @@
+{
+  "id": "PERICO",
+  "name": "Perico",
+  "departureInterval": 35,
+  "outboundJourney": {
+    "stops": [
+      { "id": "primera" },
+      { "id": "segunda" },
+      { "id": "tercera" },
+      { "id": "cuarta" },
+      { "id": "quinta" },
+      { "id": "sexta" },
+      { "id": "septima" },
+      { "id": "octava" },
+      { "id": "novena" },
+      { "id": "decima" }
+    ],
+    "firstDeparture": "06:30",
+    "lastDeparture": "19:30",
+    "encodedPolyline": "mvviC~qmpRGj@QnBQzBK`B[vD[tDEh@Eh@Mn@M^OXOX]`@]Za@\[X]Z[TSTMPKVIXG^Ih@Ef@Cd@Ir@Gv@Gt@E`@E`@CXEVCTCXEVGd@G\\I\\I^IZITELENGTGTOd@I^Wz@Wt@M^Qj@Qf@Up@Sn@Od@MZK\\Qh@EJKXQh@KZQf@KVKTOb@O`@M\\M`@Q`@Of@Qf@Qj@Ob@Yr@Qd@Sh@Qf@Sj@Yv@_@fAk@~Ag@tAk@~Am@hBg@~Au@lBs@dB_@dAUbAMfAG~ASTq@JkAPoAN??yAPk@FeAJ{@JKFKFQHSDcAJaAHu@F[Bi@F]Di@Fg@Fa@Fm@Hw@LSDOHQFi@Hg@Fi@Hq@Hg@Fc@Fg@Ho@Hq@Jg@Fu@Hw@Jo@Hc@Dm@He@Fu@Ju@Ls@J{@Jo@Hy@FiAN[?QCUMOQIQAU@YFWHMHKJEJAR?P@JHHLDNBJHRDNDLDNDNJv@BZDNHJDLBLDJDVFRFXFRH\\H^Lf@Lf@Nl@H\\H^VjAHd@Px@J`@J`@H\\BTNl@JRNj@TbAH^H\\J^HXDRH\\H^HVPv@H\\D\\J^LTJ^Jh@J^Lj@Ld@J`@FZLj@Pn@Rx@Jd@F`@D^Bd@DhAC\\Dj@Cj@Gl@Kx@Md@Mb@GX"
+  },
+  "inboundJourney": {
+    "stops": [
+      { "id": "primera_v" },
+      { "id": "segunda_v" },
+      { "id": "tercera_v" },
+      { "id": "cuarta_v" },
+      { "id": "quinta_v" },
+      { "id": "sexta_v" }
+    ],
+    "firstDeparture": "07:00",
+    "lastDeparture": "20:30",
+    "encodedPolyline": "gyyiC`qtpR`@iBJyADwAEyAMwA[gBm@eCy@_Dy@gDcAcEcA{Da@mBgAoE@_@CYOq@W}A_@cBk@mCG[@UJMPIj@G|@K~@Oz@Mj@Iv@Ip@GpDq@\\Kl@MtAQbBS`AKhAE`AI`AOl@Cl@J\\Lj@P`@ZvAzAh@`@f@Fv@WTc@l@aDPg@\\g@n@_@|@S`AM`AM`ASbAOPGTKLa@Hu@NkBZmAp@sBr@_C|@oCx@yBf@wAhAcD`BsEfBcFzAgEtAwDxAkEVs@x@oClB}Gf@qCh@uFTaCFcAPaATg@h@s@ZYv@k@t@q@`@k@\\q@ViALqAP_BNeB"
+  },
+  "detail": {
+    "windshieldLabel": "LA LAGUNA D.A. - GUADALUPE",
+    "colors": "Amarillo con Verde",
+    "price": 11.0
+  }
+}

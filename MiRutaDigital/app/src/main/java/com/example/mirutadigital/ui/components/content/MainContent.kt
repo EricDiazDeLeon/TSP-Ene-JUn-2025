@@ -22,7 +22,7 @@ fun MainContent(
             .fillMaxSize()
             .padding(padding)
             .background(MaterialTheme.colorScheme.background),
-        contentAlignment = Alignment.TopStart
+        contentAlignment = Alignment.Center
     ) {
         if (!inProduction) content()
         else Text("Mapa de Google Maps")

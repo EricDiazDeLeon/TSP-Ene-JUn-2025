@@ -6,6 +6,7 @@ import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -22,6 +23,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.FrontHand
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
@@ -33,6 +35,7 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -44,7 +47,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -56,7 +58,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.example.mirutadigital.data.testsUi.dataSource.StopWithRoutes
+import com.example.mirutadigital.data.model.ui.StopWithRoutes
 import com.example.mirutadigital.navigation.AppScreens
 import com.example.mirutadigital.viewModel.LocationViewModel
 import com.example.mirutadigital.viewModel.MapStateViewModel
@@ -67,21 +69,12 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun StopsScreen(
-    viewModel: StopsViewModel = viewModel(
-        factory = StopsViewModelFactory(
-            repository = androidx.compose.ui.platform.LocalContext.current.let { context ->
-                val database = com.example.mirutadigital.data.local.AppDatabase.getDatabase(context)
-                val firestoreService = com.example.mirutadigital.data.remote.FirestoreService()
-                com.example.mirutadigital.data.repository.AppRepository(
-                    appDao = database.appDao(),
-                    firestoreService = firestoreService
-                )
-            }
-        )
-    ),
+    viewModel: StopsViewModel = viewModel(),
     mapStateViewModel: MapStateViewModel,
     locationViewModel: LocationViewModel,
-    navController: NavHostController
+    navController: NavHostController,
+    isSheetExpanded: Boolean,
+    onExpandSheet: () -> Unit
 ) {
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -90,8 +83,9 @@ fun StopsScreen(
     val uiState by viewModel.uiState.collectAsState()
     val userLocation by locationViewModel.location.collectAsState()
 
+    // solo actualiza la ubicacin
     LaunchedEffect(userLocation) {
-        viewModel.updateAndSortByLocation(userLocation)
+        viewModel.updateUserLocation(userLocation)
     }
 
     val mapState by mapStateViewModel.mapState.collectAsState()
@@ -119,16 +113,27 @@ fun StopsScreen(
             .padding(horizontal = 4.dp)
     ) {
         stickyHeader {
-            // obtiene el estado y los eventos del vm
             StopsSheetHeader(
                 modifier = Modifier
                     .padding(horizontal = 8.dp)
                     .background(MaterialTheme.colorScheme.surfaceContainerLow),
-                searchQuery = uiState.searchQuery, // consume estado
-                onSearchQueryChange = viewModel::onSearchQueryChange // dispara evento
+                searchQuery = uiState.searchQuery,
+                onSearchQueryChange = viewModel::onSearchQueryChange,
+                isSorted = uiState.isSortedByLocation,
+                onSortClick = {
+                    if (uiState.isSortedByLocation) {
+                        viewModel.resetStopsOrder()
+                    } else {
+                        val closestStop = viewModel.sortStopsByProximity()
+                        if (closestStop != null) {
+                            mapStateViewModel.setSelectedStop(closestStop.id)
+                        }
+                    }
+                },
+                isSheetExpanded = isSheetExpanded,
+                onExpandSheet = onExpandSheet
             )
         }
-        // la lista se construye con los datos ya filtrados desde el vm
         items(uiState.filteredStops, key = { it.id }) { stop ->
             StopItem(
                 stop = stop,
@@ -138,7 +143,6 @@ fun StopsScreen(
                     keyboardController?.hide()
 
                     val previouslyExpanded = expandedStopId == stop.id
-                    // actualizar vm
                     mapStateViewModel.setSelectedStop(
                         if (previouslyExpanded) null else stop.id
                     )
@@ -166,7 +170,7 @@ fun StopsScreen(
         item {
             if (uiState.filteredStops.isEmpty() && !uiState.isLoading) {
                 Text(
-                    "No se encontraron paradas cercanas...", modifier = Modifier
+                    "No se encontraron paradas...", modifier = Modifier
                         .padding(vertical = 4.dp)
                         .fillMaxWidth(),
                     textAlign = TextAlign.Center,
@@ -174,7 +178,7 @@ fun StopsScreen(
                 )
             } else {
                 Text(
-                    "No hay más paradas cercanas...", modifier = Modifier
+                    "No hay más paradas...", modifier = Modifier
                         .padding(vertical = 4.dp)
                         .fillMaxWidth(),
                     textAlign = TextAlign.Center,
@@ -191,7 +195,11 @@ fun StopsScreen(
 fun StopsSheetHeader(
     modifier: Modifier = Modifier,
     searchQuery: String,
-    onSearchQueryChange: (String) -> Unit
+    onSearchQueryChange: (String) -> Unit,
+    isSorted: Boolean,
+    onSortClick: () -> Unit,
+    isSheetExpanded: Boolean,
+    onExpandSheet: () -> Unit
 ) {
     Column(
         modifier = modifier.fillMaxWidth()
@@ -204,11 +212,11 @@ fun StopsSheetHeader(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Button(
-                onClick = { /*TODO*/ },
+                onClick = if (!isSheetExpanded) onExpandSheet else onSortClick,
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-                    contentColor = MaterialTheme.colorScheme.onSecondaryFixedVariant
+                    containerColor = MaterialTheme.colorScheme.onSecondaryFixedVariant,
+                    contentColor = MaterialTheme.colorScheme.surfaceContainerHighest
                 ),
                 contentPadding = PaddingValues(horizontal = 16.dp, vertical = 8.dp)
             ) {
@@ -216,10 +224,12 @@ fun StopsSheetHeader(
                     imageVector = Icons.Default.FrontHand,
                     contentDescription = "Paradas Cercanas"
                 )
-                Spacer(modifier = Modifier
-                    .width(6.dp)
-                    .height(40.dp))
-                Text("Paradas\nCercanas")
+                Spacer(
+                    modifier = Modifier
+                        .width(6.dp)
+                        .height(40.dp)
+                )
+                Text(if (isSorted) "Paradas\nsin orden" else "Paradas\nCercanas")
             }
             OutlinedTextField(
                 value = searchQuery,
@@ -231,7 +241,12 @@ fun StopsSheetHeader(
                         tint = MaterialTheme.colorScheme.onSecondaryFixedVariant
                     )
                 },
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .clickable(
+                        enabled = !isSheetExpanded,
+                        onClick = onExpandSheet
+                    ),
                 shape = RoundedCornerShape(12.dp),
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
@@ -240,7 +255,20 @@ fun StopsSheetHeader(
                     unfocusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent
                 ),
-                singleLine = true
+                singleLine = true,
+                enabled = isSheetExpanded,
+                trailingIcon = {
+                    if (searchQuery.isNotEmpty()) {
+                        IconButton(
+                            onClick = { onSearchQueryChange("") }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Clear,
+                                contentDescription = "Borrar texto"
+                            )
+                        }
+                    }
+                }
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -256,27 +284,26 @@ fun StopItem(
     userLocation: Location?,
     onViewRoutesClick: (String) -> Unit
 ) {
-    var distanceText by remember { mutableStateOf("Calculando...") }
-    // controla que cambie si la userLocation cambia
-    LaunchedEffect(userLocation) {
-        distanceText = userLocation?.let { loc ->
-            val stopLocation = Location("").apply {
-                latitude = stop.latitude
-                longitude = stop.longitude
-            }
-            val distanceInMeters = loc.distanceTo(stopLocation)
-
-            when {
-                distanceInMeters < 1000 -> {
-                    "Desde tu ubicación a $distanceInMeters metros"
+    val distanceText by remember(userLocation) {
+        mutableStateOf(
+            if (userLocation == null) {
+                "Ubicación no disponible"
+            } else {
+                val stopLocation = Location("").apply {
+                    latitude = stop.latitude
+                    longitude = stop.longitude
                 }
+                val distanceInMeters = userLocation.distanceTo(stopLocation).toInt()
 
-                else -> {
-                    val distanceInKm = distanceInMeters / 1000.0
-                    "Desde tu ubicación a %.1f km".format(distanceInKm)
+                when {
+                    distanceInMeters < 1000 -> "Desde tu ubicación a $distanceInMeters metros"
+                    else -> {
+                        val distanceInKm = distanceInMeters / 1000.0
+                        "Desde tu ubicación a %.1f km".format(distanceInKm)
+                    }
                 }
             }
-        } ?: "No hay ubicación (actívala)"
+        )
     }
 
     ElevatedCard(
@@ -314,7 +341,7 @@ fun StopItem(
                     )
                     Text(
                         text = distanceText,
-                        fontWeight = FontWeight.ExtraBold,
+                        fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.bodySmall,
                         color = Color.Gray
                     )
@@ -329,9 +356,8 @@ fun StopItem(
                 Spacer(modifier = Modifier.height(16.dp))
                 HorizontalDivider(thickness = 2.dp)
                 if (stop.routes.isNotEmpty()) {
-                    val maxRoutesToShow = 3 // cauntas rutas se muestran
-                    val routesToShow =
-                        stop.routes.take(maxRoutesToShow) // toma solo las primeras n rutas
+                    val maxRoutesToShow = 3
+                    val routesToShow = stop.routes.take(maxRoutesToShow)
 
                     routesToShow.forEach { route ->
                         Row(
@@ -345,7 +371,6 @@ fun StopItem(
                                 fontWeight = FontWeight.SemiBold,
                                 style = MaterialTheme.typography.bodyLarge,
                                 color = MaterialTheme.colorScheme.onSecondaryFixedVariant,
-                                //modifier = Modifier.weight(0.2f)//.padding(vertical = 0.5.dp)
                             )
                             Spacer(modifier = Modifier.weight(0.1f))
                             Text(
@@ -361,7 +386,6 @@ fun StopItem(
                         modifier = Modifier.fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
-                        // menasje indicador de que hay mas rutas
                         if (stop.routes.size > maxRoutesToShow) {
                             val moreOneAddS =
                                 if (stop.routes.size > maxRoutesToShow + 1) "s" else ""
@@ -375,9 +399,7 @@ fun StopItem(
                         }
                         Spacer(modifier = Modifier.weight(1f))
                         Button(
-                            onClick = {
-                                onViewRoutesClick(stop.id)
-                            },
+                            onClick = { onViewRoutesClick(stop.id) },
                             colors = ButtonDefaults.buttonColors(
                                 containerColor = MaterialTheme.colorScheme.onSecondaryFixedVariant,
                                 contentColor = MaterialTheme.colorScheme.surfaceContainerHigh

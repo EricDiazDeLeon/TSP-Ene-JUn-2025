@@ -1,12 +1,12 @@
 package com.example.mirutadigital.ui.screens.routes.activeRoutes
 
 
-import android.R
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -25,18 +25,20 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowForward
 import androidx.compose.material.icons.filled.AccessTime
-import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -58,7 +60,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.example.mirutadigital.data.testsUi.dataSource.RouteInfoSchedulel
+import com.example.mirutadigital.data.model.ui.RouteInfoSchedulel
 import com.example.mirutadigital.viewModel.MapStateViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -66,8 +68,10 @@ import kotlinx.coroutines.launch
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun ActiveRoutesScreen(
-    viewModel: ActiveRoutesViewModel, //= viewModel()
-    mapStateViewModel: MapStateViewModel
+    viewModel: ActiveRoutesViewModel,
+    mapStateViewModel: MapStateViewModel,
+    isSheetExpanded: Boolean,
+    onExpandSheet: () -> Unit
 ) {
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -92,12 +96,17 @@ fun ActiveRoutesScreen(
                     .padding(horizontal = 8.dp)
                     .background(MaterialTheme.colorScheme.surfaceContainerLow),
                 searchQuery = uiState.searchQuery,
-                onSearchQueryChange = viewModel::onSearchQueryChange
+                onSearchQueryChange = viewModel::onSearchQueryChange,
+                showOnlyFavorites = uiState.showOnlyFavorites,
+                onToggleShowFavorites = viewModel::toggleShowOnlyFavorites,
+                isSheetExpanded = isSheetExpanded,
+                onExpandSheet = onExpandSheet
             )
         }
         items(uiState.filteredRoutes, key = { it.id }) { route ->
             RouteItem(
                 route = route,
+                isFavorite = viewModel.isFavorite(route.id),
                 isExpanded = route.id == expandedRouteId,
                 onItemClick = {
                     focusManager.clearFocus()
@@ -108,14 +117,13 @@ fun ActiveRoutesScreen(
                     mapStateViewModel.showAllStops()
 
                     if (!previouslyExpanded) {
-//                        viewModel.onRouteExpanded(route) // para cuando se ocupe mostrar en el mapa
                         scope.launch {
                             val index =
                                 uiState.filteredRoutes.indexOfFirst { it.id == route.id }
 
-                            val fullRouteInfo = viewModel.getFullRouteInfo(route.id)
+                            val fullRouteInfo = viewModel.getFullRouteInfo(route.id) // la debo llamar desde una remebre cocoutinescope por que ahora es suspend
                             if (fullRouteInfo != null) {
-                                mapStateViewModel.showRouteDetail(fullRouteInfo)
+                                mapStateViewModel.showRouteDetailFromInfo(fullRouteInfo)
                             }
 
                             if (index != -1) {
@@ -124,7 +132,8 @@ fun ActiveRoutesScreen(
                             }
                         }
                     }
-                }
+                },
+                onToggleFavorite = { viewModel.toggleFavorite(route.id) },
             )
         }
         item {
@@ -154,7 +163,11 @@ fun ActiveRoutesScreen(
 fun ActiveRoutesSheetHeader(
     modifier: Modifier = Modifier,
     searchQuery: String,
-    onSearchQueryChange: (String) -> Unit
+    onSearchQueryChange: (String) -> Unit,
+    showOnlyFavorites: Boolean = false,
+    onToggleShowFavorites: () -> Unit = {},
+    isSheetExpanded: Boolean,
+    onExpandSheet: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -167,7 +180,7 @@ fun ActiveRoutesSheetHeader(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Button(
-                onClick = { /*TODO*/ },
+                onClick = onExpandSheet,
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
@@ -189,7 +202,11 @@ fun ActiveRoutesSheetHeader(
                         tint = MaterialTheme.colorScheme.onSecondaryFixedVariant
                     )
                 },
-                modifier = Modifier.weight(1f),
+                modifier = Modifier.weight(1f)
+                    .clickable(
+                        enabled = !isSheetExpanded,
+                        onClick = onExpandSheet
+                    ),
                 shape = RoundedCornerShape(12.dp),
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
@@ -198,8 +215,32 @@ fun ActiveRoutesSheetHeader(
                     unfocusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent
                 ),
-                singleLine = true
+                singleLine = true,
+                enabled = isSheetExpanded,
+                trailingIcon = {
+                    if (searchQuery.isNotEmpty()) {
+                        IconButton(
+                            onClick = { onSearchQueryChange("") }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Clear,
+                                contentDescription = "Borrar texto"
+                            )
+                        }
+                    }
+                }
             )
+            IconButton(
+                onClick = onToggleShowFavorites,
+                modifier = Modifier.size(30.dp)
+            ) {
+                Icon(
+                    imageVector = if (showOnlyFavorites) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                    contentDescription = if (showOnlyFavorites) "Ver todas" else "Solo favoritas",
+                    tint = if (showOnlyFavorites) MaterialTheme.colorScheme.onSecondaryFixedVariant else Color.Gray,
+                    modifier = Modifier.size(32.dp)
+                )
+            }
         }
         Spacer(modifier = Modifier.height(8.dp))
     }
@@ -209,7 +250,9 @@ fun ActiveRoutesSheetHeader(
 @Composable
 fun RouteItem(
     route: RouteInfoSchedulel,
+    isFavorite: Boolean,
     isExpanded: Boolean,
+    onToggleFavorite: () -> Unit,
     onItemClick: () -> Unit
 ) {
     ElevatedCard(
@@ -223,7 +266,8 @@ fun RouteItem(
     ) {
         Column(
             modifier = Modifier
-                .padding(16.dp)
+                .padding(start = 16.dp, end = 4.dp)
+                .padding(vertical = 16.dp)
                 .animateContentSize(
                     animationSpec = spring(
                         dampingRatio = Spring.DampingRatioMediumBouncy,
@@ -252,11 +296,10 @@ fun RouteItem(
                             style = MaterialTheme.typography.bodySmall,
                             color = Color.Gray,
                         )
-                        Spacer(modifier = Modifier.width(16.dp))
+                        Spacer(modifier = Modifier.width(1.dp))
                         if (!isExpanded) {
                             val textExpanded =
-                                "${route.outboundInfo.schedule} ' ${route.inboundInfo.schedule}"
-                            //route.schedulesInfo.joinToString(separator = " ' ") { it.schedule }
+                                "${route.outboundInfo.schedule} ${route.inboundInfo.schedule}"
 
                             Text(
                                 text = textExpanded,
@@ -267,6 +310,19 @@ fun RouteItem(
                         }
                     }
                 }
+
+                IconButton(
+                    onClick = { onToggleFavorite() },
+                    modifier = Modifier.size(40.dp)
+                ) {
+                    Icon(
+                        imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = if (isFavorite) "Quitar de favoritos" else "Agregar a favoritos",
+                        tint = if (isFavorite) MaterialTheme.colorScheme.onSecondaryFixedVariant else Color.Gray,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+
                 Icon(
                     imageVector = if (isExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
                     contentDescription = "Expandir/Colapsar",
@@ -312,7 +368,6 @@ fun JourneyInfo(
             .fillMaxWidth()
             .padding(vertical = 1.dp)
     ) {
-        // Información de salida
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.Start,

@@ -1,41 +1,39 @@
 package com.example.mirutadigital.navigation
 
-import android.content.Context
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DirectionsBus
 import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.LocationOn
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.mirutadigital.data.local.AppDatabase
-import com.example.mirutadigital.data.remote.FirestoreService
-import com.example.mirutadigital.data.repository.AppRepository
 import com.example.mirutadigital.ui.components.NavItem
+import com.example.mirutadigital.ui.screens.destinationSearch.DestinationSearchScreen
 import com.example.mirutadigital.ui.screens.home.StopsScreen
-import com.example.mirutadigital.ui.screens.home.StopsViewModelFactory
+import com.example.mirutadigital.ui.screens.menu.favorites.FavoritesScreen
+import com.example.mirutadigital.ui.screens.menu.history.HistoryScreen
 import com.example.mirutadigital.ui.screens.routes.RoutesContainerScreen
-import com.example.mirutadigital.ui.screens.shareLocation.ShareLocationScreen
+import com.example.mirutadigital.ui.screens.routes.detailRoute.RouteDetailScreen
+import com.example.mirutadigital.ui.screens.share.ShareScreen
 import com.example.mirutadigital.viewModel.LocationViewModel
 import com.example.mirutadigital.viewModel.MapStateViewModel
 
 object Routes {
     const val STOPS = "stops_screen"
     const val ALL_ROUTES = "all_routes_screen"
-    //const val ACTIVE_ROUTES = "active_routes_screen"
-    const val SHARE = "share_action"
-    const val SHARE_LOCATION_SCREEN = "share_location_screen"
+    const val DESTINATION_SEARCH = "destination_search_screen"
+    const val SHARE = "share_screen"
+    const val ROUTE_DETAIL = "route_detail_screen"
+    const val FAVORITES = "favorites_screen"
+    const val HISTORY = "history_screen"
 }
 
 sealed class AppScreens(val route: String) {
-    object StopsScreen : AppScreens(Routes.STOPS)
-
     object AllRoutesScreen : AppScreens(Routes.ALL_ROUTES) {
         const val ROUTE_WITH_ARGS = "${Routes.ALL_ROUTES}?stopId={stopId}"
 
@@ -48,46 +46,48 @@ sealed class AppScreens(val route: String) {
         }
     }
 
-    object ShareLocationScreen : AppScreens(Routes.SHARE_LOCATION_SCREEN)
-    //object ActiveRoutesScreen : AppScreens(Routes.ACTIVE_ROUTES)
-    //    object ShareAction : no deberia ir aqui pues es una accion y no una pantalla
-//        AppScreens("share_action") // no sera una pantalla, solo un ventana emergente
+//    object DestinationSearchScreen : AppScreens(Routes.DESTINATION_SEARCH)
+
+    object RouteDetailScreen : AppScreens(Routes.ROUTE_DETAIL) {
+        const val ROUTE_ID_ARG = "routeId"
+        const val ROUTE_WITH_ARGS = "${Routes.ROUTE_DETAIL}/{${ROUTE_ID_ARG}}"
+
+        fun createRoute(routeId: String): String {
+            return "${Routes.ROUTE_DETAIL}/$routeId"
+        }
+    }
+
+//    object FavoritesScreen : AppScreens(Routes.FAVORITES)
+//    object HistoryScreen : AppScreens(Routes.HISTORY)
 }
 
 val navigationItems = listOf(
     NavItem("Inicio", Icons.Default.LocationOn, Routes.STOPS),
     NavItem("Ver Rutas", Icons.Default.DirectionsBus, Routes.ALL_ROUTES),
-    NavItem("Compartir", Icons.Default.Groups, Routes.SHARE_LOCATION_SCREEN)
+    NavItem("Buscar", Icons.Default.Search, Routes.DESTINATION_SEARCH),
+    NavItem("Compartir", Icons.Default.Groups, Routes.SHARE)
 )
 
 @Composable
 fun AppNavigation(
     navController: NavHostController,
     locationViewModel: LocationViewModel,
-    mapStateViewModel: MapStateViewModel
+    mapStateViewModel: MapStateViewModel,
+    isSheetExpanded: Boolean,
+    onExpandSheet: () -> Unit
 ) {
-    // Inicializar repositorio y servicios
-    val context = LocalContext.current
-    
-    val repository = remember {
-        val database = AppDatabase.getDatabase(context)
-        val firestoreService = FirestoreService()
-        AppRepository(
-            appDao = database.appDao(),
-            firestoreService = firestoreService
-        )
-    }
-
     NavHost(
         navController = navController,
         startDestination = Routes.STOPS
     ) {
         composable(route = Routes.STOPS) {
             StopsScreen(
-                viewModel = viewModel(factory = StopsViewModelFactory(repository)),
+                viewModel = viewModel(),
                 locationViewModel = locationViewModel,
                 mapStateViewModel = mapStateViewModel,
-                navController = navController
+                navController = navController,
+                isSheetExpanded = isSheetExpanded,
+                onExpandSheet = onExpandSheet
             )
         }
 
@@ -104,16 +104,72 @@ fun AppNavigation(
             val stopId = backStackEntry.arguments?.getString("stopId")
 
             RoutesContainerScreen(
-                repository = repository,
                 mapStateViewModel = mapStateViewModel,
-                filteredStopId = stopId
+                filteredStopId = stopId,
+                onViewRouteDetail = { routeId ->
+                    navController.navigate(AppScreens.RouteDetailScreen.createRoute(routeId))
+                },
+                isSheetExpanded = isSheetExpanded,
+                onExpandSheet = onExpandSheet
             )
         }
 
-        composable(route = Routes.SHARE_LOCATION_SCREEN) {
-            ShareLocationScreen(
+        composable(route = Routes.DESTINATION_SEARCH) {
+            DestinationSearchScreen(
                 navController = navController,
-                repository = repository
+                mapStateViewModel = mapStateViewModel,
+                isSheetExpanded = isSheetExpanded,
+                onExpandSheet = onExpandSheet,
+                viewModel = viewModel()
+            )
+        }
+
+        composable(
+            route = AppScreens.RouteDetailScreen.ROUTE_WITH_ARGS,
+            arguments = listOf(
+                navArgument(AppScreens.RouteDetailScreen.ROUTE_ID_ARG) {
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
+            val routeId =
+                backStackEntry.arguments?.getString(AppScreens.RouteDetailScreen.ROUTE_ID_ARG)!!
+
+            RouteDetailScreen(
+                routeId = routeId,
+                navController = navController,
+                mapStateViewModel = mapStateViewModel,
+                viewModel = viewModel(),
+                onExpandSheet = onExpandSheet,
+                onNavigateBack = {
+                    navController.navigate(Routes.ALL_ROUTES) {
+                        popUpTo(Routes.ALL_ROUTES) { inclusive = true }
+                        launchSingleTop = true
+                    }
+                }
+            )
+        }
+
+        composable(route = Routes.FAVORITES) {
+            FavoritesScreen(
+                navController = navController,
+                viewModel = viewModel()
+            )
+        }
+
+        composable(route = Routes.HISTORY) {
+            HistoryScreen(
+                viewModel = viewModel()
+            )
+        }
+
+        composable(Routes.SHARE) {
+            ShareScreen(
+                navController = navController,
+                locationViewModel = locationViewModel,
+                mapStateViewModel = mapStateViewModel,
+                isSheetExpanded = isSheetExpanded,
+                onExpandSheet = onExpandSheet
             )
         }
     }

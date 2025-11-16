@@ -11,6 +11,7 @@ import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,14 +28,14 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.DirectionsBus
+import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Search
-import androidx.compose.material.icons.filled.Star
-import androidx.compose.material.icons.filled.StarOutline
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
@@ -42,6 +43,7 @@ import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -65,9 +67,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.mirutadigital.data.testsUi.dataSource.RouteInfoSchedulel
-import com.example.mirutadigital.data.testsUi.dataSource.RoutesInfo
-import com.example.mirutadigital.data.testsUi.model.Stop
+//import com.example.mirutadigital.data.testsUi.dataSource.RoutesInfo
+//import com.example.mirutadigital.data.testsUi.model.Stop
+
+import com.example.mirutadigital.data.model.ui.RoutesInfo
+import com.example.mirutadigital.data.model.ui.base.Stop
+
 import com.example.mirutadigital.viewModel.MapStateViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -76,7 +81,10 @@ import kotlinx.coroutines.launch
 @Composable
 fun AllRoutesScreen(
     viewModel: AllRoutesViewModel = viewModel(),
-    mapStateViewModel: MapStateViewModel
+    mapStateViewModel: MapStateViewModel,
+    onViewRouteClick: (String) -> Unit,
+    isSheetExpanded: Boolean,
+    onExpandSheet: () -> Unit
 ) {
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -106,29 +114,12 @@ fun AllRoutesScreen(
                         .padding(horizontal = 8.dp)
                         .background(MaterialTheme.colorScheme.surfaceContainerLow),
                     searchQuery = uiState.searchQuery,
-                    onSearchQueryChange = viewModel::onSearchQueryChange
+                    onSearchQueryChange = viewModel::onSearchQueryChange,
+                    showOnlyFavorites = uiState.showOnlyFavorites,
+                    onToggleShowFavorites = viewModel::toggleShowOnlyFavorites,
+                    isSheetExpanded = isSheetExpanded,
+                    onExpandSheet = onExpandSheet
                 )
-
-                // Botón para filtrar rutas favoritas
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 16.dp, vertical = 8.dp),
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceBetween
-                ) {
-                    if (uiState.routes.any { it.isFavorite }) {
-                        Text(
-                            text = "Mostrar solo favoritas",
-                            style = MaterialTheme.typography.bodyMedium
-                        )
-                        val showOnlyFavorites = uiState.showOnlyFavorites
-                        androidx.compose.material3.Switch(
-                            checked = showOnlyFavorites,
-                            onCheckedChange = { viewModel.toggleFavoritesFilter(it) }
-                        )
-                    }
-                }
 
                 AnimatedVisibility(
                     visible = uiState.filteredStopId != null,
@@ -152,6 +143,7 @@ fun AllRoutesScreen(
         items(uiState.filteredRoutes, key = { it.id }) { route ->
             RouteItem(
                 route = route,
+                isFavorite = viewModel.isFavorite(route.id),
                 isExpanded = route.id == expandedRouteId,
                 onItemClick = {
                     focusManager.clearFocus()
@@ -166,7 +158,7 @@ fun AllRoutesScreen(
                             mapStateViewModel.showAllStops()
                         }
                     } else {
-                        mapStateViewModel.showRouteDetail(route)
+                        mapStateViewModel.showRouteDetailFromInfo(route) // camnio
                     }
 
                     if (!previouslyExpanded) {
@@ -180,35 +172,10 @@ fun AllRoutesScreen(
                         }
                     }
                 },
-                onFavoriteClick = { routeId ->
-                    viewModel.toggleFavorite(routeId)
-                },
-                isFavorite = route.isFavorite
+                onToggleFavorite = { viewModel.toggleFavorite(route.id) },
+                onViewRouteClick = { onViewRouteClick(route.id) }
             )
         }
-        
-        item {
-            if (uiState.filteredRoutes.isEmpty() && !uiState.isLoading) {
-                Text(
-                    "No se encontraron rutas...",
-                    modifier = Modifier
-                        .padding(vertical = 4.dp)
-                        .fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    color = Color.Gray
-                )
-            } else if (!uiState.isLoading) {
-                Text(
-                    "No hay más rutas...", modifier = Modifier
-                        .padding(vertical = 4.dp)
-                        .fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    color = Color.Gray
-                )
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-        }
-        
         item {
             if (uiState.filteredRoutes.isEmpty() && !uiState.isLoading) {
                 Text(
@@ -237,7 +204,11 @@ fun AllRoutesScreen(
 fun AllRoutesSheetHeader(
     modifier: Modifier = Modifier,
     searchQuery: String,
-    onSearchQueryChange: (String) -> Unit
+    onSearchQueryChange: (String) -> Unit,
+    showOnlyFavorites: Boolean,
+    onToggleShowFavorites: () -> Unit,
+    isSheetExpanded: Boolean,
+    onExpandSheet: () -> Unit
 ) {
     Column(
         modifier = modifier
@@ -250,7 +221,7 @@ fun AllRoutesSheetHeader(
             horizontalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             Button(
-                onClick = { /*TODO*/ },
+                onClick = onExpandSheet,
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
@@ -259,9 +230,11 @@ fun AllRoutesSheetHeader(
                 contentPadding = PaddingValues(horizontal = 29.dp, vertical = 8.dp)
             ) {
                 Icon(Icons.Default.DirectionsBus, contentDescription = "Rutas")
-                Spacer(modifier = Modifier
-                    .width(6.dp)
-                    .height(40.dp))
+                Spacer(
+                    modifier = Modifier
+                        .width(6.dp)
+                        .height(40.dp)
+                )
                 Text(text = "Rutas")
             }
             OutlinedTextField(
@@ -274,7 +247,12 @@ fun AllRoutesSheetHeader(
                         tint = MaterialTheme.colorScheme.onSecondaryFixedVariant
                     )
                 },
-                modifier = Modifier.weight(1f),
+                modifier = Modifier
+                    .weight(1f)
+                    .clickable(
+                        enabled = !isSheetExpanded,
+                        onClick = onExpandSheet
+                    ),
                 shape = RoundedCornerShape(12.dp),
                 colors = TextFieldDefaults.colors(
                     focusedContainerColor = MaterialTheme.colorScheme.surfaceContainerHighest,
@@ -284,7 +262,32 @@ fun AllRoutesSheetHeader(
                     disabledIndicatorColor = Color.Transparent
                 ),
                 singleLine = true,
+                enabled = isSheetExpanded,
+                trailingIcon = {
+                    if (searchQuery.isNotEmpty()) {
+                        IconButton(
+                            onClick = { onSearchQueryChange("") }
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Clear,
+                                contentDescription = "Borrar texto"
+                            )
+                        }
+                    }
+                }
             )
+
+            IconButton(
+                onClick = onToggleShowFavorites,
+                modifier = Modifier.size(30.dp)
+            ) {
+                Icon(
+                    imageVector = if (showOnlyFavorites) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                    contentDescription = if (showOnlyFavorites) "Ver todas" else "Solo favoritas",
+                    tint = if (showOnlyFavorites) MaterialTheme.colorScheme.onSecondaryFixedVariant else Color.Gray,
+                    modifier = Modifier.size(32.dp)
+                )
+            }
         }
         Spacer(modifier = Modifier.height(8.dp))
     }
@@ -374,10 +377,11 @@ private data class JourneyPoints(
 @Composable
 fun RouteItem(
     route: RoutesInfo,
+    isFavorite: Boolean,
     isExpanded: Boolean,
     onItemClick: () -> Unit,
-    onFavoriteClick: (String) -> Unit = {},
-    isFavorite: Boolean = false
+    onToggleFavorite: () -> Unit,
+    onViewRouteClick: (String) -> Unit
 ) {
     // outboundJourney inicio medio y fin
     val outbound =
@@ -415,30 +419,11 @@ fun RouteItem(
                 ) // icono de la ruta
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        modifier = Modifier.fillMaxWidth()
-                    ) {
-                        Text(
-                            text = route.name,
-                            style = MaterialTheme.typography.titleMedium,
-                            fontWeight = FontWeight.Bold,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier.weight(1f)
-                        )
-                        
-                        IconButton(
-                            onClick = { onFavoriteClick(route.id) }
-                        ) {
-                            Icon(
-                                imageVector = if (isFavorite) Icons.Default.Star else Icons.Default.StarOutline,
-                                contentDescription = if (isFavorite) "Quitar de favoritos" else "Agregar a favoritos",
-                                tint = if (isFavorite) Color(0xFFFFD700) else Color.Gray
-                            )
-                        }
-                    }
+                    Text(
+                        text = route.name,
+                        fontWeight = FontWeight.ExtraBold,
+                        color = MaterialTheme.colorScheme.onSecondaryFixedVariant
+                    )
                     if (!isExpanded) {
                         // trayectos
                         Row(
@@ -504,6 +489,19 @@ fun RouteItem(
                         )
                     }
                 }
+
+                IconButton(
+                    onClick = { onToggleFavorite() },
+                    modifier = Modifier.size(40.dp)
+                ) {
+                    Icon(
+                        imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = if (isFavorite) "Quitar de favoritos" else "Agregar a favoritos",
+                        tint = if (isFavorite) MaterialTheme.colorScheme.onSecondaryFixedVariant else Color.Gray,
+                        modifier = Modifier.size(24.dp)
+                    )
+                }
+
                 Icon(
                     imageVector = if (isExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
                     contentDescription = "Expandir/Colapsar",
@@ -592,7 +590,7 @@ fun RouteItem(
                         Column {
                             Button(
                                 //modifier = Modifier.weight(1f),
-                                onClick = { "TODO: Ver Ruta" },
+                                onClick = { onViewRouteClick(route.id) },
                                 colors = ButtonDefaults.buttonColors(
                                     containerColor = MaterialTheme.colorScheme.onSecondaryFixedVariant,
                                     contentColor = MaterialTheme.colorScheme.surfaceContainerHigh

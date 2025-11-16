@@ -10,31 +10,29 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.mirutadigital.data.repository.AppRepository
 import com.example.mirutadigital.ui.screens.routes.activeRoutes.ActiveRoutesScreen
 import com.example.mirutadigital.ui.screens.routes.activeRoutes.ActiveRoutesViewModel
-import com.example.mirutadigital.ui.screens.routes.activeRoutes.ActiveRoutesViewModelFactory
 import com.example.mirutadigital.ui.screens.routes.allRoutes.AllRoutesScreen
 import com.example.mirutadigital.ui.screens.routes.allRoutes.AllRoutesViewModel
-import com.example.mirutadigital.ui.screens.routes.allRoutes.AllRoutesViewModelFactory
-import com.example.mirutadigital.ui.screens.routes.RoutesContainerViewModelFactory
 import com.example.mirutadigital.viewModel.MapStateViewModel
-import androidx.compose.runtime.LaunchedEffect
 
 @Composable
 fun RoutesContainerScreen(
-    repository: AppRepository,
-    activeRoutesViewModel: ActiveRoutesViewModel = viewModel(factory = ActiveRoutesViewModelFactory(repository)),
-    allRoutesViewModel: AllRoutesViewModel = viewModel(factory = AllRoutesViewModelFactory(repository)),
-    containerViewModel: RoutesContainerViewModel = viewModel(factory = RoutesContainerViewModelFactory(repository)),
+    activeRoutesViewModel: ActiveRoutesViewModel = viewModel(),
+    allRoutesViewModel: AllRoutesViewModel = viewModel(),
+    containerViewModel: RoutesContainerViewModel = viewModel(),
     mapStateViewModel: MapStateViewModel,
-    filteredStopId: String? = null
+    filteredStopId: String? = null,
+    onViewRouteDetail: (String) -> Unit,
+    isSheetExpanded: Boolean,
+    onExpandSheet: () -> Unit
 ) {
     val uiState by containerViewModel.uiState.collectAsState()
 
@@ -51,7 +49,6 @@ fun RoutesContainerScreen(
     LaunchedEffect(uiState.currentView, allRoutesUiState.filteredStopId) {
         when (uiState.currentView) {
             RouteView.ALL -> {
-                // foco al mapa si habia un filtro o se aplica
                 val currentFilterId = allRoutesUiState.filteredStopId
                 if (currentFilterId != null) {
                     mapStateViewModel.showSingleStopFocus(currentFilterId)
@@ -72,14 +69,19 @@ fun RoutesContainerScreen(
             RouteView.ALL -> {
                 AllRoutesScreen(
                     viewModel = allRoutesViewModel,
-                    mapStateViewModel = mapStateViewModel
+                    mapStateViewModel = mapStateViewModel,
+                    onViewRouteClick = onViewRouteDetail,
+                    isSheetExpanded = isSheetExpanded,
+                    onExpandSheet = onExpandSheet
                 )
             }
 
             RouteView.ACTIVE -> {
                 ActiveRoutesScreen(
                     viewModel = activeRoutesViewModel,
-                    mapStateViewModel = mapStateViewModel
+                    mapStateViewModel = mapStateViewModel,
+                    isSheetExpanded = isSheetExpanded,
+                    onExpandSheet = onExpandSheet
                 )
             }
         }

@@ -1,0 +1,30 @@
+{
+  "id": "R_3",
+  "name": "Ruta 3",
+  "departureInterval": 15,
+  "outboundJourney": {
+    "stops": [
+      { "id": "plaza_alesia" },
+      { "id": "miguel_aleman" },
+      { "id": "polideportivo" }
+    ],
+    "firstDeparture": "06:00",
+    "lastDeparture": "22:00",
+    "encodedPolyline": null
+  },
+  "inboundJourney": {
+    "stops": [
+      { "id": "polideportivo" },
+      { "id": "miguel_aleman" },
+      { "id": "plaza_alesia" }
+    ],
+    "firstDeparture": "06:30",
+    "lastDeparture": "22:30",
+    "encodedPolyline": null
+  },
+  "detail": {
+    "windshieldLabel": "ZACATECAS - CEREZO",
+    "colors": "Blanco con Azul",
+    "price": 10.5
+  }
+}

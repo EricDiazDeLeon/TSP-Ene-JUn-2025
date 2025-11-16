@@ -1,0 +1,28 @@
+{
+  "id": "R_16",
+  "name": "Ruta 16",
+  "departureInterval": 20,
+  "outboundJourney": {
+    "stops": [
+      { "id": "plaza_alesia" },
+      { "id": "sauceda" }
+    ],
+    "firstDeparture": "05:30",
+    "lastDeparture": "21:30",
+    "encodedPolyline": null
+  },
+  "inboundJourney": {
+    "stops": [
+      { "id": "sauceda" },
+      { "id": "plaza_alesia" }
+    ],
+    "firstDeparture": "06:00",
+    "lastDeparture": "22:00",
+    "encodedPolyline": null
+  },
+  "detail": {
+    "windshieldLabel": "VILLA GPE - CD. GOBIERNO",
+    "colors": "Amarillo con Morado",
+    "price": 10.5
+  }
+}

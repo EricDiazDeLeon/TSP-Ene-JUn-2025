@@ -10,10 +10,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import com.example.mirutadigital.data.service.LocationService
-import com.example.mirutadigital.util.ActiveStopIcon
-import com.example.mirutadigital.util.InactiveStopIcon
+import com.example.mirutadigital.ui.util.ActiveStopIcon
+import com.example.mirutadigital.ui.util.InactiveStopIcon
+import com.example.mirutadigital.ui.util.SharedBusIcon
 import com.example.mirutadigital.viewModel.MapDisplayMode
 import com.example.mirutadigital.viewModel.MapStateViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -27,7 +26,17 @@ import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.Polyline
 import com.google.maps.android.compose.rememberCameraPositionState
 
-// composable del mapa
+/**
+ * Composable principal del mapa de Google y sus elementos
+ *
+ * Se encarga de observar el estado del mapa desde [mapStateViewModel] y mostrar
+ * diferentes elementos (marcadores de todas las paradas, o una ruta especifica con su polilinea)
+ * en función del modo [MapDisplayMode] actual
+ *
+ * Gestiona la posición de la camara, la eleccion de marcadores y las animaciones
+ *
+ * @param mapStateViewModel El ViewModel que tiene y gestiona el estado del mapa
+ */
 @Composable
 fun MapContent(
     mapStateViewModel: MapStateViewModel
@@ -46,58 +55,46 @@ fun MapContent(
     val markerStates = remember { mutableMapOf<String, MarkerState>() }
 
     var isMapLoaded by remember { mutableStateOf(false) }
-    val context = LocalContext.current
-    val locationPermissionGranted = remember(context) {
-        LocationService(context).hasLocationPermission()
-    }
 
     LaunchedEffect(selectedStopId, markerStates, displayMode, isMapLoaded) {
         if (!isMapLoaded) return@LaunchedEffect
 
-        if (selectedStopId == null) {
-            markerStates.values.forEach { it.hideInfoWindow() }
-        } else {
+        if (selectedStopId != null) {
             val stopToSelect = when (displayMode) {
                 is MapDisplayMode.AllStops -> mapState.allStops.find { it.id == selectedStopId }
-                    ?.let {
-                        LatLng(it.latitude, it.longitude)
-                    }
-
-                is MapDisplayMode.RouteDetail -> displayMode.routeStops.find { it.id == selectedStopId }?.coordinates
+                    ?.let { LatLng(it.latitude, it.longitude) }
+                is MapDisplayMode.RouteDetail ->
+                    displayMode.routeStops.find { it.id == selectedStopId }?.coordinates
+                is MapDisplayMode.SharedVehicles ->
+                    displayMode.routeStops.find { it.id == selectedStopId }?.coordinates
             }
 
             stopToSelect?.let { latLng ->
-                cameraPositionState.animate(
-                    CameraUpdateFactory.newLatLng(latLng)
-                )
+                cameraPositionState.animate(CameraUpdateFactory.newLatLng(latLng))
                 markerStates[selectedStopId]?.showInfoWindow()
             }
-        }
-    }
+        } else {
+            markerStates.values.forEach { it.hideInfoWindow() }
 
-    LaunchedEffect(displayMode, isMapLoaded) {
-        if (!isMapLoaded) return@LaunchedEffect
-
-        when (displayMode) {
-            is MapDisplayMode.RouteDetail -> {
-
-                if (displayMode.outboundPolyline.isNotEmpty() ||
-                    displayMode.inboundPolyline.isNotEmpty() ||
-                    displayMode.routeStops.isNotEmpty()) {
-
-                    cameraPositionState.animate(
-                        CameraUpdateFactory.newLatLngBounds(displayMode.bounds, 100),
-                        1000 // Duración de la animación en ms
-                    )
+            when (displayMode) {
+                is MapDisplayMode.RouteDetail -> {
+                    if (displayMode.bounds.center.latitude != 0.0) {
+                        cameraPositionState.animate(
+                            CameraUpdateFactory.newLatLngBounds(displayMode.bounds, 100),
+                            1000
+                        )
+                    }
                 }
-            }
-            is MapDisplayMode.AllStops -> {
-                // animar de vuelta a la vista inicial cuando vamos a AllStops
-//                cameraPositionState.animate(
-//                    CameraUpdateFactory.newLatLngZoom(initialLocation, 13f),
-//                    //CameraUpdateFactory.zoomOut(),
-//                    1000
-//                )
+                is MapDisplayMode.SharedVehicles -> {
+                    if (displayMode.bounds.center.latitude != 0.0) {
+                        cameraPositionState.animate(
+                            CameraUpdateFactory.newLatLngBounds(displayMode.bounds, 100),
+                            1000
+                        )
+                    }
+                }
+                is MapDisplayMode.AllStops -> {
+                }
             }
         }
     }
@@ -108,13 +105,12 @@ fun MapContent(
             .fillMaxSize(),
         cameraPositionState = cameraPositionState,
         properties = MapProperties(
-            // Evitar SecurityException si el permiso aún no está concedido
-            isMyLocationEnabled = locationPermissionGranted
+            isMyLocationEnabled = true
             //mapType = MapType.SATELLITE
         ),
         onMapClick = { mapStateViewModel.setSelectedStop(null) },
         uiSettings = com.google.maps.android.compose.MapUiSettings(
-            myLocationButtonEnabled = locationPermissionGranted
+            myLocationButtonEnabled = true
         ),
         onMapLoaded = { isMapLoaded = true }
     ) {
@@ -175,6 +171,55 @@ fun MapContent(
                     )
                 }
             }
+
+            is MapDisplayMode.SharedVehicles -> {
+
+                Polyline(
+                    points = displayMode.outboundPolyline,
+                    color = Color.Blue.copy(alpha = 0.7f),
+                    width = 10f,
+                    endCap = RoundCap(),
+                    startCap = RoundCap()
+                )
+                Polyline(
+                    points = displayMode.inboundPolyline,
+                    color = Color.Red.copy(alpha = 0.7f),
+                    width = 10f,
+                    endCap = RoundCap(),
+                    startCap = RoundCap()
+                )
+
+                displayMode.routeStops.forEach { stop ->
+                    val isSelected = stop.id == selectedStopId // Usamos el selectedStopId del estado global
+                    StopMarker(
+                        stopId = stop.id,
+                        stopName = stop.name,
+                        isSelected = isSelected,
+                        coordinates = stop.coordinates,
+                        markerStates = markerStates,
+                        onMarkerClick = {
+                            mapStateViewModel.setSelectedStop(stop.id)
+                            false
+                        },
+                        onInfoWindowClick = { mapStateViewModel.setSelectedStop(null) }
+                    )
+                }
+
+                displayMode.vehicles.forEach { vehicle ->
+                    val position = LatLng(vehicle.lastLocation.latitude, vehicle.lastLocation.longitude)
+                    val journeyColor = if (vehicle.journeyType == "outbound") Color.Blue else Color.Red
+
+                    MarkerComposable(
+                        state = MarkerState(position = position),
+                        title = "Vehículo Compartido",
+                        snippet = "Trayecto: ${vehicle.journeyType}",
+                        zIndex = 10f, // Prioridad alta para que se vea sobre las paradas
+                        onClick = { false }
+                    ) {
+                        SharedBusIcon(color = journeyColor)
+                    }
+                }
+            }
         }
     }
 }
@@ -209,30 +254,3 @@ fun StopMarker(
         }
     }
 }
-//
-//mapState.allStops.forEach { stop ->
-//    val isSelected = stop.id == selectedStopId
-//
-//    val markerState = remember(stop.id) {
-//        MarkerState(position = LatLng(stop.latitude, stop.longitude)).also {
-//            markerStates[stop.id] = it
-//        }
-//    }
-//
-//    MarkerComposable (
-//        keys = arrayOf(isSelected),
-//        state = markerState,
-//        title = stop.name,
-//        onClick = {
-//            mapStateViewModel.setSelectedStop( stop.id )
-//            false
-//        },
-//        onInfoWindowClick = { mapStateViewModel.setSelectedStop(null) }
-//    ) {
-//        if (isSelected) {
-//            ActiveStopIcon()
-//        } else {
-//            InactiveStopIcon()
-//        }
-//    }
-//}

@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.example.mirutadigital.navigation.Routes
 
 
-// se modifica NavItem para usar la ruta de navegación
+// se modifica NavItem para usar la ruta de navegacin
 data class NavItem(val label: String, val icon: ImageVector, val route: String)
 
 // componentes compartidos
@@ -27,17 +27,9 @@ fun BottomBar(
         containerColor = MaterialTheme.colorScheme.surfaceVariant
     ) {
         items.forEachIndexed { index, item ->
-            // por ahora para que no se precione este boton hasta implementarlo
-            val isShareButton = item.route == Routes.SHARE
-
             NavigationBarItem(
                 selected = selectedIndex == index,
-                onClick = {
-                    // dejar solo onItemSelected(index) cuando se implemente el comparitir
-                    if (!isShareButton) {
-                        onItemSelected(index)
-                    }
-                },
+                onClick = { onItemSelected(index) },
                 label = {
                     Text(
                         text = item.label,
@@ -52,8 +44,7 @@ fun BottomBar(
                     )
                 },
                 alwaysShowLabel = true,
-                // solo si es el boton compartir se desabilita
-                enabled = !isShareButton,
+                enabled = true,
                 colors = NavigationBarItemDefaults.colors(
                     indicatorColor = MaterialTheme.colorScheme.surfaceContainerHighest,
                 )

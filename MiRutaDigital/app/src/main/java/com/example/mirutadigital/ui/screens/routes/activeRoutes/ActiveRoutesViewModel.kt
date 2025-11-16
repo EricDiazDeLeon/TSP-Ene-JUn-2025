@@ -1,19 +1,21 @@
 package com.example.mirutadigital.ui.screens.routes.activeRoutes
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mirutadigital.data.testsUi.dataSource.RouteInfoSchedulel
-import com.example.mirutadigital.data.testsUi.dataSource.RoutesInfo
-import com.example.mirutadigital.data.repository.AppRepository
+import com.example.mirutadigital.MiRutaApplication
+import com.example.mirutadigital.data.model.ui.RouteInfoSchedulel
+import com.example.mirutadigital.data.model.ui.RoutesInfo
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
-import kotlinx.coroutines.flow.first
 
 /**
  * define el estado de la ui para ActiveRoutesScreen
@@ -21,9 +23,11 @@ import kotlinx.coroutines.flow.first
  */
 data class ActiveRoutesUiState(
     val routes: List<RouteInfoSchedulel> = emptyList(),
+    val favoriteRouteIds: Set<String> = emptySet(),
     val searchQuery: String = "",
     val isLoading: Boolean = true,
-    val currentTime: String = ""
+    val currentTime: String = "",
+    val showOnlyFavorites: Boolean = false
 ) {
     val filteredRoutes: List<RouteInfoSchedulel>
         get() {
@@ -32,18 +36,24 @@ data class ActiveRoutesUiState(
                 isRouteActive(route, currentTime)
             }
 
+            var result = activeRoutes
+
+            if (showOnlyFavorites) {
+                result = result.filter { it.id in favoriteRouteIds }
+            }
+
             // filtro por busqueda
-            return if (searchQuery.isBlank()) {
-                activeRoutes
-            } else {
+            if (searchQuery.isBlank()) {
                 activeRoutes.filter { it.name.contains(searchQuery, ignoreCase = true) }
             }
+
+            return result
         }
 }
 
-class ActiveRoutesViewModel(
-    private val repository: AppRepository
-) : ViewModel() {
+class ActiveRoutesViewModel(application: Application) : AndroidViewModel(application) {
+
+    private val repository = (application as MiRutaApplication).repository
 
     private val _uiState = MutableStateFlow(ActiveRoutesUiState())
     val uiState: StateFlow<ActiveRoutesUiState> = _uiState.asStateFlow()
@@ -53,30 +63,31 @@ class ActiveRoutesViewModel(
         updateCurrentTime()
     }
 
-    // carga las rutas desde el repositorio
+    // carga las rutas desde la fuente de datos
     private fun loadRoutes() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                // Obtener rutas desde el repositorio
-                val repositoryRoutes = repository.getRoutes().first()
-                
-                // Convertir Route a RouteInfoSchedulel
-                // Por ahora usamos datos de muestra, ya que Route no tiene toda la info de RouteInfoSchedulel
-                // TODO: Adaptar completamente el modelo Route a RouteInfoSchedulel o crear un adaptador
-                val routes = listOf<RouteInfoSchedulel>() // Por ahora vacío, necesitamos implementar la conversión
-                
-                _uiState.update {
-                    it.copy(
-                        routes = routes,
-                        isLoading = false
-                    )
+                repository.synchronizeDatabase()
+
+                val routes = repository.getRoutesSchedule()// getSampleRoutesSchedule
+
+                withContext(Dispatchers.Main) {
+                    repository.getAllFavorites().collect { favorites ->
+                        val favoriteIds = favorites.map { it.routeId }.toSet()
+
+                        _uiState.update {
+                            it.copy(
+                                routes = routes,
+                                favoriteRouteIds = favoriteIds,
+                                isLoading = false
+                            )
+                        }
+                    }
                 }
             } catch (e: Exception) {
-                // En caso de error, mantener el estado de carga
-                _uiState.update {
-                    it.copy(isLoading = false)
-                }
+                // error
             }
+
         }
     }
 
@@ -85,9 +96,24 @@ class ActiveRoutesViewModel(
         _uiState.update { it.copy(searchQuery = query) }
     }
 
-    fun getFullRouteInfo(routeId: String): RoutesInfo? {
-        // TODO: Implementar obtención de información completa de la ruta desde el repositorio
-        return null
+    suspend fun getFullRouteInfo(routeId: String): RoutesInfo? {
+        val allRoutes = repository.getGeneralRoutesInfo() // getSampleRoutes
+        return allRoutes.find { it.id == routeId }
+    }
+
+    fun toggleShowOnlyFavorites() {
+        _uiState.update { it.copy(showOnlyFavorites = !it.showOnlyFavorites) }
+    }
+
+    fun toggleFavorite(routeId: String) {
+        viewModelScope.launch {
+            val isFavorite = routeId in _uiState.value.favoriteRouteIds
+            repository.toggleFavorite(routeId, isFavorite)
+        }
+    }
+
+    fun isFavorite(routeId: String): Boolean {
+        return routeId in _uiState.value.favoriteRouteIds
     }
 
     private fun updateCurrentTime() {

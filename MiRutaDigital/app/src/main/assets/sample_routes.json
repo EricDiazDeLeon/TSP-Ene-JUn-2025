@@ -1,0 +1,70 @@
+[
+  {
+    "id": "PERICO",
+    "name": "Perico",
+    "departureInterval": 35,
+    "detail": { "windshieldLabel": "LA LAGUNA D.A. - GUADALUPE", "colors": "Amarillo con Verde", "price": 11.0 },
+    "outboundJourney": {
+      "firstDeparture": "06:30", "lastDeparture": "19:30", "encodedPolyline": "mvviC~qmpRGj@QnBQzBK`B[vD[tDEh@Eh@Mn@M^OXOX]`@]Za@\\[X]Z[TSTMPKVIXG^Ih@Ef@Cd@Ir@Gv@Gt@E`@E`@CXEVCTCXEVGd@G\\I\\I^IZITELENGTGTOd@I^Wz@Wt@M^Qj@Qf@Up@Sn@Od@MZK\\Qh@EJKXQh@KZQf@KVKTOb@O`@M\\M`@Q`@Of@Qf@Qj@Ob@Yr@Qd@Sh@Qf@Sj@Yv@_@fAk@~Ag@tAk@~Am@hBg@~Au@lBs@dB_@dAUbAMfAG~ASTq@JkAPoAN??yAPk@FeAJ{@JKFKFQHSDcAJaAHu@F[Bi@F]Di@Fg@Fa@Fm@Hw@LSDOHQFi@Hg@Fi@Hq@Hg@Fc@Fg@Ho@Hq@Jg@Fu@Hw@Jo@Hc@Dm@He@Fu@Ju@Ls@J{@Jo@Hy@FiAN[?QCUMOQIQAU@YFWHMHKJEJAR?P@JHHLDNBJHRDNDLDNDNJv@BZDNHJDLBLDJDVFRFXFRH\\H^Lf@Lf@Nl@H\\H^VjAHd@Px@J`@J`@H\\BTNl@JRNj@TbAH^H\\J^HXDRH\\H^HVPv@H\\D\\J^LTJ^Jh@J^Lj@Ld@J`@FZLj@Pn@Rx@Jd@F`@D^Bd@DhAC\\Dj@Cj@Gl@Kx@Md@Mb@GX",
+      "stops": [
+        { "id": "primera" }, { "id": "segunda" }, { "id": "tercera" }, { "id": "cuarta" }, { "id": "quinta" },
+        { "id": "sexta" }, { "id": "septima" }, { "id": "octava" }, { "id": "novena" }, { "id": "decima" }
+      ]
+    },
+    "inboundJourney": {
+      "firstDeparture": "07:00", "lastDeparture": "20:30", "encodedPolyline": "gyyiC`qtpR`@iBJyADwAEyAMwA[gBm@eCy@_Dy@gDcAcEcA{Da@mBgAoE@_@CYOq@W}A_@cBk@mCG[@UJMPIj@G|@K~@Oz@Mj@Iv@Ip@GpDq@\\Kl@MtAQbBS`AKhAE`AI`AOl@Cl@J\\Lj@P`@ZvAzAh@`@f@Fv@WTc@l@aDPg@\\g@n@_@|@S`AM`AM`ASbAOPGTKLa@Hu@NkBZmAp@sBr@_C|@oCx@yBf@wAhAcD`BsEfBcFzAgEtAwDxAkEVs@x@oClB}Gf@qCh@uFTaCFcAPaATg@h@s@ZYv@k@t@q@`@k@\\q@ViALqAP_BNeB",
+      "stops": [
+        { "id": "primera_v" }, { "id": "segunda_v" }, { "id": "tercera_v" }, { "id": "cuarta_v" },
+        { "id": "quinta_v" }, { "id": "sexta_v" }
+      ]
+    }
+  },
+  {
+    "id": "R_3", "name": "Ruta 3", "departureInterval": 15,
+    "detail": { "windshieldLabel": "ZACATECAS - CEREZO", "colors": "Blanco con Azul", "price": 10.5 },
+    "outboundJourney": {
+      "firstDeparture": "06:00", "lastDeparture": "22:00", "encodedPolyline": null,
+      "stops": [ { "id": "plaza_alesia" }, { "id": "miguel_aleman" }, { "id": "polideportivo" } ]
+    },
+    "inboundJourney": {
+      "firstDeparture": "06:30", "lastDeparture": "22:30", "encodedPolyline": null,
+      "stops": [ { "id": "polideportivo" }, { "id": "miguel_aleman" }, { "id": "plaza_alesia" } ]
+    }
+  },
+  {
+    "id": "R_16", "name": "Ruta 16", "departureInterval": 20,
+    "detail": { "windshieldLabel": "VILLA GPE - CD. GOBIERNO", "colors": "Amarillo con Morado", "price": 10.5 },
+    "outboundJourney": {
+      "firstDeparture": "05:30", "lastDeparture": "21:30", "encodedPolyline": null,
+      "stops": [ { "id": "plaza_alesia" }, { "id": "sauceda" } ]
+    },
+    "inboundJourney": {
+      "firstDeparture": "06:00", "lastDeparture": "22:00", "encodedPolyline": null,
+      "stops": [ { "id": "sauceda" }, { "id": "plaza_alesia" } ]
+    }
+  },
+  {
+    "id": "R_17", "name": "Ruta 17", "departureInterval": 25,
+    "detail": { "windshieldLabel": "VILLA GPE - SIGLO XXI", "colors": "Amarillo con Verde", "price": 10.5 },
+    "outboundJourney": {
+      "firstDeparture": "06:20", "lastDeparture": "21:00", "encodedPolyline": null,
+      "stops": [ { "id": "plaza_alesia" }, { "id": "villa_fontana" } ]
+    },
+    "inboundJourney": {
+      "firstDeparture": "06:05", "lastDeparture": "21:30", "encodedPolyline": null,
+      "stops": [ { "id": "villa_fontana" }, { "id": "plaza_alesia" } ]
+    }
+  },
+  {
+    "id": "R_4", "name": "Ruta 4", "departureInterval": 15,
+    "detail": { "windshieldLabel": "ZACATECAS - BUFA", "colors": "Blanco con Gris", "price": 9.5 },
+    "outboundJourney": {
+      "firstDeparture": "06:00", "lastDeparture": "22:00", "encodedPolyline": null,
+      "stops": [ { "id": "plaza_alesia" }, { "id": "miguel_aleman" }, { "id": "polideportivo" }, { "id": "sauceda" } ]
+    },
+    "inboundJourney": {
+      "firstDeparture": "01:30", "lastDeparture": "22:00", "encodedPolyline": null,
+      "stops": [ { "id": "polideportivo" }, { "id": "miguel_aleman" }, { "id": "plaza_alesia" } ]
+    }
+  }
+]

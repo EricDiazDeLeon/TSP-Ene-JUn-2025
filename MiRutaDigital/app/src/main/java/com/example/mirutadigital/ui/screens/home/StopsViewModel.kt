@@ -1,31 +1,27 @@
 package com.example.mirutadigital.ui.screens.home
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.example.mirutadigital.data.testsUi.dataSource.StopWithRoutes
-import com.example.mirutadigital.data.testsUi.dataSource.RouteInfo
-import com.example.mirutadigital.data.repository.AppRepository
-import com.example.mirutadigital.data.model.Stop
-import kotlinx.coroutines.launch
+import android.app.Application
 import android.location.Location
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.mirutadigital.MiRutaApplication
+import com.example.mirutadigital.data.model.ui.StopWithRoutes
+import com.example.mirutadigital.ui.util.SnackbarManager
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-/**
- * define el estado de la ui para StopsSheetContent
- * encapsula propiedades que el composable necesita para funcionar
- * que antes se manejaban dentro de el
- */
 data class StopsUiState(
     val allStops: List<StopWithRoutes> = emptyList(),
     val searchQuery: String = "",
     val isLoading: Boolean = true,
-    val userLocation: Location? = null
+    val userLocation: Location? = null,
+    val isSortedByLocation: Boolean = false
 ) {
-    // propiedad que se calcula y que devuelve la lista de paradas filtradas
     val filteredStops: List<StopWithRoutes>
         get() = if (searchQuery.isBlank()) {
             allStops
@@ -35,87 +31,80 @@ data class StopsUiState(
 }
 
 class StopsViewModel(
-    private val repository: AppRepository
-) : ViewModel() {
+    application: Application
+) : AndroidViewModel(application) {
 
-    // estado privado que contiene toda la información de la ui
+    private val repository = (application as MiRutaApplication).repository
+
     private val _uiState = MutableStateFlow(StopsUiState())
-    // estado publico de solo lectura para que la ui lo observe
     val uiState: StateFlow<StopsUiState> = _uiState.asStateFlow()
+
+    private var originalStops: List<StopWithRoutes> = emptyList()
 
     init {
         loadStopsData()
     }
 
-    // carga la lista inicial de paradas desde Firestore
     private fun loadStopsData() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                // Sincronizar con Firestore para asegurar datos en Room
-                repository.refreshStops()
-                repository.refreshRoutes()
-                // Obtener paradas desde el repositorio
-                val stops = repository.getStops().first()
-                val routes = repository.getRoutes().first()
-                
-                // Convertir Stop a StopWithRoutes
-                val stopsWithRoutes = stops.map { stop ->
-                    val associatedRoutes = routes.filter { route ->
-                        stop.associatedRouteIds.contains(route.id)
-                    }
+                repository.synchronizeDatabase()
 
-                    StopWithRoutes(
-                        id = stop.id,
-                        name = stop.name,
-                        latitude = stop.location.latitude,
-                        longitude = stop.location.longitude,
-                        // Mapeamos a RouteInfo (nombre + destino). Sin datos de destino en Firestore,
-                        // usamos un marcador genérico por ahora.
-                        routes = associatedRoutes.map { route ->
-                            RouteInfo(
-                                name = route.name,
-                                destination = "Destino no disponible"
-                            )
-                        }
-                    )
-                }
-                
-                _uiState.update {
-                    it.copy(
-                        allStops = stopsWithRoutes,
-                        isLoading = false
-                    )
+                val stops = repository.getStopsWithRoutes()
+                originalStops = stops
+
+                withContext(Dispatchers.Main) {
+                    _uiState.update {
+                        it.copy(
+                            allStops = stops,
+                            isLoading = false
+                        )
+                    }
                 }
             } catch (e: Exception) {
-                // En caso de error, mantener el estado de carga
-                _uiState.update {
-                    it.copy(isLoading = false)
-                }
+                // error
             }
+
         }
     }
 
-    // funcion publica que llama la ui cuando se escribe en la barra de busqueda
     fun onSearchQueryChange(query: String) {
-        _uiState.update { it.copy(searchQuery = query)
-        }
+        _uiState.update { it.copy(searchQuery = query) }
     }
 
-    fun updateAndSortByLocation(location: Location?) {
-        _uiState.update { currentState ->
-            if (location == null) {
-                return@update currentState
-            }
+    fun updateUserLocation(location: Location?) {
+        _uiState.update { it.copy(userLocation = location) }
+    }
 
-            val sortedStops = currentState.allStops.sortedBy { stop ->
-                val stopLocation = Location("").apply {
-                    latitude = stop.latitude
-                    longitude = stop.longitude
-                }
-                location.distanceTo(stopLocation)
-            }
+    fun sortStopsByProximity(): StopWithRoutes? {
+        val currentState = _uiState.value
+        val location = currentState.userLocation
 
-            currentState.copy(allStops = sortedStops, userLocation = location)
+        if (location == null) {
+            viewModelScope.launch {
+                SnackbarManager.showMessage("No se puede ordenar: ubicación no disponible.")
+            }
+            return null
+        }
+
+        val sortedStops = currentState.allStops.sortedBy { stop ->
+            val stopLocation = Location("").apply {
+                latitude = stop.latitude
+                longitude = stop.longitude
+            }
+            location.distanceTo(stopLocation)
+        }
+
+        _uiState.update {
+            it.copy(allStops = sortedStops, isSortedByLocation = true)
+        }
+
+        return sortedStops.firstOrNull()
+    }
+
+    fun resetStopsOrder() {
+        _uiState.update {
+            it.copy(allStops = originalStops, isSortedByLocation = false)
         }
     }
 }

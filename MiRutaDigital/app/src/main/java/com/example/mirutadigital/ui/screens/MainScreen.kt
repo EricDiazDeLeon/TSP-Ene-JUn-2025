@@ -3,44 +3,59 @@ package com.example.mirutadigital.ui.screens
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.BottomSheetScaffold
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SheetValue
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.mirutadigital.data.local.AppDatabase
-import com.example.mirutadigital.data.remote.FirestoreService
-import com.example.mirutadigital.data.repository.AppRepository
 import com.example.mirutadigital.navigation.AppNavigation
 import com.example.mirutadigital.navigation.Routes
 import com.example.mirutadigital.navigation.navigationItems
 import com.example.mirutadigital.ui.components.BottomBar
-import com.example.mirutadigital.ui.components.SharingStatusIndicator
 import com.example.mirutadigital.ui.components.Toolbar
 import com.example.mirutadigital.ui.components.content.MainContent
 import com.example.mirutadigital.ui.components.content.MapContent
-import com.example.mirutadigital.ui.screens.shareLocation.ShareLocationScreen
+import com.example.mirutadigital.ui.screens.share.ShareViewModel
+import com.example.mirutadigital.ui.util.ShareManager
+import com.example.mirutadigital.ui.util.SnackbarManager
 import com.example.mirutadigital.viewModel.LocationViewModel
 import com.example.mirutadigital.viewModel.MapStateViewModel
-import com.example.mirutadigital.viewModel.MapStateViewModelFactory
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -49,58 +64,110 @@ fun MainScreen(locationViewModel: LocationViewModel) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
+    val scaffoldState = rememberBottomSheetScaffoldState()
+    val isSheetExpanded = scaffoldState.bottomSheetState.targetValue == SheetValue.Expanded
+    val scope = rememberCoroutineScope()
+    val expandSheet: () -> Unit = {
+        scope.launch {
+            scaffoldState.bottomSheetState.expand()
+        }
+    }
+
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
 
     val currentScreen = when {
         currentRoute == Routes.STOPS -> Routes.STOPS
         currentRoute?.contains(Routes.ALL_ROUTES) == true -> Routes.ALL_ROUTES
-        currentRoute == Routes.SHARE_LOCATION_SCREEN -> Routes.SHARE_LOCATION_SCREEN
+        currentRoute == Routes.DESTINATION_SEARCH -> Routes.DESTINATION_SEARCH
+        currentRoute?.contains(Routes.ROUTE_DETAIL) == true -> Routes.ROUTE_DETAIL
+        currentRoute == Routes.FAVORITES -> Routes.FAVORITES
+        currentRoute == Routes.HISTORY -> Routes.HISTORY
+        currentRoute == Routes.SHARE -> Routes.SHARE
         else -> Routes.STOPS
     }
-
-//    val selectedIndex = navigationItems.indexOfFirst { it.route == currentScreen }
-//        .coerceAtLeast(0)
 
     val selectedIndex = when (currentScreen) {
         Routes.STOPS -> 0
         Routes.ALL_ROUTES -> 1
-        Routes.SHARE_LOCATION_SCREEN -> 2
+        Routes.DESTINATION_SEARCH -> 2
+        Routes.ROUTE_DETAIL -> 1
+        Routes.SHARE -> 3
         else -> 0
     }
+
+    val mapStateViewModel: MapStateViewModel = viewModel()
+    val mapState by mapStateViewModel.mapState.collectAsState()
+
+    val shareViewModel: ShareViewModel = viewModel()
+    val shareState by shareViewModel.uiState.collectAsState()
 
     val screenTitle = when (currentScreen) {
         Routes.STOPS -> "Mi Ruta Digital"
         Routes.ALL_ROUTES -> "Ver Rutas"
-        Routes.SHARE_LOCATION_SCREEN -> "Compartir Ubicación"
-        //Routes.ACTIVE_ROUTES -> "Rutas Activas"
+        Routes.DESTINATION_SEARCH -> "Buscar Destino"
+        Routes.ROUTE_DETAIL -> mapState.currentRouteName ?: "Detalle de la Ruta"
+        Routes.FAVORITES -> "Gestionar Favoritos"
+        Routes.HISTORY -> "Historial de Rutas"
+        Routes.SHARE -> "Compartir Ruta"
         else -> ""
     }
 
-    // Inicializar repositorio para MapStateViewModel
-    val context = LocalContext.current
-    val repository = remember {
-        val database = AppDatabase.getDatabase(context)
-        val firestoreService = FirestoreService()
-        AppRepository(
-            appDao = database.appDao(),
-            firestoreService = firestoreService
-        )
-    }
-    
-    val mapStateViewModel: MapStateViewModel = viewModel(
-        factory = MapStateViewModelFactory(repository)
+    val showBottomBarAndSheet = currentScreen !in listOf(
+        Routes.FAVORITES,
+        Routes.HISTORY
     )
 
-    LaunchedEffect(currentScreen) {
+    val canNavigateBack = currentScreen in listOf(
+        Routes.ROUTE_DETAIL,
+        Routes.FAVORITES,
+        Routes.HISTORY
+    )
+
+    val showToolbarMenu = currentScreen !in listOf(
+        Routes.FAVORITES,
+        Routes.HISTORY
+    )
+
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    LaunchedEffect(Unit) {
+        SnackbarManager.messages.collectLatest {
+            snackbarHostState.showSnackbar(it)
+        }
+    }
+
+    val handleNavigateBack: () -> Unit = {
         when (currentScreen) {
-            Routes.STOPS -> {
-                mapStateViewModel.showAllStops()
+            Routes.ROUTE_DETAIL -> {
+                navController.navigate(Routes.ALL_ROUTES) {
+                    popUpTo(Routes.ALL_ROUTES) { inclusive = false }
+                    launchSingleTop = true
+                }
             }
 
-            Routes.ALL_ROUTES -> {}
+            else -> navController.navigateUp()
+        }
+    }
 
-            Routes.SHARE_LOCATION_SCREEN -> {}
+    LaunchedEffect(currentScreen, navBackStackEntry) {
+        when (currentScreen) {
+            Routes.STOPS -> mapStateViewModel.showAllStops()
+            Routes.ALL_ROUTES -> {}
+            Routes.DESTINATION_SEARCH -> {}
+            Routes.ROUTE_DETAIL -> {
+                val routeId = navBackStackEntry?.arguments?.getString("routeId")
+                if (routeId != null) {
+                    mapStateViewModel.showRouteDetailById(routeId)
+                }
+            }
+
+            Routes.FAVORITES,
+            Routes.HISTORY,
+            Routes.SHARE -> {
+            }
+
+            else -> {}
         }
     }
 
@@ -108,70 +175,72 @@ fun MainScreen(locationViewModel: LocationViewModel) {
         topBar = {
             Toolbar(
                 title = screenTitle,
-                canNavigateBack = navController.previousBackStackEntry != null &&
-                        currentScreen != Routes.STOPS,
-                onNavigateUp = { navController.navigateUp() }
+                canNavigateBack = canNavigateBack,
+                showMenu = showToolbarMenu,
+                onNavigateUp = handleNavigateBack,
+                onNavigateToFavorites = {
+                    navController.navigate(Routes.FAVORITES) {
+                        launchSingleTop = true
+                    }
+                },
+                onNavigateToHistory = {
+                    navController.navigate(Routes.HISTORY) {
+                        launchSingleTop = true
+                    }
+                }
             )
         },
         bottomBar = {
-            BottomBar(
-                items = navigationItems,
-                selectedIndex = selectedIndex,
-                onItemSelected = { index ->
-                    val selectedItem = navigationItems[index]
-                    val selectedRoute = selectedItem.route
+            if (showBottomBarAndSheet) {
+                BottomBar(
+                    items = navigationItems,
+                    selectedIndex = selectedIndex,
+                    onItemSelected = { index ->
+                        val selectedItem = navigationItems[index]
+                        val selectedRoute = selectedItem.route
 
-                    if (selectedRoute != currentScreen && selectedRoute != Routes.SHARE) {
-
-                        when (selectedRoute) {
-                            Routes.STOPS -> {
-                                navController.navigate(Routes.STOPS) {
-                                    popUpTo(navController.graph.startDestinationId) {
-                                        inclusive = true
+                        if (selectedRoute != currentScreen) {
+                            when (selectedRoute) {
+                                Routes.STOPS -> {
+                                    navController.navigate(Routes.STOPS) {
+                                        popUpTo(navController.graph.startDestinationId) {
+                                            inclusive = true
+                                        }
+                                        launchSingleTop = true
                                     }
-                                    launchSingleTop = true
                                 }
-                            }
-                            Routes.ALL_ROUTES -> {
-                                navController.navigate(Routes.ALL_ROUTES) {
-                                    launchSingleTop = true
-                                    restoreState = true
+
+                                Routes.ALL_ROUTES -> {
+                                    navController.navigate(Routes.ALL_ROUTES) {
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
                                 }
-                            }
-                            Routes.SHARE_LOCATION_SCREEN -> {
-                                navController.navigate(Routes.SHARE_LOCATION_SCREEN) {
-                                    launchSingleTop = true
-                                    restoreState = true
+
+                                Routes.DESTINATION_SEARCH -> {
+                                    navController.navigate(Routes.DESTINATION_SEARCH) {
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
+                                }
+
+                                Routes.SHARE -> {
+                                    navController.navigate(Routes.SHARE) {
+                                        launchSingleTop = true
+                                        restoreState = false // no se
+                                    }
                                 }
                             }
                         }
                     }
-                }
-            )
-        }
+                )
+            }
+        },
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
     ) { innerPadding ->
-        if (currentScreen == Routes.SHARE_LOCATION_SCREEN) {
-            val context = LocalContext.current
-            val repository = remember {
-                val database = AppDatabase.getDatabase(context)
-                val firestoreService = FirestoreService()
-                AppRepository(
-                    appDao = database.appDao(),
-                    firestoreService = firestoreService
-                )
-            }
-
-            Box(modifier = Modifier
-                .padding(innerPadding)
-                .fillMaxSize()
-            ) {
-                ShareLocationScreen(
-                    navController = navController,
-                    repository = repository
-                )
-            }
-        } else {
+        if (showBottomBarAndSheet) {
             BottomSheetScaffold(
+                scaffoldState = scaffoldState,
                 modifier = Modifier
                     .padding(innerPadding)
                     .pointerInput(Unit) {
@@ -181,41 +250,86 @@ fun MainScreen(locationViewModel: LocationViewModel) {
                         })
                     },
                 content = { innerPaddingSheet ->
-                    MainContent(padding = innerPaddingSheet, inProduction = false) {
-                        Box(modifier = Modifier.fillMaxSize()) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                    ) {
+                        MainContent(padding = innerPaddingSheet, inProduction = false) {
                             MapContent(mapStateViewModel = mapStateViewModel)
-                            SharingStatusIndicator(
+                        }
+
+                        val currentShared by ShareManager.currentSharedRouteId.collectAsState()
+                        val routeName = shareState.routes.find { it.id == currentShared }?.name
+                        var showCancelDialog by remember { mutableStateOf(false) }
+
+                        if (currentShared != null && !listOf(
+                                Routes.FAVORITES,
+                                Routes.HISTORY
+                            ).contains(currentRoute)
+                        ) {
+                            Row(
                                 modifier = Modifier
-                                    .padding(12.dp)
-                                    .align(androidx.compose.ui.Alignment.TopCenter),
-                                onClick = {
-                                    navController.navigate(Routes.SHARE_LOCATION_SCREEN) {
-                                        launchSingleTop = true
-                                        restoreState = true
-                                    }
+                                    .fillMaxWidth()
+                                    .background(MaterialTheme.colorScheme.surfaceContainerHighest)
+                                    .padding(4.dp)
+                                    .align(Alignment.TopCenter),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    text = "Compartiendo ${routeName ?: "ruta"}",
+                                    modifier = Modifier.weight(1f),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.onSecondaryFixedVariant
+                                )
+                                Button(
+                                    onClick = { showCancelDialog = true },
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = MaterialTheme.colorScheme.onSecondaryFixedVariant,
+                                        contentColor = MaterialTheme.colorScheme.surfaceContainerLow
+                                    ),
+                                    shape = RoundedCornerShape(8.dp)
+                                ) {
+                                    Text("Cancelar")
+                                }
+                            }
+                        }
+
+                        if (showCancelDialog) {
+                            AlertDialog(
+                                onDismissRequest = { showCancelDialog = false },
+                                title = { Text("Dejar de Compartir") },
+                                text = { Text("¿Seguro que quieres dejar de compartir?") },
+                                confirmButton = {
+                                    TextButton(onClick = {
+                                        showCancelDialog = false
+                                        shareViewModel.stopShare()
+                                    }) { Text("Sí") }
+                                },
+                                dismissButton = {
+                                    TextButton(onClick = {
+                                        showCancelDialog = false
+                                    }) { Text("No") }
                                 }
                             )
                         }
                     }
                 },
                 sheetContent = {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxHeight(0.5f)
-                    ) {
+                    Box(modifier = Modifier.fillMaxHeight(0.5f)) {
                         AppNavigation(
                             navController = navController,
                             locationViewModel = locationViewModel,
-                            mapStateViewModel = mapStateViewModel
+                            mapStateViewModel = mapStateViewModel,
+                            isSheetExpanded = isSheetExpanded,
+                            onExpandSheet = expandSheet
                         )
                     }
                 },
                 sheetPeekHeight = 93.dp,
                 sheetShape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
                 sheetDragHandle = {
-                    Box(
-                        modifier = Modifier.padding(6.dp)
-                    ) {
+                    Box(modifier = Modifier.padding(6.dp)) {
                         Box(
                             modifier = Modifier
                                 .width(105.dp)
@@ -229,6 +343,25 @@ fun MainScreen(locationViewModel: LocationViewModel) {
                     }
                 }
             )
+        } else {
+            Box(
+                modifier = Modifier
+                    .padding(innerPadding)
+                    .pointerInput(Unit) {
+                        detectTapGestures(onTap = {
+                            focusManager.clearFocus()
+                            keyboardController?.hide()
+                        })
+                    }
+            ) {
+                AppNavigation(
+                    navController = navController,
+                    locationViewModel = locationViewModel,
+                    mapStateViewModel = mapStateViewModel,
+                    isSheetExpanded = true,
+                    onExpandSheet = {}
+                )
+            }
         }
     }
 }

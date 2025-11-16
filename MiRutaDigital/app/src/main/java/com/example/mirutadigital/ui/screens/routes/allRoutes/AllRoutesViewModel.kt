@@ -1,18 +1,24 @@
 package com.example.mirutadigital.ui.screens.routes.allRoutes
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.mirutadigital.data.testsUi.dataSource.RoutesInfo
-import com.example.mirutadigital.data.testsUi.dataSource.JourneyInfo
-import com.example.mirutadigital.data.testsUi.dataSource.getSampleStopsWithRoutes
-import com.example.mirutadigital.data.repository.AppRepository
+//import androidx.lifecycle.ViewModel
+
+import com.example.mirutadigital.MiRutaApplication
+import com.example.mirutadigital.data.model.ui.RoutesInfo
+import com.google.maps.android.compose.rememberCameraPositionState
+import kotlinx.coroutines.Dispatchers
+
+//import com.example.mirutadigital.data.testsUi.dataSource.RoutesInfo
+//import com.example.mirutadigital.data.testsUi.dataSource.getSampleRoutes
+//import com.example.mirutadigital.data.testsUi.dataSource.getSampleStopsWithRoutes
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.flow.first
-import com.google.maps.android.PolyUtil
+import kotlinx.coroutines.withContext
 
 /**
  * define el estado de la ui para AllRoutesScreen
@@ -20,6 +26,7 @@ import com.google.maps.android.PolyUtil
  */
 data class AllRoutesUiState(
     val routes: List<RoutesInfo> = emptyList(),
+    val favoriteRouteIds: Set<String> = emptySet(),
     val searchQuery: String = "",
     val isLoading: Boolean = true,
     val filteredStopId: String? = null,
@@ -30,17 +37,16 @@ data class AllRoutesUiState(
         get() {
             var result = routes
 
-            // Filtro de favoritos
-            if (showOnlyFavorites) {
-                result = result.filter { it.isFavorite }
-            }
-
             if (filteredStopId != null) {
                 result = result.filter { route ->
                     route.stopsJourney.any { journey ->
                         journey.stops.any { stop -> stop.id == filteredStopId }
                     }
                 }
+            }
+
+            if(showOnlyFavorites) {
+                result = result.filter { it.id in favoriteRouteIds }
             }
 
             if (searchQuery.isNotBlank()) {
@@ -51,26 +57,9 @@ data class AllRoutesUiState(
         }
 }
 
-class AllRoutesViewModel(
-    private val repository: AppRepository
-) : ViewModel() {
-    
-    // Método para cargar rutas favoritas
-    private suspend fun loadFavoriteRoutes() {
-        try {
-            // Actualizar el estado de favoritos directamente desde las rutas
-            _uiState.update { currentState ->
-                currentState.copy(
-                    routes = currentState.routes.map { route ->
-                        // Aquí mantenemos el estado actual de favoritos
-                        route
-                    }
-                )
-            }
-        } catch (e: Exception) {
-            // Manejar error
-        }
-    }
+class AllRoutesViewModel(application: Application) : AndroidViewModel(application)  {
+
+    private val repository = (application as MiRutaApplication).repository
 
     private val _uiState = MutableStateFlow(AllRoutesUiState())
     val uiState: StateFlow<AllRoutesUiState> = _uiState.asStateFlow()
@@ -79,72 +68,31 @@ class AllRoutesViewModel(
         loadRoutes()
     }
 
-    // carga las rutas desde el repositorio
+    // carga las rutas desde la fuente de datos
     private fun loadRoutes() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             try {
-                // Obtener rutas desde el repositorio
-                val repositoryRoutes = repository.getRoutes().first()
-                // Obtener paradas para asociarlas a cada ruta
-                val repositoryStops = repository.getStops().first()
-                // Obtener rutas favoritas
-                val favoriteRoutes = repository.getFavoriteRouteIds()
-                
-                // Convertir Route (repo) a RoutesInfo (UI)
-                val routes = repositoryRoutes.map { route ->
-                    // Paradas asociadas a la ruta
-                    val routeStopsData = repositoryStops.filter { stop ->
-                        stop.associatedRouteIds.contains(route.id)
+                repository.synchronizeDatabase()
+
+                val routes = repository.getGeneralRoutesInfo()// getSampleRoutes
+
+                withContext(Dispatchers.Main) {
+                    repository.getAllFavorites().collect { favorites ->
+                        val favoriteIds = favorites.map { it.routeId }.toSet()
+                        _uiState.update {
+                            it.copy(
+                                routes = routes,
+                                favoriteRouteIds = favoriteIds,
+                                isLoading = false
+                            )
+                        }
                     }
-
-                    val uiStops = routeStopsData.map { stop ->
-                        com.example.mirutadigital.data.testsUi.model.Stop(
-                            id = stop.id,
-                            name = stop.name,
-                            coordinates = stop.location
-                        )
-                    }
-
-                    // Polilínea codificada para dibujar (si hay puntos)
-                    val encodedPolyline = if (route.polylinePoints.isNotEmpty()) {
-                        PolyUtil.encode(route.polylinePoints)
-                    } else null
-
-                    val outbound = JourneyInfo(
-                        stops = uiStops,
-                        encodedPolyline = encodedPolyline
-                    )
-                    // Sin trayecto diferenciado aún en Firestore: usando el mismo orden invertido para “vuelta”
-                    val inbound = JourneyInfo(
-                        stops = uiStops.reversed(),
-                        encodedPolyline = encodedPolyline
-                    )
-
-                    RoutesInfo(
-                        id = route.id,
-                        name = route.name,
-                        windshieldLabel = "No Tiene",
-                        colors = "Sin Especificar",
-                        stopsJourney = listOf(outbound, inbound),
-                        isFavorite = favoriteRoutes.contains(route.id) || route.isFavorite
-                    )
-                }
-                
-                _uiState.update {
-                    it.copy(
-                        routes = routes,
-                        isLoading = false
-                    )
                 }
             } catch (e: Exception) {
-                // En caso de error, mantener el estado de carga
-                _uiState.update {
-                    it.copy(isLoading = false)
-                }
+               // error
             }
         }
     }
-
 
     fun onSearchQueryChange(query: String) {
         _uiState.update { it.copy(searchQuery = query) }
@@ -152,8 +100,7 @@ class AllRoutesViewModel(
 
     fun setStopFilter(stopId: String) {
         viewModelScope.launch {
-            // Usar paradas reales del repositorio para obtener el nombre
-            val stops = repository.getStops().first()
+            val stops = repository.getStopsWithRoutes() // getSampleStopsWithRoutes
             val stopName = stops.find { it.id == stopId }?.name
 
             _uiState.update {
@@ -165,7 +112,6 @@ class AllRoutesViewModel(
         }
     }
 
-    // Método para limpiar el filtro de paradas
     fun clearStopFilter() {
         _uiState.update {
             it.copy(
@@ -175,26 +121,18 @@ class AllRoutesViewModel(
         }
     }
 
-    // Método para cambiar el filtro de favoritos
-    fun toggleFavoritesFilter(showOnlyFavorites: Boolean) {
-        _uiState.update { it.copy(showOnlyFavorites = showOnlyFavorites) }
+    fun toggleShowOnlyFavorites() {
+        _uiState.update { it.copy(showOnlyFavorites = !it.showOnlyFavorites) }
     }
-    
-    // Método para alternar el estado de favorito de una ruta
+
     fun toggleFavorite(routeId: String) {
         viewModelScope.launch {
-            // Actualizar directamente el estado de favorito en el ViewModel
-            val updatedRoutes = _uiState.value.routes.map { route ->
-                if (route.id == routeId) {
-                    route.copy(isFavorite = !route.isFavorite)
-                } else {
-                    route
-                }
-            }
-            _uiState.update { it.copy(routes = updatedRoutes) }
-            
-            // Persistir el cambio en el repositorio
-            repository.toggleFavoriteRoute(routeId)
+            val isFavorite = routeId in _uiState.value.favoriteRouteIds
+            repository.toggleFavorite(routeId, isFavorite)
         }
+    }
+
+    fun isFavorite(routeId: String): Boolean {
+        return routeId in _uiState.value.favoriteRouteIds
     }
 }

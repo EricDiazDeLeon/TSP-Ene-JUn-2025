@@ -1,0 +1,10 @@
+{
+  "routeId": "R_17",
+  "active": true,
+  "journeyType": "outbound",
+  "startTime": "2025-11-09T12:00:00Z",
+  "lastLocation": {
+    "lat": 22.7626,
+    "lng": -102.5807
+  }
+}
