@@ -15,6 +15,7 @@ class UserPreferences(context: Context) {
 
     companion object {
         private const val KEY_SAVE_HISTORY = "save_route_history"
+        private const val KEY_DARK_MODE = "dark_mode_enabled"
     }
 
     /**
@@ -29,5 +30,13 @@ class UserPreferences(context: Context) {
      */
     fun setSaveHistoryEnabled(enabled: Boolean) {
         prefs.edit().putBoolean(KEY_SAVE_HISTORY, enabled).apply()
+    }
+
+    fun getDarkModeEnabled(): Boolean {
+        return prefs.getBoolean(KEY_DARK_MODE, false)
+    }
+
+    fun setDarkModeEnabled(enabled: Boolean) {
+        prefs.edit().putBoolean(KEY_DARK_MODE, enabled).apply()
     }
 }

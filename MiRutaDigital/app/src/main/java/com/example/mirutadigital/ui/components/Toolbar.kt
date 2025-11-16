@@ -12,6 +12,7 @@ import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Switch
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
@@ -32,7 +33,9 @@ fun Toolbar(
     showMenu: Boolean = true,
     onNavigateUp: () -> Unit = {},
     onNavigateToFavorites: () -> Unit = {},
-    onNavigateToHistory: () -> Unit = {}
+    onNavigateToHistory: () -> Unit = {},
+    isDarkTheme: Boolean = false,
+    onToggleDarkTheme: (Boolean) -> Unit = {}
 ) {
     var showMenuDropdown by remember { mutableStateOf(false) }
 
@@ -45,8 +48,8 @@ fun Toolbar(
             )
         },
         colors = TopAppBarDefaults.topAppBarColors(
-            containerColor = MaterialTheme.colorScheme.surfaceVariant,
-            titleContentColor = MaterialTheme.colorScheme.onSecondaryFixedVariant
+            containerColor = MaterialTheme.colorScheme.surface,
+            titleContentColor = MaterialTheme.colorScheme.onSurface
         ),
         navigationIcon = {
             if (canNavigateBack) {
@@ -54,7 +57,7 @@ fun Toolbar(
                     Icon(
                         modifier = Modifier.size(30.dp),
                         imageVector = Icons.Default.ArrowBackIosNew,
-                        tint = MaterialTheme.colorScheme.secondary,
+                        tint = MaterialTheme.colorScheme.onSurface,
                         contentDescription = "Atras"
                     )
                 }
@@ -66,7 +69,7 @@ fun Toolbar(
                     Icon(
                         imageVector = Icons.Default.MoreVert,
                         contentDescription = "Menú",
-                        tint = MaterialTheme.colorScheme.onSecondaryFixedVariant
+                        tint = MaterialTheme.colorScheme.onSurface
                     )
                 }
 
@@ -74,6 +77,15 @@ fun Toolbar(
                     expanded = showMenuDropdown,
                     onDismissRequest = { showMenuDropdown = false }
                 ) {
+                    DropdownMenuItem(
+                        text = { Text("Modo oscuro") },
+                        onClick = { onToggleDarkTheme(!isDarkTheme); showMenuDropdown = false },
+                        trailingIcon = {
+                            Switch(checked = isDarkTheme, onCheckedChange = {
+                                onToggleDarkTheme(it); showMenuDropdown = false
+                            })
+                        }
+                    )
                     DropdownMenuItem(
                         text = { Text("Gestionar Favoritos") },
                         onClick = {

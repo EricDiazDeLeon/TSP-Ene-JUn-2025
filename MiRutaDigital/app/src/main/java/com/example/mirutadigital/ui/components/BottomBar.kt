@@ -24,7 +24,7 @@ fun BottomBar(
     onItemSelected: (Int) -> Unit
 ) {
     NavigationBar(
-        containerColor = MaterialTheme.colorScheme.surfaceVariant
+        containerColor = MaterialTheme.colorScheme.surface
     ) {
         items.forEachIndexed { index, item ->
             NavigationBarItem(
@@ -33,20 +33,20 @@ fun BottomBar(
                 label = {
                     Text(
                         text = item.label,
-                        color = MaterialTheme.colorScheme.onSecondaryFixedVariant
+                        color = if (selectedIndex == index) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant
                     )
                 },
                 icon = {
                     Icon(
                         imageVector = item.icon,
-                        tint = MaterialTheme.colorScheme.onSecondaryFixedVariant,
+                        tint = if (selectedIndex == index) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
                         contentDescription = item.label
                     )
                 },
                 alwaysShowLabel = true,
                 enabled = true,
                 colors = NavigationBarItemDefaults.colors(
-                    indicatorColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+                    indicatorColor = MaterialTheme.colorScheme.primaryContainer,
                 )
             )
         }

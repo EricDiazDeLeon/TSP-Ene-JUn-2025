@@ -38,12 +38,21 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MiRutaDigitalTheme(dynamicColor = false) {
+            val app = LocalContext.current.applicationContext as MiRutaApplication
+            var isDarkTheme by remember { mutableStateOf(app.userPreferences.getDarkModeEnabled()) }
+            MiRutaDigitalTheme(darkTheme = isDarkTheme, dynamicColor = false) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HandleLocationPermission(locationViewModel)
+                    HandleLocationPermission(
+                        locationViewModel = locationViewModel,
+                        isDarkTheme = isDarkTheme,
+                        onToggleDarkTheme = { enabled ->
+                            isDarkTheme = enabled
+                            app.userPreferences.setDarkModeEnabled(enabled)
+                        }
+                    )
                 }
             }
         }
@@ -51,7 +60,11 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun HandleLocationPermission(locationViewModel: LocationViewModel) {
+private fun HandleLocationPermission(
+    locationViewModel: LocationViewModel,
+    isDarkTheme: Boolean,
+    onToggleDarkTheme: (Boolean) -> Unit
+) {
     val context = LocalContext.current
     var hasLocationPermission by remember {
         mutableStateOf(
@@ -81,7 +94,11 @@ private fun HandleLocationPermission(locationViewModel: LocationViewModel) {
 
     when {
         hasLocationPermission -> {
-            MainScreen(locationViewModel)
+            MainScreen(
+                locationViewModel = locationViewModel,
+                isDarkTheme = isDarkTheme,
+                onToggleDarkTheme = onToggleDarkTheme
+            )
         }
         permissionRequestTriggered -> {
             PermissionDeniedScreen {

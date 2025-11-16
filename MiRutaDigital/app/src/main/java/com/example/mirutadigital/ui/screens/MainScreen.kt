@@ -59,7 +59,11 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(locationViewModel: LocationViewModel) {
+fun MainScreen(
+    locationViewModel: LocationViewModel,
+    isDarkTheme: Boolean,
+    onToggleDarkTheme: (Boolean) -> Unit
+) {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
@@ -187,7 +191,9 @@ fun MainScreen(locationViewModel: LocationViewModel) {
                     navController.navigate(Routes.HISTORY) {
                         launchSingleTop = true
                     }
-                }
+                },
+                isDarkTheme = isDarkTheme,
+                onToggleDarkTheme = onToggleDarkTheme
             )
         },
         bottomBar = {
@@ -270,7 +276,7 @@ fun MainScreen(locationViewModel: LocationViewModel) {
                             Row(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .background(MaterialTheme.colorScheme.surfaceContainerHighest)
+                                    .background(MaterialTheme.colorScheme.surface)
                                     .padding(4.dp)
                                     .align(Alignment.TopCenter),
                                 verticalAlignment = Alignment.CenterVertically
@@ -280,13 +286,13 @@ fun MainScreen(locationViewModel: LocationViewModel) {
                                     modifier = Modifier.weight(1f),
                                     style = MaterialTheme.typography.bodyMedium,
                                     fontWeight = FontWeight.Bold,
-                                    color = MaterialTheme.colorScheme.onSecondaryFixedVariant
+                                    color = MaterialTheme.colorScheme.onSurface
                                 )
                                 Button(
                                     onClick = { showCancelDialog = true },
                                     colors = ButtonDefaults.buttonColors(
-                                        containerColor = MaterialTheme.colorScheme.onSecondaryFixedVariant,
-                                        contentColor = MaterialTheme.colorScheme.surfaceContainerLow
+                                        containerColor = MaterialTheme.colorScheme.primary,
+                                        contentColor = MaterialTheme.colorScheme.onPrimary
                                     ),
                                     shape = RoundedCornerShape(8.dp)
                                 ) {
@@ -336,7 +342,7 @@ fun MainScreen(locationViewModel: LocationViewModel) {
                                 .height(9.dp)
                                 .padding(top = 4.dp)
                                 .background(
-                                    color = MaterialTheme.colorScheme.onSecondaryFixedVariant,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     shape = RoundedCornerShape(50)
                                 )
                         )
