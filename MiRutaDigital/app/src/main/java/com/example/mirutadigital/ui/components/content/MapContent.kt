@@ -10,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import com.example.mirutadigital.ui.util.ActiveStopIcon
 import com.example.mirutadigital.ui.util.InactiveStopIcon
 import com.example.mirutadigital.ui.util.SharedBusIcon
@@ -20,6 +21,7 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.RoundCap
 import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.MapEffect
 import com.google.maps.android.compose.MapProperties
 import com.google.maps.android.compose.MarkerComposable
 import com.google.maps.android.compose.MarkerState
@@ -45,6 +47,10 @@ fun MapContent(
     val mapState by mapStateViewModel.mapState.collectAsState()
     val selectedStopId = mapState.selectedStopId
     val displayMode = mapState.displayMode
+    val context = LocalContext.current
+    val apiKey = try {
+        context.resources.getString(com.example.mirutadigital.R.string.maps_api_key)
+    } catch (_: Exception) { "" }
 
     val initialLocation = mapStateViewModel.initialLocation
     //val markers = mapState.allStops.map { it. }
@@ -55,6 +61,7 @@ fun MapContent(
     val markerStates = remember { mutableMapOf<String, MarkerState>() }
 
     var isMapLoaded by remember { mutableStateOf(false) }
+    var visibleBounds by remember { mutableStateOf<com.google.android.gms.maps.model.LatLngBounds?>(null) }
 
     LaunchedEffect(selectedStopId, markerStates, displayMode, isMapLoaded) {
         if (!isMapLoaded) return@LaunchedEffect
@@ -99,6 +106,10 @@ fun MapContent(
         }
     }
 
+    if (apiKey.isBlank()) {
+        return
+    }
+
     // composable de GoogleMap
     GoogleMap(
         modifier = Modifier
@@ -114,13 +125,22 @@ fun MapContent(
         ),
         onMapLoaded = { isMapLoaded = true }
     ) {
+        MapEffect(Unit) { map ->
+            map.setOnCameraIdleListener {
+                val bounds = map.projection.visibleRegion.latLngBounds
+                visibleBounds = bounds
+            }
+        }
         when (displayMode) {
             is MapDisplayMode.AllStops -> {
-                val stopsToShow = if (displayMode.focusedStopId != null) {
-                    mapState.allStops.filter { it.id == displayMode.focusedStopId } // en foco
+                val stopsSource = if (displayMode.focusedStopId != null) {
+                    mapState.allStops.filter { it.id == displayMode.focusedStopId }
                 } else {
-                    mapState.allStops // todas
+                    mapState.allStops
                 }
+                val stopsToShow = visibleBounds?.let { b ->
+                    stopsSource.filter { s -> b.contains(LatLng(s.latitude, s.longitude)) }
+                } ?: stopsSource.take(120)
 
                 stopsToShow.forEach { stop ->
                     val isSelected = stop.id == selectedStopId
@@ -206,17 +226,15 @@ fun MapContent(
                 }
 
                 displayMode.vehicles.forEach { vehicle ->
-                    val position = LatLng(vehicle.lastLocation.latitude, vehicle.lastLocation.longitude)
-                    val journeyColor = if (vehicle.journeyType == "outbound") Color.Blue else Color.Red
-
+                    val position = LatLng(vehicle.latitude, vehicle.longitude)
                     MarkerComposable(
                         state = MarkerState(position = position),
                         title = "Vehículo Compartido",
-                        snippet = "Trayecto: ${vehicle.journeyType}",
-                        zIndex = 10f, // Prioridad alta para que se vea sobre las paradas
+                        snippet = "Ruta: ${displayMode.routeId}",
+                        zIndex = 10f,
                         onClick = { false }
                     ) {
-                        SharedBusIcon(color = journeyColor)
+                        SharedBusIcon(color = Color.Blue)
                     }
                 }
             }

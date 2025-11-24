@@ -263,7 +263,7 @@ fun HistoryItem(
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = historyItem.routeName,
+                    text = "ruta " + historyItem.routeName,
                     fontWeight = FontWeight.ExtraBold,
                     color = MaterialTheme.colorScheme.onSecondaryFixedVariant
                 )

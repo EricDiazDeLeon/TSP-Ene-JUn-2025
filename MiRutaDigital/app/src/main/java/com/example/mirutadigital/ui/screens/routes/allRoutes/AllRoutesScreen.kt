@@ -420,7 +420,7 @@ fun RouteItem(
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = route.name,
+                        text = "ruta " + route.name,
                         fontWeight = FontWeight.ExtraBold,
                         color = MaterialTheme.colorScheme.onSecondaryFixedVariant
                     )

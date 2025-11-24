@@ -164,6 +164,12 @@ fun StopsScreen(
                     navController.navigate(routeToNavigate) {
                         launchSingleTop = true
                     }
+                },
+                onViewStreetClick = {
+                    val route = AppScreens.StreetViewScreen.createRoute(stop.latitude, stop.longitude)
+                    navController.navigate(route) {
+                        launchSingleTop = true
+                    }
                 }
             )
         }
@@ -282,7 +288,8 @@ fun StopItem(
     isExpanded: Boolean,
     onItemClick: () -> Unit,
     userLocation: Location?,
-    onViewRoutesClick: (String) -> Unit
+    onViewRoutesClick: (String) -> Unit,
+    onViewStreetClick: () -> Unit
 ) {
     val distanceText by remember(userLocation) {
         mutableStateOf(
@@ -367,7 +374,7 @@ fun StopItem(
                         ) {
 
                             Text(
-                                text = route.name,
+                                text = "ruta " + route.name,
                                 fontWeight = FontWeight.SemiBold,
                                 style = MaterialTheme.typography.bodyLarge,
                                 color = MaterialTheme.colorScheme.onSecondaryFixedVariant,
@@ -406,6 +413,16 @@ fun StopItem(
                             )
                         ) {
                             Text("Ver Rutas")
+                        }
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Button(
+                            onClick = onViewStreetClick,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.primary,
+                                contentColor = MaterialTheme.colorScheme.onPrimary
+                            )
+                        ) {
+                            Text("Ver Street View")
                         }
                     }
                 } else {

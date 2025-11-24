@@ -75,6 +75,12 @@ interface RouteDao {
     @Query("SELECT * FROM stops")
     suspend fun getAllStopsWithJourneys(): List<StopWithJourneys>
 
+    @Query("SELECT COUNT(*) FROM stops")
+    suspend fun getStopsCount(): Int
+
+    @Query("SELECT COUNT(*) FROM routes")
+    suspend fun getRoutesCount(): Int
+
     /**
      * Obtiene la entidad de una Ruta (RouteEntity) basado en el ID
      * de uno de sus trayectos (JourneyEntity)

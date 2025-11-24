@@ -184,7 +184,7 @@ class MapStateViewModel(application: Application) : AndroidViewModel(application
                     bounds = routeBounds
                 ),
                 selectedStopId = null,
-                currentRouteName = route.name
+                currentRouteName = "ruta " + route.name
             )
         }
     }

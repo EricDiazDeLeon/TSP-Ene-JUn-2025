@@ -336,7 +336,7 @@ fun RouteResultItem(route: RouteInfo) {
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(
-            text = route.name,
+            text = "ruta " + route.name,
             modifier = Modifier
                 .padding(vertical = 8.dp, horizontal = 12.dp)
                 .weight(0.2f),

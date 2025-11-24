@@ -118,7 +118,7 @@ class ShareViewModel(application: Application) : AndroidViewModel(application) {
         val userId = userIdProvider.getUserId()
 
         viewModelScope.launch {
-            repository.startShare(userId, routeId, journeyType, location)
+            repository.startShare(userId, routeId, location)
 
             if (userPreferences.getSaveHistoryEnabled()) {
                 repository.addToHistory(routeId, routeName)

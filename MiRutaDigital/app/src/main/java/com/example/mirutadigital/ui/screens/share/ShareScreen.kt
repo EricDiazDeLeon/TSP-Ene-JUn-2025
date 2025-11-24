@@ -177,7 +177,7 @@ fun ShareScreen(
                                 contentPadding = PaddingValues(bottom = 8.dp)
                             ) {
                                 items(uiState.filteredRoutes, key = { it.id }) { route ->
-                                    RouteItemCard(
+                RouteItemCard(
                                         route = route,
                                         isFavorite = viewModel.isFavorite(route.id),
                                         isExpanded = uiState.expandedRouteId == route.id,
@@ -267,7 +267,7 @@ fun SharingActiveView(
         )
         Spacer(modifier = Modifier.height(8.dp))
         Text(
-            text = "Actualmente compartiendo: $routeName",
+            text = "Actualmente compartiendo: ruta $routeName",
             style = MaterialTheme.typography.bodyLarge,
             color = MaterialTheme.colorScheme.onSurface
         )
@@ -527,7 +527,7 @@ fun RouteItemCard(
                 Spacer(modifier = Modifier.width(16.dp))
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
-                        text = route.name,
+                        text = "ruta " + route.name,
                         fontWeight = FontWeight.ExtraBold,
                         color = MaterialTheme.colorScheme.onSecondaryFixedVariant
                     )

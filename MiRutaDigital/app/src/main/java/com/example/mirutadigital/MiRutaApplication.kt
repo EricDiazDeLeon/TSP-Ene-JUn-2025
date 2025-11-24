@@ -8,10 +8,12 @@ import com.example.mirutadigital.data.repository.RouteRepository
 import com.example.mirutadigital.data.repository.UserIdProvider
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.auth.FirebaseAuth
 
 /**
  * Clase Application personalizada para inicializar y mantener
  * la base de datos y el repositorio como singletons para los mv
+ * (Para mantener la persistencia)
  */
 class MiRutaApplication : Application() {
 
@@ -22,6 +24,7 @@ class MiRutaApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         FirebaseApp.initializeApp(this)
+        FirebaseAuth.getInstance().signInAnonymously()
     }
 
     // inicializacion de la base de datos
@@ -47,7 +50,8 @@ class MiRutaApplication : Application() {
             routeRatingDao = database.routeRatingDao(),
             firestore = firestore,
             googleApiService = NetworkProvider.googleApiService,
-            userIdProvider = userIdProvider
+            userIdProvider = userIdProvider,
+            appContext = this
         )
     }
 }

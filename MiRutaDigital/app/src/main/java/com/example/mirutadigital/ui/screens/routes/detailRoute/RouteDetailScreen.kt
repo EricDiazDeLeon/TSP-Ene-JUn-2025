@@ -321,7 +321,7 @@ fun RouteInfoCard(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = routeName,
+                    text = "ruta " + routeName,
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSecondaryFixedVariant

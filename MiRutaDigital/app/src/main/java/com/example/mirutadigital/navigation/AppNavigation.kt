@@ -31,6 +31,7 @@ object Routes {
     const val ROUTE_DETAIL = "route_detail_screen"
     const val FAVORITES = "favorites_screen"
     const val HISTORY = "history_screen"
+    const val STREET_VIEW = "street_view_screen"
 }
 
 sealed class AppScreens(val route: String) {
@@ -54,6 +55,15 @@ sealed class AppScreens(val route: String) {
 
         fun createRoute(routeId: String): String {
             return "${Routes.ROUTE_DETAIL}/$routeId"
+        }
+    }
+
+    object StreetViewScreen : AppScreens(Routes.STREET_VIEW) {
+        const val COORDS_ARG = "coords"
+        const val ROUTE_WITH_ARGS = "${Routes.STREET_VIEW}/{${COORDS_ARG}}"
+
+        fun createRoute(lat: Double, lng: Double): String {
+            return "${Routes.STREET_VIEW}/${lat},${lng}"
         }
     }
 
@@ -147,6 +157,22 @@ fun AppNavigation(
                         launchSingleTop = true
                     }
                 }
+            )
+        }
+
+        composable(
+            route = AppScreens.StreetViewScreen.ROUTE_WITH_ARGS,
+            arguments = listOf(
+                navArgument(AppScreens.StreetViewScreen.COORDS_ARG) {
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
+            val coordsString =
+                backStackEntry.arguments?.getString(AppScreens.StreetViewScreen.COORDS_ARG) ?: ""
+
+            com.example.mirutadigital.ui.screens.streetview.StreetViewScreen(
+                coords = coordsString
             )
         }
 

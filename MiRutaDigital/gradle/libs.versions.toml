@@ -1,6 +1,6 @@
 [versions]
 # -- core y puglins --
-agp = "8.13.0"
+agp = "8.13.1"
 converterMoshi = "3.0.0"
 gson = "2.13.2"
 kotlin = "2.2.21"
