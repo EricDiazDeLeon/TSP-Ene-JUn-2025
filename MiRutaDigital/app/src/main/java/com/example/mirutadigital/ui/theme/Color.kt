@@ -17,6 +17,3 @@ val AppPrimaryPurple = Color(0xFF673AB7) // morado principal
 val AppBackgroundLight = Color(0xFFFDFCFE)
 val AppBarsGrayPurpleLight = Color(0xFFCDCDD1)
 val AppBarsGrayPurple = Color(0xFFF0EDF6) // gris morado muy clarito
-val AppBackgroundDark = Color(0xFF121212)
-val AppSurfaceDark = Color(0xFF1E1E1E)
-val AppOnSurfaceDark = Color(0xFFEAEAEA)

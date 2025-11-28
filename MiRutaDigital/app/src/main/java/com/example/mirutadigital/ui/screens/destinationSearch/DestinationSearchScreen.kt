@@ -1,5 +1,6 @@
 package com.example.mirutadigital.ui.screens.destinationSearch
 
+import android.widget.Space
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
@@ -22,10 +23,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BackHand
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.DirectionsBus
+import androidx.compose.material.icons.filled.Map
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -46,6 +50,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.mirutadigital.data.model.ui.RouteInfo
+import com.example.mirutadigital.navigation.Routes
 import com.example.mirutadigital.viewModel.MapStateViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -55,6 +60,7 @@ fun DestinationSearchScreen(
     mapStateViewModel: MapStateViewModel,
     isSheetExpanded: Boolean,
     onExpandSheet: () -> Unit,
+    onNavigateToTripPlan: () -> Unit,
     viewModel: DestinationSearchViewModel = viewModel()
 ) {
     val uiState by viewModel.uiState.collectAsState()
@@ -66,84 +72,98 @@ fun DestinationSearchScreen(
             mapStateViewModel.showSingleStopFocus(result.closestStop.id)
         }
     }
-
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(horizontal = 4.dp)
-    ) {
-        stickyHeader {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .background(color = MaterialTheme.colorScheme.surfaceContainerLow)
-            ) {
-                DestinationSearchHeader(
+    Box(modifier = Modifier.fillMaxSize()) {
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 4.dp)
+        ) {
+            stickyHeader {
+                Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 8.dp)
-                        .background(MaterialTheme.colorScheme.surfaceContainerLow),
-                    searchQuery = uiState.searchQuery,
-                    onSearchQueryChange = viewModel::onSearchQueryChange,
-                    onSearchClick = viewModel::searchDestination,
-                    isLoading = uiState.isLoading,
-                    isSheetExpanded = isSheetExpanded,
-                    onExpandSheet = onExpandSheet
-                )
-
-                if (uiState.searchResult is SearchResult.Success) {
-                    val succesResult = uiState.searchResult as SearchResult.Success
-                    ClosestStopHeader(
-                        stopName = succesResult.closestStop.name,
-                        distance = succesResult.closestStop.distance,
-                        destinationName = succesResult.destinationName
-                    )
-                }
-            }
-
-        }
-
-        item {
-            if (uiState.isLoading) {
-                Box(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 16.dp),
-                    contentAlignment = Alignment.Center
+                        .background(color = MaterialTheme.colorScheme.surfaceContainerLow)
                 ) {
-                    CircularProgressIndicator()
-                }
-            }
-        }
-
-        when (val result = uiState.searchResult) {
-            is SearchResult.Success -> {
-                items(result.closestStop.routes) { route ->
-                    RouteResultItem(route = route)
-                }
-                item {
-                    Text(
-                        "No hay más rutas...", modifier = Modifier
-                            .padding(vertical = 4.dp)
-                            .fillMaxWidth(),
-                        textAlign = TextAlign.Center,
-                        color = Color.Gray
+                    DestinationSearchHeader(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 8.dp)
+                            .background(MaterialTheme.colorScheme.surfaceContainerLow),
+                        searchQuery = uiState.searchQuery,
+                        onSearchQueryChange = viewModel::onSearchQueryChange,
+                        onSearchClick = viewModel::searchDestination,
+                        isLoading = uiState.isLoading,
+                        isSheetExpanded = isSheetExpanded,
+                        onExpandSheet = onExpandSheet
                     )
+
+                    if (uiState.searchResult is SearchResult.Success) {
+                        val succesResult = uiState.searchResult as SearchResult.Success
+                        ClosestStopHeader(
+                            stopName = succesResult.closestStop.name,
+                            distance = succesResult.closestStop.distance,
+                            destinationName = succesResult.destinationName
+                        )
+                    }
+                }
+
+            }
+
+            item {
+                if (uiState.isLoading) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 16.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
+                    }
                 }
             }
 
-            is SearchResult.NoResult -> {
-                item { EmptyStateMessage("No se encontró una parada cercana a ese destino.") }
-            }
+            when (val result = uiState.searchResult) {
+                is SearchResult.Success -> {
+                    items(result.closestStop.routes) { route ->
+                        RouteResultItem(route = route)
+                    }
+                    item {
+                        Text(
+                            "No hay más rutas...", modifier = Modifier
+                                .padding(vertical = 4.dp)
+                                .fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                            color = Color.Gray
+                        )
+                    }
+                }
 
-            is SearchResult.Error -> {
-                item { EmptyStateMessage("Error al buscar. Revisa tu conexión o la dirección.") }
-            }
+                is SearchResult.NoResult -> {
+                    item { EmptyStateMessage("No se encontró una parada cercana a ese destino.") }
+                }
 
-            null -> {
-                item { EmptyStateMessage("Busca una dirección para encontrar la parada mas cercana y sus rutas.") }
+                is SearchResult.Error -> {
+                    item { EmptyStateMessage("Error al buscar. Revisa tu conexión o la dirección.") }
+                }
+
+                null -> {
+                    item { EmptyStateMessage("Busca una dirección para encontrar la parada mas cercana y sus rutas.") }
+                }
             }
         }
+
+        ExtendedFloatingActionButton (
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(16.dp),
+            onClick = {
+                onNavigateToTripPlan()
+            },
+            contentColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+            containerColor = MaterialTheme.colorScheme.onSecondaryFixedVariant,
+            icon = { Icon(Icons.Default.Map, contentDescription = null) },
+            text = { Text("Planear viaje") }
+        )
     }
 }
 
@@ -336,7 +356,7 @@ fun RouteResultItem(route: RouteInfo) {
         )
         Spacer(modifier = Modifier.width(8.dp))
         Text(
-            text = "ruta " + route.name,
+            text = route.name,
             modifier = Modifier
                 .padding(vertical = 8.dp, horizontal = 12.dp)
                 .weight(0.2f),

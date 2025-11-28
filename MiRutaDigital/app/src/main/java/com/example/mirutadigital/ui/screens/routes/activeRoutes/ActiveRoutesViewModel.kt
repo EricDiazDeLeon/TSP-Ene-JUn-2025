@@ -67,7 +67,7 @@ class ActiveRoutesViewModel(application: Application) : AndroidViewModel(applica
     private fun loadRoutes() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                repository.synchronizeDatabase()
+                //repository.synchronizeDatabase()
 
                 val routes = repository.getRoutesSchedule()// getSampleRoutesSchedule
 

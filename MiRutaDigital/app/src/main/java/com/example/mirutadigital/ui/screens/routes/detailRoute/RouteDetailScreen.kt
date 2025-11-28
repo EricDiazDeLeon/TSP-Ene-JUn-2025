@@ -1,5 +1,7 @@
 package com.example.mirutadigital.ui.screens.routes.detailRoute
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -14,29 +16,35 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Comment
+import androidx.compose.material.icons.filled.Comment
 import androidx.compose.material.icons.filled.DirectionsBus
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Groups
 import androidx.compose.material.icons.filled.Map
+import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.StarBorder
-import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.VisibilityOff
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.TextButton
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -45,14 +53,17 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import com.example.mirutadigital.data.local.entities.RouteRatingEntity
 import com.example.mirutadigital.data.model.ui.JourneyDetailInfo
 import com.example.mirutadigital.viewModel.MapDisplayMode
 import com.example.mirutadigital.viewModel.MapStateViewModel
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun RouteDetailScreen(
@@ -69,7 +80,8 @@ fun RouteDetailScreen(
     val etaResult = uiState.etaResult
 
     val mapMode = mapState.displayMode
-    val isShowingSharedVehicles = mapMode is MapDisplayMode.SharedVehicles && mapMode.routeId == routeId
+    val isShowingSharedVehicles =
+        mapMode is MapDisplayMode.SharedVehicles && mapMode.routeId == routeId
 
     LaunchedEffect(routeId) {
         viewModel.loadRouteById(routeId)
@@ -102,7 +114,7 @@ fun RouteDetailScreen(
             val nullInfoJourney = JourneyDetailInfo("N/A", "N/A", "N/A", "N/A")
             // informacion principal de la ruta
             RouteInfoCard(
-                etaResult = etaResult?: "",
+                etaResult = etaResult ?: "",
                 onCalculateEtaClick = {
                     viewModel.calculateEta()
                 },
@@ -137,8 +149,9 @@ fun RouteDetailScreen(
                     contentColor = MaterialTheme.colorScheme.onTertiaryContainer
                 )
             ) {
-                val icon = if (isShowingSharedVehicles) Icons.Default.VisibilityOff else Icons.Default.Groups
-                val text = if (isShowingSharedVehicles) "Ocultar Vehículos" else "Mostrar Vehículos Compartidos"
+                val icon =
+                    if (isShowingSharedVehicles) Icons.Default.VisibilityOff else Icons.Default.Groups
+                val text = if (isShowingSharedVehicles) "Ocultar Bus" else "Mostrar Bus Compartidos"
 
                 Icon(icon, contentDescription = text)
                 Spacer(modifier = Modifier.width(8.dp))
@@ -179,13 +192,53 @@ fun RouteDetailScreen(
                 Spacer(modifier = Modifier.width(8.dp))
                 Text("Calificar esta Ruta")
             }
-            if (uiState.ratingMessage != null) {
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = uiState.ratingMessage ?: "",
-                    color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                )
+        }
+
+        item {
+            Column(modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)) {
+
+                Button(
+                    onClick = { },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(12.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.surfaceContainerHigh,
+                        contentColor = MaterialTheme.colorScheme.onSecondaryFixedVariant
+                    ),
+                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
+                ) {
+                    Icon(Icons.AutoMirrored.Filled.Comment, contentDescription = "Lista Comentarios")
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(
+                        text = "Comentarios",
+                        style = MaterialTheme.typography.bodyMedium,
+                        fontWeight = FontWeight.SemiBold
+                    )
+                }
+
+                if (uiState.commentsLoading) {
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        CircularProgressIndicator()
+                    }
+                } else if (uiState.comments.isEmpty()) {
+                    Text("No hay comentarios aún. ¡Sé el primero!")
+                } else {
+//                    val infiniteList =
+//                        if (uiState.comments.size > 3) generateSequence { uiState.comments }.flatten()
+//                            .take(1000).toList() else
+                        uiState.comments
+                    LazyRow(
+                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                        contentPadding = PaddingValues(horizontal = 4.dp)
+                    ) {
+                        items(uiState.comments) { comment ->
+                            CommentCard(rating = comment)
+                        }
+                    }
+                }
             }
         }
 
@@ -198,7 +251,10 @@ fun RouteDetailScreen(
         AlertDialog(
             onDismissRequest = { viewModel.closeRatingDialog() },
             confirmButton = {
-                TextButton(onClick = { viewModel.submitRating(routeId) }, enabled = uiState.ratingStars >= 1) { Text("Enviar") }
+                TextButton(
+                    onClick = { viewModel.submitRating(routeId) },
+                    enabled = uiState.ratingStars >= 1
+                ) { Text("Enviar") }
             },
             dismissButton = {
                 TextButton(onClick = { viewModel.closeRatingDialog() }) { Text("Cancelar") }
@@ -216,13 +272,6 @@ fun RouteDetailScreen(
                                 )
                             }
                         }
-                    }
-                    if (uiState.ratingMessage != null) {
-                        Spacer(modifier = Modifier.height(4.dp))
-                        Text(
-                            text = uiState.ratingMessage ?: "",
-                            color = MaterialTheme.colorScheme.error
-                        )
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     OutlinedTextField(
@@ -321,7 +370,7 @@ fun RouteInfoCard(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "ruta " + routeName,
+                    text = "Ruta $routeName",
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSecondaryFixedVariant
@@ -345,7 +394,7 @@ fun RouteInfoCard(
                 )
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(
-                    text = String.format("%.1f (%d)", ratingAverage, ratingCount),
+                    text = "%.1f ".format(ratingAverage) + "($ratingCount)",
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSecondaryFixedVariant
                 )
@@ -412,31 +461,35 @@ fun RouteInfoCard(
                     )
                 }
                 Column(modifier = Modifier.weight(1f)) {
-                    Text(
-                        text = "${outbound.startStopName} - ${outbound.endStopName}",
-                        style = MaterialTheme.typography.bodySmall,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Gray,
-                    )
-                    Text(
-                        text = "${outbound.firstDeparture} - ${outbound.lastDeparture}",
-                        style = MaterialTheme.typography.bodySmall,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Gray,
-                    )
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(
-                        text = "${inbound.startStopName} - ${inbound.endStopName}",
-                        style = MaterialTheme.typography.bodySmall,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Gray,
-                    )
-                    Text(
-                        text = "${inbound.firstDeparture} - ${inbound.lastDeparture}",
-                        style = MaterialTheme.typography.bodySmall,
-                        fontWeight = FontWeight.Bold,
-                        color = Color.Gray,
-                    )
+                    if (outbound.endStopName.isNotBlank() && !outbound.endStopName.equals("N/A", ignoreCase = true)) {
+                        Text(
+                            text = "${outbound.startStopName} - ${outbound.endStopName}",
+                            style = MaterialTheme.typography.bodySmall,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Gray,
+                        )
+                        Text(
+                            text = "${outbound.firstDeparture} - ${outbound.lastDeparture}",
+                            style = MaterialTheme.typography.bodySmall,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Gray,
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                    }
+                    if (inbound.endStopName.isNotBlank() && !inbound.endStopName.equals("N/A", ignoreCase = true)) {
+                        Text(
+                            text = "${inbound.startStopName} - ${inbound.endStopName}",
+                            style = MaterialTheme.typography.bodySmall,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Gray,
+                        )
+                        Text(
+                            text = "${inbound.firstDeparture} - ${inbound.lastDeparture}",
+                            style = MaterialTheme.typography.bodySmall,
+                            fontWeight = FontWeight.Bold,
+                            color = Color.Gray,
+                        )
+                    }
                 }
             }
 
@@ -480,6 +533,42 @@ fun RouteInfoCard(
                     Text(buttonText)
                 }
             }
+        }
+    }
+}
+
+@Composable
+fun CommentCard(rating: RouteRatingEntity) {
+    Card(
+        modifier = Modifier
+            .width(200.dp)
+            .padding(4.dp),
+        shape = RoundedCornerShape(8.dp)
+    ) {
+        Column(Modifier.padding(8.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                (1..5).forEach { i ->
+                    Icon(
+                        imageVector = if (i <= rating.stars) Icons.Default.Star else Icons.Default.StarBorder,
+                        contentDescription = null,
+                        tint = if (i <= rating.stars) Color(0xFFFFC107) else MaterialTheme.colorScheme.onSurfaceVariant,
+                        modifier = Modifier.size(16.dp)
+                    )
+                }
+            }
+            if (rating.comment?.isNotEmpty() ?: false) {
+                Text(
+                    text = rating.comment,
+                    style = MaterialTheme.typography.bodySmall,
+                    maxLines = 3,
+                    overflow = TextOverflow.Ellipsis
+                )
+            }
+            Text(
+                text = "anónimo",
+                style = MaterialTheme.typography.labelSmall,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
         }
     }
 }

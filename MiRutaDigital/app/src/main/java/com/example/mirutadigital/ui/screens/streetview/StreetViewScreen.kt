@@ -1,102 +1,130 @@
 package com.example.mirutadigital.ui.screens.streetview
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
 import android.os.Bundle
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.mirutadigital.ui.util.SnackbarManager
-import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.StreetViewPanorama
 import com.google.android.gms.maps.StreetViewPanoramaView
-import androidx.compose.ui.viewinterop.AndroidView
-import kotlinx.coroutines.launch
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.StreetViewPanoramaLocation
+import kotlinx.coroutines.delay
 
 @Composable
 fun StreetViewScreen(
-    coords: String
+    coords: String,
+    onNavigateBack: () -> Unit,
+    viewModel: StreetViewViewModel = viewModel()
 ) {
     val context = LocalContext.current
-    val scope = rememberCoroutineScope()
-    val parts = coords.split(",")
-    val lat = parts.getOrNull(0)?.toDoubleOrNull()
-    val lng = parts.getOrNull(1)?.toDoubleOrNull()
+    val uiState by viewModel.uiState.collectAsState()
+    val lifecycleOwner = LocalLifecycleOwner.current
 
-    var isLoading by remember { mutableStateOf(true) }
-    var coverageError by remember { mutableStateOf(false) }
-    var internetError by remember { mutableStateOf(false) }
-
-    LaunchedEffect(Unit) {
-        val connected = isNetworkAvailable(context)
-        if (!connected) {
-            internetError = true
-            SnackbarManager.showMessage("Se requiere internet para cargar la vista calle.")
+    LaunchedEffect(uiState.hasCoverageError) {
+        if (uiState.hasCoverageError) {
+            onNavigateBack()
+            SnackbarManager.showMessage("No hay vista de calle disponible para esta parada")
         }
     }
 
+    LaunchedEffect(coords) {
+        viewModel.initialize(coords)
+    }
+
     Box(modifier = Modifier.fillMaxSize()) {
-        if (lat != null && lng != null && !internetError) {
+        if (uiState.lat != null && uiState.lng != null && !uiState.hasInternetError && !uiState.hasCoverageError) {
+            val streetViewPanoramaView = remember {
+                StreetViewPanoramaView(context).apply {
+                    onCreate(Bundle())
+                }
+            }
+
+            DisposableEffect(lifecycleOwner) {
+                val lifecycleObserver = LifecycleEventObserver { _, event ->
+                    when (event) {
+                        Lifecycle.Event.ON_RESUME -> streetViewPanoramaView.onResume()
+                        Lifecycle.Event.ON_PAUSE -> streetViewPanoramaView.onPause()
+                        Lifecycle.Event.ON_DESTROY -> streetViewPanoramaView.onDestroy()
+                        else -> {}
+                    }
+                }
+                lifecycleOwner.lifecycle.addObserver(lifecycleObserver)
+
+                onDispose {
+                    lifecycleOwner.lifecycle.removeObserver(lifecycleObserver)
+                    streetViewPanoramaView.onDestroy()
+                }
+            }
+
             AndroidView(
                 modifier = Modifier.fillMaxSize(),
-                factory = { ctx ->
-                    StreetViewPanoramaView(ctx).apply {
-                        onCreate(Bundle())
-                        getStreetViewPanoramaAsync { panorama: StreetViewPanorama ->
-                            panorama.setOnStreetViewPanoramaChangeListener { location ->
-                                isLoading = false
-                                coverageError = location == null
-                                if (coverageError) {
-                                    scope.launch {
-                                        SnackbarManager.showMessage("La vista a nivel de calle no está disponible para esta ubicación.")
-                                    }
-                                }
+                factory = { streetViewPanoramaView },
+                update = { view ->
+                    view.getStreetViewPanoramaAsync { panorama: StreetViewPanorama ->
+                        panorama.setOnStreetViewPanoramaChangeListener { location: StreetViewPanoramaLocation? ->
+                            if (location != null) {
+                                viewModel.onPanoramaLoaded()
+                            } else {
+                                viewModel.onPanoramaFailed()
                             }
-                            panorama.setPosition(LatLng(lat, lng))
-                            panorama.setUserNavigationEnabled(false)
                         }
-                        onResume()
+                        panorama.setPosition(LatLng(uiState.lat!!, uiState.lng!!))
+                        // Permitir paneo (mirar alrededor)
+                        panorama.setUserNavigationEnabled(true) 
+                        panorama.isPanningGesturesEnabled = true
+                        panorama.isZoomGesturesEnabled = true
                     }
-                },
-                onRelease = { view ->
-                    view.onPause()
-                    view.onDestroy()
                 }
             )
         }
 
-        if (isLoading) {
+        FloatingActionButton(
+            onClick = onNavigateBack,
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(end = 16.dp, bottom = 60.dp),
+            containerColor = MaterialTheme.colorScheme.onSecondaryFixedVariant,
+            contentColor = MaterialTheme.colorScheme.surfaceContainerLow
+        ) {
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                contentDescription = "Volver"
+            )
+        }
+
+        if (uiState.isLoading && !uiState.hasCoverageError && !uiState.hasInternetError) {
             CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
         }
 
-        if (coverageError || internetError) {
+        if (uiState.hasCoverageError || uiState.hasInternetError) {
             Text(
-                text = if (internetError) "Sin conexión a internet" else "Sin cobertura de Street View",
+                text = if (uiState.hasInternetError) "Sin conexión a internet" else "Sin cobertura de Street View",
                 modifier = Modifier.align(Alignment.Center),
                 color = MaterialTheme.colorScheme.onSurface
             )
         }
     }
-}
-
-private fun isNetworkAvailable(context: Context): Boolean {
-    val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    val network = connectivityManager.activeNetwork ?: return false
-    val capabilities = connectivityManager.getNetworkCapabilities(network) ?: return false
-    return capabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) ||
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) ||
-            capabilities.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET)
 }

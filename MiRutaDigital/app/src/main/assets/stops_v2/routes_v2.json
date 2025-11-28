@@ -1,0 +1,2778 @@
+{
+  "routes": [
+    {
+      "id": "1",
+      "name": "1",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "s{yiCjqsqR??BIg@WcHwD}F_D]Q_FcCsAq@{@o@oA_AwEoD{C{BeAy@w@m@]U_@[MO?@?????AWWk@e@k@c@aBmAg@a@}@y@SS_@c@QU]m@c@cAOe@Mu@Io@SqAM_AYyBSaBAKOcAa@sBY{@e@eAi@}@k@w@c@g@cB{BsBmC@?????A?Y_@tJwIfHwGt@w@p@{@tAuBTa@t@eBr@qBf@wBRwAVcCVqCdAiK~AiP^cEJgAl@iGJeBAcAEm@My@Qw@Si@e@oAg@qA@?????A?M]Sm@U_AE[Co@FmAHe@BQ@Gj@_C|@mDR{@l@cCJa@Lg@`@aBf@uBHg@XcBBWLmAJoBFsB@US{DKoBC}@DeAd@eBlEyIl@q@XUXOxGwBb@MjJuCx@a@r@i@n@q@|@eBZuAJcB?_AG{@Sw@Qu@ISUg@{AiBq@{@i@m@q@u@u@w@a@k@o@eAMW]aAUmAUeAD?????E?GWUkAQ_AKe@Mo@UoAIa@GYUiAWmAO{@G]Ia@U_AUkAWiASiAWoAw@{DSeA@B????ACCMIq@Ig@B_AF}@Ru@HWNYXg@Zi@b@w@N[Ng@Hs@Do@@]Ac@Ei@Ga@[_AO_@[g@c@e@SO_@Ui@U[GcAOYC}AO]E_@Ie@WGGQQS_@EOCMGa@@m@Ja@D@@DAEEA@GR]b@a@RKZK`@ElBUB?tAOz@M`@QXWRWNYLg@BQ@WA]Ic@I]c@yAa@kASk@Ua@]a@WW[Ue@WOG_@K[G}@Kg@G?C?????BkAMeAQYKSI]SQMSOYe@Ia@Ki@[uAWoAe@gCGc@o@oDO{@CQCUCQEk@Io@CMKg@Ou@ScAA@????@Aa@uBAE]cBUiBWLQF}Bp@cAkAOM_@]@?????A?EE_@[[[_@_@YWo@q@y@_AMR{Az@iB]eAWe@M@E????ADa@KoA]iAa@R}@iAsCWq@Q[kAeDB?????C?qAqDEWC[W[AUDYNk@n@m@bB{A_@W????????gAq@QKYUQQOSU][g@gAsBeCcFIK@Ox@_AZe@@D????AE`@m@\\g@v@{A\\a@^]Z[\\e@LKJEb@KLAVGJSGeAPu@Rc@x@_BXq@DYoAe@YKwAi@AB????@CWKaA]YI]Ga@AM@WBSHMJEFGHq@nBUp@y@tC[\\KFK@i@G}@k@UMBE????CDGCe@UgAk@uBgAi@YkE{BmAq@}Aw@BG????CF{@c@CMEKAIAI@OAOEKOSYQWEW@g@LW?OI}EcCCA@A????A@YOeCsAOFo@~Bi@vBQp@IZMf@EA????D@ELKd@g@`Aw@jAgFxI}@vAMRiBzCA@EA????D@OP[b@i@x@[^GJ?H@LFFNRNDVCv@Q?B??BEL@JBFFNp@z@vCR`@d@jAn@dCLf@????Vj@`@pANl@LVJPUXMNKRILGJGNId@Ev@?z@Db@Ll@Vx@?BFb@LlABP@NFl@A@????@APlB\\nDNpAHdBBdA?p@?r@IbBA^CzAAZM?????L?MtCSpCA`DCp@UjFCx@GhBIdBE@????FKQlFq@`J[rIs@fTcAlTUxIYnGGI?k@DAC~@Cb@OTWVI?EDCJAL?H@FBDEp@CxAA`AE|@Mr@EVSl@m@rAGNGHAJgAvCc@fAo@`BIVMXg@nAYr@_@j@QXUVYTo@`@aBdABFFLGMZ@zCsBb@c@Xc@TMLELAX@VNLTZv@PXTj@vFhNh@~AVjAXhDYvC@~BNr@fEfMXn@G???BAN^h@nAh@nAX`Af@`B\\|@n@bBf@hAP^x@hBn@`B`@dAf@pApAdDFLGF????FGHTvA|DJZLf@ZfBHt@h@fFZjCRbBCb@LnBdClULbAIBAE????@DHCHv@zBfULn@J`@Tj@R\\^h@d@b@|AtBzFtH~RlWdAtAV\\TXj@t@j@x@|@nATXCD????BEpAhBfBxB\\f@t@~@rAxBj@jB`@~BHr@TnBVlBXxBZlBV|@FPXn@\\p@v@z@lAbAn@d@ZVjAz@h@b@h@f@TREF????DGl@j@^XhCtBfCnBjGxEp@f@|A~@hGbDRHxBnA|BnAfHxDl@ZGR??",
+        "stops": [
+          {
+            "id": "villas_snte_58"
+          },
+          {
+            "id": "cereso_1"
+          },
+          {
+            "id": "bimbo_1"
+          },
+          {
+            "id": "picones_1"
+          },
+          {
+            "id": "escocia_103"
+          },
+          {
+            "id": "av_magisterial_735"
+          },
+          {
+            "id": "el_orito_1"
+          },
+          {
+            "id": "segunda_de_matamoros_18"
+          },
+          {
+            "id": "puente_el_orito"
+          },
+          {
+            "id": "capilla_santa_maria_del_tepeyac"
+          },
+          {
+            "id": "lerdo_de_tejada_507"
+          },
+          {
+            "id": "rodriguez_elias_115"
+          },
+          {
+            "id": "parque_de_beisol"
+          },
+          {
+            "id": "nueva_celaya_115"
+          },
+          {
+            "id": "buenavista"
+          },
+          {
+            "id": "ine_issste"
+          },
+          {
+            "id": "parque_sierra_de_alica_1"
+          },
+          {
+            "id": "av_gonzalez_ortega_1"
+          },
+          {
+            "id": "jardin_de_la_madre"
+          },
+          {
+            "id": "imss_no1_1"
+          },
+          {
+            "id": "biblioteca_mauricio_magdaleno"
+          },
+          {
+            "id": "quebradilla"
+          },
+          {
+            "id": "presidencia_zac"
+          },
+          {
+            "id": "partido_accion_nacional_1"
+          },
+          {
+            "id": "galerias_zac"
+          },
+          {
+            "id": "ciudad_gobierno"
+          },
+          {
+            "id": "hospital_general_1"
+          },
+          {
+            "id": "tec_regional_xxi"
+          },
+          {
+            "id": "villas_universidad"
+          },
+          {
+            "id": "siglo_xxi"
+          },
+          {
+            "id": "bimbo"
+          },
+          {
+            "id": "cereso"
+          },
+          {
+            "id": "base_ruta_1"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "s{yiCjqsqR??BIg@WcHwD}F_D]Q_FcCsAq@{@o@oA_AwEoD{C{BeAy@w@m@]U_@[MO?@?????AWWk@e@k@c@aBmAg@a@}@y@SS_@c@QU]m@c@cAOe@Mu@Io@SqAM_AYyBSaBAKOcAa@sBY{@e@eAi@}@k@w@c@g@cB{BsBmC@?????A?Y_@y@mAoAoBSYY]yD_Fo@y@sMaQu@cAs@_AwFoHMQi@kAa@oCyA{Ne@eEIy@AOEB????DCKw@AMk@aFe@sEg@kECWYeDo@mF_@kDa@eDUuAY{@e@cAi@kAMYOa@?@?????AGQk@}AWs@WUg@mAc@gA[}@M_@y@kCg@oAq@eBa@cAe@_A{@uBcBmEB@??Si@??AAo@_Bm@}AcAsCGYI[C[Ce@@s@Bs@CSFg@He@z@uEFYx@}DX_@HGHALAJBJHFLBR?RCRETO`@SZONONSL[L[@_@BKAOEKE]WQUQ_@i@sAEMUq@y@aC}BoGOa@Sy@MiAAQA_@A_@@c@BYFk@Ja@J_@Vm@rA{CN_@DOL]HU\\uALi@Jg@F]D_@Fo@JwAJiCDgA@UD@??????L@SC?EBw@Bu@X{HToFZoJBw@ZoHFyANyDLmDDeAVkHd@oMRgE@K?KBw@D@??????EAFiBB{@DmAXoGDs@@g@F_BHuBHcDD@????EA@QF}A?O?OFoB?o@?{@?SCs@IuBOeBYyBCWIs@WiDC]????Ow@E_ALe@R_ALg@^gAJ]\\c@Pu@@SAOGMIIICG?M@KAKLIHe@j@KQMWq@kCGUGSgAcDe@kASa@{@wCOq@Ke@Q{AC[EYVYEEDDtAwCLS|@wAfFyIn@_A?B?????CFKf@aAJe@Ru@H[Pq@h@wBh@wAJ]nAl@AB????@Cz@b@\\PtCvAhAl@NHZ@f@KRANDRJFLBF?\\?H@HBDFDFDPB^RAF????@GxBfAlAp@jEzBh@XtBfAfAj@f@`@ZP?AE@????DAZZv@^\\f@EdACn@G^_@|CGt@CZ?\\DRHNHJLJTNPDNDLATHHJFJCB@?PVvA|C~AnCZf@T\\NRPPXThBtA???@??BIJHcBzAo@l@Oj@EX@TVZBZDVpApDB?????C?jAdDPZVp@hArCS|@hA`@nA\\`@J@E????ADd@LdAVhB\\zA{@LSx@~@n@p@XV^^ZZ^ZDD@?????A?^\\NLbAjA|Bq@PGXdBb@tBZdBAB????@CRbAP`AJf@BNLd@Nn@LXBPNz@n@nDFb@d@fCVnALj@IF????HGLh@Jh@H`@Xd@RNPL\\RRHXJdAPrBT|@JZF^JNFd@VZTVV\\`@T`@Rj@ED????DE`@jAb@xAH\\Hb@@\\AVCPMf@OXSVYVa@P{@LuANC?mBTa@D[JSJc@`@S\\Mh@?DC@????BAAf@F`@BLDNR^PPFFd@V^H\\D|ANXBbANZFh@T^TRNb@d@Zf@N^Z~@F`@Dh@@b@A\\En@Ir@Of@OZc@v@[h@Yf@OXIVSt@G|@C~@Hf@Hp@Ln@IB????HCHb@v@zDVnARhAVhATjAT~@H`@F\\Nz@VlAThAFXH`@TnALn@Jd@P~@TjA\\|ABNAB????@CP|@\\`ALVn@dA`@j@t@v@p@t@h@l@p@z@zAhBTf@HRPt@Rv@Fz@?~@KbB[tA}@dBo@p@s@h@y@`@kJtCc@LyGvBYNYTm@p@mExIe@dBEdAB|@JnBRzDATGrBKnBMlACVYbBIf@g@tBa@`BMf@K`@m@bCSz@}@lDk@~BAFCPId@GlABn@DZT~@Rl@b@hACB????BCPd@d@nARh@Pv@Lx@Dl@@bAKdBm@hGKfA_@bE_BhPeAhKWpCWbCSvAg@vBs@pBu@dBU`@uAtBq@z@u@v@gHvGuJvIIRTXCD????BEpAhBfBxB\\f@t@~@rAxBj@jB`@~BHr@TnBVlBXxBZlBV|@FPXn@\\p@v@z@lAbAn@d@ZVjAz@h@b@h@f@TREF????DGl@j@^XhCtBfCnBjGxEp@f@|A~@hGbDRHxBnA|BnAfHxDl@ZGR??",
+        "stops": [
+          {
+            "id": "villas_snte_58"
+          },
+          {
+            "id": "cereso_1"
+          },
+          {
+            "id": "bimbo_1"
+          },
+          {
+            "id": "siglo_xx1"
+          },
+          {
+            "id": "villas_universidad_1"
+          },
+          {
+            "id": "tec_regional_gpe"
+          },
+          {
+            "id": "unidad_deportiva_norte"
+          },
+          {
+            "id": "galerias_gpe_abastos"
+          },
+          {
+            "id": "partido_accion_nacional"
+          },
+          {
+            "id": "presidencia_gpe"
+          },
+          {
+            "id": "quebradilla_1"
+          },
+          {
+            "id": "imss_no1"
+          },
+          {
+            "id": "alameda"
+          },
+          {
+            "id": "av_gonzalez_ortega"
+          },
+          {
+            "id": "parque_sierra_de_alica"
+          },
+          {
+            "id": "ineissste"
+          },
+          {
+            "id": "5_senores"
+          },
+          {
+            "id": "parque_de_beisbol"
+          },
+          {
+            "id": "rodriguez_elias_115"
+          },
+          {
+            "id": "lerdo_de_tejada_507"
+          },
+          {
+            "id": "capilla_santa_maria_del_tepeyac"
+          },
+          {
+            "id": "puente_el_orito_1"
+          },
+          {
+            "id": "parque_estrella_de_oro"
+          },
+          {
+            "id": "estrella_de_oro"
+          },
+          {
+            "id": "el_orito"
+          },
+          {
+            "id": "av_magisterial_653"
+          },
+          {
+            "id": "escocia"
+          },
+          {
+            "id": "picones"
+          },
+          {
+            "id": "bimbo"
+          },
+          {
+            "id": "cereso"
+          },
+          {
+            "id": "base_ruta_1"
+          }
+        ]
+      }
+    },
+    {
+      "id": "2",
+      "name": "2",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "se`jCrybqR???IFAXJPEz@`AVRt@d@FD|CnBtAz@p@d@jAx@N?D^????????p@nHFr@N~@fCbDZb@`@b@BBDA????E@|BdCl@t@dAnANO`@OR_@IEe@o@v@{AcByAi@k@CCCB????BCc@a@QISUKOGYMiAGmAKoBGYQoCMGw@?kA@Iq@????????CWI{Ai@YgBaAcBgAa@SCC?@?????ABB_BeAqAw@YSMWFQ|@o@bBaBnAeACD@Bf@Og@PACBEfAUPJhAp@\\RNH~CjBjAv@XRZV\\ZTXNTP\\FRj@rBPZd@^\\Jf@NMNKRCN@LAd@FRDBJDP?pAiA\\c@Pu@@SAOGMIIICG?M@KAKLIHe@j@KQMWOm@k@sBB???GSgAcDe@kASa@{@wCOq@Ke@Q{AC[EYVYEEDDtAwCLS|@wAfFyIn@_A?B?????CFKf@aAJe@Ru@H[Pq@h@wBh@wAJ]nAl@AB????@Cz@b@\\PtCvAhAl@NHZ@f@KRANDRJFLBF?\\?H@HBDFDFDLNb@FAF????@GxBfAlAp@jEzBh@XtBfAfAj@f@`@ZP?AE@????DAVXjAn@Lb@Gb@QNUDYQUWKUCaHIiE?sA?I?S?m@C]CUCQCONITAj@ARAJBt@CDBADAA??@EHFjAFxB@CQ?QIe@SiAIg@A]Cq@A[@u@@c@BY^qBRq@BU@u@Iq@IY?@?????AAGTCRE^@h@dA@|@BhAFb@B^G^|AXBI????CHdAR`BJXOXg@JIlAH????r@P?[?oACqBB{AD[p@}D\\uANw@T_AH{@TmATkAVwAPiATsAFUPq@L_@@GFB????GCH_@Lo@@QNkARgA@MDm@AWIYASAQGu@Gy@AGIk@GWQ_@IMKMIGq@k@i@a@YSIGWSa@YwAiA[g@Qq@Ge@?K?[D_@nA{FNu@TgAJm@DWBk@@mA@OAMCM?I?KAQGYOWo@w@[e@Wi@a@qAGc@?_@Da@Hk@?o@yAwHES@sAJgBFcBFcBDoA@@????AA@O?GDcBBq@Fw@FoABi@Dq@B_@Bo@DgAMCK?GB}@?IEGIMw@EQKWm@YMQk@OGC@C??????ABkA]O]GUCa@FUDQTm@f@iAVk@b@}@DD????????EEl@mAHM`B_Cv@eAf@q@`BeCn@cAp@kATe@dA}B`@_A\\q@tAqDt@mBXw@Vo@f@iA`@cAVg@CA????????B@FOv@}A~@wAj@u@jAcBf@}@Xs@H[Nc@Bs@Bc@@c@?E@?????????A?AmB?{@?i@A}@?Y?[?S@c@F[v@wEd@oCD@????????EALy@^oBNs@RsA^yAf@wA^}@Vm@d@mALYXs@J[Ry@Dg@Dm@Am@Ai@Iy@EUCQImH????GA?SDaAf@{AjAwDv@eC^oCFWB@????CAJk@RqAZgBHi@j@gETmAX}A\\oBRwA@@????AANmAd@qCr@{E^{BXaBPsAZ}BXoCDB????EC?Ch@uCrAqInNfE\\LBC????CB\\LPUHONq@TmAHcABq@BcAAaAIiAKy@Ou@Os@i@uBU_AOm@uA_GMg@@@????AAcAgEWgAy@kD{@uDaAiEYoAk@_C@@????AA[sAGUGUI]UaAOq@M}@CYG}AAkCDgCC{BGwAGw@Ia@?yCCeCBuBF@????GA?_@BcAAo@?oB?_ACkGAyFAq@?i@AoBEqPAwA?aA?gABGBe@?i@@m@BmBAmEA@????@AAsE?oBAyD?yBAgA?KA@????@A?e@AW?WS?]COCq@OgAo@}@m@k@My@Kw@IiCQaCQsD[mCSeAI}AK@SiBMcBBuBF?@??",
+        "stops": [
+          {
+            "id": "telesecundaria_lazaro_cardenas"
+          },
+          {
+            "id": "jiquilpan25"
+          },
+          {
+            "id": "2_de_mayo_245"
+          },
+          {
+            "id": "2_de_marzo_15"
+          },
+          {
+            "id": "tortilleria_lazaro_cardenas"
+          },
+          {
+            "id": "petroleos_mexicanos"
+          },
+          {
+            "id": "capse"
+          },
+          {
+            "id": "quebradilla_1"
+          },
+          {
+            "id": "imss_no1"
+          },
+          {
+            "id": "alameda"
+          },
+          {
+            "id": "av_gonzalez_ortega"
+          },
+          {
+            "id": "parque_sierra_de_alica"
+          },
+          {
+            "id": "ineissste"
+          },
+          {
+            "id": "flores_magon_37"
+          },
+          {
+            "id": "panfilo_natera"
+          },
+          {
+            "id": "iglesia_apostolica"
+          },
+          {
+            "id": "primaria_20_de_noviembre"
+          },
+          {
+            "id": "primaria_alma_obrera"
+          },
+          {
+            "id": "lomas_del_campestre"
+          },
+          {
+            "id": "soriana"
+          },
+          {
+            "id": "mc_donalds"
+          },
+          {
+            "id": "jeepdodgefiat"
+          },
+          {
+            "id": "seduzac"
+          },
+          {
+            "id": "indeco"
+          },
+          {
+            "id": "odontologia_2"
+          },
+          {
+            "id": "telegrafos_33"
+          },
+          {
+            "id": "telegrafos_120"
+          },
+          {
+            "id": "plaza_de_las_garantias"
+          },
+          {
+            "id": "la_bodeguita_de_gpe_1"
+          },
+          {
+            "id": "11va_zona_militar_1"
+          },
+          {
+            "id": "combis_gpe_1"
+          },
+          {
+            "id": "bonito_pueblo_1"
+          },
+          {
+            "id": "av_villas_de_gpe"
+          },
+          {
+            "id": "martinez_dominguez_1"
+          },
+          {
+            "id": "calzada_siglo_xxi_1"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "g}{iCnympR???CbDIhA?jAJ?OfDVhCRxKz@xAJh@Hj@JXL`An@ZPVLRFl@N?P?L@x@?@?????A@|CDnJ?lCBbC?VA@????@A@nA?x@?fDLP@jA@|@@tADnP@pB?h@?r@BrFBfG?`A?jB?v@CdA?t@AB????@C?vAClCAzCJJ@|CA`@KbF@|@BTBNBTFZ`@pB^hBPjAF\\DRFTNl@GB????FCx@jDXlAv@dDLh@F^n@pCx@hDVdAfAnE?@?????AH`@xA~FLl@T~@V`ALj@R|@Ln@L~@F~@B~@AbACr@K~@Q`AQr@A@????@AELCd@{@[sBq@sEuAcF{AsC_AI|J[hB????Sl@o@lCKXu@`DSpAY|AS~@mAtFIAA???H@a@lB]j@g@lCWhAUfAI`@On@WhASdAUfAMj@B@????CAI`@UdAK`@SGWGq@MWAS@wCdBo@^_@J[HYFCXCh@EbAAJA@??????@AKxBInAD`B@^RjAHT\\t@`@p@`@Zx@j@`@V~@d@PJ@C??fAfAgAgA??ABJDPLn@t@V`@\\r@JNFb@A|@O~BQnBKf@gAdCq@|AUf@Qv@G\\}B~JMn@?@?????????AOt@Gh@YtAWfBElA?NAV?f@BzA@vBB?????????C??x@?DAt@E^Up@o@dBORMR}@`AiCxDg@z@EHC???????B?CFGJKf@Gb@M`@Sp@e@bAO\\a@r@[p@a@dA_@fA]dAKTm@`BQTKZQXYZo@x@aAtACA????B@KNeA|AAJEHAJ@PAJEJINuAbBm@|@qBrDWf@mAjCQ`@C@????BAIVa@z@f@\\PPd@\\HNJH`Cl@RAl@XJVDPLv@FHHD\\??J?????K^?FCGhAEd@E|@AXKtCLNMXCb@GvBGz@?@?????AARIdBG~AIpB?rAFb@jAfGBNDZ@ZCZIj@AX?TDXRv@Rl@Zp@j@|@X`@DN@`@@JAJ?D?H@P@FDLJ\\@N@PEd@S`AmAtG]hBCXAF?`@Dn@Pp@Xf@hA~@LHd@\\ZTPLRNf@\\n@h@LLJLJNFPFTDT?l@Dr@Bn@@NDl@A@????@ABV?^ANUlAOj@Uh@O`@?b@IdAO|@G^?@?????AMt@UlAYtAU~@gB|A{Bl@GJC?????B?CDq@^uAlBQR{@h@QVUd@Mv@EXJD????KEETM\\MRq@t@@|@BhAFb@B^G^i@|@OXKZCZ@XDTF?????G?DN\\vAdAdCNl@@n@Gb@IZg@nBBB????CCK^YI]Ga@AM@WBSHMJEFGHq@nBUp@y@tC[\\KFK@i@G}@k@UMBE????CDGCe@UgAk@oAyECIu@_CoAgBiAaBk@w@BA????C@kAaBgAyAi@q@_Am@g@Se@KuAS????WCV@?@UCOIo@DsAHw@?_CCMnACNc@pA[r@m@bCi@vBQp@IZMf@EA??????D@ELKd@g@`Aw@jAgFxI}@vAMRiBzCA@EA????D@OP[b@i@x@[^GJ?H@LFFNRNDVCv@Q?B??BEL@JBFFNp@z@vCR`@d@jAn@dCLf@????HEn@bCNl@CPCHCDGDOJ]Ke@_@Q[k@sBGSQ]OUUY][[WYSkAw@_DkBOI]S{A}@EC?B?????CDBy@VmB|A}@p@sAbA@f@z@t@`LxGNl@CB????BCBh@i@B[@gABO?iCFy@s@iA{@{BcBg@a@o@w@q@}@Qa@]aACOcBJ@@",
+        "stops": [
+          {
+            "id": "calzada_siglo_xxi"
+          },
+          {
+            "id": "martinez_dominguez"
+          },
+          {
+            "id": "aurrera_villas_de_gpe"
+          },
+          {
+            "id": "bonito_pueblo"
+          },
+          {
+            "id": "combis_gpe"
+          },
+          {
+            "id": "11va_zona_militar"
+          },
+          {
+            "id": "la_bodeguita_de_gpe"
+          },
+          {
+            "id": "5_de_mayo_segunda_de_guerrero"
+          },
+          {
+            "id": "5_de_mayo_80"
+          },
+          {
+            "id": "5_de_mayo_38"
+          },
+          {
+            "id": "nissan_gpe_1"
+          },
+          {
+            "id": "santa_rita"
+          },
+          {
+            "id": "indecobdz"
+          },
+          {
+            "id": "seduzac_1"
+          },
+          {
+            "id": "citiclub"
+          },
+          {
+            "id": "la_florida"
+          },
+          {
+            "id": "tres_cruces"
+          },
+          {
+            "id": "walmart"
+          },
+          {
+            "id": "lomas_del_campestre_1"
+          },
+          {
+            "id": "parque_h_ayuntamiento"
+          },
+          {
+            "id": "obrero_munidal157"
+          },
+          {
+            "id": "del_cerrillo_316"
+          },
+          {
+            "id": "mercado_alma_obrera"
+          },
+          {
+            "id": "progreso_405"
+          },
+          {
+            "id": "buenavista_r2r4"
+          },
+          {
+            "id": "ine_issste"
+          },
+          {
+            "id": "morelos_812"
+          },
+          {
+            "id": "morelos_600"
+          },
+          {
+            "id": "jardin_de_la_madre"
+          },
+          {
+            "id": "imss_no1_1"
+          },
+          {
+            "id": "biblioteca_mauricio_magdaleno"
+          },
+          {
+            "id": "quebradilla"
+          },
+          {
+            "id": "paseo_diaz_ordaz"
+          },
+          {
+            "id": "petroleos_mexicanos_1"
+          },
+          {
+            "id": "lazaro_cardenas"
+          }
+        ]
+      }
+    },
+    {
+      "id": "3",
+      "name": "3",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "kw~iCnszpR???AJKFH@NF?NHDDJDLFx@LTHNNVJ\\FNELIHKBSAKKIIM?UHS|@kBXo@`@u@LgAH_@B[@c@Ae@Ca@QcAQq@Oy@u@oCFIBI`@MXIRGPIHE@B????ACdE}BlAq@jBeAx@g@j@YlBeAVOn@[j@W\\pBVtBFp@@B????ACJjATlBFr@?j@Fl@T?`@A?B?????C@?rB?bKI????????p@I|@E~AARAVC|@_@hAITHV@j@Th@d@RFXN^Rf@Z?@?????AJJIb@OTg@~@Gf@]dAs@fBo@vAGPqB|ES^cAfCA@????@AMZ]|@o@rAa@lAUr@Yp@[n@KXa@|@_@bAM\\ITC?????B?c@jAc@tAGPABQd@RRTZMRCA????B@{@xAaBrCKDkAVOB{@P_AGoFUQAAP[b@W^Q\\_@xAUbAE`@k@vA?@?????AWl@_ApB_@jASd@a@p@GE????FDiAjBu@jADJEv@MxB@bBBh@LXED????DE^z@hAl@jAv@ZRNJHJNTP^NV?@?????AR`@DHVVZPjCt@@E????AD\\H?~AvDtAFINP??????k@dAe@dAC|@HtDBbAG^AXGd@]|AS|@[~@E^eBpFAPIx@AJWbCIx@YhAI\\c@bBAP?T@TD^?d@C|@?\\ERoAtFMd@?@?????????AK`@qAzDq@jBUhAGb@Ej@A`@B`@@LDb@Nx@HZNZGF??@AA@??lBpDR`@tAzB^\\nAz@h@TJDHDtAr@bAd@DBZPZTNNTXPXBFP`@FPL`@BHBPBVBXBf@?J?H@bB@nAD@????ES???A?b@FnF?T?R@lA?tA?F?F?T?T?f@?x@Ad@ETOd@IPINIJKHu@TODq@Rg@R_@P]PqA|@a@V_@TYJQDQBc@B[@aCBsBBeBg@{@Ky@JWTKRERCRCVEv@EhA?@?????AAHCZIXUd@KPONOLSJWJQD[B_@BmAJqALk@Pg@V]ZKLIHe@j@UXMNKRCN@LAd@FRDBJDP?pAiATYFF??",
+        "stops": [
+          {
+            "id": "polideportivo"
+          },
+          {
+            "id": "cobaez_1"
+          },
+          {
+            "id": "instituto_edison"
+          },
+          {
+            "id": "los_gavilanes_303"
+          },
+          {
+            "id": "los_gavilanes_225"
+          },
+          {
+            "id": "los_gavilanes_av_mexico"
+          },
+          {
+            "id": "plaza_metropolitana_1"
+          },
+          {
+            "id": "av_mexico"
+          },
+          {
+            "id": "panteones_1"
+          },
+          {
+            "id": "centro_acuatico_centenario"
+          },
+          {
+            "id": "prepa_ii_1"
+          },
+          {
+            "id": "secundaria_uaz_1"
+          },
+          {
+            "id": "psicologia_uaz"
+          },
+          {
+            "id": "fca_1"
+          },
+          {
+            "id": "escuela_de_minas"
+          },
+          {
+            "id": "mega_cable"
+          },
+          {
+            "id": "plaza_bicentenario_1"
+          },
+          {
+            "id": "issste"
+          },
+          {
+            "id": "miguel_aleman"
+          },
+          {
+            "id": "colonia_minera"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "e{~iCtdcqR????|@aBXSLEZGhACfAMp@_@f@Qb@]b@u@LWL_@H[DD????????EEBGHWXq@Xi@\\a@d@Yr@Un@GVA~AAbCE\\?f@ENCXG\\O^U^WpA{@`@UVOf@Sl@SNE|@UJKNSLWFMPk@FYBg@?k@?s@?O?O?K?I?G?mA?m@J@O???????BA?]?K?g@GsFA_B?sA?I?S?m@C]CUCQCOOg@CGHA????????I@IWQ[Wa@[_@MM]Wc@Yu@_@cBs@GCIEm@[}@i@BC??????iAy@?AIIs@oA[q@o@iBISe@oAQm@KoA?{@@c@J{@J]l@gBHYl@kB\\aAd@mBn@qCDW?@??C@??BAJm@Lo@Lu@HiCN]dAkCRYNMXETK`@g@BYCi@Qe@k@y@_@e@IKIYA[xAmEt@aCLo@Jg@BYDe@?[EQ@qACwDFo@d@cAl@mADGb@i@Za@c@O[KAB????@C{Ai@kBg@[[GH????FIZZa@CiD_A[QWWEIGK?B?????C[m@Q_@OUIKOK[SkAw@iAm@O]EB????DC]w@Ci@AcBLyBDw@EKt@kAz@wA@@????AAn@eARe@^kA~@qBHUBD????CEx@oBRY\\kAViAN_@Za@\\m@r@DlDPpAF|@KLC`@Ij@Q\\SBSrA}Bx@wABB????CCLSIKU[N_@`@cAV{@Z{@\\w@Z}@DIBB????CCXm@Na@HWf@kAZy@d@iAl@eB^_AFODB????ECz@eCRa@nB}EFQl@{At@iBl@yA`@iADM?@?????ARg@BYUFs@g@_@SYOSGi@e@k@UWAUIiAH}@^WBS@_B@E??J?????Kw@Dq@HcKHaA?@?????A?q@?c@@U?Gm@?k@fAAjBCbAI`BcBTKc@oFEk@?@?????AIeAOuBQ{BAOsBNM@QDODKHQRWVMLSLc@V@@????AAc@TeAn@g@Vk@X]NoBhAe@Vw@d@qBfAmAp@qC|ACC????BBe@VULUHSDYF_@BEGICGAK@OLCP@HBHDFJDf@|CNt@`@pBD\\@PAh@C\\K`@]x@M`@q@nA]RUHaARqAZIUSASHET@THLKJ?@??",
+        "stops": [
+          {
+            "id": "colonia_minera"
+          },
+          {
+            "id": "plaza_alesia"
+          },
+          {
+            "id": "ferrocarril_3030"
+          },
+          {
+            "id": "secundaria_tecnica_1"
+          },
+          {
+            "id": "camara_de_comercio_gpe"
+          },
+          {
+            "id": "universidad"
+          },
+          {
+            "id": "av_preparatoria"
+          },
+          {
+            "id": "fca"
+          },
+          {
+            "id": "psicologia_uaz_1"
+          },
+          {
+            "id": "secundaria_uaz"
+          },
+          {
+            "id": "prepa_ii"
+          },
+          {
+            "id": "centro_acuatico_centenario_1"
+          },
+          {
+            "id": "panteones"
+          },
+          {
+            "id": "av_mexico_1"
+          },
+          {
+            "id": "plaza_metropolitana"
+          },
+          {
+            "id": "av_mexico_gavilanes"
+          },
+          {
+            "id": "los_gavilanes_205"
+          },
+          {
+            "id": "los_gavilanes_295"
+          },
+          {
+            "id": "lava_15"
+          },
+          {
+            "id": "asilo_divina_providencia"
+          },
+          {
+            "id": "cobaez"
+          },
+          {
+            "id": "polideportivo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "4",
+      "name": "4",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "se}iCbe_qR??A@KCKj@KhAKfASlBIt@KpA@ZM~@G\\_@xCI`AO`@A?????@?m@fBPHKLd@`@V\\ZbAn@fCf@BhADj@J\\HZNf@\\V\\Lf@AB????@CDR^@h@dA@|@BhAFb@B^G^i@|@OXKZCZ@XDTF?????G?DN\\vAdAdCNl@@n@Gb@IZg@nBBB????CCK^YI]Ga@AM@WBSHMJEFGHq@nBUp@y@tC[\\KFK@i@G}@k@UMBE????CDGCe@UgAk@oAyECIu@_CoAgBiAaBk@w@BA????C@kAaBgAyAi@q@_Am@g@Se@KuAS????WCV@?@UCOIo@DsAHw@?_CCMnACNc@pA[r@m@bCi@vBQp@IZMf@EA??????D@ELKd@g@`Aw@jAgFxI}@vAMRiBzCA@EA????D@OP[b@i@x@[^GJ?H@LFFNRNDVCv@Q?B??BEL@JBFFNp@z@vCR`@d@jAn@dCLf@????HEn@bCNl@LVJPUXMNKRCN@LAd@FRDBJDP?pAiATYFF????GGFI|@oAXSPHj@JxATn@Pj@LTATKLAP?b@F@A????A@NB~Ch@`D`@jCd@@?????A?TDjB\\fBTMXI\\e@|@?@?????AA@INl@|@Vf@PD\\j@l@bAv@tA~@vAR~A@HHTJl@@@????AAJn@R`Bi@LeARMDs@FcCSUbB]zBZF?C?????B[GwAQWK]a@iCeDAB????@CGGOOa@_@UDo@T_@XUV_@h@MZK`@I^Qd@m@`BAR_@|AWdAw@pBG\\?NFVJZNV\\n@lAdCP^TXPRSt@CF????????BGRu@Bp@YbHnBRlADrAEh@Cb@DZGn@KZO?@?????Az@q@|@s@~@o@~@q@x@o@Z^????????FH`@Xd@V^PTJV`@V`@FLNb@Rr@Rr@Z`@b@\\d@Vn@Nl@?zBOd@E?B?????ClCMrBI~D_@TUPw@XwELgA@_AjAo@`Ag@x@S?C??TG??D?ABL_@j@a@p@y@p@o@f@w@\\gAb@sA`@}ALmAXuAVF\\@rEoAn@hDZ|Af@r@GD?CQ?P???FEJtB`@tBnAcAn@k@VURMZORIt@U^I|@Qj@I^CVAZMR@^Fp@Lp@TZf@|CjAh@Rv@L^?|@Op@Mj@Yt@e@T[R]XcAJm@@_@@q@Aw@V[l@B????bACl@BlA?BRLLFBRBFGHGBE@GTCt@c@fAu@bAk@xDkCrA{@FEF?JCFGBIAEGB??JR",
+        "stops": [
+          {
+            "id": "el_ete"
+          },
+          {
+            "id": "del_deposito_302"
+          },
+          {
+            "id": "ferrocarril_310"
+          },
+          {
+            "id": "progreso_405"
+          },
+          {
+            "id": "buenavista_r2r4"
+          },
+          {
+            "id": "ine_issste"
+          },
+          {
+            "id": "morelos_812"
+          },
+          {
+            "id": "morelos_600"
+          },
+          {
+            "id": "jardin_de_la_madre"
+          },
+          {
+            "id": "imss_no1_1"
+          },
+          {
+            "id": "biblioteca_mauricio_magdaleno"
+          },
+          {
+            "id": "quebradilla"
+          },
+          {
+            "id": "colonia_minera"
+          },
+          {
+            "id": "mina_del_patrocinio_140"
+          },
+          {
+            "id": "parroquia_divina_providencia"
+          },
+          {
+            "id": "av_san_marcos"
+          },
+          {
+            "id": "cerro_sombreretillo_406"
+          },
+          {
+            "id": "miguel_ramos_arizpe_306"
+          },
+          {
+            "id": "miguel_ramos_arizpe_470"
+          },
+          {
+            "id": "tomas_alba_edison_150"
+          },
+          {
+            "id": "cbtis_23_1"
+          },
+          {
+            "id": "begonias_145"
+          },
+          {
+            "id": "begonias_63"
+          },
+          {
+            "id": "parque_reforma_1"
+          },
+          {
+            "id": "puente_el_orito_1"
+          },
+          {
+            "id": "walmart_colinas_1"
+          },
+          {
+            "id": "unidad_deportiva_colinas"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "mmyiCb_dqR???CE?KBCBCB_@\\cAd@iEnCw@f@y@v@QVq@RMMQEQD_BCq@AaA??D?????Ei@?e@CYPWTDp@@n@Aj@Mn@Ur@U`@]`@o@^q@Rg@Da@@YCi@Is@QgAc@_A]c@Hq@Uq@M_@GSAYQ]C[Au@?]BWDw@RqBr@aBf@U@MAMEMIScAA@????@Aa@uBw@iE_AXsBl@k@Lc@B_@CQ|@OtAYzAi@tAUv@MZw@jA_A~@c@h@UFQ\\u@ZACAA??@B]HaAf@kAn@A~@MfASd@kAlBq@z@w@f@cA`@WHc@Js@B_BN?@?????AmAJaCJ]A]Ge@O]U_@e@[s@Kc@Sg@KWM[]]S_@MEMCu@c@QOBA????C@OK]a@[i@SL{@n@_Ap@{@l@aAr@e@Z?@?????AQLe@\\IFaAh@i@BsADmAEoBSJ_C?@?????ALcDCq@QSUYQ_@mAeC]o@OWK[GW?OF]v@qBVeA^}AJIPo@^w@\\m@Za@LKd@UNK@A?D?????EtBoApClD\\`@VJt@J?G?????F`@DbBXzAVn@@|@IfC}@e@}Bc@iBQuA@@A???AAAKW}AIUAIS_B_AwAw@uAm@cA]k@ES[i@c@UDA????E@C]h@aAH[Ja@T{@qBWiB_@oAW?A?????@sAW}Cm@SE@?????A?kCk@StAQfA{Di@cASaAQQC?B?????CCAa@@o@T@c@@SAOGMIIICG?M@KAKLIHe@j@KQMWOm@k@sBB???GSgAcDe@kASa@{@wCOq@Ke@Q{AC[EYVYEEDDtAwCLS|@wAfFyIn@_A?B?????CFKf@aAJe@Ru@H[Pq@h@wBh@wAJ]nAl@AB????@Cz@b@\\PtCvAhAl@NHZ@f@KRANDRJFLBF?\\?H@HBDFDFDLNb@FAF????@GxBfAlAp@jEzBh@XtBfAfAj@f@`@ZP?AE@????DAVXjAn@Lb@Gb@QNUDYQUWKUCaHIiE?sA?I?S?m@C]CUCQCONITAj@ARAJBt@CDBADAA??@EHFjAFxB@CQ?QIe@SiAIg@A]Cq@A[@u@@c@BY^qBRq@BU@u@Iq@IY?@?????AAGSc@Y_@m@_@_@Qe@Kc@A?]SKg@Co@gC[cAW]QODC????EBSQJMQI|@iCHaA^yCF]L_ATkBNq@VkBPoAJu@Lu@QE@A??",
+        "stops": [
+          {
+            "id": "imss_57"
+          },
+          {
+            "id": "walmart_colinas"
+          },
+          {
+            "id": "puente_el_orito"
+          },
+          {
+            "id": "parque_reforma"
+          },
+          {
+            "id": "begonias_84"
+          },
+          {
+            "id": "begonias_153"
+          },
+          {
+            "id": "cbtis_23"
+          },
+          {
+            "id": "henry_ford_102"
+          },
+          {
+            "id": "transito_del_estado"
+          },
+          {
+            "id": "miguel_ramos_arizpe_410"
+          },
+          {
+            "id": "cerro_sombreretillo_601"
+          },
+          {
+            "id": "cerro_sombreretillo_102"
+          },
+          {
+            "id": "mina_purisima_308"
+          },
+          {
+            "id": "mina_purisima_120"
+          },
+          {
+            "id": "minera"
+          },
+          {
+            "id": "quebradilla_1"
+          },
+          {
+            "id": "imss_no1"
+          },
+          {
+            "id": "alameda"
+          },
+          {
+            "id": "av_gonzalez_ortega"
+          },
+          {
+            "id": "parque_sierra_de_alica"
+          },
+          {
+            "id": "ineissste"
+          },
+          {
+            "id": "flores_magon_37"
+          },
+          {
+            "id": "panfilo_natera"
+          },
+          {
+            "id": "del_deposito_202"
+          },
+          {
+            "id": "el_ete"
+          }
+        ]
+      }
+    },
+    {
+      "id": "8",
+      "name": "8",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "gjxiC`rdqR????h@C^gBb@oD@a@hBcHr@eCDMDm@Dm@P_BReALgA?s@M??C?????Bg@Aw@McBYMGISk@yBKSSOOGQQW?Q@QHDL??z@WA@CCW?Q@YNu@j@SJgBhAgBhAqAv@YPo@^q@b@iAx@gAr@WP]RiCfBgElCUNKHKBCBCBCH?HBFBDFDF?JCFGBIAICIGGCA?B?????CE?KBCBCB_@\\cAd@iEnCw@f@y@v@QVq@RMMQEQD_BCq@AaA??D?????Ei@?QQMOOWWgCSiA]uAYq@e@cA_@i@sA}A}@}@c@IQSmBaCg@m@_@i@]m@IUHA????I@CIMe@Gu@Aw@Bo@Jw@Nk@Vo@NWFK\\a@n@k@ZYvA{AVDAD????@EWEnAwATq@Ju@BcAQoAe@wAi@s@c@_@gC_Aa@O]Ma@QuAs@g@e@k@_AEOe@cBUy@J]Ga@I]o@kDUmAGw@K}@A[Ay@?c@?i@@a@D_@NwALcAH}@?KAa@Is@Se@ACKOFE????GDOS_@[_@PYJYI_ADsBDcA@U?W@?A?????@kA@}CDq@?kAB?C?????BS@eCFgABaBDkA@oA@S?]??V@nA?@?????A@xBArBAl@AZE`@SxAg@vDGLURWTOJSH]Dm@?YKwAi@AB????@CWKaA]YI]Ga@AM@WBSHMJEFGHq@nBUp@y@tC[\\KFK@i@G}@k@UMBE????CDGCe@UgAk@oAyECIu@_CoAgBiAaBk@w@BA????C@kAaBgAyAi@q@_Am@g@Se@KuAS????????UCOIo@DsAHw@?_CCqC]?@?????AMAWJc@@yAw@eAQs@AgB?YC]QwAqAo@Ys@jAqAe@cC{@@A????A@AA_Cw@eBg@SCM@_@D[@q@CWBWCsB[iASe@IGG?@?????AiBmBqB_ByAyAaAl@CJ?F@FJXgBjBEDXVBA????C@HHTJYdAu@OQDg@T{@TsALs@Ng@Ps@j@[h@IL]d@_@E}@G_@Aw@Aw@OsAWa@G]G{@?w@Se@S_@[OUGw@Ce@@QBYD_@Nq@Rw@Ry@JCAaB?@?????A?sACmBVk@FKj@aA`AaBpAuA`@m@f@m@?OGMQWLCvAe@JK\\V`AbAd@f@zAbBVQSm@EB????DCACqAkBYa@W]KOOYMW]YUOa@IUC_@CYAmBK}AM[CSCcBS}@SYESEOG_ASy@SUG]ISICAAF??",
+        "stops": [
+          {
+            "id": "base_ruta_8"
+          },
+          {
+            "id": "marianas"
+          },
+          {
+            "id": "av_sierra_madre"
+          },
+          {
+            "id": "imss_57"
+          },
+          {
+            "id": "walmart_colinas"
+          },
+          {
+            "id": "lomas_del_lago_1"
+          },
+          {
+            "id": "colinas_del_padre_1a_seccion"
+          },
+          {
+            "id": "central_de_autobuses_1"
+          },
+          {
+            "id": "secundaria_tecnica_34_1"
+          },
+          {
+            "id": "la_isabelica_1"
+          },
+          {
+            "id": "primaria_20_de_noviembre_r8"
+          },
+          {
+            "id": "buenavista"
+          },
+          {
+            "id": "ine_issste"
+          },
+          {
+            "id": "morelos_812"
+          },
+          {
+            "id": "morelos_600"
+          },
+          {
+            "id": "plaza_genaro_codina"
+          },
+          {
+            "id": "plaza_de_armas"
+          },
+          {
+            "id": "fuente_de_los_conquistadores"
+          },
+          {
+            "id": "plazuela_de_garcia"
+          },
+          {
+            "id": "antonio_ortiz"
+          },
+          {
+            "id": "segunda_de_matamoros"
+          },
+          {
+            "id": "bracho"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "{~ajCxc_qR??@GB@RH\\HTFx@R~@RPTXTHFRHTFn@J|@H`AJ\\Dt@TzB`@n@R\\R\\V\\V`AbAd@f@zAbBd@t@@@AB????@CNRKH]RUDQIqAHSDWDc@P{@h@]NUFKA]d@]^y@f@UHUSWJBH????CIA@g@d@SF@l@Dt@Zz@vA{@rAy@p@OHC?B?????Cf@Q\\E^A`@Bh@HXMl@KbAKf@ILDdBdBNVf@bAdAhCn@z@EDXVBA????C@HHTJ\\UXSN?TDPFx@\\`@Df@BAD????@Ez@FxBVd@HhARrBZVBPNrAV`B`Ax@d@pEtCNJBX@FCD????BEFX?PDHHH\\ZjAdAh@d@jA~@fAbAPP?@?????AtAvAjA|@bAx@l@h@d@\\TRJe@Ru@H[Pq@h@wBl@cCFLnAl@AB????@Cz@b@\\PtCvAhAl@NHZ@f@KRANDRJFLBF?\\?H@HBDFDFDLNb@FAF????@GxBfAlAp@jEzBh@XtBfAfAj@bAr@?AE@????DAxAfAJJJTAn@Er@Gh@_@|CGt@CZ?\\DRHNHJLJTNPDNDLAVEx@_AZe@@D?@??AE`@m@\\g@v@{A\\a@^]Z[\\e@LKJEb@KLAVGJSGeAPu@Rc@x@_BXq@Z[f@a@Ta@@@????AALSL]d@mDP_BLaABo@AsB?iER?nAAjAC`BEdBAhAE?B?????C\\A~AAp@AhEG?B?????CH?`AAfACNAbBEh@N\\NLLFHNVLRLRBdAE`AGnBCt@?F?HAf@?BA@????@A?HB`ABb@HbA`A|ERx@T~@Lb@\\TTx@d@bBDNj@~@f@d@tAr@`@P\\L`@NfC~@b@^h@r@d@vAPnACbAKt@Up@oAvAwAzA[Xo@j@]`@GJOVWn@Oj@Kv@Cn@@v@Ft@Cd@????^^\\l@^h@f@l@lB`CPRHl@pAfBdAtALVx@fBJb@Nj@Jn@ZjCDf@ZT\\J`@@j@@?H????bACl@BlA?BRLLFBRBFGHGBE@GTCt@c@fAu@bAk@xDkCrA{@FEF?JCFGDF???AEETCBShE}CjDuBZQdAs@bAq@v@g@n@a@VQlAw@zBwAnA{@j@]`@UDJ????EK`@YNITANFRNJRj@xBHRLFbBXv@Lt@@?r@CN@B????ACIv@SdAQ~AEl@El@ELs@dCiBbHA`@c@nD_@fBi@B????",
+        "stops": [
+          {
+            "id": "bracho"
+          },
+          {
+            "id": "la_fayuca"
+          },
+          {
+            "id": "mercado_roberto_del_real_carranza"
+          },
+          {
+            "id": "primaria_ramon_lopez_velarde"
+          },
+          {
+            "id": "plazuela_de_garcia"
+          },
+          {
+            "id": "plaza_de_las_tunas"
+          },
+          {
+            "id": "santo_domingo"
+          },
+          {
+            "id": "congreso_del_estado"
+          },
+          {
+            "id": "av_gonzalez_ortega"
+          },
+          {
+            "id": "parque_sierra_de_alica"
+          },
+          {
+            "id": "ineissste"
+          },
+          {
+            "id": "nueva_celaya_115"
+          },
+          {
+            "id": "prepa_iv_uaz"
+          },
+          {
+            "id": "la_isabelica"
+          },
+          {
+            "id": "secundaria_tecnica_34"
+          },
+          {
+            "id": "central_de_autobuses"
+          },
+          {
+            "id": "lomas_del_lago"
+          },
+          {
+            "id": "walmart_colinas_1"
+          },
+          {
+            "id": "unidad_deportiva_colinas"
+          },
+          {
+            "id": "sierra_madre"
+          },
+          {
+            "id": "purisima"
+          },
+          {
+            "id": "base_ruta_8"
+          }
+        ]
+      }
+    },
+    {
+      "id": "14",
+      "name": "14",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "qtsiCvbppR??H?_@xBYbBIf@Mr@o@pDgBxJcC\\m@Hu@LkQvBuDf@gH|@qH~@mCZwDf@gEf@?A?????@e@F{Fv@kGv@yEl@aEj@ASqFr@gALoDb@?J?????KO@{Dh@JPkL|A}Gz@BPBTBLmEn@AKnDi@AE????@DZGCUCQaGp@eDb@iDf@eAHi@Ca@D{@HuHlAoFdA|B|IL^DA?@??E@|E~MC`ABp@B?????C??Bh@dRJ~@JPP\\DC????EBtAlCT`@H\\A`@OvBMfAa@|DaAxDKn@Ch@?tB?z@F`FG`BG^Ad@A`@B@????CACb@SL]|BIn@[z@e@lAQJcAjEqAxBHJc@r@Kv@C`@GRILQTGNEVTDBQ@@????AA@EBMJUFMHWBc@Tm@b@e@UYc@r@Kv@C`@GRILQTGNEVYvAKNYHK?yBAm@?cAJoAj@_@T@D????AEGDo@\\sAn@_@PY^I`@Ej@IrAI~@C^E\\QnCS|AcExHa@p@KHA?????@?GF_@FECIAO@KDEHCL@LSRaAlE_ApDEPc@lBAB????@CI\\]zAQt@Kl@UdBMf@k@~@w@dAyArE_@jBKf@@@????AAGVs@jD[nBOx@ER[tBYbBMp@Or@a@|Ai@lAqDdIQZSp@Ib@E`@?b@?zAA?????@?@pE?n@EbAATO^MPiBtBe@`@yAjBQPUXk@n@WZaAfAu@x@c@h@????????q@v@{@fA}@lAg@n@oAzASVe@x@IPK~@S~ABVOPa@lCCd@C~@GB}@?IEGIMw@EQKWm@YMQk@OGC@C????@ECHkA]KCQ@e@]QQg@]CHI^E^Gj@Cn@CdA@pAXpCL\\CB????????BCRh@D|@E`EEdAA`B?RGhDMtAk@xC{@fDsA|FKd@IA@B????ACH@Sv@ETq@nCK~@qAnEQv@m@bCi@rBg@zAYr@w@`BiCrEWf@[zAqAdHE^E~@KlBMn@ERoAtFMd@?@?????????AK`@qAzDq@jBUhAGb@Ej@A`@B`@@LDb@Nx@HZNZGF??@AA@??lBpDR`@tAzB^\\nAz@h@TJDHDtAr@bAd@DBZPZTNNTXPXBFP`@FPL`@BHBPBVBXBf@?J?H@bB@nAD@????ESDR??EA?NFnF?T?RLR@lB?H?F@L@RHJLBt@@HHJPF\\_@|CGt@CZ?\\DRHNHJLJTNPDNDXDV\\????Zh@fAzBp@nAl@jA`@l@T\\NRPPXThBtA??????BIJHf@Xv@`@j@Tf@XdBxAp@j@j@d@EJ????DKXVNVbCfAl@XXNh@d@RTHHCD????BEXZHJZ`@`@d@X\\RVr@fANT~@zAb@bAX|@VrAf@lCTnAXdBb@tBZdBAB????@CRbAP`AJf@BNLd@Pt@Hp@r@|DRx@pCeC\\RpAn@`@RJDVH`@JXDp@Ah@Gn@IRC^R^T`@ZJN@??@??A?~@nAb@lAJPLFr@b@XV|@p@jArAPLNPPVd@dAj@jA?@?????A\\v@z@nB\\pBJn@HpA?h@?PSnDi@|FDfB?\\Hp@JtAHh@FZ\\zBBd@BH@n@Dz@?B@?????A?B|BBlABl@FXXh@}GfATpAPjANfAJlAHbAJpAJhAHnACn@@TThAThATlAThATlA@??@??",
+        "stops": [
+          {
+            "id": "utzac"
+          },
+          {
+            "id": "blvd_de_la_nacion_1"
+          },
+          {
+            "id": "ahresty"
+          },
+          {
+            "id": "camino_a_la_zacatecana"
+          },
+          {
+            "id": "hospital_de_la_mujer"
+          },
+          {
+            "id": "sct_1"
+          },
+          {
+            "id": "vialidad_arroyo_de_la_plata_1"
+          },
+          {
+            "id": "instituto_miguel_agustin_pro"
+          },
+          {
+            "id": "jardin_de_gpe"
+          },
+          {
+            "id": "plaza_fray_antonio_margil_de_jesus_1"
+          },
+          {
+            "id": "tribunal_agrario_distrito_i"
+          },
+          {
+            "id": "el_salero_1"
+          },
+          {
+            "id": "hospital_san_agustin"
+          },
+          {
+            "id": "garcia_salinas_1964"
+          },
+          {
+            "id": "parque_arroyo_de_la_plata"
+          },
+          {
+            "id": "soriana"
+          },
+          {
+            "id": "fenaza_1"
+          },
+          {
+            "id": "minas"
+          },
+          {
+            "id": "mega_cable"
+          },
+          {
+            "id": "plaza_bicentenario_1"
+          },
+          {
+            "id": "issste"
+          },
+          {
+            "id": "5_senores"
+          },
+          {
+            "id": "parque_de_beisbol"
+          },
+          {
+            "id": "aurrera_5_senores_1"
+          },
+          {
+            "id": "lomas_del_lago_glz_ortega"
+          },
+          {
+            "id": "puente_el_orito_1"
+          },
+          {
+            "id": "francisco_i_madero_90"
+          },
+          {
+            "id": "escuela_francisco_i_madero"
+          },
+          {
+            "id": "20_de_noviembre115"
+          },
+          {
+            "id": "las_huertas"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "scziCxuhqR???AA?UmAUiAUmAUiAUiAAUBo@IoAKiAKqAIcAKmAOgAQkAUqA|GgAYi@GYCm@CmAAiA?@?????AAw@E{@Ao@CICe@]{BG[Ii@KuAIq@?]EgBh@}FRoD?Q?i@IqAKo@]qB{@oBQa@?@?????Aw@aBe@eAQWOQQMkAsA}@q@YWs@c@MGKQc@mAkA_Ba@[WO?D?????EGE_@SSBo@Hi@Fq@@YEa@KWIKEa@SqAo@]SMM_@^Y\\SPUPa@Vo@oDO{@CQCUCQEk@Io@CMKg@Ou@ScAA@????@Aa@uBAE]cBUiBUiAk@iCWuAY_Ac@gAcA}AKQ@?????A?EGq@eAQW[_@a@e@[_@KKY_@i@q@QMg@Uq@[eCcAUE_@]DE????EDe@_@q@k@eByAg@Yk@Uw@a@g@Y_@W????????gAq@QKYUQQOSU][g@gAsBeCcFIK@Ox@_AZe@@D????AE`@m@\\g@v@{A\\a@^]Z[\\e@LKJEb@KLAVGJSGeAPu@Rc@x@_BXq@DYoAe@YKwAi@AB????@CWKaA]YI]Ga@AM@WBSHMJEFGHq@nBUp@y@tCOn@S~@ENGLIHGBIBK?MCIEIGGGIKGSEY?m@C@??????BA?]?K?g@GsFA_B?sA?I?S?m@C]CUCQCOOg@CGHA????????I@IWQ[Wa@[_@MM]Wc@Yu@_@cBs@GCIEm@[qAw@[Y_@a@s@oA[q@o@iBISIWAB????????@C[w@Qm@KoA?{@@c@J{@J]l@gBHYl@kB\\aAd@mBn@qCDW?@??C@BA???AJk@Lo@Lu@HiCj@eDJk@Ji@VeAXaAVk@~B_EZi@LYx@mBb@sAf@gBpAyF`AeEd@aBTaAFYJF????????KGZoAfBoHdAsEXcBP_BBaA@q@@w@?uB?iAEcCIeADG??????CCA{@@k@Ne@NUZO|@YV]Lg@n@cC`@JNRNd@Hb@JRl@D?@??????^KFCJ?LBFaADk@JcAH}@CYNo@R_BNk@d@{@V[hAsAl@m@|@kAx@y@Xc@F[??BH??DBx@cAj@w@z@gAV[n@w@TUPUh@s@z@aARSjAsAAA????@@b@i@JQNW?_@BkA?i@EwHHy@T}@dEeJl@{Af@aBBIBB????CCLi@Ls@VcBZsBBSLm@Lu@N}@v@oDFS@@????AALk@^kBv@eDJSlAsAj@gAHm@ReBJm@Pu@Py@ViA?B?????C^_BFU~@mD^eBb@y@^w@F?FAHEPATGNI@B????AC`@Qj@k@VS|CiC~AyANq@?o@G]I[Ia@Oa@E}@?aAFW@W?cABaAFe@La@JUPSRWj@c@n@[r@_@?B?????CPKh@YVIj@?n@BzB?V?XANIHQDQN_BBQ@@??EU??H@?AJUFMHWBc@Tm@b@e@dBaCxAyBf@aAVs@Jy@PkEDgB@@??AANkBB{AGcFAqDBc@Jm@hAyDb@}DLoAJsB?k@Kc@Wi@aAiBB?????C?]q@IQISIo@a@yOD@????EAEqAAs@A_AsEeMB?????C?[y@x@Uq@iBw@{D|A_@XE@J????AKpCc@RAj@?^Fb@L`@Pl@d@dAlATJ\\PXFV?LCJCBATOj@yALw@VaALYPWXQj@AhDk@nDi@AE??nCu@@D`D_@nLyAnDe@@F????AG`@GnEk@hFo@rEm@hFo@zG{@nFs@hFo@tDg@lC[rH_AfH}@BJZC?A?????@FAvSkCZSxASl@IjCYK_@fByJn@qDLs@Hg@XcB^yBI???",
+        "stops": [
+          {
+            "id": "las_huertas"
+          },
+          {
+            "id": "20_de_noviembre_109"
+          },
+          {
+            "id": "escuela_francisco_i_madero_1"
+          },
+          {
+            "id": "francisco_i_madero_85"
+          },
+          {
+            "id": "puente_el_orito"
+          },
+          {
+            "id": "calz_luis_moya"
+          },
+          {
+            "id": "aurrera_5_senores"
+          },
+          {
+            "id": "parque_de_beisol"
+          },
+          {
+            "id": "nueva_celaya_115"
+          },
+          {
+            "id": "buenavista"
+          },
+          {
+            "id": "ferrocarril_3030"
+          },
+          {
+            "id": "secundaria_tecnica_1"
+          },
+          {
+            "id": "plaza_bicentenario"
+          },
+          {
+            "id": "universidad"
+          },
+          {
+            "id": "parque_arroyo_de_la_plata_minas"
+          },
+          {
+            "id": "fenaza"
+          },
+          {
+            "id": "walmart"
+          },
+          {
+            "id": "tahona"
+          },
+          {
+            "id": "bonaterra"
+          },
+          {
+            "id": "arboledas"
+          },
+          {
+            "id": "el_carmen"
+          },
+          {
+            "id": "el_salero"
+          },
+          {
+            "id": "glorieta_bicentenario_guadalupe"
+          },
+          {
+            "id": "plaza_fray_antonio_margil_de_jesus"
+          },
+          {
+            "id": "jardin_de_gpe"
+          },
+          {
+            "id": "instituto_miguel_agustin_pro_1"
+          },
+          {
+            "id": "vialidad_arroyo_de_la_plata"
+          },
+          {
+            "id": "sct"
+          },
+          {
+            "id": "hospital_de_la_mujer_1"
+          },
+          {
+            "id": "centro_estatal_de_transfusion_sanguinea"
+          },
+          {
+            "id": "camino_a_la_zacatecana"
+          },
+          {
+            "id": "ahresty_1"
+          },
+          {
+            "id": "blvd_de_la_nacion"
+          },
+          {
+            "id": "utzac"
+          }
+        ]
+      }
+    },
+    {
+      "id": "15",
+      "name": "15",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "_c`jCjpnpR???AxEjAt@T|BvBH?`AxBd@fAVr@JPb@bAt@dBCB????BCjG|NNI|@jAVPv@`@NTvEpCzA|@bBdABC????CB\\RxDxB?JBHFFLBJAFGBMASFe@d@eBhAyD?@?????AJ]H_@Pk@VcABS@]Em@o@_Hq@iHKg@`Ae@XNvFbBx@VdCx@????????v@X|DhAvDaCxBwAlCmB|AeAtBqA^IPIp@a@bBcAh@_@@@????AAPMv@o@`Ak@r@o@n@a@PKd@Ub@Sl@OrAYPADzAE@????DAFnBWtCe@fDiB|MSdAD@????EAEXG`@y@`G_@pCe@dDi@tEIl@Id@Ab@Cz@DB????ECA^VF~B|@VBpAXxC|@IxBGdBG`@C`AEjBK`B|Bt@?A?????@v@TvAf@jBn@hCz@RBfDx@CV?@????]hDGf@a@lASd@O`@M^Sl@I\\Uh@KVWp@EP[~@Sj@MZSh@]|@]fAa@`Ai@zAj@RSKRJdMhFqGlQEJuA`EQd@_@dAC@??To@Un@??BAGNM^vBvCZb@pBpCXZj@r@|@hAX\\PRVTTBFZVd@@???EHDIA?@B|@dAtAvAbAdAx@v@TVhAhAx@v@`B`BhAfAzA~AJTRN\\\\@?????A?d@f@nApAfA|@h@d@NP?@?????AHLNXXr@p@fBrApDRNo@pD~Cn@HPLNNCFMDMBUB???n@gE~@{ExAd@bCj@~B`AXH@EEBBEADzAd@fGhBkArBiClDa@ZBDA???CEWb@Kv@C`@JBpCF^?p@HpBn@bAVl@R@A????A@lBj@`@FJUnEk@vB_@nEc@TG`AM?B?????CNAGiDhHc@LQXJPDxAPPAnAOPCTEPC`@Hf@KZKg@Jf@Kb@QpBu@dAa@|CiAfAa@^Mj@Qp@U\\Kz@IbAGpA??C?????BL?h@@hDFjA@dDB`GHZAvAJ^F\\HD@@A????A@h@P|@`@fIrDt@\\tAVVBfAJV@vBJbBDtAFfCH~@HnAPdC^bAP?????A|ARjEl@NE@D????AEDCv@JB?p@BpFHdBDzALnIz@`@Dn@DnA@tFC`CAt@AtECx@?`ABbNxA`APB@jA^v@T`@D^@ZAb@C`Eo@h@Ep@?l@Hd@Jf@TzCdCxAlAA@@D??",
+        "stops": [
+          {
+            "id": "paseos_san_agustin"
+          },
+          {
+            "id": "centro_deportivo_bugambilias_1"
+          },
+          {
+            "id": "quintas_1"
+          },
+          {
+            "id": "primaria_rafael_coronel"
+          },
+          {
+            "id": "la_noria_20"
+          },
+          {
+            "id": "primaria_francisco_e_garcia"
+          },
+          {
+            "id": "villas_de_ntra_sra_de_la_asuncion_35"
+          },
+          {
+            "id": "parque_villas_de_guadalupe"
+          },
+          {
+            "id": "avenida_americas_uneme"
+          },
+          {
+            "id": "av_mexico_35"
+          },
+          {
+            "id": "jorge_negrete_263"
+          },
+          {
+            "id": "av_barones_120"
+          },
+          {
+            "id": "soriana_mercado_1"
+          },
+          {
+            "id": "cetis_113_1"
+          },
+          {
+            "id": "vicente_gerrero_55"
+          },
+          {
+            "id": "mercado_de_guadalupe_1"
+          },
+          {
+            "id": "alameda_gpe_1"
+          },
+          {
+            "id": "jiapaz_guadalupe"
+          },
+          {
+            "id": "museo_de_guadalupe"
+          },
+          {
+            "id": "luis_moya_60"
+          },
+          {
+            "id": "s_ramon_45"
+          },
+          {
+            "id": "puente_camino_a_san_ramon_1"
+          },
+          {
+            "id": "fray_margil_de_jesus_61"
+          },
+          {
+            "id": "carretera_san_ramon"
+          },
+          {
+            "id": "lo_de_vega_1"
+          },
+          {
+            "id": "av_real_de_san_ramon"
+          },
+          {
+            "id": "san_ramon_1"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "y|piC|svpR??EFg@[yAmA{CeCg@Ue@Km@Iq@?i@DaEn@c@B[@_@Aa@Ew@UkA_@CAaAQcNyAaACy@?uEBu@@aC@uFBoAAo@Ea@EoI{@{AMeBEqFIq@CC?w@KOOCA?B?????CsDe@UEeBQ[E?@?????AC?[Eu@KoASoAQ_AGmCQoAE_BIwBI]A{@I{@Ku@Ow@YeIuDiBy@a@EEA????????YGc@GeAEO?eGEeDCqAAaDEQ?????????WAH}BF{ABgADcBJ_CBq@D@????EA@i@JoCJgCFkA[BoAfAuBf@?C@@????AA?BmA^q@PEb@E`@Il@C\\QbBUfC?~ADhAPtBT~B?BDB????EC@l@yAd@iA`@aDjAgA`@qBr@a@PYJ_@F?B?????CC@_@JQBUDQBoANQ@yAQQEYKMPiHb@DjC@B????AC@\\qANUFoEb@wB^oEj@KTa@GaAY????????yAe@cAWqBo@q@I_@?gBE?E?????Di@ABc@Tm@b@e@dBaCxAyBb@{@DB????ECBEWGyAe@eDeAkA_@@?????A?i@OyIuCKES\\e@tBKj@c@|BWzAC@????BAMp@sDy@n@qDGUuAsDo@eBYs@IQDA????E@??k@a@i@e@gA}@oAqAe@g@@?????A?]]SOKU{A_BiAgAaBaBy@w@iAiAUWy@w@cAeAuAwA}@eAQ]A@????@AGKG[I]YWQOY[w@iAi@s@W]kBgCs@aAkBkCPe@JH????KITo@Pe@tAaEDKd@qAr@uB^eAj@_BNe@jAeDBD????CEJ[eAe@_Aa@_Aa@a@Oe@SgAe@iAe@cAe@OGa@QDG????EFgCgAsD}AkCiAmB}@cA_@YKeA_@BG????CF]OUWcAc@iAe@o@WyAo@_A_@SUa@w@A@????@AaAgBSc@GQaAaC[s@MQk@o@W[Ya@Y_@mCiDiCoDSWi@q@KM@?????A?cBiBkDeE_FaGy@_A@@????AAY]ASKIM?KByD{BcAm@BG????CF_Ak@yA}@wEqCYCw@a@WQ}@kAOHgFyLCB????BCyAiDc@cAKQWs@e@gAaAyBEU{BsBg@YqEgA?@??",
+        "stops": [
+          {
+            "id": "san_ramon"
+          },
+          {
+            "id": "av_real_de_san_ramon_1"
+          },
+          {
+            "id": "lo_de_vega"
+          },
+          {
+            "id": "carretera_a_san_ramon"
+          },
+          {
+            "id": "fray_margil_de_jesus_80"
+          },
+          {
+            "id": "constitucion_de_1917"
+          },
+          {
+            "id": "margaritas_4"
+          },
+          {
+            "id": "miguel_de_la_madrid_13"
+          },
+          {
+            "id": "puente_camino_a_san_ramon"
+          },
+          {
+            "id": "guadalupe_74"
+          },
+          {
+            "id": "luis_moya_55"
+          },
+          {
+            "id": "auditorio_luis_moya"
+          },
+          {
+            "id": "vialidad_arroyo_de_la_plata_19"
+          },
+          {
+            "id": "jiapaz_gpe"
+          },
+          {
+            "id": "alameda_gpe"
+          },
+          {
+            "id": "mercado_de_guadalupe"
+          },
+          {
+            "id": "vicente_gerrero_55"
+          },
+          {
+            "id": "cetis_113"
+          },
+          {
+            "id": "soriana_mercado"
+          },
+          {
+            "id": "av_camino_real_90"
+          },
+          {
+            "id": "av_barones_5"
+          },
+          {
+            "id": "av_barones_267"
+          },
+          {
+            "id": "segunda_de_los_barones_15"
+          },
+          {
+            "id": "segunda_de_los_barones_210"
+          },
+          {
+            "id": "segunda_de_los_barones_354"
+          },
+          {
+            "id": "quintas"
+          },
+          {
+            "id": "centro_deportivo_bugambilias"
+          },
+          {
+            "id": "paseos_de_san_agustin"
+          }
+        ]
+      }
+    },
+    {
+      "id": "16",
+      "name": "16",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "g{`jC|vqpR??@KVFjARbAPlDl@zA^tDp@pATtBZbCj@zE|@fF|@JLh@HAJA?????@?@K~@NjHrAvB`@hCf@PDNBLBl@P?@?????A|DbApCt@bAXv@RnD`At@Th@P|@XBG????CFdA\\HB~Ab@dBf@ZJTDv@Rv@RzA`@d@Jt@R|@Vl@LhAVvA`@tA`@@E????ADl@P`@J`ATdAZ`AVdATdAXv@RbCp@XFn@RPFHWL]JF????KGz@yBJUVs@\\cA`@kAz@eC^eAt@qBRi@BB????CCPg@b@oA\\cA\\gA\\}@Ri@L[Rk@Z_ADQVq@JWTi@H]Rm@L_@Na@Re@\\mAJg@Dk@V_C?@?????AFWtDdAvBb@rBn@|@ZhBb@yCjHHUA?????@?]v@Sl@e@nA_@bA[dA]fAs@fB[|@ITWn@]hA]dAe@jAWt@B@????CA_AjCOd@k@~A_@dAs@tBe@pAEJuA`EQd@ITC@??Un@??Xq@]~@M^vBvCZb@pBpCXZj@r@|@hAX\\[|@Y~@G???HE???AQj@[fAQx@WfAQpAK~@C\\Ap@B@????CAA`@@tA@\\DxBD|@L~BJtBLOB`@NdDZ|GB^@LQHDdABjA@VH?????I?DvAF|@@hAApAAl@Gx@Ep@Ef@EbAChAGt@CXCh@EbAAJA@??????@AKxBInAD`B@^RjAHT\\t@`@p@`@Zx@j@`@V~@d@PJ@C??fAfAgAgA??ABJDPLn@t@V`@\\r@JNHVLJD\\Dj@Br@Af@El@Op@I`@aB`EeAnAUf@Qv@G\\}B~JMn@?@?????????AOt@Gh@YtAWfBElA?NAV?f@BzA@vBB?????????C??x@?DAt@E^Up@o@dBORMR}@`AiCxDg@z@EHC???????B?CFGJKf@Gb@M`@Sp@e@bAO\\a@r@[p@a@dA_@fA]dAKTm@`BQTKZQXYZo@x@aAtACA????B@KNeA|AAJEHAJ@PAJEJINuAbBm@|@qBrDWf@mAjCQ`@C@??????BAIVa@z@CHI^E^Gj@Cn@CdA@pAXpCL\\CB????????BCRh@D|@E`EEdAA`B?RGhDMtAk@xC{@fDsA|FKd@IA@B????ACH@Sv@ETq@nCK~@qAnEQv@m@bCi@rBg@zAYr@w@`BiCrEWf@[zAqAdHE^E~@KlBMn@ERoAtFMd@?@?????????AK`@qAzDq@jBUhAGb@Ej@A`@B`@@LDb@Nx@HZNZGF??@AA@BI??@Ah@jA|@pBR`@tAzB^\\nAz@h@TJDHDtAr@bAd@DBZPZTNNTXPXBFP`@FPL`@BHBPBVBXBf@?J?H@bB@nAD@????ES???A?b@FnF?T?R@lA?tA?F?F?T?T?f@?x@Ad@ETOd@IPINIJKHu@TODq@Rg@R_@P]PqA|@a@V_@TYJQDQBc@B[@aCBsBBeBg@{@Ky@JWTKRERCRCVEv@EhA?@?????AAHCZIXUd@KPONOLSJWJQD[B_@BmAJqALk@Pg@V]ZKLIHe@j@UXMNKRCN@LAd@FRDBJDP?pAiATYFF??",
+        "stops": [
+          {
+            "id": "jardines_de_sauceda_1"
+          },
+          {
+            "id": "unidad_deportiva_guadalupe"
+          },
+          {
+            "id": "carretera_a_sauceda_de_la_borda_8"
+          },
+          {
+            "id": "carretera_a_sauceda_de_la_borda_325"
+          },
+          {
+            "id": "carretera_a_sauceda_de_la_borda_45"
+          },
+          {
+            "id": "av_condesa_10"
+          },
+          {
+            "id": "av_condesa_101"
+          },
+          {
+            "id": "jorge_negrete_263"
+          },
+          {
+            "id": "zacatecas_1"
+          },
+          {
+            "id": "av_camino_real_92"
+          },
+          {
+            "id": "soriana_mercado_1"
+          },
+          {
+            "id": "cecati_130"
+          },
+          {
+            "id": "prepa_ii_extension"
+          },
+          {
+            "id": "rincon_colonial"
+          },
+          {
+            "id": "nissan_gpe_1"
+          },
+          {
+            "id": "santa_rita"
+          },
+          {
+            "id": "indecobdz"
+          },
+          {
+            "id": "seduzac_1"
+          },
+          {
+            "id": "citiclub"
+          },
+          {
+            "id": "la_florida"
+          },
+          {
+            "id": "tres_cruces"
+          },
+          {
+            "id": "fenaza_1"
+          },
+          {
+            "id": "minas"
+          },
+          {
+            "id": "mega_cable"
+          },
+          {
+            "id": "plaza_bicentenario_1"
+          },
+          {
+            "id": "issste"
+          },
+          {
+            "id": "miguel_aleman"
+          },
+          {
+            "id": "colonia_minera"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "e{~iCtdcqR????GGFI|@oAXSLEZGhACfAMp@_@f@Qb@]b@u@LWL_@H[DD????????EEBGHWXq@Xi@\\a@d@Yr@Un@GVA~AAbCE\\?f@ENCXG\\O^U^WpA{@`@UVOf@Sl@SNE|@UJKNSLWFMPk@FYBg@?k@?s@?O?O?K?I?G?eAHaBMl@??????BA?]?K?g@GsFA_B?sA?I?S?m@C]CUCQCOOg@CGHA????????I@IWQ[Wa@[_@MM]Wc@Yu@_@cBs@GCIEm@[qAw@[Y_@a@s@oA[q@o@iBISIWAB????????@C[w@Qm@KoA?{@@c@J{@J]l@gBHYl@kB\\aAd@mBn@qCDW?@??C@BA???AJk@Lo@Lu@HiCj@eDJk@Ji@VeAXaAVk@~B_EZi@LYx@mBb@sAf@gBpAyF`AeEd@aBTaAFYJF????????KGZoAfBoHdAsEXcBP_BBaA@q@@w@?uB?iAEcCIeADG??????CCHk@?y@Dg@NUZO|@YV]Lg@p@_Ds@WGC@C????????ABkA]O]GUCa@FUDQTm@f@iAVk@b@}@DD????????EEl@mAHM`B_Cv@eAf@q@`BeCn@cAp@kATe@dA}B`@_A\\q@tAqDt@mBXw@Vo@f@iA`@cAVg@CA????????B@FOv@}A~@wAj@u@jAcBf@}@Xs@H[Nc@Bs@Bc@@c@?E@?????????A?AmB?{@?i@A}@?Y?[?S@c@F[v@wEd@oCD@????????EALy@^oBNs@RsA^yAf@wA^}@Vm@d@mALYXs@J[Ry@Dg@Dm@Am@Ai@Iy@EUCQYcAWi@Wg@i@o@e@a@_@WMIAD??KOJN??@Ew@_@a@Uq@a@_@c@S[Sc@M[Q{@AQ?gBHcANsB@@??????AAJqALsABYDy@Ba@@i@Na@PaAN}@Fc@@g@Ei@Ce@Ac@Gq@IoA?QKc@@?????A?Mi@GqAGkAYwHCo@Ai@C{@Q}CO{DEmABk@DKBB????CCPa@_@MEOAMD{ABa@@WP_BVaBf@aBRk@DD????EEDIl@aBI]YWQOY[w@iAi@s@W]kBgCs@aAkBkCY_@GIFC????GB{AyB_@i@w@gA{@}@OMm@Ys@S@E????ADa@MhAwCJUVs@\\cA`@kAz@eC^eAt@qBRi@BB????CCPg@b@oA\\cA\\gA\\}@Ri@L[Rk@Z_ADQVq@JWTi@H]Rm@L_@Na@Re@\\mAJg@Dk@PaBDB????ECHu@gDy@SCiC{@Q`@BD????CEO`@EH[~@IJc@dAa@jAa@hAa@jAEL_@`A_@fAa@fAUp@GRw@xBa@hAUr@EXSIBE????CDwB_AmB}@cA_@YKeA_@BG????CF]OUW?XInAIjAQtCKtFC\\Of@eA~Ca@jA]lA]I@E????ADoA]{Ae@_AUw@Uy@Si@Ou@U}Ae@o@Qy@SSGYKeBe@qAYMCgCu@MCE\\NU@Bv@F??CBq@SMCa@K}@UmD}@s@SaAWuCy@cEoA@AA@????@Am@CKCOCQCkCg@yBc@mHsA}@OKC?B?????C[EQFgF}@{E}@cCk@uB[qAUuDq@{A_@mDm@cAQkASm@MEA?C??",
+        "stops": [
+          {
+            "id": "colonia_minera"
+          },
+          {
+            "id": "plaza_alesia"
+          },
+          {
+            "id": "ferrocarril_3030"
+          },
+          {
+            "id": "secundaria_tecnica_1"
+          },
+          {
+            "id": "plaza_bicentenario"
+          },
+          {
+            "id": "universidad"
+          },
+          {
+            "id": "parque_arroyo_de_la_plata_minas"
+          },
+          {
+            "id": "fenaza"
+          },
+          {
+            "id": "soriana"
+          },
+          {
+            "id": "mc_donalds"
+          },
+          {
+            "id": "jeepdodgefiat"
+          },
+          {
+            "id": "seduzac"
+          },
+          {
+            "id": "indeco"
+          },
+          {
+            "id": "odontologia_3"
+          },
+          {
+            "id": "nissan_gpe"
+          },
+          {
+            "id": "rincon_colonial_1"
+          },
+          {
+            "id": "ejidal_gpe"
+          },
+          {
+            "id": "calzada_revolucion_mexicana_55"
+          },
+          {
+            "id": "soriana_mercado_16"
+          },
+          {
+            "id": "carretera_a_sauceda_de_la_borda_57"
+          },
+          {
+            "id": "av_condesa_101"
+          },
+          {
+            "id": "jorge_negrete_265"
+          },
+          {
+            "id": "av_del_marquez_1720"
+          },
+          {
+            "id": "av_barones_163"
+          },
+          {
+            "id": "av_barones_267"
+          },
+          {
+            "id": "carretera_a_sauceda_de_la_bora_210"
+          },
+          {
+            "id": "carretera_a_sauceda_de_la_borda_305"
+          },
+          {
+            "id": "carretera_a_sauceda_de_la_borda_2"
+          },
+          {
+            "id": "unidad_deportiva_guadalupe_1"
+          },
+          {
+            "id": "jardines_de_sauceda"
+          }
+        ]
+      }
+    },
+    {
+      "id": "17",
+      "name": "17",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "wf~iCh}npR??i@XNPNFvFbBx@VdCx@????????v@X|DhAvDaCxBwAlCmB|AeAtBqA^IPIp@a@bBcAh@_@@@????AAPMv@o@`Ak@r@o@n@a@PKd@Ub@Sl@O|@Q?A?????@TGPArAIfAEjAEfAGfAEhAEhAGlAGr@C?B?????CRAhA@\\@l@FnA^jAj@PJt@f@ZRtAz@x@h@bAr@Wd@GC????FBkDpG[RQH{@^ULsAvBSXc@~@oB~C?XxArCv@rAjB|CXf@UjCGx@InAIjAc@xF?@?????AE^OfDG^Mh@ERSfBIpBO`ASfASnAUjAUjAWjAOn@BB????CCG\\[vCEj@Kf@jAf@~@d@~@d@bAh@x@`@|@b@xAt@HUA?????@?ITvEvB?Z[v@_@dAa@dA_@pA[~@Up@~@f@fAZZAV@NHjAp@BC????CBTN[|@Ez@{@fCk@l@q@hBEJEJMX@B??????ACAD{@hCk@`Bi@~AITBf@aBtEELEJc@pAs@fAgA`DcAdCSl@IV[|@Y~@G???HE???AQj@[fAQx@WfAQpAK~@C\\Ap@B@????CAA`@@tA@\\DxBD|@L~BJtBLOB`@NdDZ|GB^@LQHDdABjA@VH?????I?DvAF|@@hAApAAl@Gx@Ep@Ef@EbAChAGt@CXCh@EbAAJA@??????@AKxBInAD`B@^RjAHT\\t@`@p@`@Zx@j@`@V~@d@PJ@C??fAfAgAgA??ABJDPLn@t@V`@\\r@JNFb@A|@O~BQnBKf@gAdCq@|AUf@Qv@G\\}B~JMn@?@?????????AOt@Gh@YtAWfBElA?NAV?f@BzA@vBB?????????C??x@?DAt@E^Up@o@dBORMR}@`AiCxDg@z@EHC???????B?CFGJKf@Gb@M`@Sp@e@bAO\\a@r@[p@a@dA_@fA]dAKTm@`BQTKZQXYZo@x@aAtACA????B@KNeA|AAJEHAJ@PAJEJINuAbBm@|@qBrDWf@mAjCQ`@C@??????BAIVa@z@CHI^E^Gj@Cn@CdA@pAXpCL\\CB????????BCJ|@D`B@hCEdAA`B?RGhDMtAk@xC{@fDsA|FKd@IA@B????ACH@Sv@ETq@nCK~@qAnEQv@m@bCi@rBg@zAYr@w@`BiCrEWf@[zAqAdHE^E~@KlBMn@ERoAtFMd@?@?????????AK`@qAzDq@jBUhAGb@Ej@A`@B`@@LDb@Nx@HZNZGF??@AA@BI??@Ah@jA|@pBR`@tAzB^\\nAz@h@TJDHDtAr@bAd@DBZPZTNNTXPXBFP`@FPL`@BHBPBVBXBf@?J?H@bB@nAD@????ES???A?b@FnF?T?R@lA?tA?F?F?T?T?f@?x@Ad@ETOd@IPINIJKHu@TODq@Rg@R_@P]PqA|@a@V_@TYJQDQBc@B[@aCBsBBq@HWF?@?????AKDc@P_@VED_@`@a@t@_@bAM`@EJUd@SVUZ[Ta@Pa@Jk@D_@@s@@c@DE@e@Jc@Na@Ti@f@_@b@_@l@Q`@M^IXIj@CPAPA`@@d@Df@Fv@?BFb@LlABP@NFl@A@????@APlB\\nDNpAHdBBdA?p@?r@IbBA^CzAAZM?????L?MtCSpCA`DCp@UjFCx@GhBIdBE@??????{@`Q[vIs@fTcAlTUxIYnGGK?k@?j@FHGz@i@\\I?EDCJAL?H@FBDEp@CxAA`AE|@Mr@EVSl@m@rAGNGHAJgAvCYp@y@vBIVMXg@nAYr@_@j@QXUVYTo@`@y@f@gAp@_G|CN^nHgE[AFLGMZ@zCsBb@c@Xc@TMLELAX@VNLTZv@PXTj@vFhNh@~AVjAXhDYvC@~BNr@nFlNMHG???BAN^h@nAh@nAX`Af@`B\\|@n@bBf@hAP^x@hBn@`B`@dAf@pApAdDFLGF????FGHTvA|DJZLf@ZfBHt@h@fFZjCRbBCb@LnBdClULbAIBAE????@DHCHv@zBfULn@J`@Tj@R\\^h@d@b@|AtBzFtH~RlWdAtAV\\TXj@t@j@x@|@nATXCD????BEpAhBfBxB\\f@t@~@rAxBj@jB`@~BHr@TnBVlBXxBZlBV|@FPXn@\\p@v@z@lAbAn@d@ZVjAz@h@b@h@f@TREF??",
+        "stops": [
+          {
+            "id": "villas_de_san_fermin"
+          },
+          {
+            "id": "la_noria_20"
+          },
+          {
+            "id": "primaria_francisco_e_garcia"
+          },
+          {
+            "id": "villa_de_guadalupe_160"
+          },
+          {
+            "id": "villa_de_guadalupe_120"
+          },
+          {
+            "id": "villa_sur_i"
+          },
+          {
+            "id": "av_condesa_30"
+          },
+          {
+            "id": "jorge_negrete_270"
+          },
+          {
+            "id": "zacatecas_1"
+          },
+          {
+            "id": "fuente_de_la_minerva_4"
+          },
+          {
+            "id": "calzada_revolucion_mexicana_64"
+          },
+          {
+            "id": "cecati_130"
+          },
+          {
+            "id": "prepa_ii_extension"
+          },
+          {
+            "id": "rincon_colonial"
+          },
+          {
+            "id": "nissan_gpe_1"
+          },
+          {
+            "id": "santa_rita"
+          },
+          {
+            "id": "indecobdz"
+          },
+          {
+            "id": "seduzac_1"
+          },
+          {
+            "id": "citiclub"
+          },
+          {
+            "id": "la_florida"
+          },
+          {
+            "id": "tres_cruces"
+          },
+          {
+            "id": "fenaza_1"
+          },
+          {
+            "id": "minas"
+          },
+          {
+            "id": "mega_cable"
+          },
+          {
+            "id": "plaza_bicentenario_1"
+          },
+          {
+            "id": "issste"
+          },
+          {
+            "id": "servicio_colon"
+          },
+          {
+            "id": "presidencia_zac"
+          },
+          {
+            "id": "partido_accion_nacional_1"
+          },
+          {
+            "id": "galerias_zac"
+          },
+          {
+            "id": "ciudad_gobierno"
+          },
+          {
+            "id": "hospital_general_1"
+          },
+          {
+            "id": "tec_regional_xxi"
+          },
+          {
+            "id": "villas_universidad"
+          },
+          {
+            "id": "siglo_xxi"
+          },
+          {
+            "id": "bimbo"
+          },
+          {
+            "id": "cereso"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "un{iCdmrqR???AWWk@e@k@c@aBmAg@a@}@y@SS_@c@QU]m@c@cAOe@Mu@Io@SqAM_AYyBSaBAKOcAa@sBY{@e@eAi@}@k@w@c@g@cB{BsBmC@?????A?Y_@y@mAoAoBSYY]yD_Fo@y@sMaQu@cAs@_AwFoHMQi@kAa@oCyA{Ne@eEIy@AOEB????DCKw@AMk@aFe@sEg@kECWYeDo@mF_@kDa@eDUuAY{@e@cAi@kAMYOa@?@?????AGQk@}AWs@WUg@mAc@gA[}@M_@y@kCg@oAq@eBa@cAe@_A{@uBcBmEB@??Si@??AAo@_Bm@}AcAsCGYI[C[Ce@@s@Bs@CSFg@He@z@uEFYx@}DX_@HGHALAJBJHFLBR?RCRETO`@SZONONSL[L[@_@BKAOEKE]WQUQ_@i@sAEMUq@y@aC}BoGOa@Sy@MiAAQA_@A_@@c@BYFk@Ja@J_@Vm@rA{CN_@DOL]HU\\uALi@Jg@F]D_@Fo@JwAJiCDgA@UD@??????L@SC?EBw@Bu@X{HToFZoJBw@ZoHFyANyDLmDDeAVkHd@oMRgE@K?KBw@D@??????EAFiBB{@DmAXoGDs@@g@F_BHuBHcDD@????EA@QF}A?O?OFoB?o@?{@?SCs@IuBOeBYyBCWIs@WiDC]??????OqAGi@La@R_ALg@^gAJ]\\Q????????|@aBXSLEZGhACfAMp@_@f@Qb@]b@u@LWL_@H[DD????????EEBGHWXq@Xi@\\a@d@Yr@Un@GVA~AAbCE\\?f@ENCXG\\O^U^WpA{@`@UVOf@Sl@SNE|@UJKNSLWFMPk@FYBg@?k@?s@?O?O?K?I?G?mA?m@J@O???????BA?]?K?g@GsFA_B?sA?I?S?m@C]CUCQCOOg@CGHA????????I@IWQ[Wa@[_@MM]Wc@Yu@_@cBs@GCIEm@[qAw@[Y_@a@s@oA[q@o@iBISIWAB????????@C[w@Qm@KoA?{@@c@J{@J]l@gBHYl@kB\\aAd@mBn@qCDW?@??C@BA???AJk@Lo@Lu@HiCj@eDJk@Ji@VeAXaAVk@~B_EZi@LYx@mBb@sAf@gBpAyF`AeEd@aBTaAFYJF????????KGZoAfBoHdAsEXcBP_BBaA@q@@w@?uBE_AEwBC{ADG????EF?EL}Bt@w@p@W`@a@TeAR_ARi@DWOIi@UiA]OKKOGUCa@FUDQTm@f@iA`AcB????????EEl@mAHM`B_Cv@eAf@q@`BeCn@cAp@kATe@dA}B`@_A\\q@tAqDt@mBXw@Vo@f@iA`@cAVg@CA????????B@FOv@}A~@wAj@u@jAcBf@}@Xs@H[Nc@Bs@Bc@@c@?E@?????????A?AmB?{@?i@A}@?Y?[?S@c@F[v@wEd@oCD@????????EALy@^oBNs@RsA^yAf@wA^}@Vm@d@mALYXs@J[Ry@Dg@Dm@Am@Ai@Iy@EUCQYcAWi@Wg@i@o@e@a@_@WMIAD??KOJN??@Ew@_@a@Uq@a@_@c@S[Sc@M[Q{@AQ?gBHcANsB@@??????AAJqALsABYDy@Ba@@i@Na@PaAN}@Fc@@g@Ei@Ce@Ac@Gq@IoA?QKc@@?????A?Mi@GqAGkAYwHCo@Ai@C{@Q}CO{DEmABk@DKBB????CCPa@_@MEOAMD{ABa@@WP_BVaBf@aBRk@DD????EEDIl@aBZy@jCaIhA}CDKDM@CFB????GCVo@fAcDfAyCl@eBv@aCNg@JWVu@?@?????Ab@sArAwDXSt@mB`@aAb@c@f@]^MjDe@Nl@GB????FCx@jDXlAv@dDLh@mA^cAZqIdCSAu@T]BUC]Kc@USKMGICMGIEUKQK{BaAsD_B?@?????A{CqAcAc@d@kA\\eA\\iAVo@HUZ}@r@gB\\gAZeA^cAd@oAVq@@@????AAN]yAu@}@c@y@a@cAi@_Ae@_Ae@kAg@Jg@Dk@PaBDB????ECHu@VmAVkATkATkARoARgANaAHqBRgBDSLi@F_@LkCFB????GC@[h@yGHkAHoAFy@TkCYg@kB}Cw@sAyAsC?YnB_Db@_ARYrAwBTMz@_@PIZSnDwGDD????EER_@P[eAq@y@k@sA}@e@Ym@a@OIcAe@eA]iAUg@?_@Ak@?O@?B?????Cy@BiAFiAFkADeAHiADiADgADsALOBU@?B?????Cg@Be@Lc@Lc@Re@TWRk@`@eAr@eAn@e@^IF@@????AAy@h@_BfAm@`@OPUXuBpA}AdAmClByBvAwD`C}DiAuAe@@C????ABgBm@y@WwFcBYOz@q@TKjGaEIOAAIF??",
+        "stops": [
+          {
+            "id": "cereso_1"
+          },
+          {
+            "id": "bimbo_1"
+          },
+          {
+            "id": "siglo_xx1"
+          },
+          {
+            "id": "villas_universidad_1"
+          },
+          {
+            "id": "tec_regional_gpe"
+          },
+          {
+            "id": "unidad_deportiva_norte"
+          },
+          {
+            "id": "galerias_gpe_abastos"
+          },
+          {
+            "id": "partido_accion_nacional"
+          },
+          {
+            "id": "presidencia_gpe"
+          },
+          {
+            "id": "colonia_minera"
+          },
+          {
+            "id": "plaza_alesia"
+          },
+          {
+            "id": "ferrocarril_3030"
+          },
+          {
+            "id": "secundaria_tecnica_1"
+          },
+          {
+            "id": "plaza_bicentenario"
+          },
+          {
+            "id": "universidad"
+          },
+          {
+            "id": "parque_arroyo_de_la_plata_minas"
+          },
+          {
+            "id": "fenaza"
+          },
+          {
+            "id": "mc_donalds"
+          },
+          {
+            "id": "jeepdodgefiat"
+          },
+          {
+            "id": "seduzac"
+          },
+          {
+            "id": "indeco"
+          },
+          {
+            "id": "odontologia_3"
+          },
+          {
+            "id": "nissan_gpe"
+          },
+          {
+            "id": "rincon_colonial_1"
+          },
+          {
+            "id": "ejidal_gpe"
+          },
+          {
+            "id": "calzada_revolucion_mexicana_55"
+          },
+          {
+            "id": "aptiv"
+          },
+          {
+            "id": "ine_gpe"
+          },
+          {
+            "id": "combis_gpe"
+          },
+          {
+            "id": "upn"
+          },
+          {
+            "id": "av_del_derecho_307"
+          },
+          {
+            "id": "jorge_negrete_265"
+          },
+          {
+            "id": "av_condesa_26"
+          },
+          {
+            "id": "miguel_cabrera"
+          },
+          {
+            "id": "villa_de_guadalupe_115"
+          },
+          {
+            "id": "villa_de_guadalupe_150"
+          },
+          {
+            "id": "primaria_francisco_e_garcia_1"
+          },
+          {
+            "id": "la_noria_25"
+          },
+          {
+            "id": "villa_fontana"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tdg",
+      "name": "TDG",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "wqwiCtjwpR??CmJEuBGcH?WGwBE}AMqAK{@Mq@y@aE?AD?A???E?Ki@M_AE}@MmAk@qDi@iDgDwOc@sBF?????G?ESy@uDG[e@_C_AqEU_A_@aBmA{Fe@uBB?????C?a@iBsAgAyB{Jq@sCgBiHOaAQoBEo@QeBIk@Mg@IUM_@[e@]a@g@c@e@Y[OUGUE]G]Ea@A_@@q@DwEf@_CT{Cd@sC^w@J}L|AWBUDqANYASKOKKQGSAU@SHQJSHIHELCPANBNJNXXdAFFF\\DRFTNl@GB????FCx@jDXlAv@dDLh@F^n@pCx@hDVdAfAnE?@?????AH`@xA~FLl@T~@V`ALj@R|@Ln@L~@F~@B~@AbACr@K~@Q`AQr@A@????@AELCd@`Cz@q@pCsBzIMn@E?????D?I\\_AxDS\\e@tBKj@c@|Be@lCOt@C?????B?Kn@SbAk@tDDZUxAYIiDa@c@hCa@~BShAOx@G\\]~@c@lAe@v@]^CA????B@IJs@t@sChCq@d@[Po@\\uAp@k@d@_@N@D????AE]NOFuAb@aAVILOXITPJ@CfAfAgAgA??ABJDPLn@t@V`@\\r@JNFb@A|@O~BQnBKf@gAdCq@|AUf@Qv@G\\}B~JMn@?@?????????AOt@Gh@YtAWfBElA?NAV?f@BzA@vBB?????????C??x@?DAt@E^Up@o@dBORMR}@`AiCxDg@z@EHC???????B?CFGJKf@Gb@M`@Sp@e@bAO\\a@r@[p@a@dA_@fA]dAKTm@`BQTKZQXYZo@x@aAtACA????B@KNeA|AAJEHAJ@PAJEJINuAbBm@|@qBrDWf@mAjCQ`@C@??????BAIVa@z@CHI^E^Gj@Cn@CdA@pAXpCL\\CB????????BCLj@DjA?pDEdAA`B?RGhDMtAk@xC{@fDsA|FKd@IA@B????ACH@Sv@ETq@nCK~@qAnEQv@m@bCi@rBg@zAYr@w@`BiCrEWf@[zAqAdHE^E~@KlBMn@ERoAtFMd@?@?????????AK`@qAzDq@jBUhAGb@Ej@A`@B`@@LDb@Nx@HZNZGF??@AA@BI??@Ah@jA|@pBR`@tAzB^\\nAz@h@TJDHDtAr@bAd@DBZPZTNNTXPXBFP`@FPL`@BHBPBVBXBf@?J?H@bB@z@?@???AFrG?T?R@lA?tA?F?F?T?T?f@?x@Ad@ETOd@IPINIJKHu@TODq@Rg@R_@P]PqA|@a@V_@TYJQDQBc@B[@aCBsBBq@HWF?@?????AKDc@P_@VED_@`@a@t@_@bAM`@EJUd@SVUZ[Ta@Pa@Jk@D_@@s@@c@DE@e@Jc@Na@Ti@f@_@b@_@l@Q`@M^IXIj@CPAPA`@@d@Df@Fv@?BFb@LlABP@NFl@A@????@APlB\\nDNpAHdBBdA?p@?r@IbBA^CzAAZM?????L?MtCSpCA`DCp@UjFCx@GhBIdBE@????FK_@rGc@zH[rIs@fTcAlTUxIYnGGI?k@??DAEhAG\\IPWVI?EDCJAL?H@FBDEp@CxAA`AE|@Mr@EVSl@m@rAGNGHAJgAvCYp@y@vBIVMXg@nAYr@_@j@QXUVYTo@`@y@f@]TCC????BBi@Z[R{A`Ai@ZWNWJSJSFaAPWDA?????@?[Do@@k@?s@Ei@ISEWEq@Ui@W]WQMi@k@_@]Q]c@}@Yu@Om@Mq@Ee@Cg@?i@FyANeAXeA\\y@r@yAjAaCxAkCfAiB`A}Af@o@LEPELMBSCSMMICYBUNCD?NFJBFi@l@Ud@oCpEkCfFw@dBKE??",
+        "stops": [
+          {
+            "id": "base_transportes_de_guadalupe"
+          },
+          {
+            "id": "transito_pesado_147"
+          },
+          {
+            "id": "recaudacion_de_rentas_gpe"
+          },
+          {
+            "id": "transportes_parques_industriales"
+          },
+          {
+            "id": "combis_gpe"
+          },
+          {
+            "id": "11va_zona_militar"
+          },
+          {
+            "id": "la_bodeguita_de_gpe"
+          },
+          {
+            "id": "1910_60"
+          },
+          {
+            "id": "sagrados_corazones_gpe"
+          },
+          {
+            "id": "h_colegio_militar_77"
+          },
+          {
+            "id": "odontologia_1"
+          },
+          {
+            "id": "santa_rita"
+          },
+          {
+            "id": "indecobdz"
+          },
+          {
+            "id": "seduzac_1"
+          },
+          {
+            "id": "citiclub"
+          },
+          {
+            "id": "la_florida"
+          },
+          {
+            "id": "tres_cruces"
+          },
+          {
+            "id": "fenaza_1"
+          },
+          {
+            "id": "minas"
+          },
+          {
+            "id": "mega_cable"
+          },
+          {
+            "id": "plaza_bicentenario_1"
+          },
+          {
+            "id": "issste"
+          },
+          {
+            "id": "servicio_colon"
+          },
+          {
+            "id": "presidencia_zac"
+          },
+          {
+            "id": "partido_accion_nacional_1"
+          },
+          {
+            "id": "galerias_zac"
+          },
+          {
+            "id": "ciudad_gobierno"
+          },
+          {
+            "id": "hospital_general"
+          },
+          {
+            "id": "fiscalia_general_de_justicia"
+          },
+          {
+            "id": "ipn"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "uy`jC~biqR??JDUl@Sn@Qx@Kv@Ez@A~@Dn@Bf@Hd@Lr@Tp@\\p@Zl@JLNPXZZZTPFDn@^bA`@f@LPB|@Jl@B????????N?b@?b@C`AOz@Or@]p@]pAw@f@]TQ`@W?@????hBmAf@[\\Ub@c@Xc@TMLELAX@VNLTZv@PXTj@Zz@n@`BxBfGHDH@HAHED]e@sAmBoFo@_BM_@I_@E[GYCa@?s@@k@CMFk@Ja@J_@Vm@rA{CN_@DOL]HU\\uALi@Jg@F]D_@Fo@JwAJiCDgA@URBMA????L@SC?EBw@Bu@X{HToFZoJBw@ZoHFyANyDLmDDeAVkHd@oMRgE@K?KBw@D@??????EAFiBB{@DmAXoGDs@@g@F_BHuBHcDD@????EA@QF}A?O?OFoB?o@?{@?SCs@IuBOeBYyBCWIs@WiDC]????JG??QkACiAR_ALg@^gAJ]TYFF????????GGFI|@oAXSLEZGhACfAMp@_@f@Qb@]b@u@LWL_@H[DD????????EEBGHWXq@Xi@\\a@d@Yr@Un@GVA~AAbCE\\?f@ENCXG\\O^U^WpA{@`@UVOf@Sl@SNE|@UJKNSLWFMPk@FYBg@?k@?s@?O?O?K?I?G?eAHaBMl@??????BA?]?K?g@GsFA_B?sA?I?S?m@C]CUCQCOOg@CGHA????????I@IWQ[Wa@[_@MM]Wc@Yu@_@cBs@GCIEm@[qAw@[Y_@a@s@oA[q@o@iBISIWAB????????@C[w@Qm@KoA?{@@c@J{@J]l@gBHYl@kB\\aAd@mBn@qCDW?@??C@BA???AJk@Lo@Lu@HiCj@eDJk@Ji@VeAXaAVk@~B_EZi@LYx@mBb@sAf@gBpAyF`AeEd@aBTaAFYJF????????KGZoAfBoHdAsEXcBP_BBaA@q@@w@?uB?iAEcCIeADG??????CCHk@?y@Dg@NUZO|@YV]Lg@p@_Ds@WGC@C????????ABkA]O]GUCa@FUDQTm@f@iAVk@b@}@DD????????EEl@mAHM`B_Cv@eAf@q@`BeCn@cAp@kATe@dA}B`@_A\\q@tAqDt@mBXw@Vo@f@iA`@cAVg@CA????????B@FOv@}A~@wAj@u@jAcBf@}@Xs@H[Nc@Bs@Bc@@c@?E@?????????A?AmB?{@?i@A}@?Y?[?S@c@F[v@wEd@oCD@??????EALy@^oBNs@RsA^yAf@wA^}@Vm@d@mALYXs@J[Ry@Dg@Dm@Am@Ai@Iy@EUCQKeFHOBOFSJOJETE?B?????C@?j@CpFUn@AHAhG[gArBQ\\EV@JEHCL@LFJJFH?F?FAHEPATGNI@B????AC`@Qj@k@VS|CiC~AyANq@?o@G]I[Ia@Oa@E}@?aAFW@W?cABaAFe@La@JUPSRWj@c@n@[r@_@?B?????CPKh@YVIj@?n@BzB?V?XANIHQDQLy@Dw@@@????AA@EBMJUFMHWBc@Tm@b@e@dBaCxAyBb@{@DB????ECBEWGyAe@eDeAkA_@@?????A?i@OyIuCKEv@eD?@?????AFSVmArB{Ip@qCaC{@PUHONq@TmAHcABq@BcAAaAIiAKy@Ou@Os@i@uBU_AOm@uA_GMg@@@????AAcAgEWgAy@kD{@uDaAiEYoAk@_C@@????AA[sA^GrL}AGOt@KtC]|Ca@z@I|@KXE?Dd@T??AKpCc@RAj@?^Fb@L`@Pl@d@dAlAHXd@f@Tl@xCrNR|@jAvFfC~Kr@zCA@@???@AAFR|@vArGVfAbCtKJf@F\\Px@Rx@@?????A?`@dB~@dEhAlFHf@`BfIDTrAfGDXH?????I?Jf@Lr@\\`BH\\FV^hBNfABt@H~@DzCDlIHvJ?R?VD|GJNF@H?HCJOCiG@@??",
+        "stops": [
+          {
+            "id": "ipn"
+          },
+          {
+            "id": "fiscalia_general_de_justicia_1"
+          },
+          {
+            "id": "hospital_general_1"
+          },
+          {
+            "id": "unidad_deportiva_norte"
+          },
+          {
+            "id": "galerias_gpe_abastos"
+          },
+          {
+            "id": "partido_accion_nacional"
+          },
+          {
+            "id": "presidencia_gpe"
+          },
+          {
+            "id": "colonia_minera"
+          },
+          {
+            "id": "plaza_alesia"
+          },
+          {
+            "id": "ferrocarril_3030"
+          },
+          {
+            "id": "secundaria_tecnica_1"
+          },
+          {
+            "id": "plaza_bicentenario"
+          },
+          {
+            "id": "universidad"
+          },
+          {
+            "id": "parque_arroyo_de_la_plata_minas"
+          },
+          {
+            "id": "fenaza"
+          },
+          {
+            "id": "soriana"
+          },
+          {
+            "id": "mc_donalds"
+          },
+          {
+            "id": "jeepdodgefiat"
+          },
+          {
+            "id": "seduzac"
+          },
+          {
+            "id": "indeco"
+          },
+          {
+            "id": "odontologia"
+          },
+          {
+            "id": "glorieta_bicentenario_guadalupe"
+          },
+          {
+            "id": "plaza_fray_antonio_margil_de_jesus"
+          },
+          {
+            "id": "jardin_de_gpe"
+          },
+          {
+            "id": "vialidad_arroyo_de_la_plata_19"
+          },
+          {
+            "id": "jiapaz_gpe"
+          },
+          {
+            "id": "191050"
+          },
+          {
+            "id": "11va_zona_militar_1"
+          },
+          {
+            "id": "combis_gpe_1"
+          },
+          {
+            "id": "centro_estatal_de_transfusion_sanguinea"
+          },
+          {
+            "id": "transito_pesado_1000"
+          },
+          {
+            "id": "transito_pesado_82"
+          },
+          {
+            "id": "transito_pesado_15"
+          },
+          {
+            "id": "base_transportes_de_guadalupe"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tyl",
+      "name": "TYL",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "uy`jC~biqR??JDUl@Sn@Qx@Kv@Ez@A~@Dn@Bf@Hd@Lr@Tp@\\p@Zl@JLNPXZZZTPFDn@^bA`@f@LPB|@Jl@B????????N?b@?b@C`AOz@Or@]p@]pAw@f@]TQ`@W?@??GM??CGXHj@]n@c@f@[\\Ub@c@Xc@TMLELAX@VNLTZv@PXTj@Zz@n@`BxBfGHDH@HAHED]e@sAmBoFo@_BM_@I_@E[GYCa@?s@@k@CMFk@Ja@J_@Vm@rA{CN_@DOL]HU\\uALi@Jg@F]D_@Fo@JwAJiCDgA@URBMA????EA?EBw@Bu@Tk@VaB\\gFRmDFuBTcGzC@z@D`DVdCP@G????AFh@DlA}BJQVKJr@^dEThCRpB`@nDDf@\\xDJfAFrAFp@|@S@D????AExBe@RAp@QdAYhAQfASfAQf@Mb@Yz@e@~@cADWYsBEBe@Od@N??DCEWqAVkAPgAVe@k@q@\\aAb@aAf@gAd@k@XQ@oC~@UwBQoBYmDUcBY{Cc@sDMyAEuCDu@Fs@Ac@G_@Oa@Ye@wAeBy@cAu@kAaAgB{@eBw@gBk@qAOs@IcAEgADQ?i@HeBB}@Dm@^iESOUAmAE?KBw@D@A@????EAFiBB{@DmAXoGDs@@g@F_BHuBHcDD@????EA@QF}A?O?OFoB?o@?{@?SCs@IuBOeBYyBCWIs@WiDC]????JG??QkACiAR_ALg@^gAJ]TYFF????????GGFI|@oAXSLEZGhACfAMp@_@f@Qb@]b@u@LWL_@H[DD????????EEBGHWXq@Xi@\\a@d@Yr@Un@GVA~AAbCE\\?f@ENCXG\\O^U^WpA{@`@UVOf@Sl@SNE|@UJKNSLWFMPk@FYBg@?k@?s@?O?O?K?I?G?eAHaBMl@??????BA?]?K?g@GsFA_B?sA?I?S?m@C]CUCQCOOg@CGHA????????I@IWQ[Wa@[_@MM]Wc@Yu@_@cBs@GCIEm@[qAw@[Y_@a@s@oA[q@o@iBISIWAB????????@C[w@Qm@KoA?{@@c@J{@J]l@gBHYl@kB\\aAd@mBn@qCDW?@??C@BA???AJk@Lo@Lu@HiCj@eDJk@Ji@VeAXaAVk@~B_EZi@LYx@mBb@sAf@gBpAyF`AeEd@aBTaAFYJF????????KGZoAfBoHdAsEXcBP_BBaA@q@@w@?uBE_AEwBCaB?iBPi@^[h@Od@QTc@t@aDHWMQk@OGC@C@???????ABkA]KCCYGUCa@FUDQTm@f@iAVk@b@}@DD????????EEl@mAHM`B_Cv@eAf@q@`BeCn@cAp@kATe@dA}B`@_A\\q@tAqDt@mBXw@Vo@f@iA`@cAVg@CA????????B@FOv@}A~@wAj@u@jAcBf@}@Xs@H[Nc@Bs@Bc@@c@?E@?????????A?AmB?{@?i@A}@?Y?[?S@c@F[v@wEd@oCD@????????EALy@^oBNs@RsA^yAf@wA^}@Vm@d@mALYXs@J[Ry@Dg@Dm@Am@Ai@Iy@EUCQYcAWi@Wg@i@o@e@a@_@WMIAD??KOJN??@Ew@_@a@Uq@a@_@c@S[Sc@M[Q{@AQ?gBHcANsB@@??????AAJqALsABY_@J[HYF_@Je@Lo@T{Bz@SHe@P_@LYJG@?@?????A_@DmAB}BLq@DyA@QC[G\\}@Tm@Tm@Ly@GScAo@q@a@k@VSBOEMGGKPe@DUf@}@j@kAt@_B?@?????A`@{@J[\\_An@qAl@qAl@uAh@sAh@uAl@sARy@j@oAA?????@?j@qAf@uAf@wAd@uAd@qAj@sA{@]@?????A?UKuA_@sAe@wAa@iA]?MBO\\cAwBm@wBV]K{@e@gAo@UCk@Cc@WiAw@w@c@BC????CBWQWMw@[s@a@YMo@Ye@SoAk@kAc@qAc@iA`B_@|@?@?????AGNmA]WAYISGi@SQGWK]Oe@Sa@O_@MWKi@QeAYo@SQGs@SMEOODE????EDGIwBw@qCeA}Am@aDgA_@M@G????AFSI\\iA\\gAZeA\\gAZcATs@Vw@V{@r@eCRm@`@wADSAMXcAj@sBVy@\\iAl@oBRYVw@@@????AA~BoH`A_DbAcDX}@\\qAbA}CgC_BcB}@_BaA[Dm@I]KJOY]AD????@EmCaDs@w@s@{@q@w@uBcCLuDD{AZcIKq@JAFGBMASKIM?KByD{BcAm@BG????CF_Ak@yA}@wEqCYCw@a@WQ}@kAOHgFyLCB????BCyAiDc@cAKQWs@e@gAaAyBEU{BsBg@YqEgA?@??",
+        "stops": [
+          {
+            "id": "ipn"
+          },
+          {
+            "id": "fiscalia_general_de_justicia_1"
+          },
+          {
+            "id": "hospital_general_1"
+          },
+          {
+            "id": "unidad_deportiva_norte"
+          },
+          {
+            "id": "universidad_autonoma_de_durango"
+          },
+          {
+            "id": "san_fernando"
+          },
+          {
+            "id": "san_francisco_4"
+          },
+          {
+            "id": "galerias_gpe_abastos"
+          },
+          {
+            "id": "partido_accion_nacional"
+          },
+          {
+            "id": "presidencia_gpe"
+          },
+          {
+            "id": "colonia_minera"
+          },
+          {
+            "id": "plaza_alesia"
+          },
+          {
+            "id": "ferrocarril_3030"
+          },
+          {
+            "id": "secundaria_tecnica_1"
+          },
+          {
+            "id": "plaza_bicentenario"
+          },
+          {
+            "id": "universidad"
+          },
+          {
+            "id": "parque_arroyo_de_la_plata_minas"
+          },
+          {
+            "id": "soriana"
+          },
+          {
+            "id": "mc_donalds"
+          },
+          {
+            "id": "jeepdodgefiat"
+          },
+          {
+            "id": "seduzac"
+          },
+          {
+            "id": "indeco"
+          },
+          {
+            "id": "odontologia_3"
+          },
+          {
+            "id": "nissan_gpe"
+          },
+          {
+            "id": "imss_subdelegacion_zacatecas_1"
+          },
+          {
+            "id": "av_tierra_y_libertad_165"
+          },
+          {
+            "id": "tierra_y_libertad_1a_seccion"
+          },
+          {
+            "id": "plan_de_ayala_6"
+          },
+          {
+            "id": "tierra_y_libertad_2a_seccion"
+          },
+          {
+            "id": "16_de_septiembre_40"
+          },
+          {
+            "id": "tierra_y_libertad_3a_seccion"
+          },
+          {
+            "id": "av_siglo_xxi_15"
+          },
+          {
+            "id": "av_prolongacion_la_fe_12"
+          },
+          {
+            "id": "via_rodi_7"
+          },
+          {
+            "id": "quintas"
+          },
+          {
+            "id": "centro_deportivo_bugambilias"
+          },
+          {
+            "id": "paseos_de_san_agustin"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "_c`jCjpnpR???AxEjAt@T|BvBH?`AxBd@fAVr@JPb@bAxAhDCB????BCfFxLNI|@jAVPv@`@NTvEpCzA|@bBdABC????CB\\RxDxB?JBHY`KGtAKvC^b@tBbCp@v@r@z@r@x@}AdBNXvCv@h@RFBA@??GC`ATt@RO|@QjAYhA[pAlGnD`@PeAdD_A|CsCpJE\\IVC@?Ab@oACCKZE\\m@nB]hAWx@k@rBYbAEDEFGTUr@_@jAq@`CWz@Up@Wx@[dA[bA]jA]dA[fAEJLFb@P@?????A?NF|CjA|Aj@rCjAvBv@\\BLDr@RHD@EsBg@rBf@ADF@n@RdAXh@PVJ^L`@Nd@R\\NVJPFh@RRFXHV@lA\\Rg@@B????ACRe@hAaBpAb@jAb@nAj@d@Rn@XXLr@`@v@ZVLp@`@AD@CAB@E\\RhAv@b@Vj@BTBfAn@z@d@\\JvBWvBl@pAd@vA`@rAb@rA`@bAZ????????JDe@`Bk@rAe@pAe@tAg@vAg@tA{@nBAA????@@[p@Sx@m@rAi@tAg@nAA?kFvLjFwL??@?AB{AlDaHpOl@Rx@WhAh@\\NRNHXUhAyAzCnALrACdFQl@O?C?@@NAO???BFA^M^Md@QRG|B{@\\ATDRLJNJ`@AJA@????????@AKxBInAD`B@^RjAHT\\t@`@p@`@Zx@j@`@V~@d@PJ@C??fAfAgAgA??ABJDPLn@t@V`@\\r@JNHVLJD\\Dj@Br@Af@El@Op@I`@aB`EeAnAUf@Qv@G\\}B~JMn@?@?????????AOt@Gh@YtAWfBElA?NAV?f@BzA@vBB?????????C??x@?DAt@E^Up@o@dBORMR}@`AiCxDg@z@EHC???????B?CFGJKf@Gb@M`@Sp@e@bAO\\a@r@[p@a@dA_@fA]dAKTm@`BQTKZQXYZo@x@aAtACA????B@KNeA|AAJEHAJ@PAJEJINuAbBm@|@qBrDWf@mAjCQ`@C@??????BAIVa@z@CHI^E^Gj@Cn@CdA@pAXpCL\\CB????????BCRh@D|@E`EEdAA`B?RGhDMtAk@xC{@fDsA|FKd@IA@B????D?Qt@Sf@g@|@g@|A{@vDu@|AiAjCcAt@WZ]xA]`A{@fCk@nB[z@YdA[bEW`Bc@jAS~Ak@xAEAA???D@IN_@lA[r@????KdACbAOpBg@|Ak@jA}AnCw@~@fAdANH?@A@?????A`@RA`@B`@@LDb@Nx@HZFb@??@AA@BI??@Ah@jA|@pBR`@tAzB^\\nAz@h@TJDHDtAr@bAd@DBZPZTNNTXPXBFP`@FPL`@BHBPBVBXBf@?J?H@bB@nAD@????ES???AFrG?T?R@lA?tA?F?F?T?T?f@?x@Ad@ETOd@IPINIJKHu@TODq@Rg@R_@P]PqA|@a@V_@TYJQDQBc@B[@aCBsBBq@HWF?@?????AKDc@P_@VED_@`@a@t@_@bAM`@EJUd@SVUZ[Ta@Pa@Jk@D_@@s@@c@DE@e@Jc@Na@Ti@f@_@b@_@l@Q`@M^IXIj@CPAPA`@@d@Df@Fv@?BFb@LlABP@NFl@A@????@APlB\\nDNpAHdBBdA?p@?r@IbBA^CzAAZM?????L?MtCSpCA`DCp@UjFCx@GhBIdBE@????FKQlFq@`J[rIs@fTcAlTUxIYnGGI?k@??DAEhAG\\IPWVI?EDq@UwAe@qCm@wB[aBEkAHoARqB\\gBTmC`@q@?ICYBUNCD?NFJBFi@l@Q\\@@????AACFoCpEkCfFw@dBKE??",
+        "stops": [
+          {
+            "id": "paseos_san_agustin"
+          },
+          {
+            "id": "centro_deportivo_bugambilias"
+          },
+          {
+            "id": "quintas_1"
+          },
+          {
+            "id": "prolongacion_barones_24"
+          },
+          {
+            "id": "av_prolongacion_la_fe_2"
+          },
+          {
+            "id": "av_siglo_21_29"
+          },
+          {
+            "id": "tierra_y_libertad_3a_seccion_1"
+          },
+          {
+            "id": "16_de_septiembre_47"
+          },
+          {
+            "id": "tierra_y_libertad_2a_seccion_1"
+          },
+          {
+            "id": "prepa_ii_extension_1"
+          },
+          {
+            "id": "tierra_y_libertad_1a_seccion_1"
+          },
+          {
+            "id": "av_tierra_y_libertad_161"
+          },
+          {
+            "id": "imss_subdelegacion_zacatecas"
+          },
+          {
+            "id": "nissan_gpe_1"
+          },
+          {
+            "id": "santa_rita"
+          },
+          {
+            "id": "indecobdz"
+          },
+          {
+            "id": "seduzac_1"
+          },
+          {
+            "id": "citiclub"
+          },
+          {
+            "id": "la_florida"
+          },
+          {
+            "id": "tres_cruces"
+          },
+          {
+            "id": "fenaza_1"
+          },
+          {
+            "id": "minas"
+          },
+          {
+            "id": "ingenieria_uaz"
+          },
+          {
+            "id": "idiomas_artes_uaz"
+          },
+          {
+            "id": "central_vieja"
+          },
+          {
+            "id": "plaza_bicentenario_1"
+          },
+          {
+            "id": "issste"
+          },
+          {
+            "id": "servicio_colon"
+          },
+          {
+            "id": "presidencia_zac"
+          },
+          {
+            "id": "partido_accion_nacional_1"
+          },
+          {
+            "id": "galerias_zac"
+          },
+          {
+            "id": "ciudad_gobierno"
+          },
+          {
+            "id": "quantum"
+          },
+          {
+            "id": "ipn"
+          }
+        ]
+      }
+    },
+    {
+      "id": "p_i",
+      "name": "P.I.",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "kdmlCpuxrR??BcBc@A?W`GJjB@~@ChAGn@Od@Qf@SfCkAjCoArDaBlCuAdCmAHEFCLGHEJEtCsAlEsBXBjGwCbLiFzFoCpG}C~PaIhB{@lAi@nAk@nAk@l@YrB_AbCgA|CqAdDyAj@WhD}AjCmA`Ae@|E{BrG{CzDiBnFmCvMoHtC_BzAy@dGkDzOyIv@e@zAy@bLmGr@_@hFwCfEaCHGtC_Bl@_@h@_@\\[XYV]R[Tc@P_@N_@lGeS^kApGkSt@aCp@uBvB{G|EuOh@_BrBkGlByF|DqL\\eAHWbBaFRi@Pa@^y@P[R_@`@o@`@k@T[^e@hAkAfBoBnHcILa@XKHEFGr@u@~BcChBsBbDoDVYTW`@_@`@_@ZW\\UXQXOZO\\OnAa@^U~Ba@~@QfGgApKgB~AW`[iFzJcB~JaBfEs@lB_@jBe@fA]zAi@b@QZO~BkAzBiA`@ShAm@jLgGbFiCbRuJ|McHbFgC`Ae@z@e@pC{A~EiCnDiBhGuCbBu@zBcA|CwAhEuBjEyB`B{@fB}@dOqHRKNIfEsBbAe@z@_@z@]nAk@bCw@|@UlA[\\KjBi@|DkAxBw@zAu@f@Yp~@gg@z@e@z@g@dB}@fEcCfDeCt@o@fAeAlAiAhEuEb@e@`CgCxBaCfAy@hAw@nAq@~Ao@pAa@pJ_C~@Ur@QtA_@hAYxEmAzCcAVItAi@r@[hAg@fOiIxF_DrE_CrGsCxo@{XbIiDhCeAlD_BzFgCt}@m`@|@_@rQyHhD{AdCgA~@m@nCeApD}A|I_EdDaC|CkCx\\_Z?A?C????`UsQ`GsDfRoLbIqH`D_DxByBtEsE`MsLdF_FtN_NzEeDbEuCjOyJxZoS~TiOlDaCbFcDjMyH~dAss@FFA???????GGxe@id@hBqBdEyDv@o@`G_Fn@a@\\?l@e@hCyBrE{DhAaAvCgCn@k@vD_DzBqBhC{BvD_DfB{A|AiAl@q@~AqAZa@HCHKBM?KEKGGKGMCM@GDMe@Ia@C[zBk@vBq@lCkAhB{@fAq@`BeAj@a@`D{BtByAdAw@bDoC~FaFjGsF\\[xCmChHmGhI_HdLsJzDgDzIqHz@u@dBeArBoABJ????????CKXQ|A_AfBmAx@k@vBqBJKvAqAjAmAhAmA`AcAfBgBpAoAhA_Aj@_@bB_ApCkArb@yMtb@wMxMcE|Ae@fEsAtk@oQ~GwBxDoA`EsAlBk@rM}DtDiAhPeFl@Q`JsCdR}F|NuEdUcHt^cLd@Oz@Y`EmAzBs@tBk@nC{@vEwA`Cu@f@Qf@MzBu@RG|@Wp@UpEyAx@YdH}Bf[wJbXiIpj@eQ|O_FzM_ElTaHbBi@lPiFfXkIdEkA~Bm@fAUhAOVCzBM|EWxCOxEStIc@hQ{@xAEd@?dADdAB^@`@AZGdASfASf@IzAIb@E`ACxEWv@Ez@Kt@OlIoCj@Ol@Ml@Gr@Ep@?n@Dl@HD@z@RfAXpCx@|Cx@rA\\pEhA|Bj@jALl@DV@N@h@Bd@@Z?J?^Ax@EpAOp@Mx@Q~Bq@lQsFr@OdAc@dAa@xBi@pBe@pAM~@E~AAr@@l@BhALpIhAjBTfARfBb@n@VlAl@|@b@~@b@h@Pf@Hf@D`A@|@A`AA`@Aj@Ej@MFCd@Q\\YtBoA`CwAzAaAj@e@b@g@BEDF????????EGb@o@b@s@lBkDh@eAHSPc@FSBWD]Fq@H{@Fg@He@z@uEFYx@}DX_@HGHALAJBJHFLBR?RCRETO`@SZONONSL[L[@_@BKAOEKE]WQUQ_@i@sAEMUq@y@aC}BoGOa@Sy@MiAAQA_@A_@@c@BYFk@Ja@J_@Vm@rA{CN_@DOL]HU\\uALi@Jg@F]D_@Fo@JwAJiCDgA@UD@????????A_ABu@X{HToFZoJBw@ZoHFyANyDLmDDeAVkHd@oMRgE@K?KBw@D@????????EAFiBB{@DmAXoGDs@@g@F_BHuBJuDF}A?O?OFoB?o@?{@?SCs@IuBOeBq@_IQmA????????K@Iw@CYCoA?YBy@Jm@BQJ[Tk@Ze@VYTYPS\\Qr@QZGx@It@Cj@Ch@Kf@Qb@]b@u@LWL_@Lc@HWXq@Xi@\\a@d@Yr@Un@GVA~AAbCE\\?f@ENCXG\\O^U^WpA{@`@UVOf@Sl@SNE|@UJKNSLWFMPk@FYBg@?k@?s@?O?O?K?I?G?mA?m@C@??????BM?A?O?K?g@GsFA_B?sA?I?S?m@C]CUCQCOOg@M_@Q[Wa@[_@MM]Wc@Yu@_@cBs@GCIEm@[qAw@[YUW?@hAx@????iAy@?AIIs@oA[q@o@iBISe@oAQm@KoA?{@@c@J{@J]l@gBHYl@kB\\aAd@mBn@qCDW?@??C@BA???AJk@Lo@Lu@HiCj@eDJk@Ji@VeAXaAVk@~B_EZi@LYx@mBb@sAf@gBpAyF`AeEd@aBTaAFYJF????????KGZoAfBoHdAsEXcBP_BBaA@q@@w@?uBE_AEwBCaBU_FGiA?c@?i@@WFe@N}@J_@FWTiARm@Tu@h@_A`BuCLUDGDIt@kAd@m@~AuBzA{Bp@iAXg@`@w@Xk@j@qAj@sApByEhAuCxAoDDKDKTi@f@gAZi@h@{@b@s@dB}BXg@P]Ri@R_AHy@@_A?g@?S?SAs@AiC?[?Y@QBs@N{@l@sD^wBDQDSn@iDFMNKRsA^yAf@wA^}@Vm@d@mALYXs@J[Ry@Dg@Dm@Am@Ai@Iy@EUCQYcAWi@Wg@i@o@e@a@_@WMIAD??KOJN??@Ew@_@a@Uq@a@_@c@S[Sc@M[Q{@AQ?gBHcAZeELsABYDy@Ba@@i@Bg@HoABaA?c@?wAEk@C[Kc@EqA?I?IEu@GqAEgAAMAYYwGG{AEuAAc@E_BEy@K{BKoCA[?w@BoA@SPO@WP_BVaBf@aBXu@l@aBZy@jCaIhA}CDKDM@CFB????????GCVo@fAcDfAyCl@eBhBi@bDaA~KqDfCw@w@mDy@wDg@YFUGT??OqBnM}AGOt@KtC]|Ca@z@I|@Kb@NjDi@RAj@?^Fb@L`@Pl@d@dAlAHXd@f@Tl@xCrNR|@p@hAl@rCdChLh@dChAfFp@zC`DvNH\\x@rD|AbHdA~E~AvIxA|GNt@Hd@Nr@^bB`@tBNjADv@FhB@nBFfH@f@O?HvJ?R?Vd@IE@AAVZW[??DAIuIAcA?i@GeHCoCEiACe@Iw@Ky@UkAw@uDGmBu@eHyHo_@_DgOuAeGe@uBB?????",
+        "stops": [
+          {
+            "id": "fresnillo_central_autobuses"
+          },
+          {
+            "id": "enrique_estrada"
+          },
+          {
+            "id": "calera"
+          },
+          {
+            "id": "aeropuerto"
+          },
+          {
+            "id": "tec_regional_zac"
+          },
+          {
+            "id": "unidad_deportiva_norte"
+          },
+          {
+            "id": "galerias_gpe_abastos"
+          },
+          {
+            "id": "presidencia_gpe"
+          },
+          {
+            "id": "ferrocarril_3030"
+          },
+          {
+            "id": "camara_de_comercio_gpe"
+          },
+          {
+            "id": "universidad"
+          },
+          {
+            "id": "parque_arroyo_de_la_plata_minas"
+          },
+          {
+            "id": "odontologia_3"
+          },
+          {
+            "id": "aptiv"
+          },
+          {
+            "id": "combis_gpe_1"
+          },
+          {
+            "id": "base_transportes_de_guadalupe"
+          },
+          {
+            "id": "transportes_parques_industriales"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "_kxiCpuspR????C?a@iBsAgAyB{Jq@sCgBiHOaAQoBEo@QeBIk@Mg@IUM_@[e@]a@g@c@e@Y[OUGUE]G]Ea@A_@@q@DwEf@_CT{Cd@sC^w@J}L|AWBUDqANkBZc@DSBO?I?OCMCOGOKMQIQIUE[?UDUFUHOPQNKNGPANBJJHR@ZIv@q@jBELMd@uBhG{@fCa@hA]bAQ`@EPIXoBjFYx@e@vAaBtEELEJc@pAgDhJOj@IVIZSd@o@fBa@pAQt@Ot@Mp@Kp@Iz@Et@Az@?t@@\\T`FJpBBfBB`@NdDZ|GB^@LFdAFfADr@?H?HFnAJbA@h@AxA?^C~@QvBIdAGp@Gd@AVEb@[vEGlA@jBBVLr@HZJTVd@V^f@f@v@h@`@V|@d@\\Rd@b@\\b@Xd@Vh@Tt@DRD\\Dj@Br@Af@El@Op@I`@aB`Ec@bA[z@M^Md@On@e@`Cs@nDERCNOt@y@zAYtAWfBElA?NAV?f@BzA@vBB?????????C??x@?DAt@E^Up@o@dBORMR}@`AiCxDg@z@IPGJKf@Gb@M`@Sp@e@bAO\\a@r@[p@a@dA_@fA]dAKTm@`BQTKZQXYZoAzAuAxBe@hA?b@k@t@wAdBcCpEWf@mAjCQ`@C@?A??????BAIVa@z@CHI^E^Gj@Cn@CdA@pA^pCTjAFz@@|DAhAA|A?`@O|CMtAk@xC{@fDsA|FUb@@B????ACMv@Mh@q@hBUl@]`B]lAm@vAs@xAq@tAkA`AU~@Ij@Up@kCzHMb@_@xDMvA_@nAY`AOj@Gb@Ob@c@l@[fA[|AKbAE~AYnB_AbCeBfCw@~@fAdANH?@E????????A`@RA`@B`@@LDb@Nx@HZFb@??@AA@??lBpDR`@tAzB^\\nAz@h@TJDHDtAr@bAd@DBZPZTNNTXPXBFP`@FPL`@BHBPBVBXBf@?J?H@bB@nAD@????ESDREY?A?h@FnF?T?R@lA?tA?F?F?T?T?f@?x@Ad@ETOd@IPINIJKHu@TODq@Rg@R_@P]PqA|@a@V_@TYJQDQBc@B[@aCBsBBmARmAn@e@f@c@r@[`Aa@nAa@p@m@h@u@PeBNiBRkA`@_At@}@|Aa@xABfCj@~FI\\????NZ`@~FNpAHdBBdA?p@?r@IbBA^CzAOpDSpCA`DCp@i@jNGJ????FK_@rGc@zH[rIs@fTcAlTUxIYnGGI?k@?j@??@AA\\G\\IPWVI?EDCJAL?H?t@ArBIhBGp@[fAe@`A]t@]jAiApCi@vAa@fA?d@Tj@h@pAn@hBh@nAVp@L^pCtH\\z@h@~AVjALhAFV?p@Cz@Kn@a@~AUv@_@pA{@xC]nAKVk@bAa@h@c@X{@v@qAx@}@d@e@RaA`@mAZcANU?wALK?u@?eA?iAGiAKcFo@q@ISCuIkAoDc@gASm@M]Kg@SgAk@iAs@[Q}@i@i@[a@KUK_@Ma@K]Ee@Gk@G{ADwA?wECm@?gPBuC@yTF}A@aCBkD@eBEqACyAMmAMqAQOCSCk@K{HmA_BQmCQkBEgA?[?uCBsFJad@p@cHLuGFuD?iSIyHIiBCqAAsBCuA?aA?qBN}@J_C\\mHhAUBE@o@FeBLg@@kBB_B@kA?W?w@?m@Eg@Ek@Gk@Is@Mm@MWC}KeC}Be@kB_@qASsAQ_DSyBC_UJ}@EkKFgQBgCEa@HeDA_BEaD@eABuDXiA?kA@m@Bk@@eA?aACg@Ec@G_I_BkAUc@I_@GaE{@aAQ{AW_AG{@?_AFu@Nq@RcA^[NUL}@d@o@Z}B~@SLkAb@?@@B???????AEBe@RsAn@mB~@]LC@kNzJ}ChDw@v@O\\yBpBqC~Byj@pe@oFtEaEjDkXpUeJ`I{\\pY{g@bc@}IzHwJhIyE`E{AnAsE|DgUvRuRlPmAdAaBvAsCdCwJnI}DbDu@j@[VcAbAy@x@oBdCgFjGgAbAKHeDfCmAv@q@`@q@\\_H`EsKdJKHuD`D}EdEA?????????@?wAlAqBbBkIbHiHfG{ChCa@ZsOxMsFvE{AnAwC~Bo@h@eBhA{@h@iB~@uBz@k@RSFmAb@wBf@Fd@BZH`@Ld@GFANBPGRMVoAbAu@`@sAxAg@d@gAbAuHlGaCtB{DfDi@`@}CjC_Az@uExDkCxBm@f@IZo@`@aG~Ew@n@eExDiBpBsDlDkBlB_@^s@r@MNMJsBvBaBxA{DvDaElDcEvDGDi@f@FF????????GG}@x@sBzA}HlFSN_@Tu@f@a@XgAr@WNiAt@o@b@gAt@m@b@qBpA}AbAaAn@iBjAc@VkHrE_BfAgAt@sElCaLdI{x@fi@uZhS_HxEk[vYkGdGoG|FkCdCwIfIkDdDwMzI{PjKmPvN????????qVnSgMtK}EvCgChAeDIgAFiAv@{AxA}_@~P}|@~_@oF|B}D`BgClA_IhD_p@~X_JdE_CnAmQlJkCvA{BhAa@NyB|@sC|@uEjAaDz@G@o@N}@TgAXkHfBQDeAXgBt@sAr@eAv@aAt@cCdCaAdAo@r@gGtGeAhAiAbAa@\\w@l@yB~AuDvBmB~@MHmBfAq}@pf@kChAyAn@iBr@wDpAsAd@mC|@{Bx@oAb@k@VgAf@{GhDQHkOtHoExBuCtAaDzA{C|AcBx@wBfAyAt@_MfG_FhCYNwBdAaAf@_Ad@}T`LkRlJeTnKw@^IDqBbAaD~A]Nm@ZoAh@gAZeCd@qSjDyJ`BgYxEu@JcBXoBLs@BeA@k@Cu@EwAM{CYy@Eg@CM@_@Ju@Fa@Fc@J_@Jg@Pc@T_@Vi@b@_@b@Y^k@~@Yf@Wd@s@nAQZcD`G[j@c@r@UZc@l@STsC|Ca@d@_@J_BhBmAvAgFpF_AbA_@b@Y\\i@t@[f@QZWd@e@~@]x@g@tAy@bCe@zA}DpL}BxGqBhGg@~A}EvOiDvKcIhWa@pAoCxIwAtEa@hASh@Uf@Yd@_@d@]^]X_@VkAr@uBjAKFqLrGu@`@_OhIy@b@aMbHcIlEwBlAsC|AsMpH_Bx@uCvAyDfBqGxCcF`CeAf@_CfAmD~Ai@ToKzEs@ZuB~@k@XoAl@qAl@mAj@mSjJq@ZMFmF`C_GnC_LjF}DdBoAh@OVmErBuCrAKDIDMFGBIDeClAmCtAS?sClAcD|AgClAe@Pc@NYHQDMBQBYBYB_@@O?yB?o@AuDIIb@`@?E|A??",
+        "stops": [
+          {
+            "id": "transportes_parques_industriales"
+          },
+          {
+            "id": "seduzac_1"
+          },
+          {
+            "id": "tres_cruces"
+          },
+          {
+            "id": "minas"
+          },
+          {
+            "id": "central_vieja"
+          },
+          {
+            "id": "plaza_bicentenario_1"
+          },
+          {
+            "id": "issste"
+          },
+          {
+            "id": "presidencia_zac"
+          },
+          {
+            "id": "galerias_zac"
+          },
+          {
+            "id": "ciudad_gobierno"
+          },
+          {
+            "id": "morelos"
+          },
+          {
+            "id": "cesantoni"
+          },
+          {
+            "id": "calera"
+          },
+          {
+            "id": "enrique_estrada"
+          },
+          {
+            "id": "fresnillo_central_autobuses"
+          }
+        ]
+      }
+    },
+    {
+      "id": "tcoal",
+      "name": "TCOAL",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "eghjCx``pR?????A~@PFHl@Hj@Fv@LjAX|AV~A\\`B^hB^fB`@f@Hx@LbE`AzLdCfb@tI`CXj@N^L^Lv@ZhDbBV@nH|E|u@ze@jBhAXPnD~BhElC|@h@FR~AbAPJj@^`@Rz@XfBb@n@Lh@Nh@J`@Jl@N`Cd@^JjAZtBd@nATdGzA~@N~@R~@PnCl@~Dz@DU{DeAyCi@w@OIAAB????????@CwBg@E^~@N~@R~@PnCl@~Dz@jB^~AZd@JrAZbAT`Dr@zDz@r@P|@R~AZv@BV?PAx@IRKpAGviAgHrIi@vIg@`@C`F[tBOvCSjH_@zGa@ZDpDWx@GLAAGoCL????nCM@Fj@EbAIxAAN?fDC|@Hx@Tn@\\^f@f@lAXnB@`A?X?~@N`^Pbl@?RB|I?`A?tB?rMB`I@rB@hG@lFBfQ@dH@bG@fB?|@B|DDxLEpA?^?h@@bA@fADfPAdB@rAB@XR????YSCA?J?~D@bC?`@@v@BbD@~@B|ADpE?j@@`BBbIJjTAlC?j@In@?|ADbU?|A?X?D?@Df@Cj@Bk@Eg@?A?J?LBvEDnJ?lCBbC@fB?x@?fDLP@jA@|@@tADnP@pB?h@?r@BrFBfG?`A?jB?v@CdA?lCClCAzCJJ@|CA`@KbF@|@BTBNBTFZ`@pB^hBPjAF\\DRFTTbAJAJd@FUGTKe@xCbMdIp\\xAvHR`C@|BkA`GuIkCcLuDI~Je@lCcFbTyD`RoClM{AWaAFqGbESlBC???????@AKxBInAD`B@^RjAHT\\t@`@p@`@Zx@j@`@V~@d@PJ@C??fAfAgAgA??ABJDPLn@t@V`@\\r@JNFb@A|@O~BQnBKf@gAdCq@|AUf@Qv@G\\}B~JMn@?@?????????AOt@Gh@YtAWfBElA?NAV?f@BzA@vBB?????????C??x@?DAt@E^Up@o@dBORMR}@`AiCxDg@z@EHC?????????B?CFGJKf@Gb@M`@Sp@e@bAO\\a@r@[p@a@dA_@fA]dAKTm@`BQTKZQXYZuBrCoAvB}AzC}@rAqBrDWf@mAjCQ`@C@????????BAIVa@z@CHI^E^Gj@Cn@CdA@pAXpCL\\CB????????BCLj@DjA?pDEdAA`B?RGhDMtAk@xC{@fDsA|FKd@IA@B????ACH@Sv@ETq@nCK~@qAnEQv@m@bCi@rBg@zAYr@w@`BiCrEWf@[zAqAdHE^E~@KlBMn@ERoAtFMd@?@?????????AK`@qAzDq@jBUhAGb@Ej@A`@B`@@LDb@Nx@HZv@bB|@pBR`@tAzBLJ?@?????????APPnAz@h@TJDHDtAr@bAd@DBZPZTNNTXPXBFP`@FPL`@BHBPBVBXBf@?J?H@bB@nAD@??ESDR??EA?NFnF?T?RLR@lB?H?F@L@RHJLBt@@HHJPF\\_@|CGt@CZ?\\DRHNHJLJTNPDNDLAVEGODF??Lr@",
+        "stops": [
+          {
+            "id": "tacoaleche"
+          },
+          {
+            "id": "zoquite"
+          },
+          {
+            "id": "santa_monica_1"
+          },
+          {
+            "id": "osiris"
+          },
+          {
+            "id": "martinez_dominguez"
+          },
+          {
+            "id": "combis_gpe_1"
+          },
+          {
+            "id": "nissan_gpe_1"
+          },
+          {
+            "id": "santa_rita"
+          },
+          {
+            "id": "indecobdz"
+          },
+          {
+            "id": "seduzac_1"
+          },
+          {
+            "id": "citiclub"
+          },
+          {
+            "id": "tres_cruces"
+          },
+          {
+            "id": "fenaza_1"
+          },
+          {
+            "id": "minas"
+          },
+          {
+            "id": "mega_cable"
+          },
+          {
+            "id": "camara_de_comercio_zac"
+          },
+          {
+            "id": "issste"
+          },
+          {
+            "id": "5_senores"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "md}iCdobqRMs@??EGFNvAeBpBmDvAsAn@w@ZMVEZOVWGu@A]Ha@x@_Br@eBU]c@Gm@OoDqAo@Ss@@m@J_@l@cBpEy@lDMh@ONUN[G[UM_@EY?{@?@?H??????BA?]?K?g@GsFA_B?sA?I?S?m@C]CUCQCOOg@CGHA????????I@IWQ[Wa@[_@MM]Wc@Yu@_@cBs@GCIEm@[}@i@BC??????iAy@?AIIs@oA[q@o@iBISe@oAQm@KoA?{@@c@J{@J]l@gBHYl@kB\\aAd@mBn@qCDW?@??C@BA???AJk@Lo@Lu@HiCj@eDJk@Ji@VeAXaAVk@~B_EZi@LYx@mBb@sAf@gBpAyF`AeEd@aBTaAFYJF????????KGZoAfBoHdAsEXcBP_BBaA@q@@w@?uBE_AEwBC{ADG????EF?EL}Bt@w@p@W`@a@TeAR_ARi@DWOIi@UiA]OKKOGUCa@FUDQTm@f@iA`AcB????????EEl@mAHM`B_Cv@eAf@q@`BeCn@cAp@kATe@dA}B`@_A\\q@tAqDt@mBXw@Vo@f@iA`@cAVg@CA????????B@FOv@}A~@wAj@u@jAcBf@}@Xs@H[Nc@Bs@Bc@@c@?E@?????????A?AmB?{@?i@A}@?Y?[?S@c@F[v@wEd@oCD@????????EALy@^oBNs@RsA^yAf@wA^}@Vm@d@mALYXs@J[Ry@Dg@Dm@Am@Ai@Iy@EUCQYcAWi@Wg@i@o@e@a@_@WMIAD??KOJN??@Ew@_@a@Uq@a@_@c@S[Sc@M[Q{@AQ?gBHcAZeELsABYDy@Ba@@i@Bg@HoABaA?c@?wAEk@C[Kc@EqA?I?IEu@GqAEgAAMAYYwGG{AEuAAc@E_BEy@K{BKoCA[?w@BoA@SF_AFq@NkANs@No@Vw@n@kBNa@JYJYzDyKd@oADKDMrB{FTo@l@}@l@eBzXwI_D}J??FUGT??I@qAiIOgFKcFOkXIeyA?@CTBU??]u^A}@AeBGeUAcIAaB?m@AqEA}A?_AAcDAmA?aEAaCE?I?????F?D??{@?q@A_BCiP?gAA_B?c@?g@?g@A}LCsBAqACoLG{YAwFAiGAoBAcICgLAgD?}@AuI?WYikA?}@?UAiAAo@i@?An@@`A?X?~@WAU@u@RUC[SIMm@@k@BMg@a@e@aAaAcAo@wAsAy@q@k@g@WSUY@YgCP@J????????AKeBNwHr@kH^wCRuBNaFZa@BwIf@sIh@wiAfHqAFWEk@D[@S?WAYA]EaAScAWeB]gCm@aDs@cAUsAYg@M{@SmCg@{DeAyCi@w@OIAAB????????@CwBg@kGsAkAWsBc@gAW]KkBa@iAY_@Ie@Ke@KaAUu@Qe@Ke@Oa@KWO_@WYS{A}@WE}@i@iEmCoD_CYQkBiA}u@{e@oH}E]]iBiB}BeCWCm@LSLa@Pi@Ju@G}]mHiCk@}LgCcEw@y@Kg@KcB]kB_@uA_@kB]_BYmAUu@Mk@Gm@IKB_AQ?@????",
+        "stops": [
+          {
+            "id": "5_senores"
+          },
+          {
+            "id": "ferrocarril_3030"
+          },
+          {
+            "id": "secundaria_tecnica_1"
+          },
+          {
+            "id": "camara_de_comercio_gpe"
+          },
+          {
+            "id": "universidad"
+          },
+          {
+            "id": "parque_arroyo_de_la_plata_minas"
+          },
+          {
+            "id": "fenaza"
+          },
+          {
+            "id": "mc_donalds"
+          },
+          {
+            "id": "jeepdodgefiat"
+          },
+          {
+            "id": "seduzac"
+          },
+          {
+            "id": "indeco"
+          },
+          {
+            "id": "odontologia_3"
+          },
+          {
+            "id": "combis_gpe_1"
+          },
+          {
+            "id": "martinez_dominguez_1"
+          },
+          {
+            "id": "osiris"
+          },
+          {
+            "id": "santa_monica_1"
+          },
+          {
+            "id": "zoquite"
+          },
+          {
+            "id": "tacoaleche"
+          }
+        ]
+      }
+    },
+    {
+      "id": "villanue",
+      "name": "VILLANUE",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "_x}iCh_aqR????B?Tm@JDHDtAr@bAd@DBZPZTNNTXPXBFP`@FPL`@BHBPBVBXBf@?J?H@bB@~AFnF?T?R@lA?tA?F?F?T?T?f@?x@Ad@ETOd@IPINIJKHu@TODq@Rg@R_@P]PqA|@a@V_@TYJQDQBc@B[@aCBsBBq@Hc@Lc@P_@VED_@`@a@t@_@bAM`@EJUd@SVUZ[Ta@Pa@Jk@D_@@s@@c@DE@e@Jc@Na@Ti@f@_@b@_@l@Q`@M^IXIj@CPAPA`@@d@Df@Fv@?BFb@LlABP@NXzC\\nDNpAHdBBdA?p@?r@IbBA^CzAOpDSpCA`DCp@UjFCx@GhBMtCAPI`Ds@lOOlEKjCKrDOtDGzAWjHCp@_@rJStFY~HCl@A\\AXAZE`AA\\MxCKzAEZCPQhAU|@Mb@KZO`@Q`@w@dBi@jAMd@GRGVOv@Ed@A`@@h@@\\Db@Fb@H^Pn@Vr@Vp@L^pCtH\\z@h@~AVjALhAFV?p@@t@Gr@Q~ACr@@h@Jn@d@~AbClHZv@^|@B?@AG?F???C?N\\h@nAh@nAX`Af@`B\\|@n@bBf@hAP^x@hBn@`B`@dAf@pApAdDPb@vA|DJZLf@ZfBHt@h@fFZjCRbBZfCxApMv@`HBLBR@HBP`AfKv@zHL|@Rv@HVTl@t@tA|AtBzFtH~RlWdAtAV\\TXj@t@j@x@|@nAfBbCfBxB\\f@t@~@rAxBj@jB`@~BHr@TnBVlBXxBZlBV|@FPXn@\\p@v@z@lAbAn@d@ZVjAz@h@b@h@f@\\ZCFHQ?M?LIPBGd@b@^XhCtBfCnBjGxEp@f@|A~@hGbDRHxBnA|BnAfHxDpFnCz@b@n@Z|@f@VLr@\\fQfJdAj@fMvGt@`@f@VhB|@zEpCvBjArE`CdExBnGfDdExBtGjD`NhHj@Z@?FM????GLA?v@`@`Aj@xAv@dCnAlNpHdMtGvMfHrMbHzDtB|@d@fAl@h@XnDjBfDhBt@`@v@`@lAn@dEpBlGhDhAl@`CnAnDjBtH~Dt[xPpE`CdFlC~WlNt@`@zC~AfJ`FnDlBbClA`OxHnEbC^R~DtBh@X~BjB`CrC~GdI\\`@`@d@b]v`@tI`KRVX\\xClDjD~DnFlG~F`HdC|C|BhCjDfE|@dAhF`GzIbKvBvBr@h@pAx@~BjAdD~AjBjAjChCzAvBfDdGnFlJn@hAx@vAlAvBlBlC\\b@b@d@`EpD|FrEbC`B~C~@lC^VCvAPpJfAp@PpANxLrAfBLdLjAn@D|AJpDV|DX|[hBzHvA`B`@|Al@vCjBnDbC|HjFzDzBbCbAbEhBzDdBfBx@n@XbAd@l@X\\Pn@XxHnDvR~IlFbC~HpDfD|ACH????????BIhAf@lGtCfChAvEtB`Ab@vBbAbAf@xExBvDdB|@b@|Av@p@\\fBv@vJlE~@f@zAp@pD`B|BbAhD|AhBx@hb@pRbSdJfUhKnd@vSxqAbm@zBdAlErBzs@v\\~Af@lGrCxR`JrZdNjAn@zAn@ZNtHlDvBbA\\TxD`Bb@RZLpAn@~Ap@dEjBzCtAzAr@jBx@tBbA~@`@`GtCfElBdEhBnD`B`Ad@vCrA~HzDtCtAzAt@dGnCrPjH`VxK`Q`IxHlDzI`EvFjCv]~OxGzCxHjDvR~Ijx@~^|VfL~ZpN|ExBhClA`DzAfv@p]|x@d_@v]`PrFfCnEzAf@PvBv@bBp@lAb@p@VvBv@`A\\EP????????DQFBxAh@v@Xh@RtBv@tG`CdSnH|FpBhRbHnV`JtJjDtd@vP~}@n\\lFnBvDtAnIzClBr@tNlFxNjFzQvGtNhF~IbDdR~GvNjFdP`G|NlFnHlClj@fSfi@tRl@RdYhKfq@jV~H|Cx@V~Bz@pDpAz@XrBv@v@Tx@\\NFhC~@pBt@p@T~Al@RZLDZJ\\LxBr@`ATl@JhDV`DAnI_A|AWfDYRCRWJAvAMj@GxGq@pBUj@I~@BJ?tCH~ADUSSIc@IBM????",
+        "stops": [
+          {
+            "id": "combis_villanueva"
+          },
+          {
+            "id": "tec_regional_xxi"
+          },
+          {
+            "id": "cereso_1"
+          },
+          {
+            "id": "agronomia_uaz"
+          },
+          {
+            "id": "malpaso"
+          },
+          {
+            "id": "la_quemada"
+          },
+          {
+            "id": "villanueva_central_autobus"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "u}mgCzo}rR????CLb@HRHTR_BEuCIK?_ACk@HqBTyGp@k@FwALK@]ASBeEf@WAOBQBmCXyDb@wAFy@CS?OA_Gs@o@UsC_A[?_Bm@q@UqBu@iC_AOGy@]w@UsBw@{@YqDqA_C{@y@W_I}Cgq@kVeYiKm@Sgi@uRmj@gSoHmC}NmFePaGwNkFeR_H_JcDuNiF{QwGyNkFuNmFmBs@oI{CwDuAmFoB_~@o\\ud@wPuJkDoVaJiRcH}FqBeSoHuGaCuBw@i@Sw@YyAi@GCEP????????DQaA]wBw@q@WmAc@cBq@wBw@g@QoE{AsFgCw]aP}x@e_@gv@q]aD{AiCmA}EyB_[qN}VgLkx@__@wR_JyHkDyG{Cw]_PwFkC{IaEyHmDaQaIaVyKsPkHeGoC{Au@uCuA_I{DwCsAaAe@oDaBeEiBgEmBaGuC_Aa@uBcAkBy@{As@{CuAeEkB_Bq@qAo@[Mc@SyDaB]UwBcAuHmD[O{Ao@kAo@sZeNyRaJmGsC_Bg@{s@w\\mEsB{BeAyqAcm@od@wSgUiKcSeJib@qRiBy@iD}A}BcAqDaB{Aq@_Ag@wJmEgBw@q@]}Aw@}@c@wDeByEyBcAg@wBcAaAc@wEuBgCiAmGuCiAg@CH????????BIgD}A_IqDmFcCwR_JyHoDo@Y]Qm@YcAe@o@YgBy@{DeBcEiBcCcA{D{B}HkFoDcCwCkB}Am@aBa@{HwA}[iB}DYqDW}AKo@EeLkAgBMyLsAqAOq@QqJgAwAQQQkE}@wAc@sCmByBgB{C_CsCiCe@g@]c@}AwBwJwPmAuBaFsIcDaDyCmBoCmAe@WaBy@q@e@cAw@gBmBgSwUgHgIuSqVeCwC}OyQe]ea@cNcPaCcBcB{@uDuBwLoG_JyE{EgCiCuAmAo@{GoDwBiAeNmHu\\kQ{LsG_PoIgE{BoCwAgAm@oDmBgHuD{CaB}CgBcHmDaf@eW{K_GmLiGsDiByCcBu@a@CH????????BIm@[iM{GkH}DwEcCuX{Ni@[_Ai@mAq@yH}DgIqEwAu@yH_EkAm@{@c@}BkA{@c@iLiGcHwD}F_D]Q_FcCsAq@{@o@oA_AwEoD{C{BeAy@w@m@]Ug@e@EH???M?L??DI]]k@e@k@c@aBmAg@a@}@y@SS_@c@QU]m@c@cAOe@Mu@Io@SqAM_AYyBSaBAKOcAa@sBY{@e@eAi@}@k@w@c@g@cB{BmCmDy@mAoAoBSYY]yD_Fo@y@sMaQu@cAs@_AwFoHMQi@kAWc@Sk@Mu@]gDqAyMQaBCMCMAOCQg@wEW{Bk@_FO{ASoBKeAIy@k@aFW}Be@aEYwA[kAgB}EoAmDg@mAc@gA[}@M_@y@kCg@oAq@eBa@cAe@_A{@uBuBwF@@??Rh@Si@??AAo@_Bm@}AcAsCGYI[C[Ce@@s@Bs@CSFg@He@z@uEFYx@}DX_@HGHALAJBJHFLBR?RCRETO`@SZONONSL[L[@_@BKAOEKE]WQUQ_@i@sAEMUq@y@aC}BoGOa@Sy@MiAAQA_@A_@@c@BYFk@Ja@J_@Vm@rA{CN_@DOL]HU\\uALi@Jg@F]D_@Fo@JwAJiCDgA@[Bw@Bu@X{HToFZoJBw@ZoHFyANyDLmDDeAVkHd@oMRgE@K?KJaDB{@DmAXoGDs@@g@F_BHuBJuDF}A?O?OFoB?o@?{@?SCs@IuBOeBYyBCWIs@UmB[oCCYCoA?YBy@Jm@BQJ[Tk@Ze@VYTYPS\\Qr@QZGx@It@Cj@Ch@Kf@Qb@]b@u@LWL_@Lc@HWXq@Xi@\\a@d@Yr@Un@GVA~AAbCE\\?f@ENCXG\\O^U^WpA{@`@UVOf@Sl@SNE|@UJKNSLWFMPk@FYBg@?k@?s@?O?O?K?I?G?mA?kA?K?g@GsFIUCeA?E?E?a@?o@Aa@Eu@Ik@Ma@OUMIGCi@c@SQQMWEQIkA_@[EwBq@Na@C?????",
+        "stops": [
+          {
+            "id": "villanueva_central_autobus"
+          },
+          {
+            "id": "la_quemada"
+          },
+          {
+            "id": "malpaso"
+          },
+          {
+            "id": "agronomia_uaz"
+          },
+          {
+            "id": "cereso_1"
+          },
+          {
+            "id": "tec_regional_gpe"
+          },
+          {
+            "id": "combis_villanueva"
+          }
+        ]
+      }
+    },
+    {
+      "id": "trancoso",
+      "name": "TRANCOSO",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "06:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "cqwiCpjxoR??D@DKTgA?U@aAGy@Iy@So@Wk@GMm@uAW@p@bBJT\\rAL`@Fr@?rAARAXc@tAo@|@g@h@aAl@uAf@cFpBoFrBsCdAcBd@{CxAeBp@mCbAILkAfAy@tAk@xAiAdIaGrh@u@jGg@xDa@dDMRUzAUz@Up@e@l@[\\]^[f@Sj@Ep@?r@@n@H~C?nACr@KnAKpA@t@q@nFqAdMeClToCrU[lC{Idv@uArLYzEIxDCbE?tB?R?h@?T@xE@pC?nABhJ@lBBzE?rA@z@@lA?L?V@|C?^A`DAn@@`A?VD@????EA?@?~@N`^Pbl@?RB|I?`A?tB?rMB`I@rB@hG@lFBfQ@dH@bG@fB?|@B|DDxLEpA?^?h@@bA@fADfPAdB@~A?~D@bC?`@@v@BbD@~@B|ADpE?j@@`BBbI^?AcIAaB?m@AqEA}A?_AAcDAmA?aEAaCM?????YSCA?J?~D@bC?`@@v@BbD@~@B|ADpE?j@@`BBbIJjTAlC?j@In@?|ADbU?|A?X?D?@Df@Cj@Bk@Eg@?A?J?LBvEDnJ?lCBbC@fB?x@?fDLP@jA@|@@tADnP@pB?h@?r@BrFBfG?`A?jB?v@CdA?lCClCAzCJJ@|CA`@KbF@|@BTBNBTFZ`@pB^hBPjAF\\DRFTTbAJAJd@FUGTKe@pC|JnA~FxAdGlB`IdB~Gx@bDJvCDtCkAnF{KkD{Cs@qEwAAjECnDyDlQqExSkEbSiC_@a@PaDrB}Ah@UfCA@??????@AKxBInAD`B@^RjAHT\\t@`@p@`@Zx@j@`@V~@d@PJ@C??fAfAgAgA??ABJDPLn@t@V`@\\r@JNFb@A|@O~BQnBKf@gAdCq@|AUf@Qv@G\\}B~JMn@?@?????????AOt@Gh@YtAWfBElA?NAV?f@BzA@vBB?????????C??x@?DAt@E^Up@o@dBORMR}@`AiCxDg@z@IPGJKf@Gb@M`@Sp@e@bAO\\a@r@[p@a@dA_@fA]dAKTm@`BQTKZQXYZ[tB}@rAsAjBiBjCiAx@qBrDWf@mAjCQ`@C@????????BAIVa@z@CHI^E^Gj@Cn@CdA@pAXpCL\\CB????????BCLj@DjA?pDEdAA`B?RGhDMtAk@xC{@fDsA|FKd@IA@B????ACH@Sv@ETq@nCK~@qAnEQv@m@bCi@rBg@zAYr@w@`BiCrEWf@[zAqAdHE^E~@KlBMn@ERoAtFMd@?@?????????AK`@qAzDq@jBUhAGb@Ej@A`@B`@@LDb@Nx@HZv@bB|@pBR`@tAzBLJ?@?????????APPnAz@h@TJDHDtAr@bAd@DBZPZTNNTXPXBFP`@FPL`@BHBPBVBXBf@?J?H@bB@nAD@??ESDR????EA?NFnF?T?R@lA?tA?F?F?T?T?f@?x@Ad@ETOd@IPINIJKHu@TODq@Rg@R_@P]PqA|@a@V_@TYJQDQBc@B[@aCBsBBeBg@{@Ky@JWTKRERCRCVEv@GrACZIXUd@KPONOLSJWJQD[B_@BmAJqALk@Pg@V]ZKLIHe@j@UXMNKRCN@LAd@FRDBJDP?pAiATYFF??????",
+        "stops": [
+          {
+            "id": "trancoso_centro"
+          },
+          {
+            "id": "santa_monica"
+          },
+          {
+            "id": "osiris"
+          },
+          {
+            "id": "martinez_dominguez"
+          },
+          {
+            "id": "combis_gpe_1"
+          },
+          {
+            "id": "nissan_gpe_1"
+          },
+          {
+            "id": "santa_rita"
+          },
+          {
+            "id": "indecobdz"
+          },
+          {
+            "id": "seduzac_1"
+          },
+          {
+            "id": "tres_cruces"
+          },
+          {
+            "id": "fenaza_1"
+          },
+          {
+            "id": "minas"
+          },
+          {
+            "id": "mega_cable"
+          },
+          {
+            "id": "camara_de_comercio_zac"
+          },
+          {
+            "id": "issste"
+          },
+          {
+            "id": "colonia_minera"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "e{~iCtdcqR????|@aBXSLEZGhACfAMp@_@f@Qb@]b@u@LWL_@H[DD????????EEBGHWXq@Xi@\\a@d@Yr@Un@GVA~AAbCE\\?f@ENCXG\\O^U^WpA{@`@UVOf@Sl@SNE|@UJKNSLWFMPk@FYBg@?k@?s@?O?O?K?I?G?mA?m@J@O???????BA?]?K?g@GsFA_B?sA?I?S?m@C]CUCQCOOg@CGHA????????I@IWQ[Wa@[_@MM]Wc@Yu@_@cBs@GCIEm@[}@i@BC??????iAy@?AIIs@oA[q@o@iBISe@oAQm@KoA?{@@c@J{@J]l@gBHYl@kB\\aAd@mBn@qCDW?@??C@BA???AJk@Lo@Lu@HiCj@eDJk@Ji@VeAXaAVk@~B_EZi@LYx@mBb@sAf@gBpAyF`AeEd@aBTaAFYJF????????KGZoAfBoHdAsEXcBP_BBaA@q@@w@?uBE_AEwBCaB?iBPi@^[h@Od@QTc@t@aDHWMQk@OGC@C@???????ABkA]O]GUCa@FUDQTm@f@iAVk@b@}@DD????????EEl@mAHM`B_Cv@eAf@q@`BeCn@cAp@kATe@dA}B`@_A\\q@tAqDt@mBXw@Vo@f@iA`@cAVg@CA????????B@FOv@}A~@wAj@u@jAcBf@}@Xs@H[Nc@Bs@Bc@@c@?E@?????????A?AmB?{@?i@A}@?Y?[?S@c@F[v@wEd@oCD@????????EALy@^oBNs@RsA^yAf@wA^}@Vm@d@mALYXs@J[Ry@Dg@Dm@Am@Ai@Iy@EUCQIkGCu@ZFGA??OLNMSE?w@pBcGbEaStD{VxE}\\rA}H`QnFv@}F?}FkQut@?PFUGT??I@qAiIOgFKcFOkXIeyA?@CTBU??]u^A}@AeBGeUAcIAaB?m@AqEA}A?_AAcDAmA?aEAaCE?I?????F?D??{@?q@A_BCiP?gAA_B?c@?g@?g@A}LCsBAqACoLG{YAwFAiGAoBAcICgLAgD?}@AuI?WYikA?}@?UAiAAo@@eD?[AgE?S?U?mD@{A@cCMuMAaFAoF?a@?g@?aA?k@JwJTuEnLkdAXaChCcUhCyTvAeMp@wFv@{GPmBJ[xBoRCW`@eDf@yDt@kG`Gsh@hAeIj@yAx@uAjAgAPAjC}@bBk@xCs@dBqApC_AtFwBlFkB~BkAdAcAb@q@Vs@EA????",
+        "stops": [
+          {
+            "id": "colonia_minera"
+          },
+          {
+            "id": "plaza_alesia"
+          },
+          {
+            "id": "ferrocarril_3030"
+          },
+          {
+            "id": "secundaria_tecnica_1"
+          },
+          {
+            "id": "camara_de_comercio_gpe"
+          },
+          {
+            "id": "universidad"
+          },
+          {
+            "id": "parque_arroyo_de_la_plata_minas"
+          },
+          {
+            "id": "soriana"
+          },
+          {
+            "id": "mc_donalds"
+          },
+          {
+            "id": "jeepdodgefiat"
+          },
+          {
+            "id": "seduzac"
+          },
+          {
+            "id": "indeco"
+          },
+          {
+            "id": "odontologia_2"
+          },
+          {
+            "id": "combis_gpe_1"
+          },
+          {
+            "id": "martinez_dominguez_1"
+          },
+          {
+            "id": "osiris"
+          },
+          {
+            "id": "trancoso_centro"
+          }
+        ]
+      }
+    },
+    {
+      "id": "t_e_m",
+      "name": "T.E.M.",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "o~}iChy_qR?????AK`@qAzDq@jBUhAGb@Ej@A`@B`@@LDb@Nx@HZNZGF??@AA@??FGf@fA|@pBR`@tAzBLJ?@?????????APPnAz@h@TJDHDtAr@bAd@DBZPZTNNTXPXBFP`@FPL`@BHBPBVBXBf@?J?H@bB@nAD@??ESDREY?A?h@FnF?T?R@lA?tA?F?F?T?T?f@?x@Ad@ETOd@IPINIJKHu@TODq@Rg@R_@P]PqA|@a@V_@TYJQDQBc@B[@aCBsBBmARmAn@e@f@c@r@[`Aa@nAa@p@m@h@u@PeBNiBRkA`@_At@}@|Aa@xABfCj@~FI\\????C?t@zGNpAHdBBdA?p@?r@IbBA^CzAOpDSpCA`DCp@i@jNGJ????FK_@rGc@zH[rIs@fTcAlTUxIYnGGI?k@?j@??@AA\\G\\IPWVI?EDCJAL?H?t@ArBIhBGp@[fAe@`A]t@]jAiApCi@vAa@fA?d@Tj@h@pAn@hBh@nAVp@L^pCtH\\z@h@~AVjALhAFV?p@Cz@Kn@a@~AUv@_@pA{@xC]nAKVk@bAa@h@c@X{@v@qAx@}@d@e@RaA`@mAZcANU?wALK?u@?eA?iAGiAKcFo@q@ISCuIkAoDc@gASm@M]Kg@SgAk@iAs@[Q}@i@i@[a@KUK_@Ma@K]Ee@Gk@G{ADwA?wECm@?gPBuC@yTF}A@aCBkD@eBEqACyAMmAMqAQOCSCk@K{HmA_BQmCQkBEgA?[?uCBsFJad@p@cHLuGFuD?iSIyHIiBCqAAsBCuA?aA?qBN}@J_C\\mHhAUBE@o@FeBLg@@kBB_B@kA?W?w@?m@Eg@Ek@Gk@Is@Mm@MWC}KeC}Be@kB_@qASsAQ_DSyBC_UJ}@EkKFgQBgCEa@HeDA_BEaD@eABuDXiA?kA@m@Bk@@eA?aACg@Ec@G_I_BkAUc@I_@GaE{@aAQ{AW_AG{@?_AFu@Nq@RcA^[NUL}@d@o@Z}B~@SLkAb@?@@B???????AEBe@RsAn@mB~@]LC@WD]B]E]IWMWU[SGKOSS[e@i@iAuAUWyC_C}A_Aw@i@eBgAe@[iAs@uA{@w@i@k@_@eAs@m@a@}BuAi@][Sg@_@cEmCgDyB}AaAOKoGcEuA}@wE}C}BwAsBoAmD}B]USMqDaCaC}AqGiEqIqFWQKIuEwCkBoAqCeBmFkDsFqDyIuFwIwFy@g@uDeCiCeBiAu@wFmDmA{@iEoCaFcDi@]qBsAkJiGeC_ByE}CqFkDKIwDgCuBuAiLgHs_@yV{NiJgQcL{E}CcC_Bab@cXoLyHyOeKeCaBaAm@m[sSc[gSkAw@kG_EuDcCwBsAwAaA_BaA_Ak@k@_@eFmDs@i@aDqC??????",
+        "stops": [
+          {
+            "id": "mega_cable"
+          },
+          {
+            "id": "plaza_bicentenario_1"
+          },
+          {
+            "id": "camara_de_comercio_zac"
+          },
+          {
+            "id": "issste"
+          },
+          {
+            "id": "presidencia_zac"
+          },
+          {
+            "id": "galerias_zac"
+          },
+          {
+            "id": "ciudad_gobierno"
+          },
+          {
+            "id": "morelos"
+          },
+          {
+            "id": "pozo_de_gamboa"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": null,
+        "stops": []
+      }
+    },
+    {
+      "id": "1paseosv",
+      "name": "1PASEOSV",
+      "departureInterval": 0,
+      "detail": {
+        "windshieldLabel": "",
+        "colors": "",
+        "price": 0.0
+      },
+      "outboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "mx~iCxykqR??IEAJUd@i@r@oBvBORgClC{DnEq@p@qB~BmArAS\\}@~@LNLXLXFTBX[ZR\\HX?RIRgEtT]lBeGn\\u@hD{@~EuDaBkCmA_Aa@_@Ga@CULYPQTQ`@MZM`Aa@jCk@zDkArG_@lCArIEpHC?",
+        "stops": [
+          {
+            "id": "glorieta_itz_1"
+          },
+          {
+            "id": "paseos_del_valle_1"
+          }
+        ]
+      },
+      "inboundJourney": {
+        "firstDeparture": "6:00",
+        "lastDeparture": "22:00",
+        "encodedPolyline": "_|`jCbkpqR??EyJ@sE?_@Fg@Z}Bv@iEd@uCb@qCVeBFs@Vm@Ta@XSl@I`@Bp@XbChA`FrBhBiKdGo\\\\mBfEuTHS?SIYS]Z[CYGUMYMYMO|@_AR]lAsApB_Cp@q@zDoEfCmCNSnBwBh@s@XU?BBB???Cf@[DBJBL?f@hAP^x@hBn@`B`@dAf@pApAdDPb@vA|DJZLf@ZfBHt@h@fFZjCRbBCb@LnBdClULbAVGPCVEAOEB??",
+        "stops": [
+          {
+            "id": "paseos_del_valle"
+          },
+          {
+            "id": "glorieta_itz"
+          },
+          {
+            "id": "siglo_xx1"
+          }
+        ]
+      }
+    }
+  ]
+}

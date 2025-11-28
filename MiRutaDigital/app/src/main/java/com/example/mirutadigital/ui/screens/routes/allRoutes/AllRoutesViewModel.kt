@@ -37,14 +37,6 @@ data class AllRoutesUiState(
         get() {
             var result = routes
 
-            if (filteredStopId != null) {
-                result = result.filter { route ->
-                    route.stopsJourney.any { journey ->
-                        journey.stops.any { stop -> stop.id == filteredStopId }
-                    }
-                }
-            }
-
             if(showOnlyFavorites) {
                 result = result.filter { it.id in favoriteRouteIds }
             }
@@ -52,7 +44,6 @@ data class AllRoutesUiState(
             if (searchQuery.isNotBlank()) {
                 result = result.filter { it.name.contains(searchQuery, ignoreCase = true) }
             }
-
             return result
         }
 }
@@ -64,24 +55,39 @@ class AllRoutesViewModel(application: Application) : AndroidViewModel(applicatio
     private val _uiState = MutableStateFlow(AllRoutesUiState())
     val uiState: StateFlow<AllRoutesUiState> = _uiState.asStateFlow()
 
+    private var allRoutesCache: List<RoutesInfo> = emptyList()
+
     init {
         loadRoutes()
     }
 
-    // carga las rutas desde la fuente de datos
     private fun loadRoutes() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                repository.synchronizeDatabase()
+                val localRoutes = repository.getGeneralRoutesInfo()
+                allRoutesCache = localRoutes
+                
+                withContext(Dispatchers.Main) {
+                   _uiState.update { 
+                       it.copy(routes = allRoutesCache) 
+                   }
+                }
 
-                val routes = repository.getGeneralRoutesInfo()// getSampleRoutes
+                try {
+                   //repository.synchronizeDatabase()
+                   val updatedRoutes = repository.getGeneralRoutesInfo()
+                   allRoutesCache = updatedRoutes
+                } catch (e: Exception) {
+                    // solo locales
+                   e.printStackTrace()
+                }
 
                 withContext(Dispatchers.Main) {
                     repository.getAllFavorites().collect { favorites ->
                         val favoriteIds = favorites.map { it.routeId }.toSet()
                         _uiState.update {
                             it.copy(
-                                routes = routes,
+                                routes = allRoutesCache,
                                 favoriteRouteIds = favoriteIds,
                                 isLoading = false
                             )
@@ -89,7 +95,9 @@ class AllRoutesViewModel(application: Application) : AndroidViewModel(applicatio
                     }
                 }
             } catch (e: Exception) {
-               // error
+               withContext(Dispatchers.Main) {
+                   _uiState.update { it.copy(isLoading = false) }
+               }
             }
         }
     }
@@ -99,15 +107,19 @@ class AllRoutesViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun setStopFilter(stopId: String) {
-        viewModelScope.launch {
-            val stops = repository.getStopsWithRoutes() // getSampleStopsWithRoutes
-            val stopName = stops.find { it.id == stopId }?.name
+        viewModelScope.launch(Dispatchers.IO) {
+            val filteredRoutes = repository.getGeneralRoutesInfoByStop(stopId)
 
-            _uiState.update {
-                it.copy(
-                    filteredStopId = stopId,
-                    filteredStopName = stopName
-                )
+            val stopName = repository.getStopsWithRoutes().find { it.id == stopId }?.name
+
+            withContext(Dispatchers.Main) {
+                _uiState.update {
+                    it.copy(
+                        routes = filteredRoutes,
+                        filteredStopId = stopId,
+                        filteredStopName = stopName
+                    )
+                }
             }
         }
     }
@@ -115,6 +127,7 @@ class AllRoutesViewModel(application: Application) : AndroidViewModel(applicatio
     fun clearStopFilter() {
         _uiState.update {
             it.copy(
+                routes = allRoutesCache,
                 filteredStopId = null,
                 filteredStopName = null
             )
@@ -126,7 +139,7 @@ class AllRoutesViewModel(application: Application) : AndroidViewModel(applicatio
     }
 
     fun toggleFavorite(routeId: String) {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val isFavorite = routeId in _uiState.value.favoriteRouteIds
             repository.toggleFavorite(routeId, isFavorite)
         }

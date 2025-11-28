@@ -16,7 +16,6 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 data class ShareUiState(
     val routes: List<RoutesInfo> = emptyList(),
@@ -55,7 +54,7 @@ class ShareViewModel(application: Application) : AndroidViewModel(application) {
     private fun loadAllData() {
         viewModelScope.launch(Dispatchers.IO) {
             _uiState.update { it.copy(isLoading = true) }
-            repository.synchronizeDatabase()
+            //repository.synchronizeDatabase()
             val routes = repository.getGeneralRoutesInfo()
             _allRoutes.value = routes
 
@@ -110,7 +109,7 @@ class ShareViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     /**
-     * Se llama desde el diálogo al confirmar el trayecto
+     * Se llama desde el dialogo al confirmar el trayecto ida o vuelta
      */
     fun onConfirmShare(location: Location, journeyType: String) {
         val routeId = _uiState.value.expandedRouteId ?: return
@@ -118,7 +117,7 @@ class ShareViewModel(application: Application) : AndroidViewModel(application) {
         val userId = userIdProvider.getUserId()
 
         viewModelScope.launch {
-            repository.startShare(userId, routeId, location)
+            repository.startShare(userId, routeId, journeyType, location)
 
             if (userPreferences.getSaveHistoryEnabled()) {
                 repository.addToHistory(routeId, routeName)

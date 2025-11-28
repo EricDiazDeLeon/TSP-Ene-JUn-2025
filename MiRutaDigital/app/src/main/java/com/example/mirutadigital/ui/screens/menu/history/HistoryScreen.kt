@@ -154,7 +154,6 @@ fun HistoryHeader(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        // Buscador
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -263,7 +262,7 @@ fun HistoryItem(
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "ruta " + historyItem.routeName,
+                    text = "Ruta ${historyItem.routeName}",
                     fontWeight = FontWeight.ExtraBold,
                     color = MaterialTheme.colorScheme.onSecondaryFixedVariant
                 )

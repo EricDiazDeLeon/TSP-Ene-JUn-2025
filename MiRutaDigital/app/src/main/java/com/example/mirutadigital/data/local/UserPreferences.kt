@@ -2,6 +2,7 @@ package com.example.mirutadigital.data.local
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 
 /**
  * Clase para manejar las preferencias del usuario
@@ -29,14 +30,16 @@ class UserPreferences(context: Context) {
      * Establece si el usuario quiere guardar el historial de rutas
      */
     fun setSaveHistoryEnabled(enabled: Boolean) {
-        prefs.edit().putBoolean(KEY_SAVE_HISTORY, enabled).apply()
+        prefs.edit { putBoolean(KEY_SAVE_HISTORY, enabled) }
     }
 
+
+    // modo oscuro
     fun getDarkModeEnabled(): Boolean {
         return prefs.getBoolean(KEY_DARK_MODE, false)
     }
 
     fun setDarkModeEnabled(enabled: Boolean) {
-        prefs.edit().putBoolean(KEY_DARK_MODE, enabled).apply()
+        prefs.edit { putBoolean(KEY_DARK_MODE, enabled) }
     }
 }

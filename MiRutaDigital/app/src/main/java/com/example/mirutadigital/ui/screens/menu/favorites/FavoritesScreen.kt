@@ -231,7 +231,7 @@ fun FavoriteRouteItem(
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
-                    text = "ruta " + route.name,
+                    text = "Ruta ${route.name}",
                     fontWeight = FontWeight.ExtraBold,
                     color = MaterialTheme.colorScheme.onSecondaryFixedVariant
                 )

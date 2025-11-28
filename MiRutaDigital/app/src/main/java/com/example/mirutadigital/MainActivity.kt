@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
 import androidx.activity.ComponentActivity
@@ -11,6 +12,7 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -34,37 +36,26 @@ class MainActivity : ComponentActivity() {
 
     private val locationViewModel: LocationViewModel by viewModels()
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
-            val app = LocalContext.current.applicationContext as MiRutaApplication
-            var isDarkTheme by remember { mutableStateOf(app.userPreferences.getDarkModeEnabled()) }
-            MiRutaDigitalTheme(darkTheme = isDarkTheme, dynamicColor = false) {
+            MiRutaDigitalTheme(dynamicColor = false) {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    HandleLocationPermission(
-                        locationViewModel = locationViewModel,
-                        isDarkTheme = isDarkTheme,
-                        onToggleDarkTheme = { enabled ->
-                            isDarkTheme = enabled
-                            app.userPreferences.setDarkModeEnabled(enabled)
-                        }
-                    )
+                    HandleLocationPermission(locationViewModel)
                 }
             }
         }
     }
 }
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
-private fun HandleLocationPermission(
-    locationViewModel: LocationViewModel,
-    isDarkTheme: Boolean,
-    onToggleDarkTheme: (Boolean) -> Unit
-) {
+private fun HandleLocationPermission(locationViewModel: LocationViewModel) {
     val context = LocalContext.current
     var hasLocationPermission by remember {
         mutableStateOf(
@@ -94,11 +85,7 @@ private fun HandleLocationPermission(
 
     when {
         hasLocationPermission -> {
-            MainScreen(
-                locationViewModel = locationViewModel,
-                isDarkTheme = isDarkTheme,
-                onToggleDarkTheme = onToggleDarkTheme
-            )
+            MainScreen(locationViewModel)
         }
         permissionRequestTriggered -> {
             PermissionDeniedScreen {

@@ -3,9 +3,10 @@ package com.example.mirutadigital.data.repository
 import android.content.Context
 import android.content.SharedPreferences
 import java.util.UUID
+import androidx.core.content.edit
 
 /**
- * regresa un ID único y persistente para este usuario.
+ * regresa un ID unico y persistente para este usuario
  */
 class UserIdProvider(context: Context) {
 
@@ -26,7 +27,7 @@ class UserIdProvider(context: Context) {
         var userId = prefs.getString(KEY_USER_ID, null)
         if (userId == null) {
             userId = UUID.randomUUID().toString()
-            prefs.edit().putString(KEY_USER_ID, userId).apply()
+            prefs.edit { putString(KEY_USER_ID, userId) }
         }
         currentUserId = userId
         return userId

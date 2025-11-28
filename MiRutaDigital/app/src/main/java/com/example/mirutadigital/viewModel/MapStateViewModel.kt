@@ -20,6 +20,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 sealed class MapDisplayMode {
+    open val bounds: LatLngBounds? = null
+
     data class AllStops(val focusedStopId: String? = null) : MapDisplayMode()
 
     data class RouteDetail(
@@ -27,17 +29,24 @@ sealed class MapDisplayMode {
         val outboundPolyline: List<LatLng>,
         val inboundPolyline: List<LatLng>,
         val routeStops: List<Stop>,
-        val bounds: LatLngBounds
+        override val bounds: LatLngBounds?
     ) : MapDisplayMode()
 
     data class SharedVehicles(
         val routeId: String,
-        val vehicles: List<ActiveShareData>,
+        val bus: List<ActiveShareData>,
         val outboundPolyline: List<LatLng>,
         val inboundPolyline: List<LatLng>,
         val routeStops: List<Stop>,
-        val bounds: LatLngBounds
+        override val bounds: LatLngBounds?
     ) : MapDisplayMode()
+}
+
+// Modos de selección para TripPlanScreen
+enum class SelectionMode {
+    NONE,
+    ORIGIN,
+    DESTINATION
 }
 
 // el estado del mapa que se comparte
@@ -46,7 +55,12 @@ data class MapState(
     val selectedStopId: String? = null,
     val displayMode: MapDisplayMode = MapDisplayMode.AllStops(null),
     val isLoading: Boolean = true,
-    val currentRouteName: String? = null
+    val currentRouteName: String? = null,
+    // Nuevos campos para la selección
+    val selectionMode: SelectionMode = SelectionMode.NONE,
+    val temporaryPoint: LatLng? = null,
+    val confirmedOrigin: LatLng? = null,
+    val confirmedDestination: LatLng? = null
 )
 
 class MapStateViewModel(application: Application) : AndroidViewModel(application) {
@@ -64,23 +78,36 @@ class MapStateViewModel(application: Application) : AndroidViewModel(application
 
     private fun loadMapData() {
         viewModelScope.launch(Dispatchers.IO) {
-            try {
-                repository.synchronizeDatabase()
+            _mapState.update { it.copy(isLoading = true) }
 
-                _mapState.update { it.copy(isLoading = true) }
-
-                val stops = repository.getStopsWithRoutes() //getSampleStopsWithRoutes
-
-                withContext(Dispatchers.Main) {
-                    _mapState.update {
-                        it.copy(
-                            allStops = stops,
-                            isLoading = false
-                        )
-                    }
-                }
+            var stops = try {
+                repository.getStopsWithRoutes()
             } catch (e: Exception) {
-                // error
+                emptyList()
+            }
+
+            if (stops.isNotEmpty()) {
+                withContext(Dispatchers.Main) {
+                    _mapState.update { it.copy(allStops = stops) }
+                }
+            }
+
+            if (stops.isEmpty()) {
+                try {
+                    repository.synchronizeDatabase()
+                    stops = repository.getStopsWithRoutes()
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+            }
+
+            withContext(Dispatchers.Main) {
+                _mapState.update {
+                    it.copy(
+                        allStops = stops,
+                        isLoading = false
+                    )
+                }
             }
         }
     }
@@ -91,6 +118,66 @@ class MapStateViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
+    // --- Métodos para la selección de puntos ---
+
+    fun setSelectionMode(mode: SelectionMode) {
+        _mapState.update {
+            it.copy(
+                selectionMode = mode,
+                temporaryPoint = null, // Limpiar punto temporal anterior
+                selectedStopId = null  // Limpiar selección de parada previa
+            )
+        }
+    }
+
+    fun setTemporaryPoint(latLng: LatLng) {
+        if (_mapState.value.selectionMode != SelectionMode.NONE) {
+            _mapState.update { it.copy(temporaryPoint = latLng) }
+        }
+    }
+
+    fun confirmSelection() {
+        _mapState.update {
+            val point = it.temporaryPoint ?: return@update it
+
+            when (it.selectionMode) {
+                SelectionMode.ORIGIN -> it.copy(
+                    confirmedOrigin = point,
+                    selectionMode = SelectionMode.NONE,
+                    temporaryPoint = null
+                )
+                SelectionMode.DESTINATION -> it.copy(
+                    confirmedDestination = point,
+                    selectionMode = SelectionMode.NONE,
+                    temporaryPoint = null
+                )
+                else -> it
+            }
+        }
+    }
+
+    fun cancelSelection() {
+        _mapState.update {
+            it.copy(
+                selectionMode = SelectionMode.NONE,
+                temporaryPoint = null
+            )
+        }
+    }
+    
+    fun clearPlanPoints() {
+        _mapState.update {
+            it.copy(
+                confirmedOrigin = null,
+                confirmedDestination = null,
+                selectionMode = SelectionMode.NONE,
+                temporaryPoint = null
+            )
+        }
+    }
+
+    // -------------------------------------------
+
     fun showAllStops() {
         if (_mapState.value.allStops.isEmpty()) {
             loadMapData()
@@ -100,7 +187,10 @@ class MapStateViewModel(application: Application) : AndroidViewModel(application
             it.copy(
                 displayMode = MapDisplayMode.AllStops(null),
                 selectedStopId = null,
-                currentRouteName = null
+                currentRouteName = null,
+                // Limpiamos el modo seleccion al salir de TripPlanScreen
+                selectionMode = SelectionMode.NONE,
+                temporaryPoint = null
             )
         }
     }
@@ -114,10 +204,6 @@ class MapStateViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    /**
-     * Esta funcion la usa MainScreen cuando navega a la
-     * pantalla de detalle y solo tiene el ID
-     */
     fun showRouteDetailById(routeId: String) {
         viewModelScope.launch {
             val route = repository.getGeneralRoutesInfo().find { it.id == routeId }
@@ -127,34 +213,34 @@ class MapStateViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    /**
-     * Esta funcion la usan AllRoutesScreen y ActiveRoutesScreen
-     * cuando ya tienen la informacion de la ruta
-     */
     fun showRouteDetailFromInfo(route: RoutesInfo) {
-        // paradas de los trayectos ida y vuelta
         val outboundStops = route.stopsJourney.getOrNull(0)?.stops ?: emptyList()
         val inboundStops = route.stopsJourney.getOrNull(1)?.stops ?: emptyList()
         val allRouteStops = (outboundStops + inboundStops).distinctBy { it.id }
 
-
         val outboundEncodedPoly = route.stopsJourney.getOrNull(0)?.encodedPolyline
         val inboundEncodedPoly = route.stopsJourney.getOrNull(1)?.encodedPolyline
 
-
         val outboundPoly = if (outboundEncodedPoly.isNullOrBlank()) {
-            outboundStops.map { it.coordinates } // si no hay polilinea creamos una con las paradas
+            outboundStops.map { it.coordinates }
         } else {
-            PolyUtil.decode(outboundEncodedPoly) // decodificamos
+            try {
+                PolyUtil.decode(outboundEncodedPoly)
+            } catch (e: Exception) {
+                outboundStops.map { it.coordinates }
+            }
         }
 
         val inboundPoly = if (inboundEncodedPoly.isNullOrBlank()) {
             inboundStops.map { it.coordinates }
         } else {
-            PolyUtil.decode(inboundEncodedPoly)
+            try {
+                PolyUtil.decode(inboundEncodedPoly)
+            } catch (e: Exception) {
+                inboundStops.map { it.coordinates }
+            }
         }
 
-        // creamos los limites para centrar el mapa
         val boundsBuilder = LatLngBounds.Builder()
         var hasPoints = false
 
@@ -184,15 +270,11 @@ class MapStateViewModel(application: Application) : AndroidViewModel(application
                     bounds = routeBounds
                 ),
                 selectedStopId = null,
-                currentRouteName = "ruta " + route.name
+                currentRouteName = route.name
             )
         }
     }
 
-    /**
-     * Obtiene los vehículos compartidos del repositorio y
-     * actualiza el estado del mapa para mostrarlos.
-     */
     fun showSharedVehiclesForRoute(routeId: String) {
         viewModelScope.launch {
             _mapState.update { it.copy(isLoading = true) }
@@ -212,12 +294,21 @@ class MapStateViewModel(application: Application) : AndroidViewModel(application
             val outboundEncodedPoly = routeInfo.stopsJourney.getOrNull(0)?.encodedPolyline
             val inboundEncodedPoly = routeInfo.stopsJourney.getOrNull(1)?.encodedPolyline
 
-            val outboundPoly = PolyUtil.decode(outboundEncodedPoly ?: "")
-            val inboundPoly = PolyUtil.decode(inboundEncodedPoly ?: "")
+            val outboundPoly = try {
+                PolyUtil.decode(outboundEncodedPoly ?: "")
+            } catch (e: Exception) {
+                outboundStops.map { it.coordinates }
+            }
+
+            val inboundPoly = try {
+                PolyUtil.decode(inboundEncodedPoly ?: "")
+            } catch (e: Exception) {
+                inboundStops.map { it.coordinates }
+            }
 
             val boundsBuilder = LatLngBounds.Builder()
             (outboundPoly + inboundPoly).forEach { boundsBuilder.include(it) }
-            allRouteStops.forEach { boundsBuilder.include(it.coordinates) } // Incluir paradas en bounds
+            allRouteStops.forEach { boundsBuilder.include(it.coordinates) }
 
             val routeBounds =
                 if (outboundPoly.isNotEmpty() || inboundPoly.isNotEmpty() || allRouteStops.isNotEmpty()) {
@@ -230,7 +321,7 @@ class MapStateViewModel(application: Application) : AndroidViewModel(application
                 it.copy(
                     displayMode = MapDisplayMode.SharedVehicles(
                         routeId = routeId,
-                        vehicles = activeShares,
+                        bus = activeShares,
                         outboundPolyline = outboundPoly,
                         inboundPolyline = inboundPoly,
                         routeStops = allRouteStops,

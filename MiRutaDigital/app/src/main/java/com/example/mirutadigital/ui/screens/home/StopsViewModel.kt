@@ -48,10 +48,35 @@ class StopsViewModel(
     private fun loadStopsData() {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                repository.synchronizeDatabase()
+                _uiState.update { it.copy(isLoading = true) }
 
-                val stops = repository.getStopsWithRoutes()
-                originalStops = stops
+                var stops = try {
+                    repository.getStopsWithRoutes()
+                } catch (e: Exception) {
+                    emptyList()
+                }
+
+                if (stops.isNotEmpty()) {
+                    originalStops = stops
+                    withContext(Dispatchers.Main) {
+                        _uiState.update {
+                            it.copy(
+                                allStops = stops,
+                                isLoading = false
+                            )
+                        }
+                    }
+                }
+
+                if (stops.isEmpty()) {
+                    try {
+                        repository.synchronizeDatabase()
+                        stops = repository.getStopsWithRoutes()
+                        originalStops = stops
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
 
                 withContext(Dispatchers.Main) {
                     _uiState.update {
@@ -62,7 +87,9 @@ class StopsViewModel(
                     }
                 }
             } catch (e: Exception) {
-                // error
+                 withContext(Dispatchers.Main) {
+                    _uiState.update { it.copy(isLoading = false) }
+                }
             }
 
         }

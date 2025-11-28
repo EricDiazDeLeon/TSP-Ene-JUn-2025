@@ -1,4 +1,4 @@
-package com.example.mirutadigital.ui.components
+package com.example.mirutadigital.ui.components.navigation
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -9,13 +9,10 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
-import com.example.mirutadigital.navigation.Routes
 
 
-// se modifica NavItem para usar la ruta de navegacin
 data class NavItem(val label: String, val icon: ImageVector, val route: String)
 
-// componentes compartidos
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BottomBar(
@@ -24,7 +21,7 @@ fun BottomBar(
     onItemSelected: (Int) -> Unit
 ) {
     NavigationBar(
-        containerColor = MaterialTheme.colorScheme.surface
+        containerColor = MaterialTheme.colorScheme.surfaceVariant
     ) {
         items.forEachIndexed { index, item ->
             NavigationBarItem(
@@ -33,20 +30,20 @@ fun BottomBar(
                 label = {
                     Text(
                         text = item.label,
-                        color = if (selectedIndex == index) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurfaceVariant
+                        color = MaterialTheme.colorScheme.onSecondaryFixedVariant
                     )
                 },
                 icon = {
                     Icon(
                         imageVector = item.icon,
-                        tint = if (selectedIndex == index) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant,
+                        tint = MaterialTheme.colorScheme.onSecondaryFixedVariant,
                         contentDescription = item.label
                     )
                 },
                 alwaysShowLabel = true,
                 enabled = true,
                 colors = NavigationBarItemDefaults.colors(
-                    indicatorColor = MaterialTheme.colorScheme.primaryContainer,
+                    indicatorColor = MaterialTheme.colorScheme.surfaceContainerHighest,
                 )
             )
         }

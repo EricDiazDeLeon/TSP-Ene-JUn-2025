@@ -23,12 +23,12 @@ data class FavoritesUiState(
         get() {
             var result = allRoutes
 
-            // Filtrar solo favoritos si esta activado
+            // filtrar solo favoritos si esta activado
             if (showOnlyFavorites) {
                 result = result.filter { it.id in favoriteRouteIds }
             }
 
-            // Filtrar por busqueda
+            // filtrar por busqueda
             if (searchQuery.isNotBlank()) {
                 result = result.filter { it.name.contains(searchQuery, ignoreCase = true) }
             }

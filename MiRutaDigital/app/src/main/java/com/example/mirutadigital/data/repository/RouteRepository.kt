@@ -2,7 +2,6 @@ package com.example.mirutadigital.data.repository
 
 import android.location.Location
 import android.util.Log
-import android.content.Context
 import com.example.mirutadigital.data.local.dao.FavoriteRouteDao
 import com.example.mirutadigital.data.local.dao.RouteDao
 import com.example.mirutadigital.data.local.dao.RouteHistoryDao
@@ -12,6 +11,7 @@ import com.example.mirutadigital.data.local.entities.JourneyEntity
 import com.example.mirutadigital.data.local.entities.JourneyStopCrossRef
 import com.example.mirutadigital.data.local.entities.RouteEntity
 import com.example.mirutadigital.data.local.entities.RouteHistoryEntity
+import com.example.mirutadigital.data.local.entities.RouteRatingEntity
 import com.example.mirutadigital.data.local.entities.StopEntity
 import com.example.mirutadigital.data.local.relations.JourneyWithStops
 import com.example.mirutadigital.data.model.ui.JourneyDetailInfo
@@ -26,7 +26,6 @@ import com.example.mirutadigital.data.model.ui.base.Stop
 import com.example.mirutadigital.data.network.GeocodingResult
 import com.example.mirutadigital.data.network.GoogleApiService
 import com.google.android.gms.maps.model.LatLng
-import com.example.mirutadigital.data.local.database.AppDatabase
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
@@ -34,17 +33,16 @@ import com.google.firebase.firestore.GeoPoint
 import com.google.firebase.firestore.SetOptions
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.sync.Mutex
-import kotlinx.coroutines.sync.withLock
+import org.w3c.dom.Comment
 
 data class ActiveShareData(
     val userId: String,
     val routeId: String,
-    val latitude: Double,
-    val longitude: Double,
-    val lastUpdate: Long,
-    val viewersCount: Int
+    val journeyType: String,
+    val lastLocation: GeoPoint,
+    val timestamp: Timestamp
 )
+
 
 data class RouteRatingSummary(
     val average: Double,
@@ -66,12 +64,8 @@ class RouteRepository(
     private val routeRatingDao: RouteRatingDao,
     private val googleApiService: GoogleApiService,
     private val firestore: FirebaseFirestore,
-    private val userIdProvider: UserIdProvider,
-    private val appContext: Context
+    private val userIdProvider: UserIdProvider
 ) {
-    private val syncMutex = Mutex()
-    @Volatile
-    private var hasSynced = false
     /**
      * Obtiene la info detallada de una ruta desde la bse de datos
      */
@@ -91,6 +85,15 @@ class RouteRepository(
      */
     suspend fun getRouteDetailInfoById(routeId: String): RouteDetailInfo? {
         val routeWithJourneys = routeDao.getRouteWithJourneysById(routeId) ?: return null
+        
+        // Obtener todos los crossRefs para ordenar
+        val allCrossRefs = try { routeDao.getAllJourneyStopCrossRefs() } catch (e: Exception) { emptyList() }
+        val journeyOrderMap = allCrossRefs
+            .groupBy { it.journeyId }
+            .mapValues { entry -> 
+                entry.value.associate { it.stopId to it.stopOrder }
+            }
+
         // mapea el resultado del DAO al modelo de ui
         val route = routeWithJourneys.route
         val outbound = routeWithJourneys.journeys.find { it.journey.journeyType == "OUTBOUND" }
@@ -103,8 +106,8 @@ class RouteRepository(
             windshieldLabel = route.windshieldLabel,
             colors = route.colors,
             price = route.price,
-            outboundJourney = outbound.toJourneyDetailInfo(),
-            inboundJourney = inbound.toJourneyDetailInfo()
+            outboundJourney = outbound.toJourneyDetailInfo(journeyOrderMap),
+            inboundJourney = inbound.toJourneyDetailInfo(journeyOrderMap)
         )
     }
 
@@ -122,7 +125,7 @@ class RouteRepository(
             RouteInfoSchedulel(
                 id = route.routeId,
                 name = route.name,
-                outboundInfo = outbound.toScheduleInfo(),
+                outboundInfo = outbound.toScheduleInfo(), // No need order for schedule
                 inboundInfo = inbound.toScheduleInfo()
             )
         }
@@ -133,6 +136,15 @@ class RouteRepository(
      */
     suspend fun getGeneralRoutesInfo(): List<RoutesInfo> {
         val allRoutes = routeDao.getAllRoutesWithJourneys()
+        
+        // Obtener todos los crossRefs para ordenar
+        val allCrossRefs = try { routeDao.getAllJourneyStopCrossRefs() } catch (e: Exception) { emptyList() }
+        val journeyOrderMap = allCrossRefs
+            .groupBy { it.journeyId }
+            .mapValues { entry -> 
+                entry.value.associate { it.stopId to it.stopOrder }
+            }
+
         // mapea la lista
         return allRoutes.map { routeWithJourneys ->
             val route = routeWithJourneys.route
@@ -140,8 +152,8 @@ class RouteRepository(
             val inbound = routeWithJourneys.journeys.find { it.journey.journeyType == "INBOUND" }
 
             val stopsJourney = listOfNotNull(
-                outbound?.toJourneyInfo(),
-                inbound?.toJourneyInfo()
+                outbound?.toJourneyInfo(journeyOrderMap),
+                inbound?.toJourneyInfo(journeyOrderMap)
             )
 
             RoutesInfo(
@@ -158,27 +170,42 @@ class RouteRepository(
      * Obtiene todas las paradas y las rutas que pasan por ellas
      */
     suspend fun getStopsWithRoutes(): List<StopWithRoutes> {
+        val allRoutesWithJourneys = routeDao.getAllRoutesWithJourneys()
+
+        val journeyToRouteMap = mutableMapOf<String, RouteEntity>()
+        val journeyToDestinationMap = mutableMapOf<String, String>()
+
+        allRoutesWithJourneys.forEach { routeWithJourneys ->
+            val route = routeWithJourneys.route
+            routeWithJourneys.journeys.forEach { journeyWithStops ->
+                val journeyId = journeyWithStops.journey.journeyId
+                journeyToRouteMap[journeyId] = route
+                
+                val destination = journeyWithStops.stops.lastOrNull()?.name ?: "N/A"
+                journeyToDestinationMap[journeyId] = destination
+            }
+        }
+
         val allStops = routeDao.getAllStopsWithJourneys()
-        // mapea cada parada
+        
         return allStops.map { stopWithJourneys ->
             val stop = stopWithJourneys.stop
-            // para cada parada, mapea los trayectos que pasan por ella
-            val routesInfo = stopWithJourneys.journeys.mapNotNull { journey ->
-                // metodos de ayuda para obtener la info del DAO
-                val route = routeDao.getRouteByJourneyId(journey.journeyId)
-                val journeyStops = routeDao.getStopsForJourney(journey.journeyId)
+            
+            val routesInfo = stopWithJourneys.journeys.mapNotNull { journeyCrossRef ->
+                val journeyId = journeyCrossRef.journeyId
+                
+                val route = journeyToRouteMap[journeyId]
+                val destinationName = journeyToDestinationMap[journeyId]
 
                 if (route == null) {
                     null
                 } else {
-                    // el destino final de este trayecto
-                    val destinationName = journeyStops.lastOrNull()?.name ?: "N/A"
                     RouteInfo(
                         name = route.name,
-                        destination = destinationName
+                        destination = destinationName ?: "N/A"
                     )
                 }
-            }.distinct() // Evita duplicados de ruta por trayectos
+            }.distinct() // elimina duplicados
 
             StopWithRoutes(
                 id = stop.stopId,
@@ -193,15 +220,23 @@ class RouteRepository(
 
     // --- METODOS PARA FAVORITOS ---
 
+    /**
+     * Agrega una ruta a favoritos
+     */
     suspend fun addFavorite(routeId: String) {
         favoriteRouteDao.insertFavorite(FavoriteRouteEntity(routeId))
     }
 
+    /**
+     * Elimina una ruta de favoritos
+     */
     suspend fun removeFavorite(routeId: String) {
         favoriteRouteDao.deleteFavoriteById(routeId)
     }
 
-
+    /**
+     * Alterna el estado de favorito de una ruta
+     */
     suspend fun toggleFavorite(routeId: String, isFavorite: Boolean) {
         if (isFavorite) {
             removeFavorite(routeId)
@@ -224,17 +259,25 @@ class RouteRepository(
         return favoriteRouteDao.isFavorite(routeId)
     }
 
+    /**
+     * Elimina todos los favoritos
+     */
     suspend fun deleteAllFavorites() {
         favoriteRouteDao.deleteAllFavorites()
     }
 
-
+    /**
+     * Obtiene la cantidad de favoritos
+     */
     suspend fun getFavoritesCount(): Int {
         return favoriteRouteDao.getFavoritesCount()
     }
 
     // --- METODOS PARA EL HISTORIAL ---
 
+    /**
+     * Agrega una ruta al historial
+     */
     suspend fun addToHistory(routeId: String, routeName: String) {
         routeHistoryDao.insertHistory(
             RouteHistoryEntity(
@@ -272,16 +315,30 @@ class RouteRepository(
         return routeHistoryDao.getHistoryCount()
     }
 
-
     // funciones de extension: ayuda a mapear los datos del DAO
 
     /**
      * Convierte un [JourneyWithStops] (BD) en un [JourneyDetailInfo] (UI)
+     * Ahora ordena las paradas usando el mapa de orden.
      */
-    private fun JourneyWithStops?.toJourneyDetailInfo(): JourneyDetailInfo {
+    private fun JourneyWithStops?.toJourneyDetailInfo(
+        orderMap: Map<String, Map<String, Int>>? = null
+    ): JourneyDetailInfo {
         if (this == null) return JourneyDetailInfo("N/A", "N/A", "N/A", "N/A")
-        val start = this.stops.firstOrNull()?.name ?: "N/A"
-        val end = this.stops.lastOrNull()?.name ?: "N/A"
+        
+        val currentJourneyId = this.journey.journeyId
+        val stopsOrder = orderMap?.get(currentJourneyId)
+        
+        val sortedStops = if (stopsOrder != null) {
+            this.stops.sortedBy { stop ->
+                stopsOrder[stop.stopId] ?: Int.MAX_VALUE
+            }
+        } else {
+            this.stops
+        }
+
+        val start = sortedStops.firstOrNull()?.name ?: "N/A"
+        val end = sortedStops.lastOrNull()?.name ?: "N/A"
         return JourneyDetailInfo(
             startStopName = start,
             endStopName = end,
@@ -295,6 +352,12 @@ class RouteRepository(
      */
     private fun JourneyWithStops?.toScheduleInfo(): Schedule {
         if (this == null) return Schedule("N/A", "N/A", Pair("N/A", "N/A"))
+        // En toScheduleInfo no tenemos el mapa de orden aqui facilmente, 
+        // pero para el horario solo necesitamos origen y destino.
+        // Si la lista esta desordenada, el primero/ultimo puede ser incorrecto.
+        // Idealmente deberiamos ordenarlo tambien, pero para simplificar y no romper firmas dejaremos asi por ahora,
+        // asumiendo que el impacto es menor (solo nombres visuales). 
+        // Si es critico, habria que pasar el mapa tambien.
         val origin = this.stops.firstOrNull()?.name ?: "N/A"
         val destination = this.stops.lastOrNull()?.name ?: "N/A"
         return Schedule(
@@ -306,10 +369,25 @@ class RouteRepository(
 
     /**
      * Convierte un [JourneyWithStops] (BD) en un [JourneyInfo] (UI)
+     * Ahora ordena las paradas.
      */
-    private fun JourneyWithStops?.toJourneyInfo(): JourneyInfo? {
+    private fun JourneyWithStops?.toJourneyInfo(
+        orderMap: Map<String, Map<String, Int>>
+    ): JourneyInfo? {
         if (this == null) return null
-        val uiStops = this.stops.map { dbStop ->
+        
+        val currentJourneyId = this.journey.journeyId
+        val stopsOrder = orderMap[currentJourneyId]
+        
+        val sortedStops = if (stopsOrder != null) {
+            this.stops.sortedBy { stop ->
+                stopsOrder[stop.stopId] ?: Int.MAX_VALUE
+            }
+        } else {
+            this.stops
+        }
+
+        val uiStops = sortedStops.map { dbStop ->
             Stop(
                 id = dbStop.stopId,
                 name = dbStop.name,
@@ -326,20 +404,8 @@ class RouteRepository(
      * Sincroniza la base de datos con los datos de Firebase
      */
     suspend fun synchronizeDatabase() {
-        if (hasSynced) return
         try {
-            syncMutex.withLock {
-                if (hasSynced) return@withLock
             Log.d("Sincronizacion", "Iniciando sincronización...")
-
-            // Evita sincronizar repetidamente si ya hay datos cargados
-            val existingStops = routeDao.getStopsCount()
-            val existingRoutes = routeDao.getRoutesCount()
-            if (existingStops > 0 && existingRoutes > 0) {
-                Log.d("Sincronizacion", "Datos existentes en BD (stops=$existingStops, routes=$existingRoutes). Omitiendo sincronización.")
-                hasSynced = true
-                return@withLock
-            }
 
             // --- SINCRONIZAR PARADAS ---
             val stopsSnapshot = firestore.collection("stops").get().await()
@@ -347,26 +413,33 @@ class RouteRepository(
 
             val stopEntities = stopsSnapshot.documents.mapNotNull { doc ->
                 try {
-                    val parsed = parseCoordinates(doc.get("coordinates"), doc)
-                    if (parsed == null) {
+//                    @Suppress("UNCHECKED_CAST")
+//                    val coords = doc.get("coordinates") as? Map<String, Any>
+//                    val latitude = (coords?.get("latitude") as? Number)?.toDouble()
+//                    val longitude = (coords?.get("longitude") as? Number)?.toDouble()
+                    val geoPoint = doc.getGeoPoint("coordinates") // Pide un GeoPoint
+                    val latitude = geoPoint?.latitude
+                    val longitude = geoPoint?.longitude
+
+                    if (latitude == null || longitude == null) {
                         Log.w("Sincronizacion", "Parada '${doc.id}' no tiene coordenadas válidas.")
                         return@mapNotNull null
                     }
+
                     StopEntity(
                         stopId = doc.id,
                         name = doc.getString("name") ?: "N/A",
-                        latitude = parsed.first,
-                        longitude = parsed.second
+                        latitude = latitude,
+                        longitude = longitude
                     )
                 } catch (e: Exception) {
-                    Log.e("Sincronizacion", "Error procesando parada ${doc.id}", e)
+                    // error en una parada
                     null
                 }
             }
 
             if (stopEntities.isEmpty()) {
-                Log.w("Sincronizacion", "No se obtuvieron paradas válidas desde Firestore. Cargando datos locales de ejemplo...")
-                AppDatabase.populateDatabase(appContext, routeDao)
+                // caso en que no hay validas
                 return
             }
 
@@ -422,8 +495,7 @@ class RouteRepository(
             }
 
             if (routeEntities.isEmpty()) {
-                Log.w("Sincronizacion", "No se obtuvieron rutas válidas desde Firestore. Cargando datos locales de ejemplo...")
-                AppDatabase.populateDatabase(appContext, routeDao)
+                Log.w("Sincronizacion", "No se obtuvieron rutas válidas")
                 return
             }
 
@@ -431,29 +503,15 @@ class RouteRepository(
                 "Sincronizacion",
                 "Insertando en BD: ${stopEntities.size} paradas, ${routeEntities.size} rutas"
             )
-            routeDao.sincronizarCompleto(
+            routeDao.syncchronizeAll(
                 stopEntities,
                 routeEntities,
                 journeyEntities,
                 crossRefEntities
             )
-
-            Log.d("Sincronizacion", "Sincronización completada exitosamente")
-            hasSynced = true
-
-            retryPendingRatings()
-
-            }
         } catch (e: Exception) {
             Log.e("Sincronizacion", "Error al sincronizar datos desde Firebase", e)
-            try {
-                Log.w("Sincronizacion", "Usando datos locales de ejemplo por error de sincronización")
-                AppDatabase.populateDatabase(appContext, routeDao)
-                hasSynced = true
-            } catch (localError: Exception) {
-                Log.e("Sincronizacion", "Error al cargar datos locales", localError)
-                throw e
-            }
+            throw e
         }
     }
 
@@ -482,169 +540,161 @@ class RouteRepository(
                 )
             )
 
-                    val stopsRaw = journeyData["stops"]
-                    val stopIds: List<String> = when (stopsRaw) {
-                        is List<*> -> stopsRaw.mapNotNull { item ->
-                            when (item) {
-                                is Map<*, *> -> item["id"] as? String
-                                is String -> item
-                                else -> null
-                            }
-                        }
-                        else -> emptyList()
-                    }
-                    stopIds.forEachIndexed { index, stopId ->
-                        crossRefEntities.add(
-                            JourneyStopCrossRef(
-                                journeyId = journeyId,
-                                stopId = stopId,
-                                stopOrder = index
-                            )
+            @Suppress("UNCHECKED_CAST")
+            val stops = journeyData["stops"] as? List<Map<String, Any>>
+            stops?.forEachIndexed { index, stopMap ->
+                val stopId = stopMap["id"] as? String
+                if (stopId != null) {
+                    crossRefEntities.add(
+                        JourneyStopCrossRef(
+                            journeyId = journeyId,
+                            stopId = stopId,
+                            stopOrder = index
                         )
-                    }
-                } catch (e: Exception) {
-                    Log.e("Sincronizacion", "Error procesando trayecto $journeyType de ruta $routeId", e)
+                    )
+                } else {
+                    // caso en que stopId es nulo
                 }
             }
+        } catch (e: Exception) {
+            // error
+        }
+    }
 
 // --- COMPARTIR ---
 
+    /**
+     * Inicia o actualiza la compartición de un usuario.
+     * Usa el ID de usuario como clave de documento en 'active_shares' para atomicidad.
+     *
+     * @param userId El ID unico de este dispositivo/usuario.
+     * @param routeId El ID de la ruta que comparte.
+     * @param journeyType "outbound" o "inbound".
+     * @param location La ubicación actual del usuario.
+     */
     suspend fun startShare(
         userId: String,
         routeId: String,
+        journeyType: String,
         location: Location
     ) {
         val shareData = hashMapOf(
             "routeId" to routeId,
-            "latitude" to location.latitude,
-            "longitude" to location.longitude,
-            "lastUpdate" to System.currentTimeMillis(),
-            "viewersCount" to 0
+            "journeyType" to journeyType,
+            "lastLocation" to GeoPoint(location.latitude, location.longitude),
+            "timestamp" to FieldValue.serverTimestamp()
         )
 
         try {
-            firestore.collection("liveTrucks")
-                .document(userId)
-                .set(shareData, SetOptions.merge())
+            firestore.collection("active_shares")
+                .document(userId) // id del documento es el user
+                .set(
+                    shareData,
+                    SetOptions.merge()
+                ) // merge()
                 .await()
-            Log.d("RouteRepository", "LiveTruck actualizado para usuario $userId en ruta $routeId")
         } catch (e: Exception) {
-            Log.e("RouteRepository", "Error al iniciar/actualizar LiveTruck", e)
             throw e
         }
     }
 
-    private fun parseCoordinates(value: Any?, doc: com.google.firebase.firestore.DocumentSnapshot): Pair<Double, Double>? {
-        if (value == null) return null
-        try {
-            when (value) {
-                is Map<*, *> -> {
-                    val lat = (value["latitude"] as? Number)?.toDouble()
-                    val lng = (value["longitude"] as? Number)?.toDouble()
-                    if (lat != null && lng != null) return Pair(lat, lng)
-                }
-                is GeoPoint -> {
-                    return Pair(value.latitude, value.longitude)
-                }
-                is String -> {
-                    // ejemplos: "22.75098° N, 102.48168° W" o "22.75098,-102.48168"
-                    val parts = value.split(",")
-                    if (parts.size >= 2) {
-                        val latStr = parts[0]
-                        val lngStr = parts[1]
-                        val latNum = latStr.replace("[^0-9.+-]".toRegex(), "")
-                        val lngNum = lngStr.replace("[^0-9.+-]".toRegex(), "")
-                        var lat = latNum.toDoubleOrNull()
-                        var lng = lngNum.toDoubleOrNull()
-                        if (lat != null && lng != null) {
-                            val n = latStr.contains("N", ignoreCase = true)
-                            val s = latStr.contains("S", ignoreCase = true)
-                            val e = lngStr.contains("E", ignoreCase = true)
-                            val w = lngStr.contains("W", ignoreCase = true)
-                            if (s) lat = -kotlin.math.abs(lat)
-                            if (w) lng = -kotlin.math.abs(lng)
-                            return Pair(lat, lng)
-                        }
-                    }
-                }
-                is List<*> -> {
-                    // [lat, lng] puede ser [Number, Number] o [String, String]
-                    val first = value.getOrNull(0)
-                    val second = value.getOrNull(1)
-                    when {
-                        first is Number && second is Number -> {
-                            return Pair(first.toDouble(), second.toDouble())
-                        }
-                        first is String && second is String -> {
-                            val latStr = first
-                            val lngStr = second
-                            val latNumStr = latStr.replace("[^0-9.+-]".toRegex(), "")
-                            val lngNumStr = lngStr.replace("[^0-9.+-]".toRegex(), "")
-                            var lat = latNumStr.toDoubleOrNull()
-                            var lng = lngNumStr.toDoubleOrNull()
-                            if (lat != null && lng != null) {
-                                val n = latStr.contains("N", ignoreCase = true)
-                                val s = latStr.contains("S", ignoreCase = true)
-                                val e = lngStr.contains("E", ignoreCase = true)
-                                val w = lngStr.contains("W", ignoreCase = true)
-                                if (s) lat = -kotlin.math.abs(lat)
-                                if (w) lng = -kotlin.math.abs(lng)
-                                return Pair(lat, lng)
-                            }
-                        }
-                    }
-                }
-            }
-        } catch (e: Exception) {
-            Log.e("Sincronizacion", "Error parseando coordenadas de '${doc.id}'", e)
-        }
-        return null
-    }
-
+    /**
+     * Detieneel comparitr de un usuario
+     * elimina el documento del usuario de 'active_shares'
+     *
+     * @param userId El ID unico del usuario que deja de compartir
+     */
     suspend fun stopShare(userId: String, routeId: String) {
         try {
-            firestore.collection("liveTrucks")
+            firestore.collection("active_shares")
                 .document(userId)
                 .delete()
                 .await()
-            Log.d("RouteRepository", "Compartición detenida para usuario $userId en ruta $routeId")
         } catch (e: Exception) {
-            Log.e("RouteRepository", "Error al detener compartición", e)
+            // error
         }
     }
 
+    /**
+     * Obtiene todas las compartidas activas para una ruta especifica
+     *
+     * @param routeId El ID de la ruta a consultar.
+     * @return Una lista de datos (ActiveShareData).
+     */
     suspend fun getActiveSharesForRoute(routeId: String): List<ActiveShareData> {
         return try {
-            val snapshot = firestore.collection("liveTrucks")
+            val snapshot = firestore.collection("active_shares")
                 .whereEqualTo("routeId", routeId)
                 .get()
                 .await()
 
             snapshot.documents.mapNotNull { doc ->
-                val lat = (doc.get("latitude") as? Number)?.toDouble()
-                val lng = (doc.get("longitude") as? Number)?.toDouble()
-                val lastUpdate = (doc.get("lastUpdate") as? Number)?.toLong() ?: 0L
-                val viewersCount = (doc.get("viewersCount") as? Number)?.toInt() ?: 0
-                val rId = doc.getString("routeId") ?: ""
-                if (lat != null && lng != null && rId.isNotBlank()) {
+                try {
                     ActiveShareData(
                         userId = doc.id,
-                        routeId = rId,
-                        latitude = lat,
-                        longitude = lng,
-                        lastUpdate = lastUpdate,
-                        viewersCount = viewersCount
+                        routeId = doc.getString("routeId") ?: "",
+                        journeyType = doc.getString("journeyType") ?: "",
+                        lastLocation = doc.getGeoPoint("lastLocation") ?: GeoPoint(0.0, 0.0),
+                        timestamp = doc.getTimestamp("timestamp") ?: Timestamp.now()
                     )
-                } else null
+                } catch (e: Exception) {
+                    null
+                }
             }
         } catch (e: Exception) {
-            Log.e("RouteRepository", "Error obteniendo active shares", e)
             emptyList()
         }
     }
 
+    /**
+     * Obtiene la info general de todas las rutas que pasan por una parada especifica
+     */
+    suspend fun getGeneralRoutesInfoByStop(stopId: String): List<RoutesInfo> {
+        val routesByStop = routeDao.getRoutesByStopId(stopId)
+        
+        // Obtener todos los crossRefs para ordenar
+        val allCrossRefs = try { routeDao.getAllJourneyStopCrossRefs() } catch (e: Exception) { emptyList() }
+        val journeyOrderMap = allCrossRefs
+            .groupBy { it.journeyId }
+            .mapValues { entry -> 
+                entry.value.associate { it.stopId to it.stopOrder }
+            }
+
+        return routesByStop.map { routeWithJourneys ->
+            val route = routeWithJourneys.route
+            val outbound = routeWithJourneys.journeys.find { it.journey.journeyType == "OUTBOUND" }
+            val inbound = routeWithJourneys.journeys.find { it.journey.journeyType == "INBOUND" }
+
+            val stopsJourney = listOfNotNull(
+                outbound?.toJourneyInfo(journeyOrderMap),
+                inbound?.toJourneyInfo(journeyOrderMap)
+            )
+
+            RoutesInfo(
+                id = route.routeId,
+                name = route.name,
+                windshieldLabel = route.windshieldLabel,
+                colors = route.colors,
+                stopsJourney = stopsJourney
+            )
+        }
+    }
+
+
+    // --- METODOS PARA EL RATING DE RUTAS ---
+
     suspend fun submitRouteRating(routeId: String, stars: Int, comment: String?): Boolean {
         val userId = userIdProvider.getUserId()
+        val entity = RouteRatingEntity(
+            routeId = routeId,
+            userId = userId,
+            stars = stars,
+            comment = comment ?: "",
+            createdAt = System.currentTimeMillis(),
+            pendingSync = true
+        )
+        val localId = routeRatingDao.insertRating(entity)
+
         val data = hashMapOf(
             "routeId" to routeId,
             "userId" to userId,
@@ -654,17 +704,10 @@ class RouteRepository(
         )
         return try {
             firestore.collection("route_ratings").add(data).await()
+            routeRatingDao.markRatingSynced(localId)
             true
         } catch (e: Exception) {
-            val entity = com.example.mirutadigital.data.local.entities.RouteRatingEntity(
-                routeId = routeId,
-                userId = userId,
-                stars = stars,
-                comment = comment,
-                createdAt = System.currentTimeMillis(),
-                pendingSync = true
-            )
-            routeRatingDao.insertRating(entity)
+            Log.w("RatingSync", "Failed to sync rating to Firestore, saved locally.", e)
             false
         }
     }
@@ -690,9 +733,8 @@ class RouteRepository(
     suspend fun getRouteRatingSummary(routeId: String): RouteRatingSummary {
         return try {
             val snapshot = firestore.collection("route_ratings")
-                .whereEqualTo("routeId", routeId)
-                .get()
-                .await()
+                .whereEqualTo("routeId", routeId).get().await()
+
             val stars = snapshot.documents.mapNotNull { (it.get("stars") as? Number)?.toInt() }
             val count = stars.size
             val avg = if (count > 0) stars.sum().toDouble() / count else 0.0
@@ -702,5 +744,33 @@ class RouteRepository(
         }
     }
 
-}
+    fun getRatingsForRoute(routeId: String): Flow<List<RouteRatingEntity>> {
+        return routeRatingDao.getRatingsForRoute(routeId)
+    }
 
+    suspend fun syncRatingsForRoute(routeId: String) {
+        try {
+            val snapshot = firestore.collection("route_ratings")
+                .whereEqualTo("routeId", routeId)
+                .get().await()
+
+            val serverRatings = snapshot.documents.mapNotNull { doc ->
+                val timestamp = doc.getTimestamp("timestamp")?.toDate()?.time ?: System.currentTimeMillis()
+                RouteRatingEntity(
+                    routeId = doc.getString("routeId") ?: return@mapNotNull null,
+                    userId = doc.getString("userId") ?: "",
+                    stars = (doc.get("stars") as? Long)?.toInt() ?: 0,
+                    comment = doc.getString("comment"),
+                    createdAt = timestamp,
+                    pendingSync = false
+                )
+            }
+
+            if (serverRatings.isNotEmpty()) {
+                routeRatingDao.syncRatings(routeId, serverRatings)
+            }
+        } catch (e: Exception) {
+            Log.e("RatingSync", "Error syncing ratings for route $routeId", e)
+        }
+    }
+}

@@ -1,6 +1,8 @@
 package com.example.mirutadigital.ui.screens.home
 
 import android.location.Location
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring
@@ -13,6 +15,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -28,9 +31,11 @@ import androidx.compose.material.icons.filled.FrontHand
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.Streetview
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -41,6 +46,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.ComposableTargetMarker
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -55,6 +61,7 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -66,6 +73,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
 @Composable
 fun StopsScreen(
@@ -74,7 +82,8 @@ fun StopsScreen(
     locationViewModel: LocationViewModel,
     navController: NavHostController,
     isSheetExpanded: Boolean,
-    onExpandSheet: () -> Unit
+    onExpandSheet: () -> Unit,
+    onNavigateToStreetView: (Double, Double) -> Unit
 ) {
     val focusManager = LocalFocusManager.current
     val keyboardController = LocalSoftwareKeyboardController.current
@@ -100,7 +109,8 @@ fun StopsScreen(
             if (index != -1) {
                 launch {
                     delay(100)
-                    lazyListState.animateScrollToItem(index = index)
+                    //lazyListState.animateScrollToItem(index = index)
+                    lazyListState.scrollToItem(index = index)
                 }
             }
         }
@@ -134,64 +144,74 @@ fun StopsScreen(
                 onExpandSheet = onExpandSheet
             )
         }
-        items(uiState.filteredStops, key = { it.id }) { stop ->
-            StopItem(
-                stop = stop,
-                isExpanded = stop.id == expandedStopId,
-                onItemClick = {
-                    focusManager.clearFocus()
-                    keyboardController?.hide()
 
-                    val previouslyExpanded = expandedStopId == stop.id
-                    mapStateViewModel.setSelectedStop(
-                        if (previouslyExpanded) null else stop.id
-                    )
+        if (uiState.isLoading) {
+            item {
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(top = 100.dp),
+                    contentAlignment = Alignment.Center,
+                ) {
+                    CircularProgressIndicator()
+                }
+            }
+        } else {
+            items(uiState.filteredStops, key = { it.id }) { stop ->
+                StopItem(
+                    stop = stop,
+                    isExpanded = stop.id == expandedStopId,
+                    onItemClick = {
+                        focusManager.clearFocus()
+                        keyboardController?.hide()
 
-                    if (!previouslyExpanded) {
-                        scope.launch {
-                            val index =
-                                uiState.filteredStops.indexOfFirst { it.id == stop.id }
-                            if (index != -1) {
-                                delay(100)
-                                lazyListState.animateScrollToItem(index)
+                        val previouslyExpanded = expandedStopId == stop.id
+                        mapStateViewModel.setSelectedStop(
+                            if (previouslyExpanded) null else stop.id
+                        )
+
+                        if (!previouslyExpanded) {
+                            scope.launch {
+                                val index =
+                                    uiState.filteredStops.indexOfFirst { it.id == stop.id }
+                                if (index != -1) {
+                                    delay(100)
+                                    lazyListState.animateScrollToItem(index)
+                                }
                             }
                         }
-                    }
-                },
-                userLocation = userLocation,
-                onViewRoutesClick = { stopId ->
-                    val routeToNavigate = AppScreens.AllRoutesScreen.createRoute(stopId)
-                    navController.navigate(routeToNavigate) {
-                        launchSingleTop = true
-                    }
-                },
-                onViewStreetClick = {
-                    val route = AppScreens.StreetViewScreen.createRoute(stop.latitude, stop.longitude)
-                    navController.navigate(route) {
-                        launchSingleTop = true
-                    }
-                }
-            )
-        }
-        item {
-            if (uiState.filteredStops.isEmpty() && !uiState.isLoading) {
-                Text(
-                    "No se encontraron paradas...", modifier = Modifier
-                        .padding(vertical = 4.dp)
-                        .fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    color = Color.Gray
-                )
-            } else {
-                Text(
-                    "No hay más paradas...", modifier = Modifier
-                        .padding(vertical = 4.dp)
-                        .fillMaxWidth(),
-                    textAlign = TextAlign.Center,
-                    color = Color.Gray
+                    },
+                    userLocation = userLocation,
+                    onViewRoutesClick = { stopId ->
+                        val routeToNavigate = AppScreens.AllRoutesScreen.createRoute(stopId)
+                        navController.navigate(routeToNavigate) {
+                            launchSingleTop = true
+                        }
+                    },
+                    onStreetViewClick = onNavigateToStreetView
                 )
             }
-            Spacer(modifier = Modifier.height(16.dp))
+
+            item {
+                if (uiState.filteredStops.isEmpty()) {
+                    Text(
+                        "No se encontraron paradas...", modifier = Modifier
+                            .padding(vertical = 4.dp)
+                            .fillMaxWidth(),
+                        textAlign = TextAlign.Center,
+                        color = Color.Gray
+                    )
+                } else {
+                    Text(
+                        "No hay más paradas...", modifier = Modifier
+                            .padding(vertical = 4.dp)
+                            .fillMaxWidth(),
+                        textAlign = TextAlign.Center,
+                        color = Color.Gray
+                    )
+                }
+                Spacer(modifier = Modifier.height(16.dp))
+            }
         }
     }
 }
@@ -289,7 +309,7 @@ fun StopItem(
     onItemClick: () -> Unit,
     userLocation: Location?,
     onViewRoutesClick: (String) -> Unit,
-    onViewStreetClick: () -> Unit
+    onStreetViewClick: (Double, Double) -> Unit
 ) {
     val distanceText by remember(userLocation) {
         mutableStateOf(
@@ -374,7 +394,7 @@ fun StopItem(
                         ) {
 
                             Text(
-                                text = "ruta " + route.name,
+                                text = route.name,
                                 fontWeight = FontWeight.SemiBold,
                                 style = MaterialTheme.typography.bodyLarge,
                                 color = MaterialTheme.colorScheme.onSecondaryFixedVariant,
@@ -398,13 +418,28 @@ fun StopItem(
                                 if (stop.routes.size > maxRoutesToShow + 1) "s" else ""
                             Spacer(modifier = Modifier.height(1.dp))
                             Text(
-                                text = "...y ${stop.routes.size - maxRoutesToShow} ruta$moreOneAddS más.",
+                                text = "${stop.routes.size - maxRoutesToShow} ruta$moreOneAddS más",
                                 style = MaterialTheme.typography.bodySmall,
                                 color = Color.Gray,
-                                modifier = Modifier.weight(1f)
+                                maxLines = 1
                             )
                         }
                         Spacer(modifier = Modifier.weight(1f))
+                        Button(
+                            onClick = { onStreetViewClick(stop.latitude, stop.longitude) },
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.onSecondaryFixedVariant,
+                                contentColor = MaterialTheme.colorScheme.surfaceContainerHigh
+                            )
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Streetview,
+                                contentDescription = "Street View"
+                            )
+                            Spacer(modifier = Modifier.width(6.dp))
+                            Text("Vista de Calle", maxLines = 1)
+                        }
+                        Spacer(modifier = Modifier.padding(end = 4.dp))
                         Button(
                             onClick = { onViewRoutesClick(stop.id) },
                             colors = ButtonDefaults.buttonColors(
@@ -412,17 +447,7 @@ fun StopItem(
                                 contentColor = MaterialTheme.colorScheme.surfaceContainerHigh
                             )
                         ) {
-                            Text("Ver Rutas")
-                        }
-                        Spacer(modifier = Modifier.width(8.dp))
-                        Button(
-                            onClick = onViewStreetClick,
-                            colors = ButtonDefaults.buttonColors(
-                                containerColor = MaterialTheme.colorScheme.primary,
-                                contentColor = MaterialTheme.colorScheme.onPrimary
-                            )
-                        ) {
-                            Text("Ver Street View")
+                            Text("Ver Rutas", maxLines = 1)
                         }
                     }
                 } else {

@@ -8,7 +8,9 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.location.Location
 import android.location.LocationManager
+import android.os.Build
 import android.os.Looper
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -22,6 +24,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
+@RequiresApi(Build.VERSION_CODES.O)
 class LocationViewModel(application: Application) : AndroidViewModel(application) {
 
     private val fusedLocationClient: FusedLocationProviderClient =
@@ -52,7 +55,7 @@ class LocationViewModel(application: Application) : AndroidViewModel(application
 
     init {
         val intentFilter = IntentFilter(LocationManager.PROVIDERS_CHANGED_ACTION)
-        application.registerReceiver(gpsStateReceiver, intentFilter, Context.RECEIVER_NOT_EXPORTED)
+        application.registerReceiver(gpsStateReceiver, intentFilter) // Context.RECEIVER_NOT_EXPORTED
 
         isGpsEnabled
             .onEach { enabled ->

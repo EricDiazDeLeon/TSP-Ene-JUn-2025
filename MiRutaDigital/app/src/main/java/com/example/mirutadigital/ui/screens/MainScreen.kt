@@ -1,5 +1,7 @@
 package com.example.mirutadigital.ui.screens
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Box
@@ -11,14 +13,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.BottomSheetScaffold
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SheetValue
@@ -40,7 +39,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -49,8 +47,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.mirutadigital.navigation.AppNavigation
 import com.example.mirutadigital.navigation.Routes
 import com.example.mirutadigital.navigation.navigationItems
-import com.example.mirutadigital.ui.components.BottomBar
-import com.example.mirutadigital.ui.components.Toolbar
+import com.example.mirutadigital.ui.components.navigation.BottomBar
+import com.example.mirutadigital.ui.components.navigation.Toolbar
 import com.example.mirutadigital.ui.components.content.MainContent
 import com.example.mirutadigital.ui.components.content.MapContent
 import com.example.mirutadigital.ui.screens.share.ShareViewModel
@@ -61,13 +59,10 @@ import com.example.mirutadigital.viewModel.MapStateViewModel
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@RequiresApi(Build.VERSION_CODES.O)
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainScreen(
-    locationViewModel: LocationViewModel,
-    isDarkTheme: Boolean,
-    onToggleDarkTheme: (Boolean) -> Unit
-) {
+fun MainScreen(locationViewModel: LocationViewModel) {
     val navController = rememberNavController()
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
@@ -93,6 +88,7 @@ fun MainScreen(
         currentRoute == Routes.HISTORY -> Routes.HISTORY
         currentRoute == Routes.SHARE -> Routes.SHARE
         currentRoute?.contains(Routes.STREET_VIEW) == true -> Routes.STREET_VIEW
+        currentRoute == Routes.TRIP_PLAN -> Routes.TRIP_PLAN
         else -> Routes.STOPS
     }
 
@@ -102,6 +98,7 @@ fun MainScreen(
         Routes.DESTINATION_SEARCH -> 2
         Routes.ROUTE_DETAIL -> 1
         Routes.SHARE -> 3
+        Routes.TRIP_PLAN -> 2
         else -> 0
     }
 
@@ -115,11 +112,12 @@ fun MainScreen(
         Routes.STOPS -> "Mi Ruta Digital"
         Routes.ALL_ROUTES -> "Ver Rutas"
         Routes.DESTINATION_SEARCH -> "Buscar Destino"
-        Routes.ROUTE_DETAIL -> mapState.currentRouteName ?: "Detalle de la Ruta"
+        Routes.ROUTE_DETAIL -> "Ruta ${mapState.currentRouteName}"
         Routes.FAVORITES -> "Gestionar Favoritos"
         Routes.HISTORY -> "Historial de Rutas"
         Routes.SHARE -> "Compartir Ruta"
-        Routes.STREET_VIEW -> "Vista Calle"
+        Routes.STREET_VIEW -> "Vista de Calle"
+        Routes.TRIP_PLAN -> "Planear Viaje"
         else -> ""
     }
 
@@ -133,7 +131,8 @@ fun MainScreen(
         Routes.ROUTE_DETAIL,
         Routes.FAVORITES,
         Routes.HISTORY,
-        Routes.STREET_VIEW
+        Routes.STREET_VIEW,
+        Routes.TRIP_PLAN
     )
 
     val showToolbarMenu = currentScreen !in listOf(
@@ -177,7 +176,9 @@ fun MainScreen(
 
             Routes.FAVORITES,
             Routes.HISTORY,
-            Routes.SHARE -> {
+            Routes.SHARE,
+            Routes.STREET_VIEW,
+            Routes.TRIP_PLAN -> {
             }
 
             else -> {}
@@ -200,10 +201,9 @@ fun MainScreen(
                     navController.navigate(Routes.HISTORY) {
                         launchSingleTop = true
                     }
-                },
-                isDarkTheme = isDarkTheme,
-                onToggleDarkTheme = onToggleDarkTheme
+                }
             )
+
         },
         bottomBar = {
             if (showBottomBarAndSheet) {
@@ -264,6 +264,72 @@ fun MainScreen(
                             keyboardController?.hide()
                         })
                     },
+                content = { innerPaddingSheet ->
+                    Box(
+                        modifier = Modifier
+                            .fillMaxSize()
+                    ) {
+                        MainContent(padding = innerPaddingSheet, inProduction = false) {
+                            MapContent(mapStateViewModel = mapStateViewModel)
+                        }
+
+                        val currentShared by ShareManager.currentSharedRouteId.collectAsState()
+                        val routeName = shareState.routes.find { it.id == currentShared }?.name
+                        var showCancelDialog by remember { mutableStateOf(false) }
+
+                        if (currentShared != null && !listOf(
+                                Routes.FAVORITES,
+                                Routes.HISTORY
+                            ).contains(currentRoute)
+                        ) {
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(MaterialTheme.colorScheme.surfaceContainerHighest)
+                                    .padding(4.dp)
+                                    .align(Alignment.TopCenter),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Text(
+                                    text = "Compartiendo ${routeName ?: "ruta"}",
+                                    modifier = Modifier.weight(1f),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.onSecondaryFixedVariant
+                                )
+                                Button(
+                                    onClick = { showCancelDialog = true },
+                                    colors = ButtonDefaults.buttonColors(
+                                        containerColor = MaterialTheme.colorScheme.onSecondaryFixedVariant,
+                                        contentColor = MaterialTheme.colorScheme.surfaceContainerLow
+                                    ),
+                                    shape = RoundedCornerShape(8.dp)
+                                ) {
+                                    Text("Cancelar")
+                                }
+                            }
+                        }
+
+                        if (showCancelDialog) {
+                            AlertDialog(
+                                onDismissRequest = { showCancelDialog = false },
+                                title = { Text("Dejar de Compartir") },
+                                text = { Text("¿Seguro que quieres dejar de compartir?") },
+                                confirmButton = {
+                                    TextButton(onClick = {
+                                        showCancelDialog = false
+                                        shareViewModel.stopShare()
+                                    }) { Text("Sí") }
+                                },
+                                dismissButton = {
+                                    TextButton(onClick = {
+                                        showCancelDialog = false
+                                    }) { Text("No") }
+                                }
+                            )
+                        }
+                    }
+                },
                 sheetContent = {
                     Box(modifier = Modifier.fillMaxHeight(0.5f)) {
                         AppNavigation(
@@ -285,88 +351,13 @@ fun MainScreen(
                                 .height(9.dp)
                                 .padding(top = 4.dp)
                                 .background(
-                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    color = MaterialTheme.colorScheme.onSecondaryFixedVariant,
                                     shape = RoundedCornerShape(50)
                                 )
                         )
                     }
                 }
-            ) { innerPaddingSheet ->
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                ) {
-                    MainContent(padding = innerPaddingSheet, inProduction = false) {
-                        MapContent(mapStateViewModel = mapStateViewModel)
-                    }
-
-                    val currentShared by ShareManager.currentSharedRouteId.collectAsState()
-                    val routeName = shareState.routes.find { it.id == currentShared }?.name
-                    val routeLabel = shareState.routes.find { it.id == currentShared }?.windshieldLabel ?: routeName
-                    var showCancelDialog by remember { mutableStateOf(false) }
-
-                    if (currentShared != null && !listOf(
-                            Routes.FAVORITES,
-                            Routes.HISTORY
-                        ).contains(currentRoute)
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .background(
-                                    MaterialTheme.colorScheme.surfaceContainerHigh,
-                                    RoundedCornerShape(12.dp)
-                                )
-                                .padding(horizontal = 12.dp, vertical = 6.dp)
-                                .align(Alignment.TopCenter),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Text(
-                                text = "Compartiendo ruta ${routeName ?: "ruta"}",
-                                modifier = Modifier.weight(1f),
-                                style = MaterialTheme.typography.bodyMedium,
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.onSurface // CORREGIDO: Color válido
-                            )
-                            Button(
-                                onClick = { showCancelDialog = true },
-                                colors = ButtonDefaults.buttonColors(
-                                    containerColor = MaterialTheme.colorScheme.onSecondaryFixedVariant,
-                                    contentColor = MaterialTheme.colorScheme.surfaceContainerHigh
-                                ),
-                                shape = RoundedCornerShape(12.dp)
-                            ) {
-                                Row(verticalAlignment = Alignment.CenterVertically) {
-                                    Icon(
-                                        imageVector = Icons.Default.Close,
-                                        contentDescription = "Dejar de compartir"
-                                    )
-                                    Text("Dejar de compartir")
-                                }
-                            }
-                        }
-                    }
-
-                    if (showCancelDialog) {
-                        AlertDialog(
-                            onDismissRequest = { showCancelDialog = false },
-                            title = { Text("Dejar de Compartir") },
-                            text = { Text("¿Seguro que quieres dejar de compartir?") },
-                            confirmButton = {
-                                TextButton(onClick = {
-                                    showCancelDialog = false
-                                    shareViewModel.stopShare()
-                                }) { Text("Sí") }
-                            },
-                            dismissButton = {
-                                TextButton(onClick = {
-                                    showCancelDialog = false
-                                }) { Text("No") }
-                            }
-                        )
-                    }
-                }
-            }
+            )
         } else {
             Box(
                 modifier = Modifier

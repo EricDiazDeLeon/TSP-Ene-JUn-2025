@@ -18,8 +18,8 @@ android {
         applicationId = "com.example.mirutadigital"
         minSdk = 24
         targetSdk = 36
-        versionCode = 5
-        versionName = "1.3"
+        versionCode = 2
+        versionName = "1.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
@@ -85,6 +85,8 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.play.services.location)
     implementation(libs.maps.utils.ktx)
+    implementation(libs.maps.compose.v612)
+    implementation(libs.maps.compose.utils)
 
     // -- Retrofit y Moshi para Networking --
     implementation(libs.retrofit)
@@ -100,10 +102,11 @@ dependencies {
     ksp(libs.androidx.room.compiler) // para usar ksp con room - procesador de anotaciones
 
     // -- firebase --
-    implementation(platform("com.google.firebase:firebase-bom:34.4.0"))
+    implementation(platform(libs.firebase.bom))
     //implementation("com.google.firebase:firebase-analytics")
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-firestore")
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
+    implementation(libs.androidx.compose.ui.geometry)
 
     // -- Gson --
     implementation(libs.gson)

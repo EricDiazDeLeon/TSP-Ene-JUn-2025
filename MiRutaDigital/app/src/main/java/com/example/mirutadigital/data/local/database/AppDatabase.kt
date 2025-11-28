@@ -8,12 +8,14 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.mirutadigital.data.local.dao.FavoriteRouteDao
 import com.example.mirutadigital.data.local.dao.RouteDao
 import com.example.mirutadigital.data.local.dao.RouteHistoryDao
+import com.example.mirutadigital.data.local.dao.RouteRatingDao
 import com.example.mirutadigital.data.local.entities.FavoriteRouteEntity
 import com.example.mirutadigital.data.local.entities.JourneyEntity
 import com.example.mirutadigital.data.local.entities.JourneyStopCrossRef
 import com.example.mirutadigital.data.local.entities.RouteEntity
 import com.example.mirutadigital.data.local.entities.RouteHistoryEntity
 import com.example.mirutadigital.data.local.entities.StopEntity
+import com.example.mirutadigital.data.local.entities.RouteRatingEntity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.CoroutineScope
@@ -32,9 +34,9 @@ import java.io.InputStreamReader
         JourneyStopCrossRef::class,
         FavoriteRouteEntity::class,
         RouteHistoryEntity::class,
-        com.example.mirutadigital.data.local.entities.RouteRatingEntity::class
+        RouteRatingEntity::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -42,7 +44,7 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun routeDao(): RouteDao
     abstract fun favoriteRouteDao(): FavoriteRouteDao
     abstract fun routeHistoryDao(): RouteHistoryDao
-    abstract fun routeRatingDao(): com.example.mirutadigital.data.local.dao.RouteRatingDao
+    abstract fun routeRatingDao(): RouteRatingDao
 
     companion object {
         @Volatile

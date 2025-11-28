@@ -1,0 +1,3428 @@
+{
+  "stops": [
+    {
+      "id": "11va_zona_militar",
+      "name": "11VA ZONA MILITAR",
+      "coordinates": {
+        "latitude": 22.74828697421849,
+        "longitude": -102.50491020158879
+      }
+    },
+    {
+      "id": "11va_zona_militar_1",
+      "name": "11VA ZONA MILITAR..",
+      "coordinates": {
+        "latitude": 22.748193303860667,
+        "longitude": -102.5048444473885
+      }
+    },
+    {
+      "id": "16_de_septiembre_40",
+      "name": "16 DE SEPTIEMBRE, 40",
+      "coordinates": {
+        "latitude": 22.765156378082384,
+        "longitude": -102.50941457261
+      }
+    },
+    {
+      "id": "16_de_septiembre_47",
+      "name": "16 DE SEPTIEMBRE, 47",
+      "coordinates": {
+        "latitude": 22.765091877783576,
+        "longitude": -102.50930206676583
+      }
+    },
+    {
+      "id": "1910_60",
+      "name": "1910, 60",
+      "coordinates": {
+        "latitude": 22.747723502985718,
+        "longitude": -102.51374423084066
+      }
+    },
+    {
+      "id": "191050",
+      "name": "1910,50",
+      "coordinates": {
+        "latitude": 22.74778296576064,
+        "longitude": -102.51400100938815
+      }
+    },
+    {
+      "id": "2_de_marzo_15",
+      "name": "2 DE MARZO, 15",
+      "coordinates": {
+        "latitude": 22.774757052917792,
+        "longitude": -102.58849745276042
+      }
+    },
+    {
+      "id": "2_de_mayo_245",
+      "name": "2 DE MAYO, 245",
+      "coordinates": {
+        "latitude": 22.775582742402143,
+        "longitude": -102.58886784545777
+      }
+    },
+    {
+      "id": "20_de_noviembre_109",
+      "name": "20 DE NOVIEMBRE, 109",
+      "coordinates": {
+        "latitude": 22.748802214453296,
+        "longitude": -102.60657998235077
+      }
+    },
+    {
+      "id": "20_de_noviembre115",
+      "name": "20 DE NOVIEMBRE,115",
+      "coordinates": {
+        "latitude": 22.74879681258206,
+        "longitude": -102.60631336529778
+      }
+    },
+    {
+      "id": "5_de_mayo_38",
+      "name": "5 DE MAYO, 38",
+      "coordinates": {
+        "latitude": 22.754110342535817,
+        "longitude": -102.51981139409328
+      }
+    },
+    {
+      "id": "5_de_mayo_80",
+      "name": "5 DE MAYO, 80",
+      "coordinates": {
+        "latitude": 22.752898023492715,
+        "longitude": -102.51586821712462
+      }
+    },
+    {
+      "id": "5_de_mayo_segunda_de_guerrero",
+      "name": "5 DE MAYO / SEGUNDA DE GUERRERO",
+      "coordinates": {
+        "latitude": 22.751453795996138,
+        "longitude": -102.51156709460895
+      }
+    },
+    {
+      "id": "5_senores",
+      "name": "5 SEÑORES",
+      "coordinates": {
+        "latitude": 22.76438940928441,
+        "longitude": -102.58179198060071
+      }
+    },
+    {
+      "id": "aeropuerto",
+      "name": "AEROPUERTO",
+      "coordinates": {
+        "latitude": 22.91550676480029,
+        "longitude": -102.67329809321083
+      }
+    },
+    {
+      "id": "agronomia_uaz",
+      "name": "AGRONOMIA UAZ",
+      "coordinates": {
+        "latitude": 22.728725112739667,
+        "longitude": -102.68089947146
+      }
+    },
+    {
+      "id": "ahresty",
+      "name": "AHRESTY..",
+      "coordinates": {
+        "latitude": 22.73484608022883,
+        "longitude": -102.4957458236284
+      }
+    },
+    {
+      "id": "ahresty_1",
+      "name": "AHRESTY",
+      "coordinates": {
+        "latitude": 22.73490364732983,
+        "longitude": -102.49598072872543
+      }
+    },
+    {
+      "id": "alameda",
+      "name": "ALAMEDA",
+      "coordinates": {
+        "latitude": 22.773021014061964,
+        "longitude": -102.57700648537572
+      }
+    },
+    {
+      "id": "alameda_gpe",
+      "name": "ALAMEDA GPE..",
+      "coordinates": {
+        "latitude": 22.748733086611185,
+        "longitude": -102.51687704903475
+      }
+    },
+    {
+      "id": "alameda_gpe_1",
+      "name": "ALAMEDA GPE",
+      "coordinates": {
+        "latitude": 22.748574391456227,
+        "longitude": -102.51696825867091
+      }
+    },
+    {
+      "id": "antonio_ortiz",
+      "name": "ANTONIO ORTIZ",
+      "coordinates": {
+        "latitude": 22.78706780324266,
+        "longitude": -102.56958212452533
+      }
+    },
+    {
+      "id": "aptiv",
+      "name": "APTIV",
+      "coordinates": {
+        "latitude": 22.754334619998637,
+        "longitude": -102.50576042786707
+      }
+    },
+    {
+      "id": "arboledas",
+      "name": "ARBOLEDAS",
+      "coordinates": {
+        "latitude": 22.754757959931748,
+        "longitude": -102.53594176233983
+      }
+    },
+    {
+      "id": "asilo_divina_providencia",
+      "name": "ASILO DIVINA PROVIDENCIA",
+      "coordinates": {
+        "latitude": 22.766403321899777,
+        "longitude": -102.53454647435646
+      }
+    },
+    {
+      "id": "auditorio_luis_moya",
+      "name": "AUDITORIO LUIS MOYA",
+      "coordinates": {
+        "latitude": 22.745541727586602,
+        "longitude": -102.51859302569109
+      }
+    },
+    {
+      "id": "aurrera_5_senores",
+      "name": "AURRERA 5 SEÑORES..",
+      "coordinates": {
+        "latitude": 22.760342960947806,
+        "longitude": -102.58585243799467
+      }
+    },
+    {
+      "id": "aurrera_5_senores_1",
+      "name": "AURRERA 5 SEÑORES",
+      "coordinates": {
+        "latitude": 22.760369433817804,
+        "longitude": -102.58596853323776
+      }
+    },
+    {
+      "id": "aurrera_villas_de_gpe",
+      "name": "AURRERA VILLAS DE GPE",
+      "coordinates": {
+        "latitude": 22.750983569004354,
+        "longitude": -102.48168707758691
+      }
+    },
+    {
+      "id": "av_barones_120",
+      "name": "AV BARONES, 120",
+      "coordinates": {
+        "latitude": 22.758250813270845,
+        "longitude": -102.4997698379105
+      }
+    },
+    {
+      "id": "av_barones_163",
+      "name": "AV. BARONES, 163",
+      "coordinates": {
+        "latitude": 22.76023379081677,
+        "longitude": -102.49864366486604
+      }
+    },
+    {
+      "id": "av_barones_267",
+      "name": "AV BARONES, 267",
+      "coordinates": {
+        "latitude": 22.762198069885052,
+        "longitude": -102.49761881963
+      }
+    },
+    {
+      "id": "av_barones_5",
+      "name": "AV. BARONES, 5",
+      "coordinates": {
+        "latitude": 22.758542961111395,
+        "longitude": -102.49950613147
+      }
+    },
+    {
+      "id": "av_camino_real_90",
+      "name": "AV. CAMINO REAL , 90",
+      "coordinates": {
+        "latitude": 22.75593522604981,
+        "longitude": -102.50112639772043
+      }
+    },
+    {
+      "id": "av_camino_real_92",
+      "name": "AV. CAMINO REAL 92",
+      "coordinates": {
+        "latitude": 22.75600004038126,
+        "longitude": -102.50124459123843
+      }
+    },
+    {
+      "id": "av_condesa_10",
+      "name": "AV. CONDESA, 10",
+      "coordinates": {
+        "latitude": 22.75998198693474,
+        "longitude": -102.50341761698199
+      }
+    },
+    {
+      "id": "av_condesa_101",
+      "name": "AV. CONDESA, 101",
+      "coordinates": {
+        "latitude": 22.758388537118485,
+        "longitude": -102.499902004792
+      }
+    },
+    {
+      "id": "av_condesa_26",
+      "name": "AV. CONDESA, 26",
+      "coordinates": {
+        "latitude": 22.755044938007615,
+        "longitude": -102.48937697253722
+      }
+    },
+    {
+      "id": "av_condesa_30",
+      "name": "AV. CONDESA, 30",
+      "coordinates": {
+        "latitude": 22.75503567719931,
+        "longitude": -102.48906927455788
+      }
+    },
+    {
+      "id": "av_del_derecho_307",
+      "name": "AV. DEL DERECHO, 307",
+      "coordinates": {
+        "latitude": 22.75406961347086,
+        "longitude": -102.49699109393474
+      }
+    },
+    {
+      "id": "av_del_marquez_1720",
+      "name": "AV. DEL MARQUEZ, 1720",
+      "coordinates": {
+        "latitude": 22.75788001788399,
+        "longitude": -102.49382513930925
+      }
+    },
+    {
+      "id": "av_gonzalez_ortega",
+      "name": "AV. GONZALEZ ORTEGA",
+      "coordinates": {
+        "latitude": 22.771606146649166,
+        "longitude": -102.5748068325912
+      }
+    },
+    {
+      "id": "av_gonzalez_ortega_1",
+      "name": "AV. GONZALEZ ORTEGA..",
+      "coordinates": {
+        "latitude": 22.77113730128593,
+        "longitude": -102.57496180667898
+      }
+    },
+    {
+      "id": "av_magisterial_653",
+      "name": "AV. MAGISTERIAL, 653",
+      "coordinates": {
+        "latitude": 22.75169105718686,
+        "longitude": -102.60898358603836
+      }
+    },
+    {
+      "id": "av_magisterial_735",
+      "name": "AV. MAGISTERIAL, 735..",
+      "coordinates": {
+        "latitude": 22.751681389646908,
+        "longitude": -102.60880559467405
+      }
+    },
+    {
+      "id": "av_mexico",
+      "name": "AV. MEXICO",
+      "coordinates": {
+        "latitude": 22.763880550596234,
+        "longitude": -102.54560947653262
+      }
+    },
+    {
+      "id": "av_mexico_1",
+      "name": "AV. MEXICO ..",
+      "coordinates": {
+        "latitude": 22.763409977335336,
+        "longitude": -102.5451039617996
+      }
+    },
+    {
+      "id": "av_mexico_35",
+      "name": "AV, MEXICO, 35",
+      "coordinates": {
+        "latitude": 22.759067630314195,
+        "longitude": -102.49307480701512
+      }
+    },
+    {
+      "id": "av_mexico_gavilanes",
+      "name": "AV. MEXICO / GAVILANES",
+      "coordinates": {
+        "latitude": 22.76028374187117,
+        "longitude": -102.5387039654996
+      }
+    },
+    {
+      "id": "av_preparatoria",
+      "name": "AV PREPARATORIA",
+      "coordinates": {
+        "latitude": 22.765967336186645,
+        "longitude": -102.5572765146383
+      }
+    },
+    {
+      "id": "av_prolongacion_la_fe_12",
+      "name": "AV. PROLONGACIÓN LA FE, 12",
+      "coordinates": {
+        "latitude": 22.768653224608318,
+        "longitude": -102.50001111497615
+      }
+    },
+    {
+      "id": "av_prolongacion_la_fe_2",
+      "name": "AV. PROLONGACIÓN LA FE, 2",
+      "coordinates": {
+        "latitude": 22.768945202944614,
+        "longitude": -102.50053719318015
+      }
+    },
+    {
+      "id": "av_real_de_san_ramon",
+      "name": "AV. REAL DE SAN RAMÓN",
+      "coordinates": {
+        "latitude": 22.718403468988253,
+        "longitude": -102.51866327219578
+      }
+    },
+    {
+      "id": "av_real_de_san_ramon_1",
+      "name": "AV. REAL DE SAN RAMÓN..",
+      "coordinates": {
+        "latitude": 22.718482692679164,
+        "longitude": -102.5185396806747
+      }
+    },
+    {
+      "id": "av_san_marcos",
+      "name": "AV SAN MARCOS",
+      "coordinates": {
+        "latitude": 22.76767887017359,
+        "longitude": -102.5864641955908
+      }
+    },
+    {
+      "id": "av_sierra_madre",
+      "name": "AV. SIERRA MADRE",
+      "coordinates": {
+        "latitude": 22.7400106141468,
+        "longitude": -102.58564893839036
+      }
+    },
+    {
+      "id": "av_siglo_21_29",
+      "name": "AV, SIGLO 21, 29",
+      "coordinates": {
+        "latitude": 22.77119154806122,
+        "longitude": -102.50682537649077
+      }
+    },
+    {
+      "id": "av_siglo_xxi_15",
+      "name": "AV, SIGLO XXI, 15",
+      "coordinates": {
+        "latitude": 22.771245268219506,
+        "longitude": -102.50668998754648
+      }
+    },
+    {
+      "id": "av_tierra_y_libertad_161",
+      "name": "AV, TIERRA Y LIBERTAD, 161",
+      "coordinates": {
+        "latitude": 22.76039797449196,
+        "longitude": -102.51921679994621
+      }
+    },
+    {
+      "id": "av_tierra_y_libertad_165",
+      "name": "AV. TIERRA Y LIBERTAD 165",
+      "coordinates": {
+        "latitude": 22.760299029094195,
+        "longitude": -102.51905936172132
+      }
+    },
+    {
+      "id": "av_villas_de_gpe",
+      "name": "AV. VILLAS DE GPE",
+      "coordinates": {
+        "latitude": 22.750676883405816,
+        "longitude": -102.4810406753152
+      }
+    },
+    {
+      "id": "avenida_americas_uneme",
+      "name": "AVENIDA AMERICAS / UNEME",
+      "coordinates": {
+        "latitude": 22.76147590648488,
+        "longitude": -102.48920731560236
+      }
+    },
+    {
+      "id": "base_ruta_1",
+      "name": "BASE RUTA 1",
+      "coordinates": {
+        "latitude": 22.747703693074822,
+        "longitude": -102.66941974911725
+      }
+    },
+    {
+      "id": "base_ruta_8",
+      "name": "BASE RUTA 8",
+      "coordinates": {
+        "latitude": 22.739718699367742,
+        "longitude": -102.59249386023006
+      }
+    },
+    {
+      "id": "base_transportes_de_guadalupe",
+      "name": "BASE TRANSPORTES DE GUADALUPE",
+      "coordinates": {
+        "latitude": 22.735800283861916,
+        "longitude": -102.52475207541156
+      }
+    },
+    {
+      "id": "begonias_145",
+      "name": "BEGONIAS, 145",
+      "coordinates": {
+        "latitude": 22.766467028013647,
+        "longitude": -102.59565259161971
+      }
+    },
+    {
+      "id": "begonias_153",
+      "name": "BEGONIAS, 153",
+      "coordinates": {
+        "latitude": 22.766264816590958,
+        "longitude": -102.59564717262603
+      }
+    },
+    {
+      "id": "begonias_63",
+      "name": "BEGONIAS, 63",
+      "coordinates": {
+        "latitude": 22.76345388689687,
+        "longitude": -102.59764361354173
+      }
+    },
+    {
+      "id": "begonias_84",
+      "name": "BEGONIAS, 84",
+      "coordinates": {
+        "latitude": 22.763257347313314,
+        "longitude": -102.59750425202242
+      }
+    },
+    {
+      "id": "biblioteca_mauricio_magdaleno",
+      "name": "BIBLIOTECA MAURICIO MAGDALENO",
+      "coordinates": {
+        "latitude": 22.77533562832875,
+        "longitude": -102.58134658277166
+      }
+    },
+    {
+      "id": "bimbo",
+      "name": "BIMBO",
+      "coordinates": {
+        "latitude": 22.760991156722717,
+        "longitude": -102.65490297498643
+      }
+    },
+    {
+      "id": "bimbo_1",
+      "name": "BIMBO..",
+      "coordinates": {
+        "latitude": 22.76088723961269,
+        "longitude": -102.65480161552821
+      }
+    },
+    {
+      "id": "blvd_de_la_nacion",
+      "name": "BLVD DE LA NACIÓN",
+      "coordinates": {
+        "latitude": 22.72171464040884,
+        "longitude": -102.4932295503697
+      }
+    },
+    {
+      "id": "blvd_de_la_nacion_1",
+      "name": "BLVD DE LA NACION..",
+      "coordinates": {
+        "latitude": 22.727542071296202,
+        "longitude": -102.49422242966301
+      }
+    },
+    {
+      "id": "bonaterra",
+      "name": "BONATERRA",
+      "coordinates": {
+        "latitude": 22.756700881406637,
+        "longitude": -102.54203350588257
+      }
+    },
+    {
+      "id": "bonito_pueblo",
+      "name": "BONITO PUEBLO",
+      "coordinates": {
+        "latitude": 22.75080546978837,
+        "longitude": -102.49258767787755
+      }
+    },
+    {
+      "id": "bonito_pueblo_1",
+      "name": "BONITO PUEBLO..",
+      "coordinates": {
+        "latitude": 22.750607645872307,
+        "longitude": -102.49246397494234
+      }
+    },
+    {
+      "id": "bracho",
+      "name": "BRACHO",
+      "coordinates": {
+        "latitude": 22.78910008559492,
+        "longitude": -102.56460971396722
+      }
+    },
+    {
+      "id": "buenavista",
+      "name": "BUENAVISTA",
+      "coordinates": {
+        "latitude": 22.76263885746596,
+        "longitude": -102.57712394002333
+      }
+    },
+    {
+      "id": "buenavista_r2r4",
+      "name": "BUENAVISTA R2,R4",
+      "coordinates": {
+        "latitude": 22.762999431232373,
+        "longitude": -102.57675466402786
+      }
+    },
+    {
+      "id": "calera",
+      "name": "CALERA",
+      "coordinates": {
+        "latitude": 22.952154601417018,
+        "longitude": -102.70576359310837
+      }
+    },
+    {
+      "id": "calz_luis_moya",
+      "name": "CALZ LUIS MOYA",
+      "coordinates": {
+        "latitude": 22.7576571781115,
+        "longitude": -102.58821168411745
+      }
+    },
+    {
+      "id": "calzada_revolucion_mexicana_55",
+      "name": "CALZADA REVOLUCIÓN MEXICANA, 55",
+      "coordinates": {
+        "latitude": 22.75588127517843,
+        "longitude": -102.5091462803403
+      }
+    },
+    {
+      "id": "calzada_revolucion_mexicana_64",
+      "name": "CALZADA REVOLUCIÓN MEXICANA, 64",
+      "coordinates": {
+        "latitude": 22.753345076573705,
+        "longitude": -102.50256983758693
+      }
+    },
+    {
+      "id": "calzada_siglo_xxi",
+      "name": "CALZADA SIGLO XXI",
+      "coordinates": {
+        "latitude": 22.75812201323304,
+        "longitude": -102.47591973820421
+      }
+    },
+    {
+      "id": "calzada_siglo_xxi_1",
+      "name": "CALZADA SIGLO XXI",
+      "coordinates": {
+        "latitude": 22.758126981302418,
+        "longitude": -102.47561926152542
+      }
+    },
+    {
+      "id": "camara_de_comercio_gpe",
+      "name": "CAMARA DE COMERCIO >GPE",
+      "coordinates": {
+        "latitude": 22.767802794794566,
+        "longitude": -102.5734020433965
+      }
+    },
+    {
+      "id": "camara_de_comercio_zac",
+      "name": "CAMARA DE COMERCIO > ZAC",
+      "coordinates": {
+        "latitude": 22.76809003742443,
+        "longitude": -102.5734090242574
+      }
+    },
+    {
+      "id": "camino_a_la_zacatecana",
+      "name": "CAMINO A LA ZACATECANA",
+      "coordinates": {
+        "latitude": 22.73949146192306,
+        "longitude": -102.49698053364887
+      }
+    },
+    {
+      "id": "capilla_santa_maria_del_tepeyac",
+      "name": "CAPILLA SANTA MARIA DEL TEPEYAC",
+      "coordinates": {
+        "latitude": 22.757924151671933,
+        "longitude": -102.59069681167604
+      }
+    },
+    {
+      "id": "capse",
+      "name": "CAPSE",
+      "coordinates": {
+        "latitude": 22.777413006756536,
+        "longitude": -102.58194204786642
+      }
+    },
+    {
+      "id": "carretera_a_san_ramon",
+      "name": "CARRETERA A SAN RAMÓN..",
+      "coordinates": {
+        "latitude": 22.727538176486508,
+        "longitude": -102.516066058442
+      }
+    },
+    {
+      "id": "carretera_a_sauceda_de_la_bora_210",
+      "name": "CARRETERA A SAUCEDA DE LA BORA, 210",
+      "coordinates": {
+        "latitude": 22.763637601237846,
+        "longitude": -102.50219463042625
+      }
+    },
+    {
+      "id": "carretera_a_sauceda_de_la_borda_2",
+      "name": "CARRETERA A SAUCEDA DE LA BORDA, 2",
+      "coordinates": {
+        "latitude": 22.77252050074107,
+        "longitude": -102.49886690317302
+      }
+    },
+    {
+      "id": "carretera_a_sauceda_de_la_borda_305",
+      "name": "CARRETERA A SAUCEDA DE LA BORDA, 305",
+      "coordinates": {
+        "latitude": 22.768514690614204,
+        "longitude": -102.50036002884694
+      }
+    },
+    {
+      "id": "carretera_a_sauceda_de_la_borda_325",
+      "name": "CARRETERA A SAUCEDA DE LA BORDA, 325",
+      "coordinates": {
+        "latitude": 22.76855410519161,
+        "longitude": -102.50049903368924
+      }
+    },
+    {
+      "id": "carretera_a_sauceda_de_la_borda_45",
+      "name": "CARRETERA A SAUCEDA DE LA BORDA, 45",
+      "coordinates": {
+        "latitude": 22.763656930904514,
+        "longitude": -102.50232882710239
+      }
+    },
+    {
+      "id": "carretera_a_sauceda_de_la_borda_57",
+      "name": "CARRETERA A SAUCEDA DE LA BORDA, 57",
+      "coordinates": {
+        "latitude": 22.75993206510629,
+        "longitude": -102.50357272767276
+      }
+    },
+    {
+      "id": "carretera_a_sauceda_de_la_borda_8",
+      "name": "CARRETERA A SAUCEDA DE LA BORDA, 8",
+      "coordinates": {
+        "latitude": 22.77254063786154,
+        "longitude": -102.49904509588367
+      }
+    },
+    {
+      "id": "carretera_san_ramon",
+      "name": "CARRETERA SAN RAMON",
+      "coordinates": {
+        "latitude": 22.727374131452525,
+        "longitude": -102.51623770302643
+      }
+    },
+    {
+      "id": "cbtis_23",
+      "name": "CBTIS 23 ..",
+      "coordinates": {
+        "latitude": 22.768188525981973,
+        "longitude": -102.5964201588948
+      }
+    },
+    {
+      "id": "cbtis_23_1",
+      "name": "CBTIS 23",
+      "coordinates": {
+        "latitude": 22.768153606741283,
+        "longitude": -102.59674245621994
+      }
+    },
+    {
+      "id": "cecati_130",
+      "name": "CECATI 130",
+      "coordinates": {
+        "latitude": 22.756232313773115,
+        "longitude": -102.50894843482482
+      }
+    },
+    {
+      "id": "central_de_autobuses",
+      "name": "CENTRAL DE AUTOBUSES",
+      "coordinates": {
+        "latitude": 22.754679175517957,
+        "longitude": -102.5756392556673
+      }
+    },
+    {
+      "id": "central_de_autobuses_1",
+      "name": "CENTRAL DE AUTOBUSES..",
+      "coordinates": {
+        "latitude": 22.754268310878945,
+        "longitude": -102.57318103803198
+      }
+    },
+    {
+      "id": "central_vieja",
+      "name": "CENTRAL VIEJA",
+      "coordinates": {
+        "latitude": 22.769627803556464,
+        "longitude": -102.57037100657242
+      }
+    },
+    {
+      "id": "centro_acuatico_centenario",
+      "name": "CENTRO ACUATICO CENTENARIO",
+      "coordinates": {
+        "latitude": 22.768318402339656,
+        "longitude": -102.55033522445261
+      }
+    },
+    {
+      "id": "centro_acuatico_centenario_1",
+      "name": "CENTRO ACUATICO CENTENARIO..",
+      "coordinates": {
+        "latitude": 22.768367417375327,
+        "longitude": -102.5504780801242
+      }
+    },
+    {
+      "id": "centro_deportivo_bugambilias",
+      "name": "CENTRO DEPORTIVO BUGAMBILIAS",
+      "coordinates": {
+        "latitude": 22.77616723393611,
+        "longitude": -102.483187032364
+      }
+    },
+    {
+      "id": "centro_deportivo_bugambilias_1",
+      "name": "CENTRO DEPORTIVO BUGAMBILIAS",
+      "coordinates": {
+        "latitude": 22.776349889930152,
+        "longitude": -102.4828501359906
+      }
+    },
+    {
+      "id": "centro_estatal_de_transfusion_sanguinea",
+      "name": "CENTRO ESTATAL DE TRANSFUSIÓN SANGUINEA",
+      "coordinates": {
+        "latitude": 22.745032141501373,
+        "longitude": -102.49826256658609
+      }
+    },
+    {
+      "id": "cereso",
+      "name": "CERESO",
+      "coordinates": {
+        "latitude": 22.755886092346657,
+        "longitude": -102.66350750780337
+      }
+    },
+    {
+      "id": "cereso_1",
+      "name": "CERESO..",
+      "coordinates": {
+        "latitude": 22.75578711434302,
+        "longitude": -102.66339001310982
+      }
+    },
+    {
+      "id": "cerro_sombreretillo_102",
+      "name": "CERRO SOMBRERETILLO, 102",
+      "coordinates": {
+        "latitude": 22.76762469957373,
+        "longitude": -102.58664577362991
+      }
+    },
+    {
+      "id": "cerro_sombreretillo_406",
+      "name": "CERRO SOMBRERETILLO, 406",
+      "coordinates": {
+        "latitude": 22.766085752115725,
+        "longitude": -102.58939240813774
+      }
+    },
+    {
+      "id": "cerro_sombreretillo_601",
+      "name": "CERRO SOMBRERETILLO, 601",
+      "coordinates": {
+        "latitude": 22.766016100598293,
+        "longitude": -102.589692439815
+      }
+    },
+    {
+      "id": "cesantoni",
+      "name": "CESANTONI",
+      "coordinates": {
+        "latitude": 22.920847364592458,
+        "longitude": -102.67735949938158
+      }
+    },
+    {
+      "id": "cetis_113",
+      "name": "CETIS 113..",
+      "coordinates": {
+        "latitude": 22.755575411624452,
+        "longitude": -102.50879139542205
+      }
+    },
+    {
+      "id": "cetis_113_1",
+      "name": "CETIS 113",
+      "coordinates": {
+        "latitude": 22.75550515453418,
+        "longitude": -102.50895919514686
+      }
+    },
+    {
+      "id": "citiclub",
+      "name": "CitiClub",
+      "coordinates": {
+        "latitude": 22.758314011831573,
+        "longitude": -102.53859817050399
+      }
+    },
+    {
+      "id": "ciudad_gobierno",
+      "name": "CIUDAD GOBIERNO",
+      "coordinates": {
+        "latitude": 22.775187328794086,
+        "longitude": -102.61165014243875
+      }
+    },
+    {
+      "id": "cobaez",
+      "name": "COBAEZ..",
+      "coordinates": {
+        "latitude": 22.770245947202007,
+        "longitude": -102.53696078782474
+      }
+    },
+    {
+      "id": "cobaez_1",
+      "name": "COBAEZ",
+      "coordinates": {
+        "latitude": 22.770438906361203,
+        "longitude": -102.53722968026285
+      }
+    },
+    {
+      "id": "colinas_del_padre_1a_seccion",
+      "name": "COLINAS DEL PADRE 1A SECCION",
+      "coordinates": {
+        "latitude": 22.751275546405353,
+        "longitude": -102.58335869519341
+      }
+    },
+    {
+      "id": "colonia_minera",
+      "name": "COLONIA MINERA",
+      "coordinates": {
+        "latitude": 22.773146011023567,
+        "longitude": -102.58523284374475
+      }
+    },
+    {
+      "id": "combis_gpe",
+      "name": "COMBIS GPE",
+      "coordinates": {
+        "latitude": 22.750152615433198,
+        "longitude": -102.49950104832651
+      }
+    },
+    {
+      "id": "combis_gpe_1",
+      "name": "COMBIS GPE..",
+      "coordinates": {
+        "latitude": 22.749919994580065,
+        "longitude": -102.49965722921222
+      }
+    },
+    {
+      "id": "combis_villanueva",
+      "name": "COMBIS VILLANUEVA",
+      "coordinates": {
+        "latitude": 22.767521238772638,
+        "longitude": -102.57412640293241
+      }
+    },
+    {
+      "id": "congreso_del_estado",
+      "name": "CONGRESO DEL ESTADO",
+      "coordinates": {
+        "latitude": 22.77445565348664,
+        "longitude": -102.57510686007032
+      }
+    },
+    {
+      "id": "constitucion_de_1917",
+      "name": "CONSTITUCIÓN DE 1917",
+      "coordinates": {
+        "latitude": 22.73159979089507,
+        "longitude": -102.51303111378633
+      }
+    },
+    {
+      "id": "del_cerrillo_316",
+      "name": "DEL CERRILLO, 316",
+      "coordinates": {
+        "latitude": 22.761278030426812,
+        "longitude": -102.56964683532716
+      }
+    },
+    {
+      "id": "del_deposito_202",
+      "name": "DEL DEPOSITO, 202",
+      "coordinates": {
+        "latitude": 22.76550258002933,
+        "longitude": -102.56958162704723
+      }
+    },
+    {
+      "id": "del_deposito_302",
+      "name": "DEL DEPOSITO, 302",
+      "coordinates": {
+        "latitude": 22.765443276091005,
+        "longitude": -102.56886762208893
+      }
+    },
+    {
+      "id": "ejidal_gpe",
+      "name": "EJIDAL GPE",
+      "coordinates": {
+        "latitude": 22.756351095652953,
+        "longitude": -102.51195798668897
+      }
+    },
+    {
+      "id": "el_carmen",
+      "name": "EL CARMEN",
+      "coordinates": {
+        "latitude": 22.753808351354543,
+        "longitude": -102.53249293482665
+      }
+    },
+    {
+      "id": "el_ete",
+      "name": "EL ETE",
+      "coordinates": {
+        "latitude": 22.764578802127716,
+        "longitude": -102.56481681687512
+      }
+    },
+    {
+      "id": "el_orito",
+      "name": "EL ORITO",
+      "coordinates": {
+        "latitude": 22.753823244569656,
+        "longitude": -102.60248727160614
+      }
+    },
+    {
+      "id": "el_orito_1",
+      "name": "EL ORITO..",
+      "coordinates": {
+        "latitude": 22.75370446764469,
+        "longitude": -102.60232151604193
+      }
+    },
+    {
+      "id": "el_salero",
+      "name": "EL SALERO...",
+      "coordinates": {
+        "latitude": 22.75212634887706,
+        "longitude": -102.52812563541002
+      }
+    },
+    {
+      "id": "el_salero_1",
+      "name": "EL SALERO",
+      "coordinates": {
+        "latitude": 22.752230264607544,
+        "longitude": -102.52814761138714
+      }
+    },
+    {
+      "id": "enrique_estrada",
+      "name": "ENRIQUE ESTRADA",
+      "coordinates": {
+        "latitude": 22.99827878320577,
+        "longitude": -102.74228453636171
+      }
+    },
+    {
+      "id": "escocia",
+      "name": "ESCOCIA",
+      "coordinates": {
+        "latitude": 22.74965731365885,
+        "longitude": -102.61570089743881
+      }
+    },
+    {
+      "id": "escocia_103",
+      "name": "ESCOCIA ,103",
+      "coordinates": {
+        "latitude": 22.749752130920022,
+        "longitude": -102.6152541016333
+      }
+    },
+    {
+      "id": "escuela_de_minas",
+      "name": "ESCUELA DE MINAS",
+      "coordinates": {
+        "latitude": 22.76609388272899,
+        "longitude": -102.55778189713034
+      }
+    },
+    {
+      "id": "escuela_francisco_i_madero",
+      "name": "ESCUELA FRANCISCO I MADERO..",
+      "coordinates": {
+        "latitude": 22.749672125873374,
+        "longitude": -102.59869499959335
+      }
+    },
+    {
+      "id": "escuela_francisco_i_madero_1",
+      "name": "ESCUELA FRANCISCO I MADERO",
+      "coordinates": {
+        "latitude": 22.749614160157247,
+        "longitude": -102.59879759540011
+      }
+    },
+    {
+      "id": "estrella_de_oro",
+      "name": "ESTRELLA DE ORO",
+      "coordinates": {
+        "latitude": 22.75165017641328,
+        "longitude": -102.59935534147978
+      }
+    },
+    {
+      "id": "fca",
+      "name": "FCA..",
+      "coordinates": {
+        "latitude": 22.767139642452257,
+        "longitude": -102.55676091144744
+      }
+    },
+    {
+      "id": "fca_1",
+      "name": "FCA",
+      "coordinates": {
+        "latitude": 22.767268300283046,
+        "longitude": -102.5567507848789
+      }
+    },
+    {
+      "id": "fenaza",
+      "name": "FENAZA..",
+      "coordinates": {
+        "latitude": 22.763217020474038,
+        "longitude": -102.55050121058636
+      }
+    },
+    {
+      "id": "fenaza_1",
+      "name": "FENAZA",
+      "coordinates": {
+        "latitude": 22.763493918401885,
+        "longitude": -102.55010413659987
+      }
+    },
+    {
+      "id": "ferrocarril_3030",
+      "name": "FERROCARRIL 3030",
+      "coordinates": {
+        "latitude": 22.765408435373658,
+        "longitude": -102.5787394735101
+      }
+    },
+    {
+      "id": "ferrocarril_310",
+      "name": "FERROCARRIL, 310",
+      "coordinates": {
+        "latitude": 22.763483676575586,
+        "longitude": -102.57160514177698
+      }
+    },
+    {
+      "id": "fiscalia_general_de_justicia",
+      "name": "FISCALÍA GENERAL DE JUSTICIA",
+      "coordinates": {
+        "latitude": 22.780405665064993,
+        "longitude": -102.6198588482769
+      }
+    },
+    {
+      "id": "fiscalia_general_de_justicia_1",
+      "name": "FISCALÍA GENERAL DE JUSTICIA",
+      "coordinates": {
+        "latitude": 22.78095464533527,
+        "longitude": -102.62005038673097
+      }
+    },
+    {
+      "id": "flores_magon_37",
+      "name": "FLORES MAGÓN, 37",
+      "coordinates": {
+        "latitude": 22.764659,
+        "longitude": -102.575357
+      }
+    },
+    {
+      "id": "francisco_i_madero_85",
+      "name": "FRANCISCO I. MADERO, 85",
+      "coordinates": {
+        "latitude": 22.752403959071412,
+        "longitude": -102.59550746056304
+      }
+    },
+    {
+      "id": "francisco_i_madero_90",
+      "name": "FRANCISCO I. MADERO, 90",
+      "coordinates": {
+        "latitude": 22.752042615948135,
+        "longitude": -102.59578091170624
+      }
+    },
+    {
+      "id": "fray_margil_de_jesus_61",
+      "name": "FRAY MARGIL DE JESUS, 61",
+      "coordinates": {
+        "latitude": 22.731926277440873,
+        "longitude": -102.51594855131782
+      }
+    },
+    {
+      "id": "fray_margil_de_jesus_80",
+      "name": "FRAY MARGIL DE JESUS, 80",
+      "coordinates": {
+        "latitude": 22.7317332519644,
+        "longitude": -102.51587391949191
+      }
+    },
+    {
+      "id": "fresnillo_central_autobuses",
+      "name": "FRESNILLO CENTRAL AUTOBUSES",
+      "coordinates": {
+        "latitude": 23.17397631120579,
+        "longitude": -102.85928787690091
+      }
+    },
+    {
+      "id": "fuente_de_la_minerva_4",
+      "name": "FUENTE DE LA MINERVA, 4",
+      "coordinates": {
+        "latitude": 22.752383197462503,
+        "longitude": -102.50014520879816
+      }
+    },
+    {
+      "id": "fuente_de_los_conquistadores",
+      "name": "FUENTE DE LOS CONQUISTADORES",
+      "coordinates": {
+        "latitude": 22.77990223382643,
+        "longitude": -102.5713089003837
+      }
+    },
+    {
+      "id": "galerias_gpe_abastos",
+      "name": "GALERIAS > GPE / ABASTOS",
+      "coordinates": {
+        "latitude": 22.773611347199566,
+        "longitude": -102.59735344168816
+      }
+    },
+    {
+      "id": "galerias_zac",
+      "name": "GALERIAS > ZAC",
+      "coordinates": {
+        "latitude": 22.77387156187433,
+        "longitude": -102.59739698238963
+      }
+    },
+    {
+      "id": "garcia_salinas_1964",
+      "name": "GARCÍA SALINAS, 1964",
+      "coordinates": {
+        "latitude": 22.756436129386046,
+        "longitude": -102.53982247014294
+      }
+    },
+    {
+      "id": "glorieta_bicentenario_guadalupe",
+      "name": "GLORIETA BICENTENARIO GUADALUPE",
+      "coordinates": {
+        "latitude": 22.750691590828342,
+        "longitude": -102.52545477219218
+      }
+    },
+    {
+      "id": "glorieta_itz",
+      "name": "GLORIETA ITZ.",
+      "coordinates": {
+        "latitude": 22.77274902104362,
+        "longitude": -102.62969553058412
+      }
+    },
+    {
+      "id": "glorieta_itz_1",
+      "name": "GLORIETA ITZ",
+      "coordinates": {
+        "latitude": 22.772714126345832,
+        "longitude": -102.62956660613098
+      }
+    },
+    {
+      "id": "guadalupe_74",
+      "name": "GUADALUPE, 74",
+      "coordinates": {
+        "latitude": 22.73949209317992,
+        "longitude": -102.51849674224076
+      }
+    },
+    {
+      "id": "h_colegio_militar_77",
+      "name": "H. COLEGIO MILITAR, 77",
+      "coordinates": {
+        "latitude": 22.751558424891268,
+        "longitude": -102.52252686659982
+      }
+    },
+    {
+      "id": "henry_ford_102",
+      "name": "HENRY FORD, 102",
+      "coordinates": {
+        "latitude": 22.770365592163127,
+        "longitude": -102.59616782344011
+      }
+    },
+    {
+      "id": "hospital_de_la_mujer",
+      "name": "HOSPITAL DE LA MUJER..",
+      "coordinates": {
+        "latitude": 22.745404462645105,
+        "longitude": -102.5001613503307
+      }
+    },
+    {
+      "id": "hospital_de_la_mujer_1",
+      "name": "HOSPITAL DE LA MUJER",
+      "coordinates": {
+        "latitude": 22.745235110293173,
+        "longitude": -102.5002579705643
+      }
+    },
+    {
+      "id": "hospital_general",
+      "name": "HOSPITAL GENERAL..",
+      "coordinates": {
+        "latitude": 22.77850635681071,
+        "longitude": -102.61877351460264
+      }
+    },
+    {
+      "id": "hospital_general_1",
+      "name": "HOSPITAL GENERAL",
+      "coordinates": {
+        "latitude": 22.77848141938053,
+        "longitude": -102.6189404998907
+      }
+    },
+    {
+      "id": "hospital_san_agustin",
+      "name": "HOSPITAL SAN AGUSTÍN",
+      "coordinates": {
+        "latitude": 22.75390766953999,
+        "longitude": -102.53243450363462
+      }
+    },
+    {
+      "id": "idiomas_artes_uaz",
+      "name": "IDIOMAS / ARTES UAZ",
+      "coordinates": {
+        "latitude": 22.76873261481372,
+        "longitude": -102.56679769559986
+      }
+    },
+    {
+      "id": "iglesia_apostolica",
+      "name": "IGLESIA APOSTÓLICA",
+      "coordinates": {
+        "latitude": 22.762534326246048,
+        "longitude": -102.5733108316613
+      }
+    },
+    {
+      "id": "imss_57",
+      "name": "IMSS #57",
+      "coordinates": {
+        "latitude": 22.745348875715287,
+        "longitude": -102.58945694698018
+      }
+    },
+    {
+      "id": "imss_no1",
+      "name": "IMSS NO.1",
+      "coordinates": {
+        "latitude": 22.775261536643576,
+        "longitude": -102.58030592135796
+      }
+    },
+    {
+      "id": "imss_no1_1",
+      "name": "IMSS NO.1 ...",
+      "coordinates": {
+        "latitude": 22.775370394770928,
+        "longitude": -102.58035899055857
+      }
+    },
+    {
+      "id": "imss_subdelegacion_zacatecas",
+      "name": "IMSS SUBDELEGACIÓN ZACATECAS",
+      "coordinates": {
+        "latitude": 22.758290201625453,
+        "longitude": -102.52213957864228
+      }
+    },
+    {
+      "id": "imss_subdelegacion_zacatecas_1",
+      "name": "IMSS SUBDELEGACIÓN ZACATECAS..",
+      "coordinates": {
+        "latitude": 22.758300103061288,
+        "longitude": -102.52199405732352
+      }
+    },
+    {
+      "id": "indeco",
+      "name": "INDECO",
+      "coordinates": {
+        "latitude": 22.755601200320907,
+        "longitude": -102.53175188963935
+      }
+    },
+    {
+      "id": "indecobdz",
+      "name": "INDECO/BDZ",
+      "coordinates": {
+        "latitude": 22.75613812103347,
+        "longitude": -102.53201010571802
+      }
+    },
+    {
+      "id": "ine_gpe",
+      "name": "INE GPE",
+      "coordinates": {
+        "latitude": 22.752757538390092,
+        "longitude": -102.50216699763618
+      }
+    },
+    {
+      "id": "ine_issste",
+      "name": "INE - ISSSTE",
+      "coordinates": {
+        "latitude": 22.765477647965294,
+        "longitude": -102.57842302952109
+      }
+    },
+    {
+      "id": "ineissste",
+      "name": "INE-ISSSTE..",
+      "coordinates": {
+        "latitude": 22.765418266594548,
+        "longitude": -102.57858397885447
+      }
+    },
+    {
+      "id": "ingenieria_uaz",
+      "name": "INGENIERÍA UAZ",
+      "coordinates": {
+        "latitude": 22.76841107566328,
+        "longitude": -102.56605799155054
+      }
+    },
+    {
+      "id": "instituto_edison",
+      "name": "INSTITUTO EDISON",
+      "coordinates": {
+        "latitude": 22.76657055942804,
+        "longitude": -102.53638696511975
+      }
+    },
+    {
+      "id": "instituto_miguel_agustin_pro",
+      "name": "INSTITUTO MIGUEL AGUSTÍN PRO",
+      "coordinates": {
+        "latitude": 22.74409223809339,
+        "longitude": -102.51432920235823
+      }
+    },
+    {
+      "id": "instituto_miguel_agustin_pro_1",
+      "name": "INSTITUTO MIGUEL AGUSTÍN PRO",
+      "coordinates": {
+        "latitude": 22.74396854026483,
+        "longitude": -102.51433991843614
+      }
+    },
+    {
+      "id": "ipn",
+      "name": "IPN",
+      "coordinates": {
+        "latitude": 22.78314546863948,
+        "longitude": -102.61568427085876
+      }
+    },
+    {
+      "id": "issste",
+      "name": "ISSSTE",
+      "coordinates": {
+        "latitude": 22.765581565301982,
+        "longitude": -102.57694776838349
+      }
+    },
+    {
+      "id": "jardin_de_gpe",
+      "name": "JARDIN DE GPE",
+      "coordinates": {
+        "latitude": 22.745917758573587,
+        "longitude": -102.51902286646043
+      }
+    },
+    {
+      "id": "jardin_de_la_madre",
+      "name": "JARDIN DE LA MADRE",
+      "coordinates": {
+        "latitude": 22.772719550067745,
+        "longitude": -102.57633056434209
+      }
+    },
+    {
+      "id": "jardines_de_sauceda",
+      "name": "JARDINES DE SAUCEDA",
+      "coordinates": {
+        "latitude": 22.783527078279782,
+        "longitude": -102.49586924706061
+      }
+    },
+    {
+      "id": "jardines_de_sauceda_1",
+      "name": "JARDINES DE SAUCEDA..",
+      "coordinates": {
+        "latitude": 22.783402605437665,
+        "longitude": -102.49599282808636
+      }
+    },
+    {
+      "id": "jeepdodgefiat",
+      "name": "JEEP-DODGE-FIAT",
+      "coordinates": {
+        "latitude": 22.757904594089478,
+        "longitude": -102.53889235598318
+      }
+    },
+    {
+      "id": "jiapaz_gpe",
+      "name": "JIAPAZ GPE..",
+      "coordinates": {
+        "latitude": 22.746051308415147,
+        "longitude": -102.51568020657157
+      }
+    },
+    {
+      "id": "jiapaz_guadalupe",
+      "name": "JIAPAZ GUADALUPE",
+      "coordinates": {
+        "latitude": 22.74614534983054,
+        "longitude": -102.51564861603373
+      }
+    },
+    {
+      "id": "jiquilpan25",
+      "name": "JIQUILPAN,25",
+      "coordinates": {
+        "latitude": 22.77699324762163,
+        "longitude": -102.58558367763375
+      }
+    },
+    {
+      "id": "jorge_negrete_263",
+      "name": "JORGE NEGRETE, 263",
+      "coordinates": {
+        "latitude": 22.7561977284326,
+        "longitude": -102.49436798440303
+      }
+    },
+    {
+      "id": "jorge_negrete_265",
+      "name": "JORGE NEGRETE, 265",
+      "coordinates": {
+        "latitude": 22.756202499284583,
+        "longitude": -102.49453309975284
+      }
+    },
+    {
+      "id": "jorge_negrete_270",
+      "name": "JORGE NEGRETE, 270",
+      "coordinates": {
+        "latitude": 22.756118822901875,
+        "longitude": -102.49411083884686
+      }
+    },
+    {
+      "id": "la_bodeguita_de_gpe",
+      "name": "LA BODEGUITA DE GPE",
+      "coordinates": {
+        "latitude": 22.74739699252245,
+        "longitude": -102.51048354225085
+      }
+    },
+    {
+      "id": "la_bodeguita_de_gpe_1",
+      "name": "LA BODEGUITA DE GPE..",
+      "coordinates": {
+        "latitude": 22.747574985840934,
+        "longitude": -102.5106376641189
+      }
+    },
+    {
+      "id": "la_fayuca",
+      "name": "LA FAYUCA",
+      "coordinates": {
+        "latitude": 22.783837917796802,
+        "longitude": -102.56752785662037
+      }
+    },
+    {
+      "id": "la_florida",
+      "name": "La Florida",
+      "coordinates": {
+        "latitude": 22.760926729944927,
+        "longitude": -102.54339269985368
+      }
+    },
+    {
+      "id": "la_isabelica",
+      "name": "LA ISABELICA",
+      "coordinates": {
+        "latitude": 22.75848782278813,
+        "longitude": -102.57337442592494
+      }
+    },
+    {
+      "id": "la_isabelica_1",
+      "name": "LA ISABELICA",
+      "coordinates": {
+        "latitude": 22.758240718418282,
+        "longitude": -102.57319268205983
+      }
+    },
+    {
+      "id": "la_noria_20",
+      "name": "LA NORIA, 20",
+      "coordinates": {
+        "latitude": 22.767728288175412,
+        "longitude": -102.48282314823823
+      }
+    },
+    {
+      "id": "la_noria_25",
+      "name": "LA NORIA, 25",
+      "coordinates": {
+        "latitude": 22.7678729868247,
+        "longitude": -102.4827429842329
+      }
+    },
+    {
+      "id": "la_quemada",
+      "name": "LA QUEMADA",
+      "coordinates": {
+        "latitude": 22.463979418133057,
+        "longitude": -102.84044799266563
+      }
+    },
+    {
+      "id": "las_huertas",
+      "name": "LAS HUERTAS",
+      "coordinates": {
+        "latitude": 22.748900853456835,
+        "longitude": -102.61356533623236
+      }
+    },
+    {
+      "id": "lava_15",
+      "name": "LAVA, 15",
+      "coordinates": {
+        "latitude": 22.764735046211033,
+        "longitude": -102.53551225641849
+      }
+    },
+    {
+      "id": "lazaro_cardenas",
+      "name": "LAZARO CARDENAS",
+      "coordinates": {
+        "latitude": 22.780514209485254,
+        "longitude": -102.58312780675173
+      }
+    },
+    {
+      "id": "lerdo_de_tejada_507",
+      "name": "LERDO DE TEJADA 507",
+      "coordinates": {
+        "latitude": 22.760665707561746,
+        "longitude": -102.58956924711609
+      }
+    },
+    {
+      "id": "lo_de_vega",
+      "name": "LO DE VEGA..",
+      "coordinates": {
+        "latitude": 22.720140976438625,
+        "longitude": -102.51819060517597
+      }
+    },
+    {
+      "id": "lo_de_vega_1",
+      "name": "LO DE VEGA",
+      "coordinates": {
+        "latitude": 22.719982002201878,
+        "longitude": -102.5183362083582
+      }
+    },
+    {
+      "id": "lomas_del_campestre",
+      "name": "LOMAS DEL CAMPESTRE..",
+      "coordinates": {
+        "latitude": 22.76145116933185,
+        "longitude": -102.55183160305025
+      }
+    },
+    {
+      "id": "lomas_del_campestre_1",
+      "name": "LOMAS DEL CAMPESTRE",
+      "coordinates": {
+        "latitude": 22.761599584591416,
+        "longitude": -102.5520789331906
+      }
+    },
+    {
+      "id": "lomas_del_lago",
+      "name": "LOMAS DEL LAGO..",
+      "coordinates": {
+        "latitude": 22.752729927333743,
+        "longitude": -102.58617973886265
+      }
+    },
+    {
+      "id": "lomas_del_lago_1",
+      "name": "LOMAS DEL LAGO",
+      "coordinates": {
+        "latitude": 22.75257159880108,
+        "longitude": -102.58622287864296
+      }
+    },
+    {
+      "id": "lomas_del_lago_glz_ortega",
+      "name": "LOMAS DEL LAGO / GLZ ORTEGA",
+      "coordinates": {
+        "latitude": 22.758765669751178,
+        "longitude": -102.58709622311652
+      }
+    },
+    {
+      "id": "los_gavilanes_205",
+      "name": "LOS GAVILANES, 205",
+      "coordinates": {
+        "latitude": 22.762989476243188,
+        "longitude": -102.53793210642806
+      }
+    },
+    {
+      "id": "los_gavilanes_225",
+      "name": "LOS GAVILANES, 225",
+      "coordinates": {
+        "latitude": 22.76352388797243,
+        "longitude": -102.53795386620158
+      }
+    },
+    {
+      "id": "los_gavilanes_295",
+      "name": "LOS GAVILANES, 295",
+      "coordinates": {
+        "latitude": 22.76578467016925,
+        "longitude": -102.53799627793427
+      }
+    },
+    {
+      "id": "los_gavilanes_303",
+      "name": "LOS GAVILANES, 303",
+      "coordinates": {
+        "latitude": 22.766046530378812,
+        "longitude": -102.53801822452448
+      }
+    },
+    {
+      "id": "los_gavilanes_av_mexico",
+      "name": "LOS GAVILANES / AV. MEXICO",
+      "coordinates": {
+        "latitude": 22.76033241525224,
+        "longitude": -102.53835006504221
+      }
+    },
+    {
+      "id": "luis_moya_55",
+      "name": "LUIS MOYA, 55",
+      "coordinates": {
+        "latitude": 22.743251196837942,
+        "longitude": -102.51925350075159
+      }
+    },
+    {
+      "id": "luis_moya_60",
+      "name": "LUIS MOYA, 60",
+      "coordinates": {
+        "latitude": 22.74346393125332,
+        "longitude": -102.51915157261092
+      }
+    },
+    {
+      "id": "malpaso",
+      "name": "MALPASO",
+      "coordinates": {
+        "latitude": 22.620789969654606,
+        "longitude": -102.75365712567455
+      }
+    },
+    {
+      "id": "margaritas_4",
+      "name": "MARGARITAS, 4",
+      "coordinates": {
+        "latitude": 22.732584749291522,
+        "longitude": -102.51160267792362
+      }
+    },
+    {
+      "id": "marianas",
+      "name": "MARIANAS",
+      "coordinates": {
+        "latitude": 22.738091900336883,
+        "longitude": -102.5867741565246
+      }
+    },
+    {
+      "id": "martinez_dominguez",
+      "name": "MARTINEZ DOMINGUEZ",
+      "coordinates": {
+        "latitude": 22.751028157984514,
+        "longitude": -102.47756668590752
+      }
+    },
+    {
+      "id": "martinez_dominguez_1",
+      "name": "MARTINEZ DOMINGUEZ..",
+      "coordinates": {
+        "latitude": 22.750711551294458,
+        "longitude": -102.47745935556566
+      }
+    },
+    {
+      "id": "mc_donalds",
+      "name": "MC DONALDS",
+      "coordinates": {
+        "latitude": 22.76229698172333,
+        "longitude": -102.54627941149785
+      }
+    },
+    {
+      "id": "mega_cable",
+      "name": "MEGA CABLE",
+      "coordinates": {
+        "latitude": 22.76856035566544,
+        "longitude": -102.56804868391954
+      }
+    },
+    {
+      "id": "mercado_alma_obrera",
+      "name": "MERCADO ALMA OBRERA",
+      "coordinates": {
+        "latitude": 22.762593834532723,
+        "longitude": -102.57144931127114
+      }
+    },
+    {
+      "id": "mercado_de_guadalupe",
+      "name": "MERCADO DE GUADALUPE..",
+      "coordinates": {
+        "latitude": 22.75030120155029,
+        "longitude": -102.51406001168932
+      }
+    },
+    {
+      "id": "mercado_de_guadalupe_1",
+      "name": "MERCADO DE GUADALUPE",
+      "coordinates": {
+        "latitude": 22.750473858816846,
+        "longitude": -102.51400152995598
+      }
+    },
+    {
+      "id": "mercado_roberto_del_real_carranza",
+      "name": "MERCADO ROBERTO DEL REAL CARRANZA",
+      "coordinates": {
+        "latitude": 22.786504774748796,
+        "longitude": -102.56887392059029
+      }
+    },
+    {
+      "id": "miguel_aleman",
+      "name": "MIGUEL ALEMAN",
+      "coordinates": {
+        "latitude": 22.770978138771273,
+        "longitude": -102.58313842450121
+      }
+    },
+    {
+      "id": "miguel_cabrera",
+      "name": "MIGUEL CABRERA",
+      "coordinates": {
+        "latitude": 22.75320454359217,
+        "longitude": -102.48015575204853
+      }
+    },
+    {
+      "id": "miguel_de_la_madrid_13",
+      "name": "MIGUEL DE LA MADRID, 13",
+      "coordinates": {
+        "latitude": 22.733302059632184,
+        "longitude": -102.51588571691516
+      }
+    },
+    {
+      "id": "miguel_ramos_arizpe_306",
+      "name": "MIGUEL RAMOS ARIZPE, 306",
+      "coordinates": {
+        "latitude": 22.767605252553754,
+        "longitude": -102.59139437300034
+      }
+    },
+    {
+      "id": "miguel_ramos_arizpe_410",
+      "name": "MIGUEL RAMOS ARIZPE, 410",
+      "coordinates": {
+        "latitude": 22.767915633001852,
+        "longitude": -102.59130263843444
+      }
+    },
+    {
+      "id": "miguel_ramos_arizpe_470",
+      "name": "MIGUEL RAMOS ARIZPE, 470",
+      "coordinates": {
+        "latitude": 22.76915781025032,
+        "longitude": -102.59024085503506
+      }
+    },
+    {
+      "id": "mina_del_patrocinio_140",
+      "name": "MINA DEL PATROCINIO, 140",
+      "coordinates": {
+        "latitude": 22.77092484802941,
+        "longitude": -102.58496867760928
+      }
+    },
+    {
+      "id": "mina_purisima_120",
+      "name": "MINA PURISIMA, 120",
+      "coordinates": {
+        "latitude": 22.770043634925724,
+        "longitude": -102.5847897479635
+      }
+    },
+    {
+      "id": "mina_purisima_308",
+      "name": "MINA PURISIMA, 308",
+      "coordinates": {
+        "latitude": 22.768737549593695,
+        "longitude": -102.58516458552522
+      }
+    },
+    {
+      "id": "minas",
+      "name": "MINAS",
+      "coordinates": {
+        "latitude": 22.764557620926816,
+        "longitude": -102.55686879158021
+      }
+    },
+    {
+      "id": "minera",
+      "name": "MINERA",
+      "coordinates": {
+        "latitude": 22.772641051277684,
+        "longitude": -102.58496172000191
+      }
+    },
+    {
+      "id": "morelos",
+      "name": "MORELOS",
+      "coordinates": {
+        "latitude": 22.86034347125042,
+        "longitude": -102.62415468692781
+      }
+    },
+    {
+      "id": "morelos_600",
+      "name": "MORELOS, 600",
+      "coordinates": {
+        "latitude": 22.769860165031123,
+        "longitude": -102.57334829006491
+      }
+    },
+    {
+      "id": "morelos_812",
+      "name": "MORELOS, 812",
+      "coordinates": {
+        "latitude": 22.767752805478906,
+        "longitude": -102.57501631987168
+      }
+    },
+    {
+      "id": "museo_de_guadalupe",
+      "name": "MUSEO DE GUADALUPE",
+      "coordinates": {
+        "latitude": 22.74558640690649,
+        "longitude": -102.51799301171191
+      }
+    },
+    {
+      "id": "nissan_gpe",
+      "name": "NISSAN GPE..",
+      "coordinates": {
+        "latitude": 22.756179864080718,
+        "longitude": -102.52198341454907
+      }
+    },
+    {
+      "id": "nissan_gpe_1",
+      "name": "NISSAN GPE",
+      "coordinates": {
+        "latitude": 22.756563503477118,
+        "longitude": -102.52190919413965
+      }
+    },
+    {
+      "id": "nueva_celaya_115",
+      "name": "NUEVA CELAYA, 115",
+      "coordinates": {
+        "latitude": 22.76400844903859,
+        "longitude": -102.58108886207206
+      }
+    },
+    {
+      "id": "obrero_munidal157",
+      "name": "OBRERO MUNIDAL,157",
+      "coordinates": {
+        "latitude": 22.75966480691217,
+        "longitude": -102.56748857832844
+      }
+    },
+    {
+      "id": "odontologia",
+      "name": "ODONTOLOGIA..",
+      "coordinates": {
+        "latitude": 22.75380525897699,
+        "longitude": -102.52467718992646
+      }
+    },
+    {
+      "id": "odontologia_1",
+      "name": "ODONTOLOGIA",
+      "coordinates": {
+        "latitude": 22.75402203927219,
+        "longitude": -102.52453763529327
+      }
+    },
+    {
+      "id": "odontologia_2",
+      "name": "ODONTOLOGÍA",
+      "coordinates": {
+        "latitude": 22.754144781140624,
+        "longitude": -102.52469840394343
+      }
+    },
+    {
+      "id": "odontologia_3",
+      "name": "ODONTOLOGÍA",
+      "coordinates": {
+        "latitude": 22.755158888528545,
+        "longitude": -102.5248270891033
+      }
+    },
+    {
+      "id": "osiris",
+      "name": "OSIRIS",
+      "coordinates": {
+        "latitude": 22.75104794031303,
+        "longitude": -102.46090471744537
+      }
+    },
+    {
+      "id": "panfilo_natera",
+      "name": "PÁNFILO NATERA",
+      "coordinates": {
+        "latitude": 22.763637204597945,
+        "longitude": -102.57179112076385
+      }
+    },
+    {
+      "id": "panteones",
+      "name": "PANTEONES..",
+      "coordinates": {
+        "latitude": 22.764152001757857,
+        "longitude": -102.5471430974941
+      }
+    },
+    {
+      "id": "panteones_1",
+      "name": "PANTEONES",
+      "coordinates": {
+        "latitude": 22.764236097105634,
+        "longitude": -102.54705189399132
+      }
+    },
+    {
+      "id": "parque_arroyo_de_la_plata",
+      "name": "PARQUE ARROYO DE LA PLATA",
+      "coordinates": {
+        "latitude": 22.75910251703725,
+        "longitude": -102.54457480925609
+      }
+    },
+    {
+      "id": "parque_arroyo_de_la_plata_minas",
+      "name": "PARQUE ARROYO DE LA PLATA / MINAS",
+      "coordinates": {
+        "latitude": 22.764384438185974,
+        "longitude": -102.55736769505137
+      }
+    },
+    {
+      "id": "parque_de_beisbol",
+      "name": "PARQUE DE BEISBOL",
+      "coordinates": {
+        "latitude": 22.762300960044165,
+        "longitude": -102.58450596260823
+      }
+    },
+    {
+      "id": "parque_de_beisol",
+      "name": "PARQUE DE BEISOL..",
+      "coordinates": {
+        "latitude": 22.762376206658743,
+        "longitude": -102.58438761392328
+      }
+    },
+    {
+      "id": "parque_estrella_de_oro",
+      "name": "PARQUE ESTRELLA DE ORO",
+      "coordinates": {
+        "latitude": 22.75497532344395,
+        "longitude": -102.5969167541847
+      }
+    },
+    {
+      "id": "parque_h_ayuntamiento",
+      "name": "PARQUE H. AYUNTAMIENTO",
+      "coordinates": {
+        "latitude": 22.75913117725773,
+        "longitude": -102.5651406968943
+      }
+    },
+    {
+      "id": "parque_reforma",
+      "name": "PARQUE REFORMA..",
+      "coordinates": {
+        "latitude": 22.75994247533953,
+        "longitude": -102.5946766306763
+      }
+    },
+    {
+      "id": "parque_reforma_1",
+      "name": "PARQUE REFORMA",
+      "coordinates": {
+        "latitude": 22.759794060214663,
+        "longitude": -102.59463431340146
+      }
+    },
+    {
+      "id": "parque_sierra_de_alica",
+      "name": "PARQUE SIERRA DE ALICA",
+      "coordinates": {
+        "latitude": 22.768924300774984,
+        "longitude": -102.57642213114663
+      }
+    },
+    {
+      "id": "parque_sierra_de_alica_1",
+      "name": "PARQUE SIERRA DE ALICA..",
+      "coordinates": {
+        "latitude": 22.76874871786883,
+        "longitude": -102.57642463034267
+      }
+    },
+    {
+      "id": "parque_villas_de_guadalupe",
+      "name": "PARQUE VILLAS DE GUADALUPE",
+      "coordinates": {
+        "latitude": 22.76043214454817,
+        "longitude": -102.48408436565305
+      }
+    },
+    {
+      "id": "parroquia_divina_providencia",
+      "name": "PARROQUIA DIVINA PROVIDENCIA",
+      "coordinates": {
+        "latitude": 22.768533798943846,
+        "longitude": -102.58557338330392
+      }
+    },
+    {
+      "id": "partido_accion_nacional",
+      "name": "PARTIDO ACCION NACIONAL",
+      "coordinates": {
+        "latitude": 22.77320886242666,
+        "longitude": -102.59242415428163
+      }
+    },
+    {
+      "id": "partido_accion_nacional_1",
+      "name": "PARTIDO ACCION NACIONAL..",
+      "coordinates": {
+        "latitude": 22.7734907779369,
+        "longitude": -102.59234368801118
+      }
+    },
+    {
+      "id": "paseo_diaz_ordaz",
+      "name": "PASEO DIAZ ORDAZ",
+      "coordinates": {
+        "latitude": 22.77727453986583,
+        "longitude": -102.58186635424181
+      }
+    },
+    {
+      "id": "paseos_de_san_agustin",
+      "name": "PASEOS DE SAN AGUSTÍN",
+      "coordinates": {
+        "latitude": 22.779382240255686,
+        "longitude": -102.47949157176339
+      }
+    },
+    {
+      "id": "paseos_del_valle",
+      "name": "PASEOS DEL VALLE.",
+      "coordinates": {
+        "latitude": 22.78352133121561,
+        "longitude": -102.6528161261131
+      }
+    },
+    {
+      "id": "paseos_del_valle_1",
+      "name": "PASEOS DEL VALLE",
+      "coordinates": {
+        "latitude": 22.783580977584716,
+        "longitude": -102.65294581042731
+      }
+    },
+    {
+      "id": "paseos_san_agustin",
+      "name": "PASEOS SAN AGUSTIN",
+      "coordinates": {
+        "latitude": 22.77951668424898,
+        "longitude": -102.47958322866396
+      }
+    },
+    {
+      "id": "petroleos_mexicanos",
+      "name": "PETROLEOS MEXICANOS..",
+      "coordinates": {
+        "latitude": 22.777784107437483,
+        "longitude": -102.58398072839158
+      }
+    },
+    {
+      "id": "petroleos_mexicanos_1",
+      "name": "PETROLEOS MEXICANOS",
+      "coordinates": {
+        "latitude": 22.776354613477746,
+        "longitude": -102.58517693887285
+      }
+    },
+    {
+      "id": "picones",
+      "name": "PICONES",
+      "coordinates": {
+        "latitude": 22.754812552111332,
+        "longitude": -102.63683030312068
+      }
+    },
+    {
+      "id": "picones_1",
+      "name": "PICONES..",
+      "coordinates": {
+        "latitude": 22.75488714421946,
+        "longitude": -102.63659478493327
+      }
+    },
+    {
+      "id": "plan_de_ayala_6",
+      "name": "PLAN DE AYALA, 6",
+      "coordinates": {
+        "latitude": 22.757320644708162,
+        "longitude": -102.51238610965484
+      }
+    },
+    {
+      "id": "plaza_alesia",
+      "name": "PLAZA ALESIA",
+      "coordinates": {
+        "latitude": 22.770740661261893,
+        "longitude": -102.58342266082765
+      }
+    },
+    {
+      "id": "plaza_bicentenario",
+      "name": "PLAZA BICENTENARIO..",
+      "coordinates": {
+        "latitude": 22.768971725187,
+        "longitude": -102.57167399357023
+      }
+    },
+    {
+      "id": "plaza_bicentenario_1",
+      "name": "PLAZA BICENTENARIO",
+      "coordinates": {
+        "latitude": 22.76922707306764,
+        "longitude": -102.57164775695507
+      }
+    },
+    {
+      "id": "plaza_de_armas",
+      "name": "PLAZA DE ARMAS",
+      "coordinates": {
+        "latitude": 22.77658992421602,
+        "longitude": -102.5720991301935
+      }
+    },
+    {
+      "id": "plaza_de_las_garantias",
+      "name": "PLAZA DE LAS GARANTÍAS",
+      "coordinates": {
+        "latitude": 22.750824866935492,
+        "longitude": -102.51207329205903
+      }
+    },
+    {
+      "id": "plaza_de_las_tunas",
+      "name": "PLAZA DE LAS TUNAS",
+      "coordinates": {
+        "latitude": 22.780775281738933,
+        "longitude": -102.57120868717809
+      }
+    },
+    {
+      "id": "plaza_fray_antonio_margil_de_jesus",
+      "name": "PLAZA FRAY ANTONIO MARGIL DE JESUS",
+      "coordinates": {
+        "latitude": 22.74793644918357,
+        "longitude": -102.52005822852705
+      }
+    },
+    {
+      "id": "plaza_fray_antonio_margil_de_jesus_1",
+      "name": "PLAZA FRAY ANTONIO MARGIL DE JESUS..",
+      "coordinates": {
+        "latitude": 22.748168891449776,
+        "longitude": -102.52004731093902
+      }
+    },
+    {
+      "id": "plaza_genaro_codina",
+      "name": "PLAZA GENARO CODINA",
+      "coordinates": {
+        "latitude": 22.772362816954256,
+        "longitude": -102.57320364825387
+      }
+    },
+    {
+      "id": "plaza_metropolitana",
+      "name": "PLAZA METROPOLITANA..",
+      "coordinates": {
+        "latitude": 22.762183150786957,
+        "longitude": -102.54263084334217
+      }
+    },
+    {
+      "id": "plaza_metropolitana_1",
+      "name": "PLAZA METROPOLITANA",
+      "coordinates": {
+        "latitude": 22.76235138241653,
+        "longitude": -102.54256712297085
+      }
+    },
+    {
+      "id": "plazuela_de_garcia",
+      "name": "PLAZUELA DE GARCIA",
+      "coordinates": {
+        "latitude": 22.782126067949132,
+        "longitude": -102.57099903617058
+      }
+    },
+    {
+      "id": "polideportivo",
+      "name": "POLIDEPORTIVO",
+      "coordinates": {
+        "latitude": 22.7725365101462,
+        "longitude": -102.54151607696755
+      }
+    },
+    {
+      "id": "pozo_de_gamboa",
+      "name": "POZO DE GAMBOA",
+      "coordinates": {
+        "latitude": 22.94453181177484,
+        "longitude": -102.5648617831684
+      }
+    },
+    {
+      "id": "prepa_ii",
+      "name": "PREPA II..",
+      "coordinates": {
+        "latitude": 22.76924687226599,
+        "longitude": -102.55206173372991
+      }
+    },
+    {
+      "id": "prepa_ii_1",
+      "name": "PREPA II",
+      "coordinates": {
+        "latitude": 22.769227129196732,
+        "longitude": -102.55191746102656
+      }
+    },
+    {
+      "id": "prepa_ii_extension",
+      "name": "PREPA II EXTENSIÓN",
+      "coordinates": {
+        "latitude": 22.756826073502673,
+        "longitude": -102.51131215342728
+      }
+    },
+    {
+      "id": "prepa_ii_extension_1",
+      "name": "PREPA II EXTENSIÓN",
+      "coordinates": {
+        "latitude": 22.75689966417872,
+        "longitude": -102.51202186449007
+      }
+    },
+    {
+      "id": "prepa_iv_uaz",
+      "name": "PREPA IV UAZ",
+      "coordinates": {
+        "latitude": 22.761233278179862,
+        "longitude": -102.5772211333013
+      }
+    },
+    {
+      "id": "presidencia_gpe",
+      "name": "PRESIDENCIA > GPE",
+      "coordinates": {
+        "latitude": 22.773639128227213,
+        "longitude": -102.58714021721575
+      }
+    },
+    {
+      "id": "presidencia_zac",
+      "name": "PRESIDENCIA > ZAC",
+      "coordinates": {
+        "latitude": 22.77373315220749,
+        "longitude": -102.58788049221039
+      }
+    },
+    {
+      "id": "primaria_20_de_noviembre",
+      "name": "PRIMARIA 20 DE NOVIEMBRE",
+      "coordinates": {
+        "latitude": 22.761000409384824,
+        "longitude": -102.57324037214894
+      }
+    },
+    {
+      "id": "primaria_20_de_noviembre_r8",
+      "name": "PRIMARIA 20 DE NOVIEMBRE R8",
+      "coordinates": {
+        "latitude": 22.760877371571713,
+        "longitude": -102.57386198133628
+      }
+    },
+    {
+      "id": "primaria_alma_obrera",
+      "name": "PRIMARIA ALMA OBRERA",
+      "coordinates": {
+        "latitude": 22.759284563065886,
+        "longitude": -102.56679838199372
+      }
+    },
+    {
+      "id": "primaria_francisco_e_garcia",
+      "name": "PRIMARIA FRANCISCO E. GARCIA",
+      "coordinates": {
+        "latitude": 22.761984280861085,
+        "longitude": -102.48015669452813
+      }
+    },
+    {
+      "id": "primaria_francisco_e_garcia_1",
+      "name": "PRIMARIA FRANCISCO E. GARCIA..",
+      "coordinates": {
+        "latitude": 22.76200037696979,
+        "longitude": -102.47997468634473
+      }
+    },
+    {
+      "id": "primaria_rafael_coronel",
+      "name": "PRIMARIA RAFAEL CORONEL",
+      "coordinates": {
+        "latitude": 22.770156272444254,
+        "longitude": -102.48650811509788
+      }
+    },
+    {
+      "id": "primaria_ramon_lopez_velarde",
+      "name": "PRIMARIA RAMON LOPEZ VELARDE",
+      "coordinates": {
+        "latitude": 22.785490015804594,
+        "longitude": -102.56918530032743
+      }
+    },
+    {
+      "id": "progreso_405",
+      "name": "PROGRESO, 405",
+      "coordinates": {
+        "latitude": 22.7633061530378,
+        "longitude": -102.57418513507942
+      }
+    },
+    {
+      "id": "prolongacion_barones_24",
+      "name": "PROLONGACIÓN BARONES, 24",
+      "coordinates": {
+        "latitude": 22.769078720594866,
+        "longitude": -102.49417433025646
+      }
+    },
+    {
+      "id": "psicologia_uaz",
+      "name": "PSICOLOGÍA UAZ",
+      "coordinates": {
+        "latitude": 22.768370815382877,
+        "longitude": -102.55609084827553
+      }
+    },
+    {
+      "id": "psicologia_uaz_1",
+      "name": "PSICOLOGÍA UAZ..",
+      "coordinates": {
+        "latitude": 22.76831197333927,
+        "longitude": -102.55620841837163
+      }
+    },
+    {
+      "id": "puente_camino_a_san_ramon",
+      "name": "PUENTE CAMINO A SAN RAMON..",
+      "coordinates": {
+        "latitude": 22.736335340439993,
+        "longitude": -102.51748300996951
+      }
+    },
+    {
+      "id": "puente_camino_a_san_ramon_1",
+      "name": "PUENTE CAMINO A SAN RAMON",
+      "coordinates": {
+        "latitude": 22.73621104319028,
+        "longitude": -102.51752082521396
+      }
+    },
+    {
+      "id": "puente_el_orito",
+      "name": "PUENTE EL ORITO..",
+      "coordinates": {
+        "latitude": 22.756078936453257,
+        "longitude": -102.59259520289574
+      }
+    },
+    {
+      "id": "puente_el_orito_1",
+      "name": "PUENTE EL ORITO",
+      "coordinates": {
+        "latitude": 22.75619279319945,
+        "longitude": -102.59263873310188
+      }
+    },
+    {
+      "id": "purisima",
+      "name": "PURÍSIMA",
+      "coordinates": {
+        "latitude": 22.738031330663947,
+        "longitude": -102.58714517248012
+      }
+    },
+    {
+      "id": "quantum",
+      "name": "QUANTUM",
+      "coordinates": {
+        "latitude": 22.781364607006363,
+        "longitude": -102.61296384777728
+      }
+    },
+    {
+      "id": "quebradilla",
+      "name": "QUEBRADILLA",
+      "coordinates": {
+        "latitude": 22.774168251857095,
+        "longitude": -102.58381895412619
+      }
+    },
+    {
+      "id": "quebradilla_1",
+      "name": "QUEBRADILLA..",
+      "coordinates": {
+        "latitude": 22.774079394336038,
+        "longitude": -102.58386793901009
+      }
+    },
+    {
+      "id": "quintas",
+      "name": "QUINTAS..",
+      "coordinates": {
+        "latitude": 22.772195491161455,
+        "longitude": -102.48721076569909
+      }
+    },
+    {
+      "id": "quintas_1",
+      "name": "QUINTAS",
+      "coordinates": {
+        "latitude": 22.77206134560453,
+        "longitude": -102.48745321807665
+      }
+    },
+    {
+      "id": "recaudacion_de_rentas_gpe",
+      "name": "RECAUDACIÓN DE RENTAS GPE",
+      "coordinates": {
+        "latitude": 22.738100824303434,
+        "longitude": -102.51150736540669
+      }
+    },
+    {
+      "id": "rincon_colonial",
+      "name": "RINCON COLONIAL..",
+      "coordinates": {
+        "latitude": 22.756291389582223,
+        "longitude": -102.51768238343962
+      }
+    },
+    {
+      "id": "rincon_colonial_1",
+      "name": "RINCON COLONIAL",
+      "coordinates": {
+        "latitude": 22.755881168716297,
+        "longitude": -102.51765240015948
+      }
+    },
+    {
+      "id": "rodriguez_elias_115",
+      "name": "RODRIGUEZ ELIAS, 115",
+      "coordinates": {
+        "latitude": 22.762460711508012,
+        "longitude": -102.58695093463005
+      }
+    },
+    {
+      "id": "s_ramon_45",
+      "name": "S. RAMÓN, 45",
+      "coordinates": {
+        "latitude": 22.739574813727312,
+        "longitude": -102.51865763070136
+      }
+    },
+    {
+      "id": "sagrados_corazones_gpe",
+      "name": "SAGRADOS CORAZONES GPE",
+      "coordinates": {
+        "latitude": 22.748881093388565,
+        "longitude": -102.51739197842619
+      }
+    },
+    {
+      "id": "san_fernando",
+      "name": "SAN FERNANDO",
+      "coordinates": {
+        "latitude": 22.769632663761055,
+        "longitude": -102.61193404953976
+      }
+    },
+    {
+      "id": "san_francisco_4",
+      "name": "SAN FRANCISCO, 4",
+      "coordinates": {
+        "latitude": 22.766556083740674,
+        "longitude": -102.60970827768764
+      }
+    },
+    {
+      "id": "san_ramon",
+      "name": "SAN RAMON..",
+      "coordinates": {
+        "latitude": 22.70173187563515,
+        "longitude": -102.52111437463013
+      }
+    },
+    {
+      "id": "san_ramon_1",
+      "name": "SAN RAMON",
+      "coordinates": {
+        "latitude": 22.701959631271517,
+        "longitude": -102.52105060178224
+      }
+    },
+    {
+      "id": "santa_monica",
+      "name": "SANTA MONICA",
+      "coordinates": {
+        "latitude": 22.75153226302444,
+        "longitude": -102.423605818293
+      }
+    },
+    {
+      "id": "santa_monica_1",
+      "name": "SANTA MONICA",
+      "coordinates": {
+        "latitude": 22.755559001626416,
+        "longitude": -102.42183032380427
+      }
+    },
+    {
+      "id": "santa_rita",
+      "name": "SANTA RITA",
+      "coordinates": {
+        "latitude": 22.754743186982427,
+        "longitude": -102.52563728834903
+      }
+    },
+    {
+      "id": "santo_domingo",
+      "name": "SANTO DOMINGO",
+      "coordinates": {
+        "latitude": 22.776166678328842,
+        "longitude": -102.57337510165975
+      }
+    },
+    {
+      "id": "sct",
+      "name": "SCT",
+      "coordinates": {
+        "latitude": 22.744122093941435,
+        "longitude": -102.50352909008683
+      }
+    },
+    {
+      "id": "sct_1",
+      "name": "SCT..",
+      "coordinates": {
+        "latitude": 22.7442950842363,
+        "longitude": -102.50315487594703
+      }
+    },
+    {
+      "id": "secundaria_tecnica_1",
+      "name": "SECUNDARIA TECNICA #1",
+      "coordinates": {
+        "latitude": 22.765568979848013,
+        "longitude": -102.57513956504727
+      }
+    },
+    {
+      "id": "secundaria_tecnica_34",
+      "name": "SECUNDARIA TECNICA #34",
+      "coordinates": {
+        "latitude": 22.756598718767158,
+        "longitude": -102.57330449537672
+      }
+    },
+    {
+      "id": "secundaria_tecnica_34_1",
+      "name": "SECUNDARIA TECNICA #34",
+      "coordinates": {
+        "latitude": 22.75644495457426,
+        "longitude": -102.57313871898562
+      }
+    },
+    {
+      "id": "secundaria_uaz",
+      "name": "SECUNDARIA UAZ..",
+      "coordinates": {
+        "latitude": 22.76974641451899,
+        "longitude": -102.55482977133421
+      }
+    },
+    {
+      "id": "secundaria_uaz_1",
+      "name": "SECUNDARIA UAZ",
+      "coordinates": {
+        "latitude": 22.769830548850255,
+        "longitude": -102.55469082316667
+      }
+    },
+    {
+      "id": "seduzac",
+      "name": "SEDUZAC",
+      "coordinates": {
+        "latitude": 22.756116098545284,
+        "longitude": -102.53560329829334
+      }
+    },
+    {
+      "id": "seduzac_1",
+      "name": "SEDUZAC..",
+      "coordinates": {
+        "latitude": 22.75649923289656,
+        "longitude": -102.53528238602274
+      }
+    },
+    {
+      "id": "segunda_de_los_barones_15",
+      "name": "SEGUNDA DE LOS BARONES, 15",
+      "coordinates": {
+        "latitude": 22.764482902078598,
+        "longitude": -102.49619273035677
+      }
+    },
+    {
+      "id": "segunda_de_los_barones_210",
+      "name": "SEGUNDA DE LOS BARONES, 210",
+      "coordinates": {
+        "latitude": 22.767841848905178,
+        "longitude": -102.49151352013992
+      }
+    },
+    {
+      "id": "segunda_de_los_barones_354",
+      "name": "SEGUNDA DE LOS BARONES, 354",
+      "coordinates": {
+        "latitude": 22.770611983478137,
+        "longitude": -102.48839119165237
+      }
+    },
+    {
+      "id": "segunda_de_matamoros",
+      "name": "SEGUNDA DE MATAMOROS",
+      "coordinates": {
+        "latitude": 22.784040165261867,
+        "longitude": -102.56693164652172
+      }
+    },
+    {
+      "id": "segunda_de_matamoros_18",
+      "name": "SEGUNDA DE MATAMOROS, 18",
+      "coordinates": {
+        "latitude": 22.753317979115344,
+        "longitude": -102.59816036655826
+      }
+    },
+    {
+      "id": "servicio_colon",
+      "name": "SERVICIO COLON",
+      "coordinates": {
+        "latitude": 22.769939711308176,
+        "longitude": -102.58224570479048
+      }
+    },
+    {
+      "id": "sierra_madre",
+      "name": "SIERRA MADRE",
+      "coordinates": {
+        "latitude": 22.73998080593539,
+        "longitude": -102.58585755052506
+      }
+    },
+    {
+      "id": "siglo_xx1",
+      "name": "SIGLO XX1",
+      "coordinates": {
+        "latitude": 22.768405840869374,
+        "longitude": -102.64185661378104
+      }
+    },
+    {
+      "id": "siglo_xxi",
+      "name": "SIGLO XXI..",
+      "coordinates": {
+        "latitude": 22.768757218883003,
+        "longitude": -102.64200210361383
+      }
+    },
+    {
+      "id": "soriana",
+      "name": "SORIANA",
+      "coordinates": {
+        "latitude": 22.76247510224968,
+        "longitude": -102.54814089604014
+      }
+    },
+    {
+      "id": "soriana_mercado",
+      "name": "SORIANA MERCADO..",
+      "coordinates": {
+        "latitude": 22.757850257802232,
+        "longitude": -102.50545547257515
+      }
+    },
+    {
+      "id": "soriana_mercado_1",
+      "name": "SORIANA MERCADO",
+      "coordinates": {
+        "latitude": 22.757869686704037,
+        "longitude": -102.50528981986503
+      }
+    },
+    {
+      "id": "soriana_mercado_16",
+      "name": "SORIANA MERCADO, 16",
+      "coordinates": {
+        "latitude": 22.75813242375529,
+        "longitude": -102.50536876447805
+      }
+    },
+    {
+      "id": "tacoaleche",
+      "name": "TACOALECHE",
+      "coordinates": {
+        "latitude": 22.821149765879788,
+        "longitude": -102.40540904952313
+      }
+    },
+    {
+      "id": "tahona",
+      "name": "TAHONA",
+      "coordinates": {
+        "latitude": 22.7590816788702,
+        "longitude": -102.54475059014248
+      }
+    },
+    {
+      "id": "tec_regional_gpe",
+      "name": "TEC REGIONAL >GPE",
+      "coordinates": {
+        "latitude": 22.773540209167003,
+        "longitude": -102.62666531642923
+      }
+    },
+    {
+      "id": "tec_regional_xxi",
+      "name": "TEC REGIONAL > XXI",
+      "coordinates": {
+        "latitude": 22.77362929720353,
+        "longitude": -102.6270031950007
+      }
+    },
+    {
+      "id": "tec_regional_zac",
+      "name": "TEC REGIONAL > ZAC",
+      "coordinates": {
+        "latitude": 22.775993971327306,
+        "longitude": -102.626488026316
+      }
+    },
+    {
+      "id": "telegrafos_120",
+      "name": "TELEGRAFOS, 120",
+      "coordinates": {
+        "latitude": 22.7520225101947,
+        "longitude": -102.5171613714228
+      }
+    },
+    {
+      "id": "telegrafos_33",
+      "name": "TELEGRAFOS, 33",
+      "coordinates": {
+        "latitude": 22.75306636364706,
+        "longitude": -102.5213820056947
+      }
+    },
+    {
+      "id": "telesecundaria_lazaro_cardenas",
+      "name": "TELESECUNDARIA LAZARO CARDENAS.",
+      "coordinates": {
+        "latitude": 22.77993546408307,
+        "longitude": -102.58346007741376
+      }
+    },
+    {
+      "id": "tierra_y_libertad_1a_seccion",
+      "name": "TIERRA Y LIBERTAD 1A SECCIÓN..",
+      "coordinates": {
+        "latitude": 22.75826039339305,
+        "longitude": -102.51508414534273
+      }
+    },
+    {
+      "id": "tierra_y_libertad_1a_seccion_1",
+      "name": "TIERRA Y LIBERTAD 1A SECCIÓN",
+      "coordinates": {
+        "latitude": 22.758339679007772,
+        "longitude": -102.5152248081178
+      }
+    },
+    {
+      "id": "tierra_y_libertad_2a_seccion",
+      "name": "TIERRA Y LIBERTAD 2A SECCIÓN..",
+      "coordinates": {
+        "latitude": 22.762080458026286,
+        "longitude": -102.50992871501624
+      }
+    },
+    {
+      "id": "tierra_y_libertad_2a_seccion_1",
+      "name": "TIERRA Y LIBERTAD 2A SECCION",
+      "coordinates": {
+        "latitude": 22.76197055182485,
+        "longitude": -102.51003741378393
+      }
+    },
+    {
+      "id": "tierra_y_libertad_3a_seccion",
+      "name": "TIERRA Y LIBERTAD 3A SECCIÓN..",
+      "coordinates": {
+        "latitude": 22.768415816905115,
+        "longitude": -102.5080411913346
+      }
+    },
+    {
+      "id": "tierra_y_libertad_3a_seccion_1",
+      "name": "TIERRA Y LIBERTAD 3A SECCION",
+      "coordinates": {
+        "latitude": 22.768564443003168,
+        "longitude": -102.50808471944168
+      }
+    },
+    {
+      "id": "tomas_alba_edison_150",
+      "name": "TOMAS ALBA EDISON, 150",
+      "coordinates": {
+        "latitude": 22.770443701725732,
+        "longitude": -102.59540095918757
+      }
+    },
+    {
+      "id": "tortilleria_lazaro_cardenas",
+      "name": "TORTILLERIA LAZARO CÁRDENAS",
+      "coordinates": {
+        "latitude": 22.776290325556648,
+        "longitude": -102.58549333038528
+      }
+    },
+    {
+      "id": "trancoso_centro",
+      "name": "TRANCOSO CENTRO",
+      "coordinates": {
+        "latitude": 22.7356964329262,
+        "longitude": -102.36601352691652
+      }
+    },
+    {
+      "id": "transito_del_estado",
+      "name": "TRANSITO DEL ESTADO",
+      "coordinates": {
+        "latitude": 22.769775430719847,
+        "longitude": -102.59060952230202
+      }
+    },
+    {
+      "id": "transito_pesado_1000",
+      "name": "TRANSITO PÉSADO, 1000",
+      "coordinates": {
+        "latitude": 22.740357246145223,
+        "longitude": -102.50627071524593
+      }
+    },
+    {
+      "id": "transito_pesado_147",
+      "name": "TRANSITO PESADO, 147",
+      "coordinates": {
+        "latitude": 22.73642895116608,
+        "longitude": -102.51774091135232
+      }
+    },
+    {
+      "id": "transito_pesado_15",
+      "name": "TRANSITO PESADO, 15",
+      "coordinates": {
+        "latitude": 22.736824424565818,
+        "longitude": -102.5173968623224
+      }
+    },
+    {
+      "id": "transito_pesado_82",
+      "name": "TRANSITO PESADO, 82",
+      "coordinates": {
+        "latitude": 22.73873909482671,
+        "longitude": -102.51131432579452
+      }
+    },
+    {
+      "id": "transportes_parques_industriales",
+      "name": "TRANSPORTES PARQUES INDUSTRIALES",
+      "coordinates": {
+        "latitude": 22.739837224888067,
+        "longitude": -102.50601229523058
+      }
+    },
+    {
+      "id": "tres_cruces",
+      "name": "TRES CRUCES",
+      "coordinates": {
+        "latitude": 22.76329630371819,
+        "longitude": -102.5471967983491
+      }
+    },
+    {
+      "id": "tribunal_agrario_distrito_i",
+      "name": "TRIBUNAL AGRARIO DISTRITO I",
+      "coordinates": {
+        "latitude": 22.750810703321214,
+        "longitude": -102.52519169966891
+      }
+    },
+    {
+      "id": "unidad_deportiva_colinas",
+      "name": "UNIDAD DEPORTIVA COLINAS",
+      "coordinates": {
+        "latitude": 22.745254819898967,
+        "longitude": -102.58968297655063
+      }
+    },
+    {
+      "id": "unidad_deportiva_guadalupe",
+      "name": "UNIDAD DEPORTIVA GUADALUPE..",
+      "coordinates": {
+        "latitude": 22.776141854960965,
+        "longitude": -102.49807446997143
+      }
+    },
+    {
+      "id": "unidad_deportiva_guadalupe_1",
+      "name": "UNIDAD DEPORTIVA GUADALUPE",
+      "coordinates": {
+        "latitude": 22.776160706449616,
+        "longitude": -102.49790335208822
+      }
+    },
+    {
+      "id": "unidad_deportiva_norte",
+      "name": "UNIDAD DEPORTIVA NORTE",
+      "coordinates": {
+        "latitude": 22.77485093409232,
+        "longitude": -102.6121705749502
+      }
+    },
+    {
+      "id": "universidad",
+      "name": "UNIVERSIDAD",
+      "coordinates": {
+        "latitude": 22.768020165757335,
+        "longitude": -102.566905619813
+      }
+    },
+    {
+      "id": "universidad_autonoma_de_durango",
+      "name": "UNIVERSIDAD AUTONOMA DE DURANGO",
+      "coordinates": {
+        "latitude": 22.771641080339254,
+        "longitude": -102.60715515281849
+      }
+    },
+    {
+      "id": "upn",
+      "name": "UPN",
+      "coordinates": {
+        "latitude": 22.754784406866982,
+        "longitude": -102.50155564863236
+      }
+    },
+    {
+      "id": "utzac",
+      "name": "UTZAC",
+      "coordinates": {
+        "latitude": 22.715765724178738,
+        "longitude": -102.48763588569359
+      }
+    },
+    {
+      "id": "via_rodi_7",
+      "name": "VIA RODI, 7",
+      "coordinates": {
+        "latitude": 22.768994612595048,
+        "longitude": -102.49394952411262
+      }
+    },
+    {
+      "id": "vialidad_arroyo_de_la_plata",
+      "name": "VIALIDAD ARROYO DE LA PLATA",
+      "coordinates": {
+        "latitude": 22.743656883877826,
+        "longitude": -102.50688851929202
+      }
+    },
+    {
+      "id": "vialidad_arroyo_de_la_plata_1",
+      "name": "VIALIDAD ARROYO DE LA PLATA..",
+      "coordinates": {
+        "latitude": 22.74386948811117,
+        "longitude": -102.50678144100159
+      }
+    },
+    {
+      "id": "vialidad_arroyo_de_la_plata_19",
+      "name": "VIALIDAD ARROYO DE LA PLATA, 19",
+      "coordinates": {
+        "latitude": 22.744274813249614,
+        "longitude": -102.51647347293769
+      }
+    },
+    {
+      "id": "vicente_gerrero_55",
+      "name": "VICENTE GERRERO, 55",
+      "coordinates": {
+        "latitude": 22.751695965482394,
+        "longitude": -102.51278929322694
+      }
+    },
+    {
+      "id": "villa_de_guadalupe_115",
+      "name": "VILLA DE GUADALUPE, 115",
+      "coordinates": {
+        "latitude": 22.75632164359925,
+        "longitude": -102.47826878251969
+      }
+    },
+    {
+      "id": "villa_de_guadalupe_120",
+      "name": "VILLA DE GUADALUPE, 120",
+      "coordinates": {
+        "latitude": 22.756320954501074,
+        "longitude": -102.47842974234841
+      }
+    },
+    {
+      "id": "villa_de_guadalupe_150",
+      "name": "VILLA DE GUADALUPE, 150",
+      "coordinates": {
+        "latitude": 22.759789818214397,
+        "longitude": -102.47863864818828
+      }
+    },
+    {
+      "id": "villa_de_guadalupe_160",
+      "name": "VILLA DE GUADALUPE, 160",
+      "coordinates": {
+        "latitude": 22.759794102798296,
+        "longitude": -102.47876290704782
+      }
+    },
+    {
+      "id": "villa_fontana",
+      "name": "VILLA FONTANA",
+      "coordinates": {
+        "latitude": 22.768422621333002,
+        "longitude": -102.48050482964629
+      }
+    },
+    {
+      "id": "villa_sur_i",
+      "name": "VILLA SUR I",
+      "coordinates": {
+        "latitude": 22.75328825660286,
+        "longitude": -102.48014121629973
+      }
+    },
+    {
+      "id": "villanueva_central_autobus",
+      "name": "VILLANUEVA CENTRAL AUTOBUS",
+      "coordinates": {
+        "latitude": 22.35882747676076,
+        "longitude": -102.88398019863416
+      }
+    },
+    {
+      "id": "villas_de_ntra_sra_de_la_asuncion_35",
+      "name": "VILLAS DE NTRA. SRA. DE LA ASUNCIÓN, 35",
+      "coordinates": {
+        "latitude": 22.759586265043815,
+        "longitude": -102.47918664989278
+      }
+    },
+    {
+      "id": "villas_de_san_fermin",
+      "name": "VILLAS DE SAN FERMIN",
+      "coordinates": {
+        "latitude": 22.769879956244758,
+        "longitude": -102.48164898913659
+      }
+    },
+    {
+      "id": "villas_snte_58",
+      "name": "VILLAS SNTE 58",
+      "coordinates": {
+        "latitude": 22.747619580107102,
+        "longitude": -102.66917627465942
+      }
+    },
+    {
+      "id": "villas_universidad",
+      "name": "VILLAS UNIVERSIDAD..",
+      "coordinates": {
+        "latitude": 22.770785261512835,
+        "longitude": -102.63282840319012
+      }
+    },
+    {
+      "id": "villas_universidad_1",
+      "name": "VILLAS UNIVERSIDAD",
+      "coordinates": {
+        "latitude": 22.770572490140758,
+        "longitude": -102.63270559445606
+      }
+    },
+    {
+      "id": "walmart",
+      "name": "WALMART",
+      "coordinates": {
+        "latitude": 22.761527726636523,
+        "longitude": -102.54910627314665
+      }
+    },
+    {
+      "id": "walmart_colinas",
+      "name": "WALMART COLINAS..",
+      "coordinates": {
+        "latitude": 22.749207633515798,
+        "longitude": -102.59118967709348
+      }
+    },
+    {
+      "id": "walmart_colinas_1",
+      "name": "WALMART COLINAS",
+      "coordinates": {
+        "latitude": 22.749202552696346,
+        "longitude": -102.59135667707498
+      }
+    },
+    {
+      "id": "zacatecas_1",
+      "name": "ZACATECAS, 1",
+      "coordinates": {
+        "latitude": 22.753961305671353,
+        "longitude": -102.49672224620207
+      }
+    },
+    {
+      "id": "zoquite",
+      "name": "ZOQUITE",
+      "coordinates": {
+        "latitude": 22.785245333380434,
+        "longitude": -102.42240044507105
+      }
+    }
+  ]
+}

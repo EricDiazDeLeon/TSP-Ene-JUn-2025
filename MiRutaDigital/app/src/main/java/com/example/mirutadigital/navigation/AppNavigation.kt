@@ -1,5 +1,7 @@
 package com.example.mirutadigital.navigation
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DirectionsBus
 import androidx.compose.material.icons.filled.Groups
@@ -12,7 +14,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
-import com.example.mirutadigital.ui.components.NavItem
+import com.example.mirutadigital.ui.components.navigation.NavItem
 import com.example.mirutadigital.ui.screens.destinationSearch.DestinationSearchScreen
 import com.example.mirutadigital.ui.screens.home.StopsScreen
 import com.example.mirutadigital.ui.screens.menu.favorites.FavoritesScreen
@@ -20,6 +22,8 @@ import com.example.mirutadigital.ui.screens.menu.history.HistoryScreen
 import com.example.mirutadigital.ui.screens.routes.RoutesContainerScreen
 import com.example.mirutadigital.ui.screens.routes.detailRoute.RouteDetailScreen
 import com.example.mirutadigital.ui.screens.share.ShareScreen
+import com.example.mirutadigital.ui.screens.streetview.StreetViewScreen
+import com.example.mirutadigital.ui.screens.tripPlan.TripPlanScreen
 import com.example.mirutadigital.viewModel.LocationViewModel
 import com.example.mirutadigital.viewModel.MapStateViewModel
 
@@ -32,6 +36,7 @@ object Routes {
     const val FAVORITES = "favorites_screen"
     const val HISTORY = "history_screen"
     const val STREET_VIEW = "street_view_screen"
+    const val TRIP_PLAN = "trip_plan_screen"
 }
 
 sealed class AppScreens(val route: String) {
@@ -58,26 +63,28 @@ sealed class AppScreens(val route: String) {
         }
     }
 
+//    object FavoritesScreen : AppScreens(Routes.FAVORITES)
+//    object HistoryScreen : AppScreens(Routes.HISTORY)
+
     object StreetViewScreen : AppScreens(Routes.STREET_VIEW) {
         const val COORDS_ARG = "coords"
         const val ROUTE_WITH_ARGS = "${Routes.STREET_VIEW}/{${COORDS_ARG}}"
 
         fun createRoute(lat: Double, lng: Double): String {
-            return "${Routes.STREET_VIEW}/${lat},${lng}"
+            return "${Routes.STREET_VIEW}/$lat,$lng"
         }
     }
 
-//    object FavoritesScreen : AppScreens(Routes.FAVORITES)
-//    object HistoryScreen : AppScreens(Routes.HISTORY)
 }
 
 val navigationItems = listOf(
     NavItem("Inicio", Icons.Default.LocationOn, Routes.STOPS),
     NavItem("Ver Rutas", Icons.Default.DirectionsBus, Routes.ALL_ROUTES),
     NavItem("Buscar", Icons.Default.Search, Routes.DESTINATION_SEARCH),
-    NavItem("Compartir", Icons.Default.Groups, Routes.SHARE)
+    NavItem("Compartir", Icons.Default.Groups, Routes.SHARE),
 )
 
+@RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AppNavigation(
     navController: NavHostController,
@@ -97,7 +104,10 @@ fun AppNavigation(
                 mapStateViewModel = mapStateViewModel,
                 navController = navController,
                 isSheetExpanded = isSheetExpanded,
-                onExpandSheet = onExpandSheet
+                onExpandSheet = onExpandSheet,
+                onNavigateToStreetView = { lat, lng ->
+                    navController.navigate(AppScreens.StreetViewScreen.createRoute(lat, lng))
+                }
             )
         }
 
@@ -130,6 +140,9 @@ fun AppNavigation(
                 mapStateViewModel = mapStateViewModel,
                 isSheetExpanded = isSheetExpanded,
                 onExpandSheet = onExpandSheet,
+                onNavigateToTripPlan = {
+                    navController.navigate(Routes.TRIP_PLAN)
+                },
                 viewModel = viewModel()
             )
         }
@@ -160,22 +173,6 @@ fun AppNavigation(
             )
         }
 
-        composable(
-            route = AppScreens.StreetViewScreen.ROUTE_WITH_ARGS,
-            arguments = listOf(
-                navArgument(AppScreens.StreetViewScreen.COORDS_ARG) {
-                    type = NavType.StringType
-                }
-            )
-        ) { backStackEntry ->
-            val coordsString =
-                backStackEntry.arguments?.getString(AppScreens.StreetViewScreen.COORDS_ARG) ?: ""
-
-            com.example.mirutadigital.ui.screens.streetview.StreetViewScreen(
-                coords = coordsString
-            )
-        }
-
         composable(route = Routes.FAVORITES) {
             FavoritesScreen(
                 navController = navController,
@@ -194,6 +191,33 @@ fun AppNavigation(
                 navController = navController,
                 locationViewModel = locationViewModel,
                 mapStateViewModel = mapStateViewModel,
+                isSheetExpanded = isSheetExpanded,
+                onExpandSheet = onExpandSheet
+            )
+        }
+
+        composable(
+            route = AppScreens.StreetViewScreen.ROUTE_WITH_ARGS,
+            arguments = listOf(
+                navArgument(AppScreens.StreetViewScreen.COORDS_ARG) {
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
+            val coords =
+                backStackEntry.arguments?.getString(AppScreens.StreetViewScreen.COORDS_ARG) ?: "0,0"
+            StreetViewScreen(
+                coords = coords,
+                onNavigateBack = { navController.popBackStack() }
+            )
+        }
+
+        composable(route = Routes.TRIP_PLAN) {
+            TripPlanScreen(
+                navController = navController,
+                viewModel = viewModel(),
+                mapStateViewModel = mapStateViewModel,
+                locationViewModel = locationViewModel,
                 isSheetExpanded = isSheetExpanded,
                 onExpandSheet = onExpandSheet
             )
